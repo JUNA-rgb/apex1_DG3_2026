@@ -1,494 +1,379 @@
-/* ============================================================
-   APEX SIM-RACING — main.js
-   Sections: Navbar | Hero Telemetry Canvas | Countdown |
-             Prize Pool | Telemetry Slider | Leaderboard |
-             Pricing Hover | Signup Toast | Accordion |
-             Scroll Reveal | Plan Tabs
-   ============================================================ */
+/* ============================================
+   APEX SIM-RACING Academy — Main JS
+   ============================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
+'use strict';
 
-  /* ──────────────────────────────────────────────────────────
-     1. NAVBAR — scroll style + mobile burger
-  ────────────────────────────────────────────────────────── */
-  const navbar  = document.getElementById('navbar');
-  const burger  = document.querySelector('.nav-burger');
-  const navMenu = document.querySelector('.nav-links');
+/* ── Utilities ── */
+const $ = (sel, ctx = document) => ctx.querySelector(sel);
+const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 60);
+/* ============================================
+   SVG ICONS (inline, no external deps)
+   ============================================ */
+const Icons = {
+  email: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`,
+  lock: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
+  user: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>`,
+  eyeOff: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`,
+  eye: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>`,
+  alertCircle: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12" y2="16"/></svg>`,
+  checkCircle: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
+  arrowLeft: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>`,
+  zap: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+};
+
+
+/* ============================================
+   LOGO SVG
+   ============================================ */
+const logoSVG = `
+<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer hex -->
+  <polygon points="20,2 36,11 36,29 20,38 4,29 4,11" fill="none" stroke="url(#logoGrad)" stroke-width="1.5"/>
+  <!-- Inner A shape -->
+  <path d="M12 30 L20 10 L28 30" fill="none" stroke="url(#logoGrad)" stroke-width="2.5" stroke-linejoin="round"/>
+  <line x1="14.5" y1="23" x2="25.5" y2="23" stroke="url(#logoGrad)" stroke-width="2"/>
+  <!-- Speed tick -->
+  <line x1="8" y1="20" x2="14" y2="20" stroke="#dc2626" stroke-width="1.5" opacity="0.7"/>
+  <line x1="26" y1="20" x2="32" y2="20" stroke="#dc2626" stroke-width="1.5" opacity="0.7"/>
+</svg>`;
+
+
+/* ============================================
+   DOM BUILDER
+   ============================================ */
+
+function buildBackgroundScene() {
+  const scene = document.createElement('div');
+  scene.className = 'bg-scene';
+  scene.innerHTML = `
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-lines">
+      <div class="speed-line"></div>
+      <div class="speed-line"></div>
+      <div class="speed-line"></div>
+      <div class="speed-line"></div>
+      <div class="speed-line"></div>
+      <div class="speed-line"></div>
+    </div>
+  `;
+  document.body.prepend(scene);
+}
+
+function buildNavbar(activePage = '') {
+  const nav = document.createElement('nav');
+  nav.className = 'navbar';
+  nav.innerHTML = `
+    <a href="index.html" class="logo">
+      <div class="logo-icon">${logoSVG}</div>
+      <div class="logo-text">
+        <span class="logo-apex">APEX</span>
+        <span class="logo-sub">Sim-Racing Academy</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="${activePage === 'home' ? 'active' : ''}">Inicio</a></li>
+      <li><a href="login.html" class="${activePage === 'login' ? 'active' : ''}">Login</a></li>
+      <li><a href="register.html" class="nav-cta ${activePage === 'register' ? 'active' : ''}">Registrarse</a></li>
+    </ul>
+  `;
+  return nav;
+}
+
+function buildFooter() {
+  const footer = document.createElement('footer');
+  footer.className = 'site-footer';
+  footer.innerHTML = `
+    <span class="footer-logo">APEX</span>
+    <span class="footer-copy">© 2025 APEX SIM-RACING Academy. Todos los derechos reservados.</span>
+    <ul class="footer-links">
+      <li><a href="#">Términos</a></li>
+      <li><a href="#">Privacidad</a></li>
+      <li><a href="#">Contacto</a></li>
+    </ul>
+  `;
+  return footer;
+}
+
+
+/* ============================================
+   FORM HELPERS
+   ============================================ */
+
+function showAlert(container, type, message) {
+  const existing = $('.alert', container);
+  if (existing) existing.remove();
+
+  const icons = { error: Icons.alertCircle, success: Icons.checkCircle };
+  const div = document.createElement('div');
+  div.className = `alert alert-${type}`;
+  div.innerHTML = `<span class="alert-icon">${icons[type]}</span><span>${message}</span>`;
+  container.prepend(div);
+}
+
+function clearErrors(form) {
+  $$('.form-group.has-error', form).forEach(g => g.classList.remove('has-error'));
+  $$('.alert', form).forEach(a => a.remove());
+}
+
+function setError(input, message) {
+  const group = input.closest('.form-group');
+  if (!group) return;
+  group.classList.add('has-error');
+  const err = $('.field-error', group);
+  if (err) err.textContent = message;
+}
+
+function validateEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+}
+
+function setButtonLoading(btn, loading) {
+  btn.classList.toggle('loading', loading);
+  btn.disabled = loading;
+}
+
+/* Simulate async API call */
+function fakeRequest(ms = 1800) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+/* Password strength */
+function getPasswordStrength(pw) {
+  let score = 0;
+  if (pw.length >= 8)  score++;
+  if (pw.length >= 12) score++;
+  if (/[A-Z]/.test(pw)) score++;
+  if (/[0-9]/.test(pw)) score++;
+  if (/[^A-Za-z0-9]/.test(pw)) score++;
+  return score; // 0-5
+}
+
+function updateStrengthBar(bar, fill, label, pw) {
+  const score = getPasswordStrength(pw);
+  const pct = pw.length === 0 ? 0 : Math.max(10, (score / 5) * 100);
+  const colors = ['#dc2626','#dc2626','#f97316','#eab308','#22c55e','#22c55e'];
+  const labels = ['','Muy débil','Débil','Regular','Fuerte','Muy fuerte'];
+  fill.style.width = pct + '%';
+  fill.style.background = colors[score] || '#dc2626';
+  label.textContent = pw.length ? labels[score] || '' : '';
+  label.style.color = colors[score] || 'var(--color-gray-500)';
+}
+
+/* Toggle password visibility */
+function setupPasswordToggle(wrapper) {
+  const input  = $('input[type="password"], input[type="text"]', wrapper);
+  const toggle = $('.input-toggle', wrapper);
+  if (!input || !toggle) return;
+  toggle.innerHTML = Icons.eyeOff;
+  toggle.addEventListener('click', () => {
+    const isPass = input.type === 'password';
+    input.type  = isPass ? 'text' : 'password';
+    toggle.innerHTML = isPass ? Icons.eye : Icons.eyeOff;
   });
+}
 
-  burger?.addEventListener('click', () => {
-    navMenu.classList.toggle('open');
+/* Inject icons into icon wrappers */
+function injectIcons(form) {
+  $$('[data-icon]', form).forEach(el => {
+    el.innerHTML = Icons[el.dataset.icon] || '';
   });
+}
 
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => navMenu.classList.remove('open'));
+
+/* ============================================
+   PAGE: LOGIN
+   ============================================ */
+
+function initLoginPage() {
+  const wrapper = $('.page-wrapper');
+  wrapper.prepend(buildNavbar('login'));
+  wrapper.append(buildFooter());
+
+  const form = $('#loginForm');
+  if (!form) return;
+
+  injectIcons(form);
+  setupPasswordToggle($('.input-wrapper.pw-wrap', form));
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearErrors(form);
+
+    const emailEl = $('#loginEmail', form);
+    const passEl  = $('#loginPassword', form);
+    let valid = true;
+
+    if (!validateEmail(emailEl.value)) {
+      setError(emailEl, 'Ingresá un email válido.');
+      valid = false;
+    }
+    if (passEl.value.length < 6) {
+      setError(passEl, 'La contraseña debe tener al menos 6 caracteres.');
+      valid = false;
+    }
+    if (!valid) return;
+
+    const btn = $('[type="submit"]', form);
+    setButtonLoading(btn, true);
+    await fakeRequest();
+    setButtonLoading(btn, false);
+
+    // Simulate wrong credentials demo
+    if (emailEl.value !== 'demo@apex.com') {
+      showAlert(form, 'error', 'Credenciales inválidas. Probá con demo@apex.com');
+    } else {
+      showAlert(form, 'success', '¡Bienvenido de vuelta, piloto! Redirigiendo...');
+    }
   });
+}
 
 
-  /* ──────────────────────────────────────────────────────────
-     2. TELEMETRY CANVAS BACKGROUND (Hero)
-     Animated racing lines + G-force arc + particles
-  ────────────────────────────────────────────────────────── */
-  const canvas = document.getElementById('telemetry-canvas');
-  if (canvas) {
-    const ctx = canvas.getContext('2d');
-    let W, H, particles = [], lines = [], frame = 0;
+/* ============================================
+   PAGE: REGISTER
+   ============================================ */
 
-    function resizeCanvas() {
-      W = canvas.width  = canvas.offsetWidth;
-      H = canvas.height = canvas.offsetHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+function initRegisterPage() {
+  const wrapper = $('.page-wrapper');
+  wrapper.prepend(buildNavbar('register'));
+  wrapper.append(buildFooter());
 
-    // Telemetry lines (horizontal scan-type data strips)
-    function createLines() {
-      lines = [];
-      for (let i = 0; i < 6; i++) {
-        lines.push({
-          y:      Math.random() * H,
-          speed:  0.4 + Math.random() * 0.8,
-          points: generateTelemetryPoints(),
-          offset: Math.random() * 800,
-          alpha:  0.3 + Math.random() * 0.4,
-          color:  Math.random() > 0.5 ? '#66FCF1' : '#E63946'
-        });
-      }
-    }
+  const form = $('#registerForm');
+  if (!form) return;
 
-    function generateTelemetryPoints() {
-      const pts = [0];
-      for (let i = 1; i < 120; i++) {
-        pts.push(pts[i - 1] + (Math.random() - 0.5) * 18);
-      }
-      return pts;
-    }
+  injectIcons(form);
+  $$('.input-wrapper.pw-wrap', form).forEach(setupPasswordToggle);
 
-    // Floating particles
-    function createParticles() {
-      particles = [];
-      for (let i = 0; i < 50; i++) {
-        particles.push({
-          x: Math.random() * W,
-          y: Math.random() * H,
-          r: 0.5 + Math.random() * 1.5,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: -0.1 - Math.random() * 0.3,
-          alpha: 0.2 + Math.random() * 0.5,
-          color: Math.random() > 0.6 ? '#66FCF1' : '#E63946'
-        });
-      }
-    }
-    createLines();
-    createParticles();
-
-    function drawFrame() {
-      ctx.clearRect(0, 0, W, H);
-      frame++;
-
-      // Grid overlay
-      ctx.strokeStyle = 'rgba(102,252,241,0.04)';
-      ctx.lineWidth = 1;
-      const step = 60;
-      for (let x = 0; x < W; x += step) {
-        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
-      }
-      for (let y = 0; y < H; y += step) {
-        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
-      }
-
-      // Telemetry lines
-      lines.forEach(l => {
-        l.offset += l.speed;
-        if (l.offset > 800) {
-          l.points = generateTelemetryPoints();
-          l.offset = 0;
-        }
-        ctx.beginPath();
-        ctx.strokeStyle = l.color;
-        ctx.globalAlpha = l.alpha * (0.6 + 0.4 * Math.sin(frame * 0.02));
-        ctx.lineWidth = 1.5;
-        const startX = -l.offset % 800;
-        l.points.forEach((p, i) => {
-          const x = startX + i * 10;
-          const y = l.y + p;
-          i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-        });
-        ctx.stroke();
-        ctx.globalAlpha = 1;
-      });
-
-      // Particles
-      particles.forEach(p => {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.y < 0)  p.y = H;
-        if (p.x < 0)  p.x = W;
-        if (p.x > W)  p.x = 0;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.alpha;
-        ctx.fill();
-        ctx.globalAlpha = 1;
-      });
-
-      requestAnimationFrame(drawFrame);
-    }
-    drawFrame();
+  /* Strength meter */
+  const passInput = $('#regPassword', form);
+  const fill      = $('.strength-fill', form);
+  const label     = $('.strength-label', form);
+  if (passInput && fill && label) {
+    passInput.addEventListener('input', () =>
+      updateStrengthBar(null, fill, label, passInput.value)
+    );
   }
 
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearErrors(form);
 
-  /* ──────────────────────────────────────────────────────────
-     3. COUNTDOWN TIMER — 72h from page load (simulated)
-  ────────────────────────────────────────────────────────── */
-  const TARGET_KEY = 'apex_deadline';
-  let deadline = localStorage.getItem(TARGET_KEY);
-  if (!deadline) {
-    deadline = Date.now() + 72 * 60 * 60 * 1000;
-    localStorage.setItem(TARGET_KEY, deadline);
-  }
+    const nameEl    = $('#regName', form);
+    const emailEl   = $('#regEmail', form);
+    const passEl    = $('#regPassword', form);
+    const pass2El   = $('#regPassword2', form);
+    const termsEl   = $('#regTerms', form);
+    let valid = true;
 
-  const cdDays  = document.getElementById('cd-days');
-  const cdHours = document.getElementById('cd-hours');
-  const cdMins  = document.getElementById('cd-mins');
-  const cdSecs  = document.getElementById('cd-secs');
-
-  function padZ(n) { return String(n).padStart(2, '0'); }
-
-  function animateFlip(el, newVal) {
-    if (el && el.textContent !== newVal) {
-      el.classList.add('flip');
-      setTimeout(() => {
-        el.textContent = newVal;
-        el.classList.remove('flip');
-      }, 150);
+    if (nameEl.value.trim().length < 2) {
+      setError(nameEl, 'Ingresá tu nombre completo.'); valid = false;
     }
-  }
+    if (!validateEmail(emailEl.value)) {
+      setError(emailEl, 'Ingresá un email válido.'); valid = false;
+    }
+    if (getPasswordStrength(passEl.value) < 2) {
+      setError(passEl, 'La contraseña es muy débil.'); valid = false;
+    }
+    if (passEl.value !== pass2El.value) {
+      setError(pass2El, 'Las contraseñas no coinciden.'); valid = false;
+    }
+    if (!termsEl.checked) {
+      showAlert(form, 'error', 'Debés aceptar los términos y condiciones.');
+      valid = false;
+    }
+    if (!valid) return;
 
-  function updateCountdown() {
-    const diff = Number(deadline) - Date.now();
-    if (diff <= 0) {
-      [cdDays, cdHours, cdMins, cdSecs].forEach(el => el && (el.textContent = '00'));
+    const btn = $('[type="submit"]', form);
+    setButtonLoading(btn, true);
+    await fakeRequest(2000);
+    setButtonLoading(btn, false);
+
+    showAlert(form, 'success', '¡Cuenta creada! Revisá tu email para verificar tu cuenta.');
+    form.reset();
+    if (fill) fill.style.width = '0';
+    if (label) label.textContent = '';
+  });
+}
+
+
+/* ============================================
+   PAGE: FORGOT PASSWORD
+   ============================================ */
+
+function initForgotPage() {
+  const wrapper = $('.page-wrapper');
+  wrapper.prepend(buildNavbar());
+  wrapper.append(buildFooter());
+
+  const form = $('#forgotForm');
+  if (!form) return;
+
+  injectIcons(form);
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearErrors(form);
+
+    const emailEl = $('#forgotEmail', form);
+    if (!validateEmail(emailEl.value)) {
+      setError(emailEl, 'Ingresá un email válido.');
       return;
     }
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    animateFlip(cdDays,  padZ(d));
-    animateFlip(cdHours, padZ(h));
-    animateFlip(cdMins,  padZ(m));
-    animateFlip(cdSecs,  padZ(s));
-  }
-  if (cdDays) {
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  }
 
+    const btn = $('[type="submit"]', form);
+    setButtonLoading(btn, true);
+    await fakeRequest(1600);
+    setButtonLoading(btn, false);
 
-  /* ──────────────────────────────────────────────────────────
-     4. PRIZE POOL COUNTER — animates up to current total
-  ────────────────────────────────────────────────────────── */
-  const prizeEl = document.getElementById('prize-counter');
-  const PRIZE_TARGET = 18400;
-
-  function animateCounter(el, target, duration = 2500) {
-    const start = performance.now();
-    function step(now) {
-      const t = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - t, 3);
-      el.textContent = '$' + Math.floor(eased * target).toLocaleString('en-US');
-      if (t < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-
-  // Trigger when scrolled into view
-  if (prizeEl) {
-    const obs = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
-        animateCounter(prizeEl, PRIZE_TARGET);
-        obs.disconnect();
-      }
-    }, { threshold: 0.4 });
-    obs.observe(prizeEl);
-  }
-
-  // Live prize ticker (simulate growth)
-  const tickerEl = document.getElementById('prize-ticker');
-  if (tickerEl) {
-    setInterval(() => {
-      tickerEl.textContent = '+$' + (Math.floor(Math.random() * 50) + 20) + ' ACABA DE INGRESAR ▲';
-    }, 4800);
-  }
-
-
-  /* ──────────────────────────────────────────────────────────
-     5. TELEMETRY SLIDER
-  ────────────────────────────────────────────────────────── */
-  const slider     = document.getElementById('lap-slider');
-  const currentLap = document.getElementById('current-lap');
-  const apexLap    = document.getElementById('apex-lap');
-  const lapDelta   = document.getElementById('lap-delta');
-  const lapPrize   = document.getElementById('lap-prize');
-
-  // Base lap = 1:28.500, slider = 0–5 seconds to improve
-  const BASE_LAP_MS = 88500; // 1:28.500 in ms
-
-  function msToLap(ms) {
-    const mins  = Math.floor(ms / 60000);
-    const secs  = Math.floor((ms % 60000) / 1000);
-    const millis = Math.floor((ms % 1000) / 10);
-    return `${mins}:${String(secs).padStart(2,'0')}.${String(millis).padStart(3,'0')}`;
-  }
-
-  function calcPrize(improvementMs) {
-    // $0 at 0ms improvement, up to max prize pool at 5s improvement
-    const ratio = Math.min(improvementMs / 5000, 1);
-    const prize = Math.floor(ratio * PRIZE_TARGET);
-    return prize;
-  }
-
-  function updateSlider() {
-    const improvement = parseInt(slider.value); // 0–5000 ms
-    const yourLapMs   = BASE_LAP_MS;
-    const apexLapMs   = BASE_LAP_MS - improvement;
-    const deltaMs     = improvement;
-    const prize       = calcPrize(improvement);
-
-    if (currentLap) currentLap.textContent = msToLap(yourLapMs);
-    if (apexLap)    apexLap.textContent    = msToLap(apexLapMs);
-    if (lapDelta)   lapDelta.textContent   = '-' + (deltaMs / 1000).toFixed(3) + 's';
-    if (lapPrize) {
-      lapPrize.textContent = '$' + prize.toLocaleString('en-US');
-      lapPrize.style.transform = 'scale(1.06)';
-      setTimeout(() => lapPrize.style.transform = '', 200);
-    }
-  }
-
-  if (slider) {
-    slider.addEventListener('input', updateSlider);
-    updateSlider();
-  }
-
-
-  /* ──────────────────────────────────────────────────────────
-     6. LIVE LEADERBOARD — updates every 3.5s
-  ────────────────────────────────────────────────────────── */
-  const pilots = [
-    { name: 'M. Verstappen',  flag: '🇳🇱', base: 82341 },
-    { name: 'C. Leclerc',     flag: '🇲🇨', base: 82487 },
-    { name: 'L. Hamilton',    flag: '🇬🇧', base: 82612 },
-    { name: 'F. Alonso',      flag: '🇪🇸', base: 82798 },
-    { name: 'C. Sainz',       flag: '🇪🇸', base: 82934 },
-    { name: 'G. Russell',     flag: '🇬🇧', base: 83122 },
-    { name: 'S. Perez',       flag: '🇲🇽', base: 83287 },
-    { name: 'L. Norris',      flag: '🇬🇧', base: 83401 },
-    { name: 'O. Piastri',     flag: '🇦🇺', base: 83598 },
-    { name: 'Y. Tsunoda',     flag: '🇯🇵', base: 83844 },
-  ];
-
-  const lbBody = document.getElementById('lb-body');
-
-  function msToLapTime(ms) {
-    const m  = Math.floor(ms / 60000);
-    const s  = Math.floor((ms % 60000) / 1000);
-    const mi = Math.floor((ms % 1000) / 10);
-    return `${m}:${String(s).padStart(2,'0')}.${String(mi).padStart(3,'0')}`;
-  }
-
-  function jitter(base) {
-    return base + Math.floor((Math.random() - 0.5) * 400);
-  }
-
-  function renderLeaderboard() {
-    if (!lbBody) return;
-
-    const current = pilots.map(p => ({ ...p, lapMs: jitter(p.base) }));
-    current.sort((a, b) => a.lapMs - b.lapMs);
-
-    const existing = lbBody.querySelectorAll('.lb-row');
-    current.forEach((p, i) => {
-      const pos  = i + 1;
-      const posClass = pos <= 3 ? `pos-${pos}` : '';
-      const lapStr   = msToLapTime(p.lapMs);
-
-      if (existing[i]) {
-        const row = existing[i];
-        const oldTime = row.querySelector('.lb-time').textContent;
-        if (oldTime !== lapStr) {
-          row.querySelector('.lb-pos').className  = `lb-pos ${posClass}`;
-          row.querySelector('.lb-pos').textContent = pos;
-          row.querySelector('.lb-name').textContent = p.name;
-          row.querySelector('.lb-time').textContent = lapStr;
-          row.querySelector('.lb-flag').textContent = p.flag;
-          row.classList.add('updated');
-          setTimeout(() => row.classList.remove('updated'), 700);
-        }
-      } else {
-        const row = document.createElement('div');
-        row.className = 'lb-row' + (pos === 1 ? ' highlight' : '');
-        row.innerHTML = `
-          <span class="lb-pos ${posClass}">${pos}</span>
-          <span class="lb-name">${p.name}</span>
-          <span class="lb-time">${lapStr}</span>
-          <span class="lb-flag">${p.flag}</span>
-        `;
-        lbBody.appendChild(row);
-      }
-    });
-  }
-
-  if (lbBody) {
-    renderLeaderboard();
-    setInterval(renderLeaderboard, 3500);
-  }
-
-
-  /* ──────────────────────────────────────────────────────────
-     7. PRICING — hover dims others, toast signup popup
-  ────────────────────────────────────────────────────────── */
-  const pricingGrid = document.querySelector('.pricing-grid');
-  const priceCards  = document.querySelectorAll('.price-card');
-  const toast       = document.getElementById('signup-toast');
-
-  priceCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      priceCards.forEach(c => {
-        if (c !== card) c.classList.add('dimmed');
-      });
-    });
-    card.addEventListener('mouseleave', () => {
-      priceCards.forEach(c => c.classList.remove('dimmed'));
-    });
+    // Show success state
+    form.innerHTML = `
+      <div class="alert alert-success">
+        <span class="alert-icon">${Icons.checkCircle}</span>
+        <span>
+          Si existe una cuenta con <strong>${emailEl.value}</strong>, recibirás un email con instrucciones para restablecer tu contraseña.
+        </span>
+      </div>
+      <a href="login.html" class="btn btn-secondary" style="margin-top:8px">
+        ${Icons.arrowLeft} <span>Volver al Login</span>
+      </a>
+    `;
   });
+}
 
-  // Random pilot signup toast
-  const toastPilots = [
-    'Lucas M. (🇧🇷 Brasil)',
-    'Tomás V. (🇦🇷 Argentina)',
-    'Pierre D. (🇫🇷 Francia)',
-    'Jake R. (🇬🇧 UK)',
-    'Hiroshi K. (🇯🇵 Japón)',
-    'Carlos B. (🇪🇸 España)',
-    'Alex N. (🇩🇪 Alemania)',
-    'Marco F. (🇮🇹 Italia)',
-  ];
-  let toastActive = false;
 
-  function showToast() {
-    if (toastActive || !toast) return;
-    toastActive = true;
-    const pilot = toastPilots[Math.floor(Math.random() * toastPilots.length)];
-    const plans  = ['Plan F3', 'Plan F2', 'Plan PRO'];
-    const plan   = plans[Math.floor(Math.random() * plans.length)];
-    toast.innerHTML = `🏁 <strong>${pilot}</strong> acaba de inscribirse en <strong>${plan}</strong>`;
-    toast.classList.add('show');
-    setTimeout(() => {
-      toast.classList.remove('show');
-      toastActive = false;
-    }, 4000);
+/* ============================================
+   PAGE: INDEX (Home placeholder)
+   ============================================ */
+
+function initHomePage() {
+  const wrapper = $('.page-wrapper');
+  wrapper.prepend(buildNavbar('home'));
+  wrapper.append(buildFooter());
+}
+
+
+/* ============================================
+   ROUTER
+   ============================================ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  buildBackgroundScene();
+
+  const page = document.body.dataset.page;
+  switch (page) {
+    case 'login':    initLoginPage();    break;
+    case 'register': initRegisterPage(); break;
+    case 'forgot':   initForgotPage();   break;
+    default:         initHomePage();     break;
   }
-
-  setInterval(showToast, 7000);
-  setTimeout(showToast, 3000);
-
-
-  /* ──────────────────────────────────────────────────────────
-     8. ACCORDION (Hardware + FAQ)
-  ────────────────────────────────────────────────────────── */
-  document.querySelectorAll('.accordion-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.accordion-item');
-      const body = item.querySelector('.accordion-body');
-      const isOpen = item.classList.contains('open');
-
-      // Close all siblings
-      btn.closest('.accordion-item').parentElement
-        .querySelectorAll('.accordion-item').forEach(i => {
-          i.classList.remove('open');
-          i.querySelector('.accordion-body').style.maxHeight = null;
-        });
-
-      if (!isOpen) {
-        item.classList.add('open');
-        body.style.maxHeight = body.scrollHeight + 'px';
-      }
-    });
-  });
-
-
-  /* ──────────────────────────────────────────────────────────
-     9. PLAN TABS
-  ────────────────────────────────────────────────────────── */
-  const tabs  = document.querySelectorAll('.plan-tab');
-  const grids = document.querySelectorAll('.plan-grid');
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = tab.dataset.target;
-      tabs.forEach(t  => t.classList.remove('active'));
-      grids.forEach(g => g.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById(target)?.classList.add('active');
-    });
-  });
-
-
-  /* ──────────────────────────────────────────────────────────
-     10. SCROLL REVEAL
-  ────────────────────────────────────────────────────────── */
-  const revealEls = document.querySelectorAll('.reveal');
-  const revealObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        revealObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  revealEls.forEach(el => revealObs.observe(el));
-
-
-  /* ──────────────────────────────────────────────────────────
-     11. SMOOTH SCROLL for all anchor links
-  ────────────────────────────────────────────────────────── */
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
-      const target = document.querySelector(link.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-
-
-  /* ──────────────────────────────────────────────────────────
-     12. NEWSLETTER FORM
-  ────────────────────────────────────────────────────────── */
-  const newsletterForm = document.querySelector('.newsletter-form');
-  newsletterForm?.addEventListener('submit', e => {
-    e.preventDefault();
-    const input = newsletterForm.querySelector('input');
-    if (input?.value.trim()) {
-      if (toast) {
-        toastActive = false;
-        toast.innerHTML = `✅ <strong>¡Inscrito!</strong> Recibirás alertas de telemetría en <strong>${input.value}</strong>`;
-        toast.classList.add('show');
-        setTimeout(() => { toast.classList.remove('show'); toastActive = false; }, 4000);
-      }
-      input.value = '';
-    }
-  });
-
-  // Prevent normal submit
-  document.querySelectorAll('form').forEach(f => {
-    f.addEventListener('submit', e => e.preventDefault());
-  });
-
 });

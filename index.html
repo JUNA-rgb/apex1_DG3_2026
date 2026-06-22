@@ -1,848 +1,257 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>APEX SIM-RACING — El Simulador Profesional</title>
-  <meta name="description" content="Cursos de simulación de nivel profesional para F1, F2 y F3. Campeonato exclusivo con premios en dinero real." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>APEX SIM-RACING Academy</title>
+  <meta name="description" content="Una plataforma de academia digital de alto rendimiento para entrenamiento profesional de sim-racing."/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="css/home.css"/>
 </head>
-<body>
+<body data-page="home">
 
-<!-- Scanline CRT overlay -->
-<div class="scanlines" aria-hidden="true"></div>
+  <div class="page-wrapper">
 
-<!-- Signup toast -->
-<div id="signup-toast" role="status" aria-live="polite"></div>
+    <!-- Navbar injected by JS -->
 
+    <main>
 
-<!-- ══════════════════════════════════════════════════════════
-     SECTION 7 — NAVBAR
-════════════════════════════════════════════════════════════ -->
-<nav id="navbar" role="navigation" aria-label="Navegación principal">
-  <a href="#hero" class="nav-logo">APEX<span>.</span>SIM</a>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-inner">
+          <div class="hero-eyebrow">
+            <span class="eyebrow-dot"></span>
+            Academia de Sim-Racing Profesional
+          </div>
 
-  <ul class="nav-links" id="nav-menu">
-    <li><a href="#concurso">Concurso</a></li>
-    <li><a href="#plan">Entrenamiento</a></li>
-    <li><a href="#leaderboard">Ranking</a></li>
-    <li><a href="#precios">Precios</a></li>
-    <li><a href="#sobre">Nosotros</a></li>
-    <li><a href="#faq">FAQ</a></li>
-  </ul>
+          <h1 class="hero-title">
+            <span class="hero-title-line">DOMINA</span>
+            <span class="hero-title-line accent">EL CIRCUITO</span>
+          </h1>
 
-  <div class="nav-status" aria-label="Estado del servidor">
-    <span class="status-dot"></span>
-    SIMULADORES ONLINE
-  </div>
+          <p class="hero-desc">
+            Entrenamiento de alto rendimiento, gestión de campeonatos y desarrollo
+            de esports para pilotos que quieren llegar a lo más alto.
+          </p>
 
-  <button class="nav-burger" aria-label="Abrir menú" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+          <div class="hero-cta-group">
+            <a href="register.html" class="btn btn-primary hero-btn">
+              Comenzar gratis
+            </a>
+            <a href="login.html" class="btn btn-secondary hero-btn">
+              Ya tengo cuenta
+            </a>
+          </div>
 
-
-<!-- ══════════════════════════════════════════════════════════
-     SECTION 1 — HERO (Animada)
-════════════════════════════════════════════════════════════ -->
-<section id="hero" aria-label="Portada principal">
-  <canvas id="telemetry-canvas" aria-hidden="true"></canvas>
-  <div class="hero-overlay" aria-hidden="true"></div>
-
-  <div class="hero-content">
-    <div class="hero-badge">
-      <span>⚡</span> Temporada 2025 — Inscripciones Abiertas
-    </div>
-
-    <h1 class="hero-title">
-      El simulador no es<br>
-      un juego. Es tu próximo<br>
-      <span class="accent-red">contrato</span>
-      <span class="accent-cyan"> profesional.</span>
-    </h1>
-
-    <p class="hero-sub">
-      Metodología usada por pilotos de F2 y F3 FIA. Telemetría en tiempo real,
-      setup avanzado de monoplaza y psicología de carrera de élite.
-    </p>
-
-    <!-- Countdown -->
-    <div class="countdown-wrap">
-      <p class="countdown-label">⏱ Cierre de inscripciones en</p>
-      <div class="countdown" role="timer" aria-label="Cuenta regresiva">
-        <div class="countdown-unit">
-          <span class="countdown-num hud" id="cd-days">00</span>
-          <small>días</small>
-        </div>
-        <span class="countdown-sep" aria-hidden="true">:</span>
-        <div class="countdown-unit">
-          <span class="countdown-num hud" id="cd-hours">00</span>
-          <small>horas</small>
-        </div>
-        <span class="countdown-sep" aria-hidden="true">:</span>
-        <div class="countdown-unit">
-          <span class="countdown-num hud" id="cd-mins">00</span>
-          <small>minutos</small>
-        </div>
-        <span class="countdown-sep" aria-hidden="true">:</span>
-        <div class="countdown-unit">
-          <span class="countdown-num hud" id="cd-secs">00</span>
-          <small>segundos</small>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-cta-group">
-      <a href="#precios" class="btn-cta">
-        🏁 Quiero mi cupo ahora
-      </a>
-      <a href="#concurso" class="btn-secondary">
-        Ver premios →
-      </a>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════════
-     SECTION 2 — CONCURSO & BOLSA DE PREMIOS (Animada)
-════════════════════════════════════════════════════════════ -->
-<section id="concurso" aria-labelledby="concurso-title">
-  <p class="section-eyebrow reveal">Campeonato Exclusivo APEX</p>
-  <h2 class="section-title reveal" id="concurso-title">
-    La bolsa de premios<br>
-    <span class="text-red">crece en tiempo real</span>
-  </h2>
-  <div class="apex-divider reveal"></div>
-
-  <div class="prize-counter-wrap reveal">
-    <p class="prize-counter-label">Total acumulado esta semana</p>
-    <div class="prize-counter hud" id="prize-counter">$0</div>
-    <p class="prize-ticker-sub mono" id="prize-ticker">▲ CARGANDO DATOS...</p>
-  </div>
-
-  <p class="section-sub reveal">
-    Podios semanales con dinero real. Cada inscripción aumenta el bote.
-    Top 3 clasificados se reparten el 100%.
-  </p>
-
-  <!-- Animated Podium -->
-  <div class="podium-wrap reveal" role="list" aria-label="Podio de premios">
-    <div class="podium-block" role="listitem" aria-label="Segundo lugar: $4,600">
-      <span class="podium-prize">$4,600</span>
-      <span class="podium-name mono">2.º CLASIFICADO</span>
-      <span class="podium-pos">2</span>
-      <div class="podium-bar"></div>
-    </div>
-    <div class="podium-block" role="listitem" aria-label="Primer lugar: $11,500">
-      <span class="podium-prize">$11,500</span>
-      <span class="podium-name mono">1.ER CLASIFICADO</span>
-      <span class="podium-pos">1</span>
-      <div class="podium-bar"></div>
-    </div>
-    <div class="podium-block" role="listitem" aria-label="Tercer lugar: $2,300">
-      <span class="podium-prize">$2,300</span>
-      <span class="podium-name mono">3.ER CLASIFICADO</span>
-      <span class="podium-pos">3</span>
-      <div class="podium-bar"></div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════════
-     SECTION 3 — SIMULADOR DE TELEMETRÍA (Animada)
-════════════════════════════════════════════════════════════ -->
-<section id="telemetria" aria-labelledby="tele-title">
-  <p class="section-eyebrow reveal">Calculadora de rendimiento</p>
-  <h2 class="section-title reveal" id="tele-title">
-    ¿Cuánto vale cada<br>
-    <span class="text-cyan">milésima</span> para ti?
-  </h2>
-  <div class="apex-divider reveal"></div>
-  <p class="section-sub reveal">
-    Mueve el slider y descubre cuánto dinero ganarías en el campeonato
-    si mejoras tu tiempo de vuelta con el método APEX.
-  </p>
-
-  <div class="tele-widget reveal">
-    <div class="tele-header">
-      <span class="tele-tag">// CANAL DE TELEMETRÍA A-01</span>
-      <span class="tele-circuit text-red hud">MONZA — SECTOR 2</span>
-    </div>
-
-    <div class="tele-lap-display">
-      <div class="tele-lap-box">
-        <span class="tele-lap-label">Tu tiempo actual</span>
-        <span class="tele-lap-time" id="current-lap">1:28.500</span>
-      </div>
-      <div class="tele-lap-box">
-        <span class="tele-lap-label">Con APEX</span>
-        <span class="tele-lap-time" id="apex-lap">1:28.500</span>
-      </div>
-      <div class="tele-lap-box">
-        <span class="tele-lap-label">Delta</span>
-        <span class="tele-lap-time" id="lap-delta">-0.000s</span>
-      </div>
-    </div>
-
-    <div class="tele-slider-wrap">
-      <p class="tele-slider-label">Mejora de tiempo (0 — 5.0 segundos)</p>
-      <input type="range" id="lap-slider" min="0" max="5000" value="0" step="10"
-             aria-label="Slider de mejora de tiempo de vuelta" />
-    </div>
-
-    <div class="tele-result">
-      <span class="tele-result-label">Premio estimado para esta mejora</span>
-      <span class="tele-result-prize hud" id="lap-prize">$0</span>
-      <span class="tele-result-sub">basado en el campeonato semanal actual</span>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════════
-     SECTION 8 — PLAN DE ENTRENAMIENTO (F1 / F2 / F3)
-════════════════════════════════════════════════════════════ -->
-<section id="plan" aria-labelledby="plan-title">
-  <p class="section-eyebrow reveal">Currículum técnico</p>
-  <h2 class="section-title reveal" id="plan-title">
-    Plan de entrenamiento
-    <span class="text-red">APEX</span>
-  </h2>
-  <div class="apex-divider reveal"></div>
-
-  <div class="plan-tabs reveal" role="tablist" aria-label="Categorías de entrenamiento">
-    <button class="plan-tab active" data-target="plan-f3" role="tab" aria-selected="true">F3</button>
-    <button class="plan-tab" data-target="plan-f2" role="tab" aria-selected="false">F2</button>
-    <button class="plan-tab" data-target="plan-f1" role="tab" aria-selected="false">F1</button>
-  </div>
-
-  <!-- F3 Grid -->
-  <div class="plan-grid active" id="plan-f3" role="tabpanel">
-    <div class="plan-card reveal reveal-delay-1">
-      <div class="plan-card-icon">🏎️</div>
-      <h3 class="plan-card-title">Física de neumáticos</h3>
-      <p class="plan-card-desc">Modelado térmico, degradación, ventana de trabajo e impacto en balance aerodinámico del monoplaza de F3.</p>
-      <span class="plan-card-weeks mono">SEMANAS 1–2</span>
-    </div>
-    <div class="plan-card reveal reveal-delay-2">
-      <div class="plan-card-icon">📡</div>
-      <h3 class="plan-card-title">Telemetría MoTeC</h3>
-      <p class="plan-card-desc">Lectura e interpretación de canales de freno, acelerador, velocidad, G laterales y longitudinales.</p>
-      <span class="plan-card-weeks mono">SEMANAS 3–4</span>
-    </div>
-    <div class="plan-card reveal reveal-delay-3">
-      <div class="plan-card-icon">⚙️</div>
-      <h3 class="plan-card-title">Setup del monoplaza</h3>
-      <p class="plan-card-desc">Configuración de suspensión, alerón, presiones y ARB para optimizar rendimiento por circuito.</p>
-      <span class="plan-card-weeks mono">SEMANAS 5–6</span>
-    </div>
-    <div class="plan-card reveal reveal-delay-1">
-      <div class="plan-card-icon">🧠</div>
-      <h3 class="plan-card-title">Psicología de carrera</h3>
-      <p class="plan-card-desc">Control mental bajo presión, gestión de errores, visualización y preparación para clasificación.</p>
-      <span class="plan-card-weeks mono">SEMANAS 7–8</span>
-    </div>
-    <div class="plan-card reveal reveal-delay-2">
-      <div class="plan-card-icon">🎯</div>
-      <h3 class="plan-card-title">Trazada perfecta</h3>
-      <p class="plan-card-desc">Referencia de apex geométrico vs dinámico, salidas tardías, frenadas y puntos de referencia visuales.</p>
-      <span class="plan-card-weeks mono">SEMANAS 9–10</span>
-    </div>
-    <div class="plan-card reveal reveal-delay-3">
-      <div class="plan-card-icon">🏆</div>
-      <h3 class="plan-card-title">Simulacro de carrera</h3>
-      <p class="plan-card-desc">Sesiones de calificación y carrera completa con análisis post-sesión por ingenieros reales.</p>
-      <span class="plan-card-weeks mono">SEMANAS 11–12</span>
-    </div>
-  </div>
-
-  <!-- F2 Grid -->
-  <div class="plan-grid" id="plan-f2" role="tabpanel">
-    <div class="plan-card reveal reveal-delay-1">
-      <div class="plan-card-icon">💨</div>
-      <h3 class="plan-card-title">Aerodinámica avanzada</h3>
-      <p class="plan-card-desc">DRS, efecto suelo, gestión del stall y análisis CFD simplificado para optimizar downforce en curvas rápidas.</p>
-      <span class="plan-card-weeks mono">SEMANAS 1–3</span>
-    </div>
-    <div class="plan-card reveal reveal-delay-2">
-      <div class="plan-card-icon">⛽</div>
-      <h3 class="plan-card-title">Estrategia de carrera</h3>
-      <p class="plan-card-desc">Undercut, overcut, manejo de combustible, SC virtual y comunicación con el muro de boxes en tiempo real.</p>
-      <span class="plan-card-weeks mono">SEMANAS 4–6</span>
-    </div>
-    <div class="plan-card reveal reveal-delay-3">
-      <div class="plan-card-icon">📊</div>
-      <h3 class="plan-card-title">Data engineering</h3>
-      <p class="plan-card-desc">Interpretación avanzada de datos, comparación de sectores entre compañeros de equipo y búsqueda de décimas.</p>
-      <span class="plan-card-weeks mono">SEMANAS 7–9</span>
-    </div>
-    <div class="plan-card reveal reveal-delay-1">
-      <div class="plan-card-icon">🤝</div>
-      <h3 class="plan-card-title">Trabajo en equipo FIA</h3>
-      <p class="plan-card-desc">Protocolos de comunicación radio, debriefing técnico y adaptación al estilo de ingeniería de cada escudería.</p>
-      <span class="plan-card-weeks mono">SEMANAS 10–12</span>
-    </div>
-  </div>
-
-  <!-- F1 Grid -->
-  <div class="plan-grid" id="plan-f1" role="tabpanel">
-    <div class="plan-card reveal reveal-delay-1">
-      <div class="plan-card-icon">🚀</div>
-      <h3 class="plan-card-title">Protocolo F1</h3>
-      <p class="plan-card-desc">Procedimientos de arranque, KERS/ERS, modo de motor de clasificación y gestión térmica de frenos de carbono.</p>
-      <span class="plan-card-weeks mono">SEMANAS 1–2</span>
-    </div>
-    <div class="plan-card reveal reveal-delay-2">
-      <div class="plan-card-icon">🔋</div>
-      <h3 class="plan-card-title">Gestión de energía híbrida</h3>
-      <p class="plan-card-desc">Despliegue estratégico de ERS en zonas de overtake, harvest en frenadas y modo Quali para una vuelta.</p>
-      <span class="plan-card-weeks mono">SEMANAS 3–5</span>
-    </div>
-    <div class="plan-card reveal reveal-delay-3">
-      <div class="plan-card-icon">🌍</div>
-      <h3 class="plan-card-title">Calendario FIA 24 circuitos</h3>
-      <p class="plan-card-desc">Setup específico y referencia de trazada para los 24 Grandes Premios del calendario oficial de F1.</p>
-      <span class="plan-card-weeks mono">SEMANAS 6–12</span>
-    </div>
-    <div class="plan-card reveal reveal-delay-1">
-      <div class="plan-card-icon">📺</div>
-      <h3 class="plan-card-title">Media training</h3>
-      <p class="plan-card-desc">Comunicación con medios, redes sociales de piloto profesional y construcción de marca personal para patrocinadores.</p>
-      <span class="plan-card-weeks mono">SEMANA 13</span>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════════
-     SECTION 5 — TABLA DE CLASIFICACIÓN EN VIVO (Animada)
-════════════════════════════════════════════════════════════ -->
-<section id="leaderboard" aria-labelledby="lb-title">
-  <p class="section-eyebrow reveal">Actualización en tiempo real</p>
-  <h2 class="section-title reveal" id="lb-title">
-    Clasificación<br>
-    <span class="text-cyan">en vivo</span>
-  </h2>
-  <div class="apex-divider reveal"></div>
-
-  <div style="display:flex; justify-content:center; margin-bottom:1.5rem;" class="reveal">
-    <span class="lb-live-badge">
-      <span class="lb-live-dot"></span>
-      LIVE — CAMPEONATO APEX S01
-    </span>
-  </div>
-
-  <div class="lb-container reveal" role="table" aria-label="Tabla de clasificación en vivo">
-    <div class="lb-header-row" role="row">
-      <span class="lb-col-label" role="columnheader">POS</span>
-      <span class="lb-col-label" role="columnheader">PILOTO</span>
-      <span class="lb-col-label" role="columnheader">MEJOR V.</span>
-      <span class="lb-col-label" role="columnheader">NAC.</span>
-    </div>
-    <div id="lb-body" role="rowgroup"></div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════════
-     SECTION 4 — TESTIMONIALES (Animada)
-════════════════════════════════════════════════════════════ -->
-<section id="testimoniales" aria-labelledby="testi-title">
-  <p class="section-eyebrow reveal">Pilotos reales. Resultados reales.</p>
-  <h2 class="section-title reveal" id="testi-title" style="margin-bottom:2.5rem">
-    Lo que dicen quienes<br>
-    <span class="text-red">ya están en la grilla</span>
-  </h2>
-
-  <div class="carousel-track-wrap" aria-label="Carrusel de testimoniales">
-    <div class="carousel-track">
-      <!-- Cards duplicadas para efecto infinito -->
-      <div class="testi-card">
-        <p class="testi-quote">Gracias al método APEX bajé 1.8 segundos en Silverstone en solo 6 semanas. Mi ingeniero no lo podía creer cuando le mandé la telemetría.</p>
-        <div class="testi-pilot">
-          <div class="testi-avatar">MV</div>
-          <div>
-            <p class="testi-name">Marco Villani</p>
-            <p class="testi-role mono">F3 FIA EUROPE — 🇮🇹 Italia</p>
-            <p class="testi-stars">★★★★★</p>
+          <!-- Stats row -->
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-num">2,400<span class="stat-plus">+</span></span>
+              <span class="stat-label">Pilotos activos</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-num">180<span class="stat-plus">+</span></span>
+              <span class="stat-label">Circuitos disponibles</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-num">48<span class="stat-plus">+</span></span>
+              <span class="stat-label">Campeonatos activos</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="testi-card">
-        <p class="testi-quote">Nunca pensé que un simulador podía reemplazar días de pista. La telemetría de APEX es exactamente la misma que usamos en el equipo real.</p>
-        <div class="testi-pilot">
-          <div class="testi-avatar">LT</div>
-          <div>
-            <p class="testi-name">Lena Torres</p>
-            <p class="testi-role mono">W-SERIES ACADEMY — 🇪🇸 España</p>
-            <p class="testi-stars">★★★★★</p>
+
+        <!-- Hero visual -->
+        <div class="hero-visual">
+          <div class="cockpit-frame">
+            <svg viewBox="0 0 500 340" xmlns="http://www.w3.org/2000/svg" class="cockpit-svg">
+              <defs>
+                <linearGradient id="hgA" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#dc2626"/>
+                  <stop offset="100%" stop-color="#f97316"/>
+                </linearGradient>
+                <linearGradient id="hgB" x1="0" y1="1" x2="0" y2="0">
+                  <stop offset="0%" stop-color="#070709"/>
+                  <stop offset="100%" stop-color="#0e0e12"/>
+                </linearGradient>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="3" result="blur"/>
+                  <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                </filter>
+                <radialGradient id="screenGrad" cx="50%" cy="50%">
+                  <stop offset="0%" stop-color="#1a1a2e"/>
+                  <stop offset="100%" stop-color="#070709"/>
+                </radialGradient>
+              </defs>
+
+              <!-- Dashboard body -->
+              <path d="M20 320 Q40 200 120 160 Q250 120 380 160 Q460 200 480 320 Z"
+                    fill="url(#hgB)" stroke="rgba(220,38,38,0.3)" stroke-width="1"/>
+
+              <!-- Main screen -->
+              <rect x="140" y="100" width="220" height="130" rx="8"
+                    fill="url(#screenGrad)" stroke="url(#hgA)" stroke-width="1.5"/>
+
+              <!-- Screen content: speed gauge -->
+              <text x="250" y="135" font-family="Orbitron,sans-serif" font-size="11"
+                    fill="#71717a" text-anchor="middle" letter-spacing="3">VELOCIDAD</text>
+              <text x="250" y="178" font-family="Orbitron,sans-serif" font-size="38"
+                    fill="white" text-anchor="middle" font-weight="900" class="anim-speed">247</text>
+              <text x="250" y="200" font-family="Orbitron,sans-serif" font-size="11"
+                    fill="#dc2626" text-anchor="middle" letter-spacing="2">KM/H</text>
+              <!-- Lap -->
+              <text x="165" y="220" font-family="Rajdhani,sans-serif" font-size="10"
+                    fill="#71717a" letter-spacing="2">VUELTA</text>
+              <text x="165" y="233" font-family="Orbitron,sans-serif" font-size="13"
+                    fill="white" font-weight="700">1:28.743</text>
+              <!-- Gear -->
+              <text x="335" y="220" font-family="Rajdhani,sans-serif" font-size="10"
+                    fill="#71717a" letter-spacing="2" text-anchor="end">MARCHA</text>
+              <text x="335" y="233" font-family="Orbitron,sans-serif" font-size="13"
+                    fill="url(#hgA)" font-weight="900" text-anchor="end">6</text>
+
+              <!-- RPM bar -->
+              <rect x="145" y="238" width="210" height="4" rx="2" fill="rgba(255,255,255,0.06)"/>
+              <rect x="145" y="238" width="168" height="4" rx="2" fill="url(#hgA)" class="rpm-bar"/>
+
+              <!-- Side panels -->
+              <!-- Left mini -->
+              <rect x="50" y="140" width="80" height="90" rx="6"
+                    fill="url(#hgB)" stroke="rgba(220,38,38,0.2)" stroke-width="1"/>
+              <text x="90" y="162" font-family="Rajdhani,sans-serif" font-size="9"
+                    fill="#71717a" text-anchor="middle" letter-spacing="2">POSICIÓN</text>
+              <text x="90" y="192" font-family="Orbitron,sans-serif" font-size="28"
+                    fill="url(#hgA)" text-anchor="middle" font-weight="900">P3</text>
+              <text x="90" y="218" font-family="Rajdhani,sans-serif" font-size="9"
+                    fill="#71717a" text-anchor="middle" letter-spacing="1">+1.2s GAP</text>
+
+              <!-- Right mini -->
+              <rect x="370" y="140" width="80" height="90" rx="6"
+                    fill="url(#hgB)" stroke="rgba(220,38,38,0.2)" stroke-width="1"/>
+              <text x="410" y="162" font-family="Rajdhani,sans-serif" font-size="9"
+                    fill="#71717a" text-anchor="middle" letter-spacing="2">NEUMÁTICO</text>
+              <!-- Tyre indicators -->
+              <circle cx="392" cy="185" r="12" fill="rgba(220,38,38,0.15)" stroke="#dc2626" stroke-width="1.5"/>
+              <circle cx="428" cy="185" r="12" fill="rgba(220,38,38,0.15)" stroke="#dc2626" stroke-width="1.5"/>
+              <circle cx="392" cy="210" r="12" fill="rgba(220,38,38,0.08)" stroke="rgba(220,38,38,0.4)" stroke-width="1"/>
+              <circle cx="428" cy="210" r="12" fill="rgba(220,38,38,0.08)" stroke="rgba(220,38,38,0.4)" stroke-width="1"/>
+
+              <!-- Steering wheel -->
+              <circle cx="250" cy="295" r="45" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+              <circle cx="250" cy="295" r="30" fill="rgba(14,14,18,0.9)" stroke="rgba(220,38,38,0.5)" stroke-width="2"/>
+              <!-- Wheel spokes -->
+              <line x1="250" y1="250" x2="250" y2="265" stroke="url(#hgA)" stroke-width="3" stroke-linecap="round"/>
+              <line x1="207" y1="272" x2="220" y2="280" stroke="rgba(255,255,255,0.15)" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="293" y1="272" x2="280" y2="280" stroke="rgba(255,255,255,0.15)" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- Center logo mark -->
+              <polygon points="250,280 256,292 244,292" fill="url(#hgA)" opacity="0.9"/>
+
+              <!-- Pedals area -->
+              <rect x="190" y="315" width="40" height="18" rx="3"
+                    fill="rgba(220,38,38,0.1)" stroke="rgba(220,38,38,0.3)" stroke-width="1"/>
+              <rect x="270" y="315" width="40" height="18" rx="3"
+                    fill="rgba(220,38,38,0.2)" stroke="rgba(220,38,38,0.5)" stroke-width="1"/>
+              <text x="210" y="327" font-family="Rajdhani,sans-serif" font-size="7"
+                    fill="#71717a" text-anchor="middle" letter-spacing="1">FRENO</text>
+              <text x="290" y="327" font-family="Rajdhani,sans-serif" font-size="7"
+                    fill="#dc2626" text-anchor="middle" letter-spacing="1">GAS</text>
+
+              <!-- Red accent lines at top -->
+              <line x1="0" y1="0" x2="500" y2="0" stroke="url(#hgA)" stroke-width="2" opacity="0.6"/>
+            </svg>
           </div>
         </div>
-      </div>
-      <div class="testi-card">
-        <p class="testi-quote">El módulo de psicología de carrera fue un game-changer. Clasifiqué en primera fila por primera vez en mi carrera después de aplicar las técnicas.</p>
-        <div class="testi-pilot">
-          <div class="testi-avatar">RS</div>
-          <div>
-            <p class="testi-name">Riku Sato</p>
-            <p class="testi-role mono">SUPER FORMULA — 🇯🇵 Japón</p>
-            <p class="testi-stars">★★★★★</p>
+      </section>
+
+      <!-- FEATURES -->
+      <section class="features">
+        <div class="features-inner">
+          <div class="section-label">Plataforma completa</div>
+          <h2 class="section-title">Todo lo que necesitás para ser <span class="accent-text">el mejor</span></h2>
+
+          <div class="features-grid">
+
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+              </div>
+              <h3 class="feature-title">Telemetría en tiempo real</h3>
+              <p class="feature-desc">Analizá tu desempeño vuelta a vuelta con datos de velocidad, frenada, ángulo y más.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+                </svg>
+              </div>
+              <h3 class="feature-title">Campeonatos y rankings</h3>
+              <p class="feature-desc">Competí en ligas oficiales, subí el ranking y seguí cada temporada con estadísticas detalladas.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <h3 class="feature-title">Comunidad de pilotos</h3>
+              <p class="feature-desc">Conectate con miles de pilotos, compartí setups, estrategias y desafíos entre amigos.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 9h6"/><path d="M9 12h4"/><path d="M9 15h2"/>
+                </svg>
+              </div>
+              <h3 class="feature-title">Academia de entrenamiento</h3>
+              <p class="feature-desc">Cursos guiados por instructores profesionales para dominar cada aspecto del sim-racing.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+              </div>
+              <h3 class="feature-title">Setups & estrategia</h3>
+              <p class="feature-desc">Optimizá el auto para cada pista con herramientas de setup profesional y simulación de combustible.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                </svg>
+              </div>
+              <h3 class="feature-title">Notas de carrera</h3>
+              <p class="feature-desc">Registrá tus sesiones, anotá mejoras y seguí tu evolución con un diario de piloto integrado.</p>
+            </div>
+
           </div>
         </div>
-      </div>
-      <div class="testi-card">
-        <p class="testi-quote">Me inscribí escéptico. Salí firmando un contrato de prueba con un equipo de F2. La preparación de setup que aprendí fue decisiva en la entrevista técnica.</p>
-        <div class="testi-pilot">
-          <div class="testi-avatar">CB</div>
-          <div>
-            <p class="testi-name">Carlos Bravo</p>
-            <p class="testi-role mono">F2 FIA — 🇦🇷 Argentina</p>
-            <p class="testi-stars">★★★★★</p>
-          </div>
+      </section>
+
+      <!-- CTA BANNER -->
+      <section class="cta-banner">
+        <div class="cta-inner">
+          <h2 class="cta-title">¿Listo para tomar la <span class="accent-text">pole position</span>?</h2>
+          <p class="cta-desc">Creá tu cuenta gratis hoy y empezá tu entrenamiento con los mejores instructores del sim-racing latinoamericano.</p>
+          <a href="register.html" class="btn btn-primary cta-btn">Crear cuenta gratis →</a>
         </div>
-      </div>
-      <div class="testi-card">
-        <p class="testi-quote">La simulación de estrategia de carrera con Safety Car virtual fue algo que no encontré en ningún otro programa. Absolutamente imprescindible.</p>
-        <div class="testi-pilot">
-          <div class="testi-avatar">PA</div>
-          <div>
-            <p class="testi-name">Pierre Aumont</p>
-            <p class="testi-role mono">F3 RENAULT — 🇫🇷 Francia</p>
-            <p class="testi-stars">★★★★★</p>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <p class="testi-quote">APEX no es solo otro curso de sim-racing. Es el único programa que trata el simulador como lo que realmente es: una herramienta de trabajo profesional.</p>
-        <div class="testi-pilot">
-          <div class="testi-avatar">AK</div>
-          <div>
-            <p class="testi-name">Aiden Kelly</p>
-            <p class="testi-role mono">FORMULA REGIONAL — 🇬🇧 UK</p>
-            <p class="testi-stars">★★★★★</p>
-          </div>
-        </div>
-      </div>
-      <!-- Duplicado para loop infinito -->
-      <div class="testi-card" aria-hidden="true">
-        <p class="testi-quote">Gracias al método APEX bajé 1.8 segundos en Silverstone en solo 6 semanas. Mi ingeniero no lo podía creer cuando le mandé la telemetría.</p>
-        <div class="testi-pilot">
-          <div class="testi-avatar">MV</div>
-          <div>
-            <p class="testi-name">Marco Villani</p>
-            <p class="testi-role mono">F3 FIA EUROPE — 🇮🇹 Italia</p>
-            <p class="testi-stars">★★★★★</p>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card" aria-hidden="true">
-        <p class="testi-quote">Nunca pensé que un simulador podía reemplazar días de pista. La telemetría de APEX es exactamente la misma que usamos en el equipo real.</p>
-        <div class="testi-pilot">
-          <div class="testi-avatar">LT</div>
-          <div>
-            <p class="testi-name">Lena Torres</p>
-            <p class="testi-role mono">W-SERIES ACADEMY — 🇪🇸 España</p>
-            <p class="testi-stars">★★★★★</p>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card" aria-hidden="true">
-        <p class="testi-quote">El módulo de psicología de carrera fue un game-changer. Clasifiqué en primera fila por primera vez en mi carrera después de aplicar las técnicas.</p>
-        <div class="testi-pilot">
-          <div class="testi-avatar">RS</div>
-          <div>
-            <p class="testi-name">Riku Sato</p>
-            <p class="testi-role mono">SUPER FORMULA — 🇯🇵 Japón</p>
-            <p class="testi-stars">★★★★★</p>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card" aria-hidden="true">
-        <p class="testi-quote">Me inscribí escéptico. Salí firmando un contrato de prueba con un equipo de F2. La preparación de setup que aprendí fue decisiva en la entrevista técnica.</p>
-        <div class="testi-pilot">
-          <div class="testi-avatar">CB</div>
-          <div>
-            <p class="testi-name">Carlos Bravo</p>
-            <p class="testi-role mono">F2 FIA — 🇦🇷 Argentina</p>
-            <p class="testi-stars">★★★★★</p>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card" aria-hidden="true">
-        <p class="testi-quote">La simulación de estrategia de carrera con Safety Car virtual fue algo que no encontré en ningún otro programa. Absolutamente imprescindible.</p>
-        <div class="testi-pilot">
-          <div class="testi-avatar">PA</div>
-          <div>
-            <p class="testi-name">Pierre Aumont</p>
-            <p class="testi-role mono">F3 RENAULT — 🇫🇷 Francia</p>
-            <p class="testi-stars">★★★★★</p>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card" aria-hidden="true">
-        <p class="testi-quote">APEX no es solo otro curso de sim-racing. Es el único programa que trata el simulador como lo que realmente es: una herramienta de trabajo profesional.</p>
-        <div class="testi-pilot">
-          <div class="testi-avatar">AK</div>
-          <div>
-            <p class="testi-name">Aiden Kelly</p>
-            <p class="testi-role mono">FORMULA REGIONAL — 🇬🇧 UK</p>
-            <p class="testi-stars">★★★★★</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
+    </main>
 
-<!-- ══════════════════════════════════════════════════════════
-     SECTION 6 — PRECIOS CON DARK UX (Animada)
-════════════════════════════════════════════════════════════ -->
-<section id="precios" aria-labelledby="precios-title">
-  <p class="section-eyebrow reveal">Elige tu categoría</p>
-  <h2 class="section-title reveal" id="precios-title">
-    Empieza hoy.<br>
-    <span class="text-red">Los cupos se agotan.</span>
-  </h2>
-  <div class="apex-divider reveal"></div>
-
-  <div class="pricing-grid reveal">
-
-    <!-- F3 Plan -->
-    <div class="price-card">
-      <h3 class="price-name hud text-cyan">F3 — Academy</h3>
-      <div class="price-amount hud">
-        <sup>$</sup>297<sub>/mes</sub>
-      </div>
-      <hr class="price-divider" />
-      <ul class="price-features">
-        <li>Acceso a simulador iRacing F3</li>
-        <li>12 módulos técnicos (texto + video)</li>
-        <li>Telemetría básica MoTeC</li>
-        <li>Acceso al campeonato semanal</li>
-        <li>Comunidad privada Discord</li>
-      </ul>
-      <button class="price-cta outline">Inscribirme en F3</button>
-    </div>
-
-    <!-- PRO Plan — Featured -->
-    <div class="price-card featured">
-      <span class="price-badge">⚡ MÁS POPULAR</span>
-      <p class="price-scarcity mono">⚠ Solo quedan 3 cupos</p>
-      <h3 class="price-name hud text-red">PRO — F2 Full</h3>
-      <div class="price-amount hud">
-        <sup>$</sup>597<sub>/mes</sub>
-      </div>
-      <hr class="price-divider" />
-      <ul class="price-features">
-        <li>Todo lo incluido en F3 Academy</li>
-        <li>Simulador F2 + setup personalizado</li>
-        <li>Sesiones 1 a 1 con ingeniero de datos</li>
-        <li>Telemetría avanzada (todos los canales)</li>
-        <li>Acceso anticipado al campeonato F1</li>
-        <li>Certificación APEX Sim-Racing</li>
-        <li>Análisis de video por vuelta</li>
-      </ul>
-      <button class="price-cta primary">🏁 Quiero mi cupo PRO</button>
-    </div>
-
-    <!-- F1 Elite Plan -->
-    <div class="price-card">
-      <h3 class="price-name hud" style="color:#C5A028">F1 — Elite</h3>
-      <div class="price-amount hud">
-        <sup>$</sup>997<sub>/mes</sub>
-      </div>
-      <hr class="price-divider" />
-      <ul class="price-features">
-        <li>Todo lo incluido en PRO F2</li>
-        <li>Simulador F1 con ERS y DRS real</li>
-        <li>Coaching privado semanal (1h)</li>
-        <li>Estrategia de carrera con datos FIA</li>
-        <li>Acceso a todos los 24 circuitos</li>
-        <li>Contacto con managers de carrera</li>
-        <li>Media training y branding personal</li>
-      </ul>
-      <button class="price-cta outline" style="color:#C5A028; border-color:#C5A028;">Inscribirme en Elite</button>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════════
-     SECTION 9 — HARDWARE (Accordion)
-════════════════════════════════════════════════════════════ -->
-<section id="hardware" aria-labelledby="hw-title">
-  <div class="hardware-inner">
-    <p class="section-eyebrow reveal" style="text-align:center">Compatibilidad de equipo</p>
-    <h2 class="section-title reveal" style="text-align:center;margin-bottom:0.5rem" id="hw-title">
-      Requisitos de <span class="text-cyan">hardware</span>
-    </h2>
-    <div class="apex-divider reveal"></div>
-
-    <!-- Mínimos -->
-    <div class="accordion-item reveal">
-      <button class="accordion-btn" aria-expanded="false" aria-controls="hw-min-body">
-        <span class="accordion-btn-title">⚙️ Requisitos mínimos</span>
-        <span class="accordion-icon" aria-hidden="true">+</span>
-      </button>
-      <div class="accordion-body" id="hw-min-body" role="region">
-        <div class="accordion-body-inner">
-          <ul class="hw-list">
-            <li>Volante con force feedback (Logitech G29 / Thrustmaster T300 o superior)</li>
-            <li>Pedalera con al menos dos pedales (freno + acelerador)</li>
-            <li>PC: Intel i5-10400 / Ryzen 5 3600 | 16GB RAM | GTX 1070 / RX 5700</li>
-            <li>Monitor 24" 1080p 60Hz (mínimo)</li>
-            <li>iRacing o Assetto Corsa Competizione (licencia activa)</li>
-            <li>Conexión a internet estable 20 Mbps</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Recomendados -->
-    <div class="accordion-item reveal">
-      <button class="accordion-btn" aria-expanded="false" aria-controls="hw-rec-body">
-        <span class="accordion-btn-title">🏆 Setup recomendado (nivel pro)</span>
-        <span class="accordion-icon" aria-hidden="true">+</span>
-      </button>
-      <div class="accordion-body" id="hw-rec-body" role="region">
-        <div class="accordion-body-inner">
-          <ul class="hw-list">
-            <li>Volante Direct Drive (Simucube 2 Pro / Fanatec DD2 / Mige 20Nm+)</li>
-            <li>Pedalera con celda de carga (Heusinkveld Sprint / Fanatec CSP v3 / HE Simracing)</li>
-            <li>PC: AMD Ryzen 9 7900X / Intel i9-13900K | 32GB DDR5 | RTX 4080 o superior</li>
-            <li>Triple monitor 27" 1440p 165Hz o pantalla ultrawide curved</li>
-            <li>Opción VR: Meta Quest 3 / Pimax Crystal (resolución mínima para F1)</li>
-            <li>Cockpit de aluminio (Next Level Racing GT Pro / SimLab P1-X)</li>
-            <li>Software: iRacing + MoTeC i2 Pro + Crew Chief + SimDash</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Certificado APEX -->
-    <div class="accordion-item reveal">
-      <button class="accordion-btn" aria-expanded="false" aria-controls="hw-cert-body">
-        <span class="accordion-btn-title">✅ Hardware certificado por APEX</span>
-        <span class="accordion-icon" aria-hidden="true">+</span>
-      </button>
-      <div class="accordion-body" id="hw-cert-body" role="region">
-        <div class="accordion-body-inner">
-          <p style="margin-bottom:0.75rem; opacity:0.8;">Estos son los setups que usamos internamente y con los que hemos obtenido resultados medibles en pista real:</p>
-          <ul class="hw-list">
-            <li>Simucube 2 Ultimate + Heusinkveld Ultimate + SimLab GT1 EVO — Setup de referencia F1</li>
-            <li>Fanatec GT DD Pro + CSP v3 + NLR GT Lite — Setup entrada pro F2/F3</li>
-            <li>Thrustmaster TS-PC RACER + T-LCM + Mesa adaptada — Setup mid-range F3</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════════
-     SECTION 10 — SOBRE APEX SIM-RACING (Manifiesto)
-════════════════════════════════════════════════════════════ -->
-<section id="sobre" aria-labelledby="sobre-title">
-  <div class="about-inner">
-    <div>
-      <p class="section-eyebrow reveal">Manifiesto APEX</p>
-      <h2 class="section-title reveal" id="sobre-title" style="text-align:left;margin-bottom:1.5rem">
-        Por qué el sim define<br>
-        <span class="text-red">las grillas del mañana</span>
-      </h2>
-      <div class="about-manifesto reveal">
-        <p>Desde 2022, la FIA ha reconocido oficialmente la simulación de alto rendimiento como
-        herramienta válida para el desarrollo de pilotos en sus programas júnior. <strong>Las grillas de
-        partida de F3 y F2 ya se deciden en parte en el simulador.</strong></p>
-        <p>Los equipos de F1 usan simuladores de más de 2 millones de dólares. Nosotros te damos
-        acceso a la misma metodología de datos, telemetría y setup que usan esos ingenieros,
-        <strong>a una fracción del costo.</strong></p>
-        <p>APEX no es una academia de videojuegos. Es un programa de desarrollo profesional donde
-        cada vuelta tiene un propósito, cada dato tiene un significado y cada décima que mejoras
-        es un paso más hacia la grilla de salida real.</p>
-        <p><strong>El simulador no es un juego. Es tu próximo contrato profesional.</strong></p>
-      </div>
-    </div>
-    <div class="about-stats reveal">
-      <div class="stat-box">
-        <div class="stat-num hud">847</div>
-        <div class="stat-desc mono">pilotos formados</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num hud">23</div>
-        <div class="stat-desc mono">contratos firmados</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num hud">1.9s</div>
-        <div class="stat-desc mono">mejora promedio</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num hud">4.9★</div>
-        <div class="stat-desc mono">valoración media</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════════
-     SECTION 11 — FAQ
-════════════════════════════════════════════════════════════ -->
-<section id="faq" aria-labelledby="faq-title">
-  <p class="section-eyebrow reveal">Resolvemos tus dudas</p>
-  <h2 class="section-title reveal" id="faq-title">
-    Preguntas <span class="text-cyan">frecuentes</span>
-  </h2>
-  <div class="apex-divider reveal"></div>
-
-  <div class="faq-inner">
-
-    <div class="accordion-item reveal">
-      <button class="accordion-btn" aria-expanded="false" aria-controls="faq-1-body">
-        <span class="accordion-btn-title">¿Cómo y cuándo se pagan los premios del campeonato?</span>
-        <span class="accordion-icon" aria-hidden="true">+</span>
-      </button>
-      <div class="accordion-body" id="faq-1-body">
-        <div class="accordion-body-inner">
-          Los premios se pagan semanalmente cada lunes mediante transferencia bancaria internacional (SWIFT/SEPA) o PayPal, según la preferencia del ganador. El proceso tarda entre 24 y 72 horas hábiles. Se requiere verificación de identidad en la primera transferencia para cumplir regulaciones anti-fraude.
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item reveal">
-      <button class="accordion-btn" aria-expanded="false" aria-controls="faq-2-body">
-        <span class="accordion-btn-title">¿Qué simulador usa APEX para sus cursos?</span>
-        <span class="accordion-icon" aria-hidden="true">+</span>
-      </button>
-      <div class="accordion-body" id="faq-2-body">
-        <div class="accordion-body-inner">
-          Trabajamos principalmente con <strong>iRacing</strong> (plataforma oficial para todos los niveles) y <strong>Assetto Corsa Competizione</strong> para categorías GT. Los módulos avanzados de F1 usan <strong>rFactor 2</strong> con el mod oficial de F1 desarrollado internamente por nuestro equipo técnico. Todos los vehículos cuentan con telemetría compatible con MoTeC i2 Pro.
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item reveal">
-      <button class="accordion-btn" aria-expanded="false" aria-controls="faq-3-body">
-        <span class="accordion-btn-title">¿Los resultados del simulador son válidos para licencias FIA reales?</span>
-        <span class="accordion-icon" aria-hidden="true">+</span>
-      </button>
-      <div class="accordion-body" id="faq-3-body">
-        <div class="accordion-body-inner">
-          Los resultados del campeonato APEX <strong>no reemplazan</strong> los puntos FIA para licencias de competición real. Sin embargo, nuestra certificación APEX es reconocida por varios equipos de F3 y F2 como parte del portfolio de evaluación. Actualmente estamos en proceso de acreditación con la FIA Digital Motor Sport para que nuestros campeonatos cuenten como experiencia demostrable en solicitudes de licencia.
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item reveal">
-      <button class="accordion-btn" aria-expanded="false" aria-controls="faq-4-body">
-        <span class="accordion-btn-title">¿Necesito experiencia previa en sim-racing para inscribirme?</span>
-        <span class="accordion-icon" aria-hidden="true">+</span>
-      </button>
-      <div class="accordion-body" id="faq-4-body">
-        <div class="accordion-body-inner">
-          El plan F3 Academy no requiere experiencia previa. Comenzamos desde los fundamentos de la trazada y el control del vehículo. Los planes F2 Pro y F1 Elite requieren al menos 3 meses de experiencia en iRacing o Assetto Corsa. En caso de duda, escríbenos y nuestro equipo hará una evaluación gratuita de 20 minutos para ubicarte en el nivel correcto.
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item reveal">
-      <button class="accordion-btn" aria-expanded="false" aria-controls="faq-5-body">
-        <span class="accordion-btn-title">¿Puedo cancelar mi suscripción en cualquier momento?</span>
-        <span class="accordion-icon" aria-hidden="true">+</span>
-      </button>
-      <div class="accordion-body" id="faq-5-body">
-        <div class="accordion-body-inner">
-          Sí. Nuestras suscripciones son mensuales y sin permanencia. Puedes cancelar desde tu panel de usuario con 48 horas de antelación al próximo cargo. No hacemos retenciones, aunque perderás el acceso al campeonato semanal y al material del curso inmediatamente tras la cancelación. Los resultados del campeonato quedan en tu historial de forma permanente.
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item reveal">
-      <button class="accordion-btn" aria-expanded="false" aria-controls="faq-6-body">
-        <span class="accordion-btn-title">¿Hay sesiones en vivo o solo es contenido grabado?</span>
-        <span class="accordion-icon" aria-hidden="true">+</span>
-      </button>
-      <div class="accordion-body" id="faq-6-body">
-        <div class="accordion-body-inner">
-          Ambas modalidades. Los planes F3 incluyen contenido grabado + Q&A en grupo semanal (live). Los planes PRO F2 y Elite F1 incluyen además sesiones individuales en vivo con ingenieros de datos y coaches, análisis de telemetría en tiempo real compartida, y acceso a carreras privadas con briefing post-sesión en Discord.
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════════
-     SECTION 12 — FOOTER
-════════════════════════════════════════════════════════════ -->
-<footer id="footer" role="contentinfo">
-  <div class="footer-grid">
-
-    <!-- Brand -->
-    <div class="footer-brand">
-      <div class="nav-logo" style="margin-bottom:0.25rem">APEX<span style="color:#E63946">.</span>SIM</div>
-      <p>Metodología profesional de sim-racing para pilotos que quieren llegar a la grilla real. F1, F2, F3. Telemetría. Campeonatos. Premios.</p>
-    </div>
-
-    <!-- Legal -->
-    <div>
-      <h4 class="footer-heading">Legal</h4>
-      <ul class="footer-links">
-        <li><a href="#">Términos y condiciones</a></li>
-        <li><a href="#">Política de privacidad</a></li>
-        <li><a href="#">Reglamento del campeonato</a></li>
-        <li><a href="#">Política de reembolso</a></li>
-        <li><a href="#">Aviso de cookies</a></li>
-      </ul>
-    </div>
-
-    <!-- Links -->
-    <div>
-      <h4 class="footer-heading">Navegación</h4>
-      <ul class="footer-links">
-        <li><a href="#concurso">Campeonato</a></li>
-        <li><a href="#plan">Entrenamiento</a></li>
-        <li><a href="#precios">Precios</a></li>
-        <li><a href="#testimoniales">Testimonios</a></li>
-        <li><a href="#sobre">Nosotros</a></li>
-      </ul>
-    </div>
-
-    <!-- Newsletter -->
-    <div>
-      <h4 class="footer-heading">Alertas de telemetría</h4>
-      <p style="font-size:0.85rem; opacity:0.5; margin-bottom:0.5rem; line-height:1.5;">Recibe updates del campeonato, cupos disponibles y novedades antes que nadie.</p>
-      <form class="newsletter-form" novalidate aria-label="Formulario de newsletter">
-        <input type="email" class="newsletter-input" placeholder="tu@email.com" aria-label="Dirección de email" required />
-        <button type="submit" class="newsletter-btn">SUSCRIBIR</button>
-      </form>
-    </div>
+    <!-- Footer injected by JS -->
 
   </div>
 
-  <div class="footer-bottom">
-    <p class="footer-copy mono">
-      © 2025 APEX SIM-RACING. Todos los derechos reservados. |
-      APEX SIM-RACING no está afiliado a la FIA, Formula 1, Formula 2 o Formula 3.
-      Los premios están sujetos a verificación de identidad y reglamento oficial del campeonato.
-    </p>
-    <div class="footer-socials" aria-label="Redes sociales">
-      <a href="#" class="social-btn" aria-label="Instagram">IG</a>
-      <a href="#" class="social-btn" aria-label="Twitter / X">𝕏</a>
-      <a href="#" class="social-btn" aria-label="YouTube">YT</a>
-      <a href="#" class="social-btn" aria-label="Discord">DC</a>
-      <a href="#" class="social-btn" aria-label="TikTok">TK</a>
-    </div>
-  </div>
-</footer>
-
-<script src="js/main.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

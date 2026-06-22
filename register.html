@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registrarse | APEX SIM-RACING Academy</title>
+  <meta name="description" content="Creá tu cuenta en APEX SIM-RACING Academy y comenzá a entrenar."/>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body data-page="register">
+
+  <div class="page-wrapper">
+
+    <!-- Navbar injected by JS -->
+
+    <main class="auth-section">
+      <div class="auth-card">
+
+        <!-- Header -->
+        <div class="auth-header">
+          <div class="auth-logo">
+            <svg class="auth-logo-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="regLogoGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#dc2626"/>
+                  <stop offset="100%" stop-color="#f97316"/>
+                </linearGradient>
+              </defs>
+              <polygon points="20,2 36,11 36,29 20,38 4,29 4,11" fill="none" stroke="url(#regLogoGrad)" stroke-width="1.5"/>
+              <path d="M12 30 L20 10 L28 30" fill="none" stroke="url(#regLogoGrad)" stroke-width="2.5" stroke-linejoin="round"/>
+              <line x1="14.5" y1="23" x2="25.5" y2="23" stroke="url(#regLogoGrad)" stroke-width="2"/>
+              <line x1="8" y1="20" x2="14" y2="20" stroke="#dc2626" stroke-width="1.5" opacity="0.7"/>
+              <line x1="26" y1="20" x2="32" y2="20" stroke="#dc2626" stroke-width="1.5" opacity="0.7"/>
+            </svg>
+            <div class="auth-logo-text">
+              <span class="auth-apex">APEX</span>
+              <span class="auth-academy">Sim-Racing Academy</span>
+            </div>
+          </div>
+          <h1 class="auth-title">Crear cuenta</h1>
+          <p class="auth-subtitle">Únite a la academia y tomá la pole position</p>
+        </div>
+
+        <!-- Form -->
+        <form class="auth-form" id="registerForm" novalidate>
+
+          <!-- Full Name -->
+          <div class="form-group">
+            <label class="form-label" for="regName">Nombre completo</label>
+            <div class="input-wrapper">
+              <span class="input-icon" data-icon="user"></span>
+              <input
+                class="form-input"
+                type="text"
+                id="regName"
+                name="name"
+                placeholder="Max Verstappen"
+                autocomplete="name"
+                required
+              />
+            </div>
+            <span class="field-error" role="alert"></span>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label class="form-label" for="regEmail">Email</label>
+            <div class="input-wrapper">
+              <span class="input-icon" data-icon="email"></span>
+              <input
+                class="form-input"
+                type="email"
+                id="regEmail"
+                name="email"
+                placeholder="piloto@apex.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+            <span class="field-error" role="alert"></span>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label class="form-label" for="regPassword">Contraseña</label>
+            <div class="input-wrapper pw-wrap">
+              <span class="input-icon" data-icon="lock"></span>
+              <input
+                class="form-input"
+                type="password"
+                id="regPassword"
+                name="password"
+                placeholder="••••••••"
+                autocomplete="new-password"
+                required
+              />
+              <button type="button" class="input-toggle" aria-label="Mostrar contraseña"></button>
+            </div>
+            <span class="field-error" role="alert"></span>
+            <!-- Strength meter -->
+            <div class="password-strength">
+              <div class="strength-bar">
+                <div class="strength-fill"></div>
+              </div>
+              <span class="strength-label"></span>
+            </div>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="form-group">
+            <label class="form-label" for="regPassword2">Confirmar contraseña</label>
+            <div class="input-wrapper pw-wrap">
+              <span class="input-icon" data-icon="lock"></span>
+              <input
+                class="form-input"
+                type="password"
+                id="regPassword2"
+                name="password2"
+                placeholder="••••••••"
+                autocomplete="new-password"
+                required
+              />
+              <button type="button" class="input-toggle" aria-label="Mostrar contraseña"></button>
+            </div>
+            <span class="field-error" role="alert"></span>
+          </div>
+
+          <!-- Terms -->
+          <div class="form-group">
+            <label class="form-check">
+              <input type="checkbox" id="regTerms" name="terms" required/>
+              <span class="form-check-label">
+                Acepto los <a href="#">Términos de uso</a> y la <a href="#">Política de privacidad</a>
+              </span>
+            </label>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn btn-primary">
+            <span class="btn-spinner"></span>
+            <span class="btn-label">Crear cuenta — es gratis</span>
+          </button>
+
+        </form>
+
+        <!-- Footer -->
+        <div class="auth-footer">
+          ¿Ya tenés cuenta? <a href="login.html">Iniciar sesión</a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Footer injected by JS -->
+
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
