@@ -1,680 +1,280 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- SEO Meta Tags -->
-  <title>APEX Sim-Racing | Academia Profesional de Automovilismo Virtual</title>
-  <meta name="description" content="Convertite en piloto profesional de simulación en APEX Sim-Racing. Cursos iniciales, intermedios y avanzados en simuladores de alta gama con telemetría en tiempo real, coaching y campeonatos con premios reales en efectivo.">
-  <meta name="keywords" content="sim racing, simuladores de carreras, formula 1, academia simracing, esports motorsport, f1 gaming, telemetria, apex sim racing">
-  <meta name="author" content="APEX Sim-Racing">
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏁</text></svg>">
-  
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/style.css">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>APEX SIM RACING</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
 </head>
+
 <body>
-  <!-- Custom Interactive Cursor -->
-  <div class="custom-cursor-ring"></div>
-  <div class="custom-cursor-dot"></div>
-  <!-- Real-Time HUD Speedometer Widget -->
-  <div class="speedometer-hud" id="speedometer-hud">
-    <div class="speedometer-dial">
-      <svg class="speedometer-svg" width="50" height="50">
-        <circle class="speedometer-bg-circle" cx="25" cy="25" r="20" />
-        <circle class="speedometer-value-circle" cx="25" cy="25" r="20" />
-      </svg>
-    </div>
-    <div class="speedometer-text">
-      <span class="speedometer-num">000</span>
-      <span class="speedometer-unit">KM/H (GEAR <span id="hud-gear">N</span>)</span>
-    </div>
-  </div>
-  <!-- Header / Navigation -->
-  <header class="header">
+
+<canvas id="particles"></canvas>
+
+<header class="navbar">
+
     <div class="container nav-container">
-      <a href="#hero" class="logo">
-        <i data-lucide="chevrons-right"></i>APEX<span>SIM-RACING</span>
-      </a>
-      
-      <ul class="nav-menu">
-        <li><a href="#hero" class="nav-link active">Inicio</a></li>
-        <li><a href="#about" class="nav-link">¿Qué es?</a></li>
-        <li><a href="#roadmap" class="nav-link">Camino</a></li>
-        <li><a href="#courses" class="nav-link">Cursos</a></li>
-        <li><a href="#sim-experience" class="nav-link">Telemetría</a></li>
-        <li><a href="#championship" class="nav-link">Campeonatos</a></li>
-        <li><a href="#prizes" class="nav-link">Premios</a></li>
-        <li><a href="#why-us" class="nav-link">Beneficios</a></li>
-        <li><a href="#faq" class="nav-link">FAQ</a></li>
-      </ul>
-      
-      <button class="nav-toggle" aria-label="Abrir menú de navegación">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+
+        <a href="#" class="logo">
+
+            <img src="assets/logo.png" alt="APEX">
+
+        </a>
+
+        <nav>
+
+            <ul class="nav-links">
+
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Academia</a></li>
+                <li><a href="#">Cursos</a></li>
+                <li><a href="#">Campeonato</a></li>
+                <li><a href="#">Premios</a></li>
+                <li><a href="#">FAQ</a></li>
+
+            </ul>
+
+        </nav>
+
+        <a href="#" class="btn-nav">
+            INSCRIBIRME
+        </a>
+
     </div>
-  </header>
-  <!-- 1. Hero Section (Animated) -->
-  <section id="hero">
-    <canvas id="hero-canvas" class="hero-canvas"></canvas>
+
+</header>
+
+<section class="hero">
+
     <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tagline text-glow">BIENVENIDO AL ALTO RENDIMIENTO</p>
-      <h1 class="hero-title">NO MANEJES.<br><span class="text-stroke">COMPITE.</span></h1>
-      <p class="hero-subtitle">Convertite en piloto profesional de simulación y competí por premios reales en campeonatos oficiales.</p>
-      <div class="hero-buttons">
-        <a href="#courses" class="btn-racing"><span>Comenzar mi carrera</span></a>
-        <a href="#about" class="btn-racing btn-secondary-racing"><span>Saber Más</span></a>
-      </div>
+
+    <div class="container hero-content">
+
+        <div class="hero-badge">
+
+            ACADEMIA PROFESIONAL DE SIM RACING
+
+        </div>
+
+        <h1>
+
+            EL TALENTO<br>
+
+            NO SE DESCUBRE,<br>
+
+            <span>SE ENTRENA.</span>
+
+        </h1>
+
+        <p>
+
+            Convertite en piloto profesional de simulación,
+            dominá telemetría, estrategia y competición
+            para alcanzar el máximo nivel.
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#" class="btn-primary">
+                COMENZAR MI CARRERA
+            </a>
+
+            <a href="#" class="btn-secondary">
+                CONOCER MÁS
+            </a>
+
+        </div>
+
+        <div class="hero-limited">
+
+            ⚡ Cupos limitados —
+            Nueva temporada abre en 14 días
+
+        </div>
+
     </div>
-    <div class="scroll-indicator">
-      <span>DESPLAZARSE</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
-  <!-- 2. Barra de Estadísticas (Count-Up) -->
-  <section id="stats">
-    <div class="container">
-      <div class="stats-grid">
+
+</section>
+
+<section class="stats">
+
+    <div class="container stats-grid">
+
         <div class="stat-card">
-          <div class="stat-number count-up" data-target="500">+0</div>
-          <div class="stat-label">Alumnos Graduados</div>
+
+            <h3 class="counter" data-target="500">0</h3>
+
+            <p>Pilotos formados</p>
+
         </div>
+
         <div class="stat-card">
-          <div class="stat-number count-up" data-target="120">+0</div>
-          <div class="stat-label">Carreras Disputadas</div>
+
+            <h3 class="counter" data-target="120">0</h3>
+
+            <p>Carreras completadas</p>
+
         </div>
+
         <div class="stat-card">
-          <div class="stat-number count-up" data-target="50">+0</div>
-          <div class="stat-label">Campeones Coronados</div>
+
+            <h3 class="counter" data-target="18">0</h3>
+
+            <p>Campeonatos</p>
+
         </div>
+
         <div class="stat-card">
-          <div class="stat-number count-up" data-target="50000">$0</div>
-          <div class="stat-label">Entregados en Premios</div>
+
+            <h3 class="counter" data-target="92">0</h3>
+
+            <p>% mejora promedio</p>
+
         </div>
-      </div>
+
     </div>
-  </section>
-  <!-- 3. ¿Qué es APEX SIM-RACING? -->
-  <section id="about">
+
+</section>
+
+<section class="academy">
+
     <div class="container">
-      <div class="section-header">
-        <span class="section-tag">EL ORIGEN DE LA VELOCIDAD</span>
-        <h2 class="section-title">¿Qué es APEX?</h2>
-      </div>
-      
-      <div class="about-grid">
-        <div class="about-text">
-          <p class="about-highlight">"El talento no se descubre. Se entrena."</p>
-          <p>APEX Sim Racing Academy ofrece una experiencia inmersiva de simulación donde los participantes desarrollan habilidades de conducción de élite, estrategias de carrera a tiempo real y análisis profundo de datos utilizando tecnología de simulación de última generación.</p>
-          <p>Nuestra metodología copia el entrenamiento de los pilotos de la vida real de Fórmula 1, utilizando telemetría avanzada y coaching personalizado para exprimir cada milésima de segundo en pista.</p>
-          <a href="#courses" class="btn-racing"><span>VER PROGRAMAS</span></a>
+
+        <div class="section-title">
+
+            <span>LA ACADEMIA</span>
+
+            <h2>
+                FORMAMOS PILOTOS,
+                CREAMOS CAMPEONES
+            </h2>
+
         </div>
-        
-        <div class="about-cards-container">
-          <div class="about-card tech-border">
-            <div class="about-card-icon"><i data-lucide="target"></i></div>
-            <h3>NUESTRO OBJETIVO</h3>
-            <p>Formar pilotos virtuales capaces de competir al máximo nivel mientras aprenden los principios técnicos y estratégicos del automovilismo moderno.</p>
-          </div>
+
+        <div class="academy-grid">
+
+            <div class="academy-card">
+
+                <h3>Entrenamiento Profesional</h3>
+
+                <p>
+                    Clases personalizadas con metodología
+                    basada en pilotos reales.
+                </p>
+
+            </div>
+
+            <div class="academy-card">
+
+                <h3>Análisis de Telemetría</h3>
+
+                <p>
+                    Detectá errores y encontrá tiempo
+                    en cada curva.
+                </p>
+
+            </div>
+
+            <div class="academy-card">
+
+                <h3>Competencias Reales</h3>
+
+                <p>
+                    Participá en campeonatos con premios
+                    y ranking oficial.
+                </p>
+
+            </div>
+
         </div>
-      </div>
+
     </div>
-  </section>
-  <!-- 4. Roadmap del Piloto (Timeline) -->
-  <section id="roadmap">
+
+</section>
+
+<section class="courses">
+
     <div class="container">
-      <div class="section-header">
-        <span class="section-tag">PROGRESO DIRECTO</span>
-        <h2 class="section-title">Roadmap del Piloto</h2>
-      </div>
-      
-      <div class="roadmap-timeline">
-        <div class="roadmap-step">
-          <div class="roadmap-node"></div>
-          <div class="roadmap-content tech-border">
-            <div class="roadmap-level">NIVEL 01</div>
-            <h3 class="roadmap-name">Fórmula 3 (Inicial)</h3>
-            <p>Aprendé el control de masas, trazadas ideales y técnicas básicas de frenado. Dominio inicial del cockpit.</p>
-            <ul class="roadmap-perks">
-              <li><i data-lucide="check-circle-2"></i> Simulador F3 Configuración Básica</li>
-              <li><i data-lucide="check-circle-2"></i> Acceso a la Telemetría Básica</li>
-              <li><i data-lucide="check-circle-2"></i> Coaching Grupal</li>
-            </ul>
-          </div>
+
+        <div class="section-title">
+
+            <span>CURSOS</span>
+
+            <h2>ELEGÍ TU CAMINO AL ÉXITO</h2>
+
         </div>
-        
-        <div class="roadmap-step">
-          <div class="roadmap-node"></div>
-          <div class="roadmap-content tech-border">
-            <div class="roadmap-level">NIVEL 02</div>
-            <h3 class="roadmap-name">Fórmula 2 (Avanzado)</h3>
-            <p>Estrategia de neumáticos, setups dinámicos y combate en pista rueda a rueda a alta velocidad.</p>
-            <ul class="roadmap-perks">
-              <li><i data-lucide="check-circle-2"></i> Cockpit con Fuerza G Simulada</li>
-              <li><i data-lucide="check-circle-2"></i> Telemetría Avanzada en Tiempo Real</li>
-              <li><i data-lucide="check-circle-2"></i> Coaching 1 a 1 de Rendimiento</li>
-            </ul>
-          </div>
+
+        <div class="courses-grid">
+
+            <div class="course-card">
+
+                <h3>SIM STARTER</h3>
+
+                <p>Ideal para comenzar.</p>
+
+                <a href="#" class="btn-course">
+                    VER CURSO
+                </a>
+
+            </div>
+
+            <div class="course-card featured">
+
+                <h3>RACE PERFORMANCE</h3>
+
+                <p>La formación más elegida.</p>
+
+                <a href="#" class="btn-course">
+                    VER CURSO
+                </a>
+
+            </div>
+
+            <div class="course-card">
+
+                <h3>PRO DRIVER</h3>
+
+                <p>Entrenamiento de élite.</p>
+
+                <a href="#" class="btn-course">
+                    VER CURSO
+                </a>
+
+            </div>
+
         </div>
-        
-        <div class="roadmap-step">
-          <div class="roadmap-node"></div>
-          <div class="roadmap-content tech-border">
-            <div class="roadmap-level">NIVEL 03</div>
-            <h3 class="roadmap-name">Fórmula 1 (Pro)</h3>
-            <p>Nivel profesional absoluto. Gestión de sistemas electrónicos (ERS/DRS), clasificación extrema y preparación física.</p>
-            <ul class="roadmap-perks">
-              <li><i data-lucide="check-circle-2"></i> Rigs de Alta Gama Direct Drive</li>
-              <li><i data-lucide="check-circle-2"></i> Telemetría de Ingeniería Profesional</li>
-              <li><i data-lucide="check-circle-2"></i> Acceso Directo a Campeonato Pro</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+
     </div>
-  </section>
-  <!-- 5. Cursos Disponibles -->
-  <section id="courses">
+
+</section>
+
+<footer>
+
     <div class="container">
-      <div class="section-header">
-        <span class="section-tag">PROGRAMAS DE FORMACIÓN</span>
-        <h2 class="section-title">Nuestros Cursos</h2>
-      </div>
-      
-      <div class="courses-grid">
-        <!-- Curso F3 -->
-        <div class="course-card">
-          <div class="course-card-inner tech-border">
-            <div class="course-header">
-              <span class="course-level">CURSO INICIAL</span>
-              <h3 class="course-title">Fórmula 3</h3>
-              <p>El punto de partida ideal para entrar al sim racing competitivo.</p>
-              <div class="course-price">$149 <span>/ Mes</span></div>
-            </div>
-            <ul class="course-features">
-              <li><i data-lucide="chevron-right"></i> Duración: 4 Semanas</li>
-              <li><i data-lucide="chevron-right"></i> Control de tracción y pesos</li>
-              <li><i data-lucide="chevron-right"></i> Trazados fundamentales</li>
-              <li><i data-lucide="chevron-right"></i> Soporte de Ingenieros Junior</li>
-              <li><i data-lucide="chevron-right"></i> Certificado APEX F3</li>
-            </ul>
-            <a href="#final-cta" class="btn-racing"><span>Inscribirme</span></a>
-          </div>
-        </div>
-        
-        <!-- Curso F2 -->
-        <div class="course-card">
-          <div class="course-card-inner tech-border" style="border-color: var(--primary);">
-            <div class="course-header">
-              <span class="course-level" style="color: var(--primary);">CURSO INTERMEDIO</span>
-              <h3 class="course-title">Fórmula 2</h3>
-              <p>Perfecciona tus trazadas y domina las estrategias complejas.</p>
-              <div class="course-price">$249 <span>/ Mes</span></div>
-            </div>
-            <ul class="course-features">
-              <li><i data-lucide="chevron-right"></i> Duración: 8 Semanas</li>
-              <li><i data-lucide="chevron-right"></i> Setups mecánicos avanzados</li>
-              <li><i data-lucide="chevron-right"></i> Gestión de neumáticos y paradas</li>
-              <li><i data-lucide="chevron-right"></i> Coaching 1 a 1 de telemetría</li>
-              <li><i data-lucide="chevron-right"></i> Licencia Nacional Competitiva</li>
-            </ul>
-            <a href="#final-cta" class="btn-racing"><span>Inscribirme</span></a>
-          </div>
-        </div>
-        
-        <!-- Curso F1 -->
-        <div class="course-card">
-          <div class="course-card-inner tech-border" style="border-color: var(--accent);">
-            <div class="course-header">
-              <span class="course-level">CURSO PROFESIONAL</span>
-              <h3 class="course-title">Fórmula 1</h3>
-              <p>Preparación extrema para competir en las ligas mundiales.</p>
-              <div class="course-price">$399 <span>/ Mes</span></div>
-            </div>
-            <ul class="course-features">
-              <li><i data-lucide="chevron-right"></i> Duración: 12 Semanas</li>
-              <li><i data-lucide="chevron-right"></i> Simulación hidráulica Direct Drive</li>
-              <li><i data-lucide="chevron-right"></i> Gestión ERS, DRS e Ingeniería</li>
-              <li><i data-lucide="chevron-right"></i> Ingeniero de pista dedicado</li>
-              <li><i data-lucide="chevron-right"></i> Clasificación a Copa Mundial APEX</li>
-            </ul>
-            <a href="#final-cta" class="btn-racing"><span>Inscribirme</span></a>
-          </div>
-        </div>
-      </div>
+
+        <p>
+
+            © 2026 APEX SIM RACING
+
+        </p>
+
     </div>
-  </section>
-  <!-- 6. Experiencia de Simulación (Telemetría en Vivo) -->
-  <section id="sim-experience">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">DATOS EN TIEMPO REAL</span>
-        <h2 class="section-title">Experiencia de Simulación</h2>
-      </div>
-      
-      <div class="sim-grid">
-        <div class="sim-info">
-          <p class="about-highlight" style="border-color: var(--primary);">COCKPITS DE NIVEL AEROESPACIAL</p>
-          <p style="margin-top: 15px; margin-bottom: 20px;">Experimentá la física y la telemetría de una carrera real en simuladores de alta gama equipados con motores Direct Drive, pedaleras hidráulicas profesionales y triple pantalla curva envolvente.</p>
-          <p style="margin-bottom: 30px;">Nuestro software propietario de telemetría extrae datos a 1000Hz (frenado, aceleración, fuerzas G y ángulo de volante) para pulir milimétricamente tu estilo de conducción.</p>
-          <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <i data-lucide="cpu" style="color: var(--accent);"></i>
-              <span style="font-size: 0.85rem; font-weight: 600;">MOTORES DIRECT DRIVE</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <i data-lucide="gauge" style="color: var(--accent);"></i>
-              <span style="font-size: 0.85rem; font-weight: 600;">TELEMETRÍA 1000HZ</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <i data-lucide="activity" style="color: var(--accent);"></i>
-              <span style="font-size: 0.85rem; font-weight: 600;">MONITORES DE ESTRATEGIA</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="telemetry-display tech-border">
-          <div class="telemetry-header">
-            <div class="telemetry-title"><span></span>LIVE SIM TELEMETRY</div>
-            <div style="font-size: 0.65rem; color: rgba(255,255,255,0.4); font-family: var(--font-title);">CHANNEL APEX_08</div>
-          </div>
-          
-          <div class="telemetry-data-grid">
-            <div class="telemetry-node">
-              <span class="telemetry-node-label">GEAR</span>
-              <div class="telemetry-node-val" id="telemetry-gear">5</div>
-            </div>
-            <div class="telemetry-node">
-              <span class="telemetry-node-label">ENGINE RPM</span>
-              <div class="telemetry-node-val" id="telemetry-rpm">9,800</div>
-            </div>
-            <div class="telemetry-node">
-              <span class="telemetry-node-label">SPEED</span>
-              <div class="telemetry-node-val" id="telemetry-speed">240 KM/H</div>
-            </div>
-            <div class="telemetry-node">
-              <span class="telemetry-node-label">THROTTLE</span>
-              <div class="telemetry-node-val" id="telemetry-throttle">98%</div>
-            </div>
-            <div class="telemetry-node">
-              <span class="telemetry-node-label">BRAKE FORCE</span>
-              <div class="telemetry-node-val">0%</div>
-            </div>
-            <div class="telemetry-node">
-              <span class="telemetry-node-label">TYRE TEMP FL</span>
-              <div class="telemetry-node-val" style="color: #4CD964;">92°C</div>
-            </div>
-          </div>
-          
-          <div class="telemetry-chart-container">
-            <svg class="telemetry-svg-graph">
-              <defs>
-                <linearGradient id="gradient-rpm" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.2"/>
-                  <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <!-- Grid lines -->
-              <line class="telemetry-grid-lines" x1="0" y1="45" x2="400" y2="45" />
-              <line class="telemetry-grid-lines" x1="0" y1="90" x2="400" y2="90" />
-              <line class="telemetry-grid-lines" x1="0" y1="135" x2="400" y2="135" />
-              
-              <!-- Telemetry lines -->
-              <path class="telemetry-line-rpm" d="M 0 90 L 400 90" />
-              <path class="telemetry-line-speed" d="M 0 110 L 400 110" />
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- 7. Campeonato Oficial -->
-  <section id="championship">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">COMPETICIÓN REAL</span>
-        <h2 class="section-title">Copa de la Temporada</h2>
-      </div>
-      
-      <p style="text-align: center; max-width: 600px; margin: -20px auto 40px; font-size: 0.95rem;">
-        La temporada de APEX culmina en un campeonato oficial televisado con ranking en vivo y premios en efectivo para el podio de pilotos profesionales.
-      </p>
-      
-      <div class="leaderboard-container tech-border">
-        <table class="leaderboard-table">
-          <thead>
-            <tr>
-              <th>POS</th>
-              <th>PILOTO / EQUIPO</th>
-              <th>CARRERAS</th>
-              <th>PODIOS</th>
-              <th>PUNTOS</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="leaderboard-row">
-              <td class="leaderboard-rank rank-1">01</td>
-              <td>
-                <div class="leaderboard-driver">
-                  <div class="driver-img">M</div>
-                  <div class="driver-info">
-                    <span class="driver-name">Max Webber</span>
-                    <span class="driver-team">Apex Red Simsport</span>
-                  </div>
-                </div>
-              </td>
-              <td>12</td>
-              <td>10</td>
-              <td class="leaderboard-points">285</td>
-            </tr>
-            <tr class="leaderboard-row">
-              <td class="leaderboard-rank rank-2">02</td>
-              <td>
-                <div class="leaderboard-driver">
-                  <div class="driver-img">L</div>
-                  <div class="driver-info">
-                    <span class="driver-name">Lewis Hamilton</span>
-                    <span class="driver-team">Apex Petronas Esports</span>
-                  </div>
-                </div>
-              </td>
-              <td>12</td>
-              <td>9</td>
-              <td class="leaderboard-points">252</td>
-            </tr>
-            <tr class="leaderboard-row">
-              <td class="leaderboard-rank rank-3">03</td>
-              <td>
-                <div class="leaderboard-driver">
-                  <div class="driver-img">S</div>
-                  <div class="driver-info">
-                    <span class="driver-name">Sebastian Vettel</span>
-                    <span class="driver-team">Apex Scuderia Virtual</span>
-                  </div>
-                </div>
-              </td>
-              <td>12</td>
-              <td>7</td>
-              <td class="leaderboard-points">210</td>
-            </tr>
-            <tr class="leaderboard-row">
-              <td class="leaderboard-rank">04</td>
-              <td>
-                <div class="leaderboard-driver">
-                  <div class="driver-img">F</div>
-                  <div class="driver-info">
-                    <span class="driver-name">Fernando Alonso</span>
-                    <span class="driver-team">Apex Alpine Esports</span>
-                  </div>
-                </div>
-              </td>
-              <td>12</td>
-              <td>5</td>
-              <td class="leaderboard-points">178</td>
-            </tr>
-            <tr class="leaderboard-row">
-              <td class="leaderboard-rank">05</td>
-              <td>
-                <div class="leaderboard-driver">
-                  <div class="driver-img">C</div>
-                  <div class="driver-info">
-                    <span class="driver-name">Charles Leclerc</span>
-                    <span class="driver-team">Apex Scuderia Virtual</span>
-                  </div>
-                </div>
-              </td>
-              <td>12</td>
-              <td>4</td>
-              <td class="leaderboard-points">162</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-  <!-- 8. Premios y Podios -->
-  <section id="prizes">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">EL GLORIA DE LA VICTORIA</span>
-        <h2 class="section-title">Premios de Campeonato</h2>
-      </div>
-      
-      <div class="podium-container">
-        <!-- 2nd Place -->
-        <div class="podium-column podium-column-p2">
-          <div class="podium-driver">
-            <div class="podium-avatar"><i data-lucide="award"></i></div>
-            <span class="podium-name">SEGUNDO PUESTO</span>
-            <div class="podium-prize">$15.000 USD</div>
-          </div>
-          <div class="podium-block">
-            <div class="podium-place">2</div>
-            <div class="podium-trophy">🥈 TROFEO PLATA</div>
-          </div>
-        </div>
-        
-        <!-- 1st Place -->
-        <div class="podium-column podium-column-p1">
-          <div class="podium-driver">
-            <div class="podium-avatar"><i data-lucide="trophy"></i></div>
-            <span class="podium-name">CAMPEÓN APEX</span>
-            <div class="podium-prize">$25.000 USD</div>
-          </div>
-          <div class="podium-block">
-            <div class="podium-place">1</div>
-            <div class="podium-trophy">🏆 COPA ORO</div>
-          </div>
-        </div>
-        
-        <!-- 3rd Place -->
-        <div class="podium-column podium-column-p3">
-          <div class="podium-driver">
-            <div class="podium-avatar"><i data-lucide="award"></i></div>
-            <span class="podium-name">TERCER PUESTO</span>
-            <div class="podium-prize">$10.000 USD</div>
-          </div>
-          <div class="podium-block">
-            <div class="podium-place">3</div>
-            <div class="podium-trophy">🥉 TROFEO BRONCE</div>
-          </div>
-        </div>
-      </div>
-      
-      <p style="text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.4); margin-top: 40px; font-family: var(--font-title);">
-        *Los ganadores reciben patrocinio oficial para carreras reales y programas de entrenamiento de Fórmula F4.
-      </p>
-    </div>
-  </section>
-  <!-- 9. Testimonios (Slider Animado) -->
-  <section id="testimonials">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">TESTIMONIOS</span>
-        <h2 class="section-title">OPINIÓN DE PILOTOS</h2>
-      </div>
-      
-      <div class="testimonials-wrapper tech-border">
-        <div class="testimonials-slider">
-          <div class="testimonial-slide">
-            <div class="testimonial-card">
-              <p class="testimonial-quote">"APEX transformó mi hobby de simulación en mi carrera. Gracias al análisis riguroso de telemetría logré clasificar al equipo oficial y ganar mi primer premio en efectivo de $5,000 en la temporada F2."</p>
-              <div class="testimonial-driver-meta">
-                <div class="testimonial-avatar">JD</div>
-                <div class="testimonial-info">
-                  <span class="testimonial-name">Juan Delgado</span>
-                  <span class="testimonial-role">Campeón APEX F2 Temporada 05</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="testimonial-slide">
-            <div class="testimonial-card">
-              <p class="testimonial-quote">"El realismo y el nivel de coaching no tienen comparación. Corro karting en la vida real y uso los simuladores profesionales de APEX en el nivel F1 para memorizar circuitos y mejorar mis tiempos. Las milésimas de segundo sí importan."</p>
-              <div class="testimonial-driver-meta">
-                <div class="testimonial-avatar">AM</div>
-                <div class="testimonial-info">
-                  <span class="testimonial-name">Alejandro Martinez</span>
-                  <span class="testimonial-role">Piloto Amateur de Karting / Alumno F1 APEX</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="testimonial-slide">
-            <div class="testimonial-card">
-              <p class="testimonial-quote">"Un ecosistema increíble para gamers y amantes del motorsport. El campeonato final televisado te hace sentir la adrenalina de una largada de F1 real. Recomiendo la academia al 100% si querés profesionalizarte."</p>
-              <div class="testimonial-driver-meta">
-                <div class="testimonial-avatar">CR</div>
-                <div class="testimonial-info">
-                  <span class="testimonial-name">Carlos Rodriguez</span>
-                  <span class="testimonial-role">Sim-Racer Competitivo</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="slider-controls"></div>
-      </div>
-    </div>
-  </section>
-  <!-- 10. ¿Por qué elegirnos? -->
-  <section id="why-us">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">VENTAJAS DE ALTO VALOR</span>
-        <h2 class="section-title">¿Por qué elegirnos?</h2>
-      </div>
-      
-      <div class="why-grid">
-        <div class="why-card tech-border">
-          <div class="why-card-icon"><i data-lucide="gamepad-2"></i></div>
-          <h3>Simuladores Pro</h3>
-          <p>Equipos profesionales Direct Drive de 25Nm, pedales hidráulicos de presión de celdas de carga y simuladores G-Seat.</p>
-        </div>
-        
-        <div class="why-card tech-border">
-          <div class="why-card-icon"><i data-lucide="users"></i></div>
-          <h3>Coaching Especializado</h3>
-          <p>Instrucciones de pilotos profesionales con experiencia en pista real y análisis avanzado de software MoTeC.</p>
-        </div>
-        
-        <div class="why-card tech-border">
-          <div class="why-card-icon"><i data-lucide="swords"></i></div>
-          <h3>Competencias Reales</h3>
-          <p>Temporadas organizadas con directores de carrera, comisarios de pista, clasificaciones y transmisiones en vivo.</p>
-        </div>
-        
-        <div class="why-card tech-border">
-          <div class="why-card-icon"><i data-lucide="banknote"></i></div>
-          <h3>Premios en Efectivo</h3>
-          <p>Repartimos más de $50,000 USD anuales en premios en efectivo patrocinados por marcas líderes de gaming y motor.</p>
-        </div>
-        
-        <div class="why-card tech-border">
-          <div class="why-card-icon"><i data-lucide="crown"></i></div>
-          <h3>Comunidad Exclusiva</h3>
-          <p>Acceso a foros de telemetría privados, setups de carrera de pilotos top y eventos presenciales de karting.</p>
-        </div>
-        
-        <div class="why-card tech-border">
-          <div class="why-card-icon"><i data-lucide="graduation-cap"></i></div>
-          <h3>Progreso Académico</h3>
-          <p>Desbloqueo progresivo de licencias, desde F3 inicial hasta F1 profesional con becas de patrocinio.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- 11. Preguntas Frecuentes (FAQ) -->
-  <section id="faq">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">PREGUNTAS FRECUENTES</span>
-        <h2 class="section-title">RESOLVÉ TUS DUDAS</h2>
-      </div>
-      
-      <div class="faq-container">
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>¿Necesito experiencia previa en simulación para inscribirme?</span>
-            <i class="faq-icon" data-lucide="plus"></i>
-          </button>
-          <div class="faq-answer">
-            <p>No. Nuestro curso Fórmula 3 está diseñado específicamente para principiantes absolutos. Comenzamos desde la teoría de trazado ideal y control básico de masa, guiándote paso a paso hacia la competencia.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>¿Qué equipamiento necesito para hacer los cursos online?</span>
-            <i class="faq-icon" data-lucide="plus"></i>
-          </button>
-          <div class="faq-answer">
-            <p>Para la modalidad remota, un volante básico con Force Feedback (como un Logitech G29 o Thrustmaster T300) y una PC capaz de ejecutar iRacing o Assetto Corsa Competizione es suficiente. Para los niveles avanzados, recomendamos volantes Direct Drive.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>¿Cómo se distribuyen los premios en efectivo?</span>
-            <i class="faq-icon" data-lucide="plus"></i>
-          </button>
-          <div class="faq-answer">
-            <p>Al final de cada temporada oficial (de 12 carreras), los tres primeros pilotos en la tabla de clasificación general de los niveles F2 y F1 reciben el monto monetario correspondiente de forma directa en efectivo, además del trofeo físico en la gala de premiación.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>¿Puedo acceder a simuladores presenciales?</span>
-            <i class="faq-icon" data-lucide="plus"></i>
-          </button>
-          <div class="faq-answer">
-            <p>Sí. APEX cuenta con sedes físicas (paddocks) equipadas con simuladores de alta gama para que los alumnos inscriptos puedan realizar sus sesiones de entrenamiento y carreras de campeonato con hardware profesional y asistencia en vivo.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- 12. Final CTA Section (Speed-Tunnel) -->
-  <section id="final-cta">
-    <canvas id="cta-canvas" class="cta-canvas"></canvas>
-    <div class="cta-overlay"></div>
-    <div class="cta-content">
-      <h2 class="cta-title">LA PRÓXIMA TEMPORADA COMIENZA AHORA.</h2>
-      <p class="cta-subtitle">Los campeones no esperan la bandera verde. Asegurá tu plaza hoy.</p>
-      <a href="#courses" class="btn-racing"><span>QUIERO COMPETIR</span></a>
-    </div>
-  </section>
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer-content">
-      <div class="footer-info">
-        <div class="footer-logo"><i data-lucide="chevrons-right"></i>APEX<span>SIM-RACING</span></div>
-        <p class="footer-copyright">© 2026 APEX Sim-Racing. Todos los derechos reservados. Diseñado para pilotos del futuro.</p>
-      </div>
-      <ul class="footer-links">
-        <li><a href="#hero" class="footer-link">Inicio</a></li>
-        <li><a href="#about" class="footer-link">Academia</a></li>
-        <li><a href="#courses" class="footer-link">Cursos</a></li>
-        <li><a href="#championship" class="footer-link">Campeonato</a></li>
-      </ul>
-    </div>
-  </footer>
-  <!-- Scripts -->
-  <!-- GSAP CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <!-- Lucide Icons CDN -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="js/script.js"></script>
+
+</footer>
+
+<script src="js/particles.js"></script>
+<script src="js/main.js"></script>
+
 </body>
 </html>
