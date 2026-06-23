@@ -1,0 +1,331 @@
+/* ══════════════════════════════════════════
+   APEX SIM-RACING — script.js
+   Módulos: Progress Bar · Navbar · Particles
+            Reveal · CountUp · Speedometer
+            Testimonials · FAQ · Roadmap dots
+══════════════════════════════════════════ */
+
+'use strict';
+
+/* ────────────────────────────────────────
+   1. PROGRESS BAR
+──────────────────────────────────────── */
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const doc  = document.documentElement;
+  const pct  = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  progressBar.style.width = pct + '%';
+}, { passive: true });
+
+
+/* ────────────────────────────────────────
+   2. NAVBAR — scroll style + hamburger
+──────────────────────────────────────── */
+const navbar      = document.getElementById('navbar');
+const hamburger   = document.getElementById('hamburger');
+const mobileMenu  = document.getElementById('mobile-menu');
+
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+hamburger.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('open', isOpen);
+});
+
+mobileMenu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+  });
+});
+
+
+/* ────────────────────────────────────────
+   3. PARTICLE CANVAS
+──────────────────────────────────────── */
+(function initParticles() {
+  const canvas = document.getElementById('particles');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  let W, H, particles = [];
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+
+  function createParticles() {
+    particles = Array.from({ length: 70 }, () => ({
+      x:  Math.random() * W,
+      y:  Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      r:  Math.random() * 2 + 0.5,
+      a:  Math.random() * 0.4 + 0.2,
+    }));
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    /* move & wrap */
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = W;  if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H;  if (p.y > H) p.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(57,160,218,${p.a})`;
+      ctx.fill();
+    });
+
+    /* connect nearby */
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const d  = Math.sqrt(dx * dx + dy * dy);
+        if (d < 120) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(0,229,255,${0.12 * (1 - d / 120)})`;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  createParticles();
+  draw();
+  window.addEventListener('resize', () => { resize(); createParticles(); });
+})();
+
+
+/* ────────────────────────────────────────
+   4. INTERSECTION OBSERVER — REVEAL
+──────────────────────────────────────── */
+(function initReveal() {
+  const els = document.querySelectorAll('.reveal');
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const el    = entry.target;
+      const delay = parseInt(el.dataset.delay || 0, 10);
+      const dir   = el.dataset.direction || '';
+
+      /* apply directional class before animating */
+      if (dir === 'left')  el.classList.add('from-left');
+      if (dir === 'right') el.classList.add('from-right');
+
+      setTimeout(() => el.classList.add('visible'), delay);
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.1 });
+
+  els.forEach(el => obs.observe(el));
+})();
+
+
+/* ────────────────────────────────────────
+   5. COUNT-UP ANIMATION
+──────────────────────────────────────── */
+(function initCountUp() {
+  const els = document.querySelectorAll('.stat-number[data-target]');
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el     = entry.target;
+      const target = parseInt(el.dataset.target, 10);
+      const suffix = el.dataset.suffix || '';
+      const prefix = el.dataset.prefix || '';
+      const duration = 2000;
+      const step   = target / (duration / 16);
+      let cur = 0;
+
+      const id = setInterval(() => {
+        cur += step;
+        if (cur >= target) {
+          el.textContent = prefix + target.toLocaleString() + suffix;
+          clearInterval(id);
+        } else {
+          el.textContent = prefix + Math.floor(cur).toLocaleString() + suffix;
+        }
+      }, 16);
+
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.3 });
+
+  els.forEach(el => obs.observe(el));
+})();
+
+
+/* ────────────────────────────────────────
+   6. SPEEDOMETER (Canvas SVG-like)
+──────────────────────────────────────── */
+(function initSpeedometer() {
+  const canvas = document.getElementById('speedometer');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const cx = W / 2, cy = H / 2, R = W * 0.42;
+
+  let speed = 0, started = false;
+
+  function drawGauge(s) {
+    ctx.clearRect(0, 0, W, H);
+    const pct = s / 360;
+    const startAngle = -Math.PI / 2;
+
+    /* track */
+    ctx.beginPath();
+    ctx.arc(cx, cy, R, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(57,160,218,0.06)';
+    ctx.lineWidth = W * 0.09;
+    ctx.stroke();
+
+    /* fill */
+    if (pct > 0) {
+      const grad = ctx.createLinearGradient(0, 0, W, 0);
+      grad.addColorStop(0,   '#39A0DA');
+      grad.addColorStop(1,   '#00E5FF');
+      ctx.beginPath();
+      ctx.arc(cx, cy, R, startAngle, startAngle + pct * Math.PI * 2);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth   = W * 0.09;
+      ctx.lineCap     = 'round';
+      ctx.stroke();
+    }
+
+    /* text */
+    ctx.fillStyle = '#ffffff';
+    ctx.font = `900 ${W * 0.22}px Orbitron, sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(s, cx, cy - W * 0.04);
+
+    ctx.fillStyle = 'rgba(255,255,255,0.4)';
+    ctx.font = `400 ${W * 0.09}px Inter, sans-serif`;
+    ctx.fillText('KM/H', cx, cy + W * 0.15);
+  }
+
+  const obs = new IntersectionObserver((entries) => {
+    if (!entries[0].isIntersecting || started) return;
+    started = true;
+
+    const id = setInterval(() => {
+      speed += 3;
+      drawGauge(speed);
+      if (speed >= 320) { drawGauge(320); clearInterval(id); }
+    }, 16);
+
+    obs.disconnect();
+  }, { threshold: 0.3 });
+
+  obs.observe(canvas);
+  drawGauge(0);
+})();
+
+
+/* ────────────────────────────────────────
+   7. TESTIMONIAL AUTO-SLIDER
+──────────────────────────────────────── */
+(function initTestimonials() {
+  const testimonials = [
+    { avatar: '🏎️', name: 'Carlos Reyes',     role: 'Campeón Temporada 4',  quote: 'APEX me transformó de un casual gamer a un piloto competitivo. Las herramientas, el coaching y la comunidad son de otro nivel. Gané mi primer campeonato y $5.000 en premios.' },
+    { avatar: '🏁', name: 'Valentina Torres', role: 'Piloto F2',             quote: 'Nunca pensé que el sim racing pudiera ser tan profesional. La academia tiene un nivel que no encontrás en ningún otro lugar. Cada carrera se siente como una final de F1.' },
+    { avatar: '🏆', name: 'Martín López',     role: 'Ex-alumno F3, ahora F1', quote: 'Empecé en F3 sin saber nada. Hoy compito en la categoría máxima y sueño con el campeonato. APEX no es solo una academia, es un estilo de vida.' },
+    { avatar: '⚡', name: 'Diego Fernández',  role: 'Piloto Profesional',    quote: 'Como piloto real, uso APEX para entrenar entre competencias. Los simuladores son increíbles y el nivel de detalle en la telemetría rivaliza con equipos reales.' },
+  ];
+
+  const textEl   = document.getElementById('testimonial-text');
+  const nameEl   = document.getElementById('testimonial-name');
+  const roleEl   = document.getElementById('testimonial-role');
+  const avatarEl = document.getElementById('testimonial-avatar');
+  const dotsWrap = document.getElementById('testimonial-dots');
+  if (!textEl) return;
+
+  const dots = dotsWrap.querySelectorAll('.dot');
+  let idx = 0;
+
+  function show(i) {
+    const t = testimonials[i];
+    textEl.classList.add('fade');
+    setTimeout(() => {
+      textEl.textContent   = '"' + t.quote + '"';
+      nameEl.textContent   = t.name;
+      roleEl.textContent   = t.role;
+      avatarEl.textContent = t.avatar;
+      textEl.classList.remove('fade');
+    }, 400);
+
+    dots.forEach((d, j) => {
+      d.classList.toggle('dot-active', j === i);
+    });
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      idx = parseInt(dot.dataset.idx, 10);
+      show(idx);
+    });
+  });
+
+  const timer = setInterval(() => {
+    idx = (idx + 1) % testimonials.length;
+    show(idx);
+  }, 5000);
+})();
+
+
+/* ────────────────────────────────────────
+   8. FAQ ACCORDION
+──────────────────────────────────────── */
+(function initFAQ() {
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const btn = item.querySelector('.faq-q');
+    btn.addEventListener('click', () => {
+      const wasOpen = item.classList.contains('open');
+      /* close all */
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      /* toggle current */
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+})();
+
+
+/* ────────────────────────────────────────
+   9. ROADMAP — fix dot positions on mobile
+──────────────────────────────────────── */
+(function initRoadmap() {
+  /* On mobile the line is at left:24px.
+     The dots are already positioned via CSS.
+     Nothing extra needed — they anchor to the line via CSS absolute. */
+})();
+
+
+/* ────────────────────────────────────────
+   10. SMOOTH HASH SCROLL (override default)
+──────────────────────────────────────── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    const offset = 80; /* navbar height */
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  });
+});
