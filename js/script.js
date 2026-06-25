@@ -132,11 +132,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const simDisplay = document.querySelector('.sim-visual-display');
     
     const simImages = [
-        'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&q=80&w=1000',
-        'https://images.unsplash.com/photo-1547119957-637f8679db1e?auto=format&fit=crop&q=80&w=1000',
-        'https://images.unsplash.com/photo-1612287230202-1bf1d85d1bdf?auto=format&fit=crop&q=80&w=1000',
-        'https://images.unsplash.com/photo-1600861195091-690c92f1d2cc?auto=format&fit=crop&q=80&w=1000',
-        'https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&q=80&w=1000'
+        './assets/foto 7.png',
+        './assets/foto 3.png',
+        './assets/foto 5.png',
+        './assets/foto 6.png',
+        './assets/foto 4.png'
     ];
 
     dots.forEach(dot => {
