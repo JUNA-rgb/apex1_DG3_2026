@@ -132,11 +132,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const simDisplay = document.querySelector('.sim-visual-display');
     
     const simImages = [
-        './assets/foto 7.png',
-        './assets/foto 3.png',
-        './assets/foto 5.png',
-        './assets/foto 6.png',
-        './assets/foto 4.png'
+        './assets/foto.7.png',
+        './assets/foto.3.png',
+        './assets/foto.5.png',
+        './assets/foto.6.png',
+        './assets/foto.4.png'
     ];
 
     dots.forEach(dot => {
