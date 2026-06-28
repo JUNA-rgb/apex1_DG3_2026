@@ -12,9 +12,8 @@
 </head>
 <body>
 
-    <!-- CIRCUITO DE LUZ (Guía de Scroll Periférica) -->
-    <div class="scroll-circuit-container" aria-hidden="true">
-        <div class="scroll-circuit-line"></div>
+    <div class="scroll-circuit-track" aria-hidden="true">
+        <div class="scroll-circuit-energy"></div>
     </div>
 
     <canvas id="telemetry-bg"></canvas>
@@ -25,26 +24,25 @@
                 <img src="assets/marca.png" alt="Logo APEX" style="height: 90px;">
             </div>
             <nav class="nav">
-                <a href="#about" class="nav-link">¿Qué es APEX?</a>
-                <a href="#courses" class="nav-link">Cursos</a>
-                <a href="#simulators" class="nav-link">Experiencia</a>
-                <a href="#podium" class="nav-link">Podio</a>
-                <a href="#register-footer" class="nav-link">Contacto</a>
+                <a href="#about" class="nav-link"><i class="fas fa-info-circle text-electric"></i>¿Qué es APEX?</a>
+                <a href="#courses" class="nav-link"><i class="fas fa-flag-checkered text-electric"></i> Cursos</a>
+                <a href="#simulators" class="nav-link"><i class="fas fa-tachometer-alt text-electric"></i> Experiencia</a>
+                <a href="#podium" class="nav-link"><i class="fas fa-trophy text-electric"></i> Podio</a>
+                <a href="#register-footer" class="nav-link"><i class="fas fa-id-card text-electric"></i> Boxes</a>
             </nav>
-            <a href="#register-footer" class="btn btn-primary btn-nav">¡QUIERO CORRER!</a>
+            <a href="#register-footer" class="btn btn-primary btn-hud">¡QUIERO CORRER!</a>
             <button class="menu-toggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
         </div>
     </header>
 
     <main>
-        <!-- HERO SECTION (Con fundido inferior optimizado) -->
         <section class="hero-section">
             <div class="hero-parallax-bg"></div>
-            <div class="hero-fade-overlay"></div>
+            <div class="hero-tech-overlay"></div>
             <div class="hero-content">
-                <div class="telemetry-badge">ACADEMIA APEX</div>
+                <div class="telemetry-badge"><i class="fas fa-satellite-dish"></i>// ACADEMIA APEX</div>
                 <h1 class="hero-title">EL TALENTO NO SE DESCUBRE <br><span class="text-electric">SE ENTRENA</span></h1>
-                <p class="hero-subtitle">El lugar donde descubrís tu verdadero potencial y te llevás premios en efectivo.</p>
+                <p class="hero-subtitle">El primer centro de simulación de alto rendimiento con tecnología e infraestructura de Fórmula 1 real.</p>
                 <div class="hero-actions">
                     <a href="#register-footer" class="btn btn-primary btn-speed">
                         <span>¡QUIERO CORRER!</span>
@@ -52,35 +50,40 @@
                     </a>
                 </div>
             </div>
+            <div class="hud-corner-br"></div>
         </section>
 
-        <!-- ¿QUÉ ES APEX? (Texto lateral y Carrusel de 5 fotos con flechas pequeñas) -->
-        <section id="about" class="about-section">
+        <section id="about" class="about-section tech-grid-bg">
+            <div class="circuit-vector-decor cv-1"></div>
+            
             <div class="container about-grid">
                 <div class="about-text-side">
-                    <span class="section-subtitle">CONOCÉ LA ACADEMIA</span>
+                    <span class="section-subtitle">// SECTOR 1</span>
                     <h2 class="section-title">¿Qué es APEX?</h2>
-                    <p class="about-highlight">APEX SIM-RACING ACADEMY es la primera academia de Sim Racing de alto rendimiento en Latinoamérica, creada para quienes entienden que la velocidad se entrena.</p>
+                    <p class="about-highlight">Somos el puente directo entre el software de competición automovilística y el asfalto real. No jugamos; analizamos trazadas, fuerzas de frenado y gestión de neumáticos.</p>
+                    <div class="tech-spec-labels">
+                        <span><i class="fas fa-microchip text-electric"></i> Control de datos</span>
+                        <span><i class="fas fa-shoe-prints text-electric"></i> Telemetría</span>
+                    </div>
                 </div>
                 <div class="about-carousel-side">
                     <div class="mini-carousel">
-                        <button class="carousel-arrow prev" id="about-prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-arrow prev" id="about-prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
                         <div class="carousel-viewport">
                             <div class="carousel-track" id="about-track">
-                                <div class="carousel-slide"><img src="./assets/apex1.png" alt="Instalaciones APEX 1"></div>
-                                <div class="carousel-slide"><img src="./assets/apex2.png" alt="Instalaciones APEX 2"></div>
-                                <div class="carousel-slide"><img src="./assets/apex3.png" alt="Instalaciones APEX 3"></div>
-                                <div class="carousel-slide"><img src="./assets/apex4.png" alt="Instalaciones APEX 4"></div>
-                                <div class="carousel-slide"><img src="./assets/apex5.png" alt="Instalaciones APEX 5"></div>
+                                <div class="carousel-slide"><img src="./assets/foto.2.png" alt="Simulador 1"></div>
+                                <div class="carousel-slide"><img src="./assets/foto.3.png" alt="Simulador 2"></div>
+                                <div class="carousel-slide"><img src="./assets/foto.4.png" alt="Simulador 3"></div>
+                                <div class="carousel-slide"><img src="./assets/foto.5.png" alt="Simulador 4"></div>
+                                <div class="carousel-slide"><img src="./assets/foto.6.png" alt="Simulador 5"></div>
                             </div>
                         </div>
-                        <button class="carousel-arrow next" id="about-next"><i class="fas fa-chevron-right"></i></button>
+                        <button class="carousel-arrow next" id="about-next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ELEGÍ TU CURSO (Fondo de Video con máscara de opacidad negra) -->
         <section id="courses" class="courses-section">
             <div class="video-bg-container">
                 <video autoplay loop muted playsinline class="video-background">
@@ -89,85 +92,91 @@
                 <div class="video-overlay-dark"></div>
             </div>
             
+            <div class="race-flag-divider"></div>
+
             <div class="container relative-content">
                 <div class="section-header text-center">
-                    <h2 class="section-title">ELEGÍ TU CURSO</h2>
-                    <p class="section-subtitle">Del simulador al profesionalismo</p>
+                    <span class="section-subtitle">// QUEDATE EN APEX</span>
+                    <h2 class="section-title">NUESTROS CURSOS</h2>
                 </div>
                 
                 <div class="courses-grid-4">
                     <div class="card-3d">
                         <div class="course-card">
-                            <div class="card-glow"></div>
+                            <div class="card-hud-lines"></div>
                             <div>
-                                <div class="course-badge">Turnismo carretera</div>
-                                <h3 class="course-title">Fundamentos de Control</h3>
-                                <p style="color: var(--metallic-grey); margin-bottom: 20px;">Enfocado en la física y administración milimétrica de la energía híbrida a lo largo de un stint completo de carrera.</p>
+                                <div class="course-badge"><i class="fas fa-car"></i> 01. APEX START</div>
+                                <h3 class="course-title">Tu primera vuelta</h3>
+                                <p class="course-desc"> Ideal para desarrollar una base sólida de conducción.
+                                    
+                                    Nivel: Inicial | Duración: 6 semanas</p>
                             </div>
-                            <a href="#register-footer" class="btn btn-outline">¡QUIERO ESTE CURSO!</a>
+                            <a href="#register-footer" class="btn btn-outline">¡COMENZAR!</a>
                         </div>
                     </div>
                     
                     <div class="card-3d">
                         <div class="course-card">
-                            <div class="card-glow"></div>
+                            <div class="card-hud-lines"></div>
                             <div>
-                                <div class="course-badge">Fórmula 2:</div>
-                                <h3 class="course-title">Análisis de Datos</h3>
-                                <p style="color: var(--metallic-grey); margin-bottom: 20px;">Control de Tracción Manual y Ritmo de Carrera, sin asistencia de F1. Enseña control milimétrico del acelerador.</p>
+                                <div class="course-badge"><i class="fas fa-chart-line"></i>02. APEX PRO</div>
+                                <h3 class="course-title">Un verdadero piloto.</h3>
+                                <p class="course-desc">Llevá tu rendimiento al siguiente nivel. 
+                                    Nivel: Intermedio | Duración: 8 semanas</p>
                             </div>
-                            <a href="#register-footer" class="btn btn-outline">¡QUIERO ESTE CURSO!</a>
+                            <a href="#register-footer" class="btn btn-outline">¡QUIERO POTENCIARME!</a>
                         </div>
                     </div>
                     
                     <div class="card-3d">
                         <div class="course-card">
-                            <div class="card-glow"></div>
+                            <div class="card-hud-lines"></div>
                             <div>
-                                <div class="course-badge">Fórmula 1:</div>
-                                <h3 class="course-title">Estrategia y Gestión</h3>
-                                <p style="color: var(--metallic-grey); margin-bottom: 20px;">Automovilismo de la Vieja Escuela Específico para las exigencias de la categoría de monoplazas.</p>
+                                <div class="course-badge"><i class="fas fa-冠"></i>APEX ELITE RACE CAMP</div>
+                                <h3 class="course-title">Competí bajo presión</h3>
+                                <p class="course-desc">Viví clasificaciones, carreras, estrategias, desgaste de neumáticos y toma de decisiones en tiempo real.</p>
                             </div>
-                            <a href="#register-footer" class="btn btn-outline">¡QUIERO ESTE CURSO!</a>
+                            <a href="#register-footer" class="btn btn-outline">VIVIR LA EXPERIENCIA</a>
+        
                         </div>
                     </div>
                     
-                    <!-- Tarjeta Celeste Completo con redirección externa -->
                     <div class="card-3d">
                         <div class="course-card mega-apex-card">
+                            <div class="card-hud-lines"></div>
                             <div>
-                                <div class="course-badge badge-premium">MEGA APEX</div>
-                                <h3 class="course-title">Del simulador al asfalto de la F3</h3>
-                                <p style="margin-bottom: 20px;"><strong>El puente a la pista.</strong> Entrenamiento inmersivo con miras a convenios directos de F3.</p>
+                                <div class="course-badge badge-premium"><i class="fas fa-bolt"></i> HIGH PERFORMANCE</div>
+                                <h3 class="course-title">Mega Apex Pro</h3>
+                                <p class="course-desc">El puente definitivo: Simulación inmersiva extrema combinada con pruebas reales en monoplazas de F3.</p>
                             </div>
-                            <a href="curso-mega-apex.html" class="btn btn-outline">¡QUIERO MI CURSO!</a>
+                            <a href="curso-mega-apex.html" class="btn btn-outline">VER CONVENIO</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- EXPERIENCIA APEX (Selector UI interactivo estilo videojuego) -->
-        <section id="simulators" class="simulators-section">
+        <section id="simulators" class="simulators-section tech-grid-bg">
+            <div class="circuit-vector-decor cv-2"></div>
             <div class="container">
                 <div class="section-header text-center">
-                    <h2 class="section-title">CONFIGURACIÓN DE CARRERA</h2>
-                    <p class="section-subtitle">UI Selector de Monoplazas & Cockpits</p>
+                    <span class="section-subtitle">// INTERFAZ DE HARDWARE</span>
+                    <h2 class="section-title">CONFIGURACIÓN DE MONOPLAZAS</h2>
                 </div>
 
                 <div class="game-ui-wrapper">
                     <div class="game-main-display">
                         <div class="car-info-specs">
                             <h3 id="ui-car-name" class="font-orbitron">MCLAREN P1 SIM</h3>
-                            <p class="manufacturer-label">CHASIS ACADEMY PRO</p>
+                            <p class="manufacturer-label">// ESCUDERÍA ACADEMY PRO</p>
                             <div class="specs-bars-container">
                                 <div class="spec-bar-row">
-                                    <span>VELOCIDAD</span>
+                                    <span>DOWNFORCE</span>
                                     <div class="bar-bg"><div id="bar-speed" class="bar-fill" style="width: 85%;"></div></div>
                                     <span id="val-speed" class="spec-num">8.5</span>
                                 </div>
                                 <div class="spec-bar-row">
-                                    <span>MANEJO</span>
+                                    <span>AGILIDAD</span>
                                     <div class="bar-bg"><div id="bar-handling" class="bar-fill" style="width: 92%;"></div></div>
                                     <span id="val-handling" class="spec-num">9.2</span>
                                 </div>
@@ -184,47 +193,46 @@
                     </div>
 
                     <div class="game-thumbnails-grid">
-                        <div class="ui-thumb active" data-car="mclaren" data-speed="8.5" data-handling="9.2" data-braking="8.9" data-name="MCLAREN P1 SIM" data-img="./assets/car-mclaren.png">
+                        <div class="ui-thumb active" data-speed="8.5" data-handling="9.2" data-braking="8.9" data-name="MCLAREN P1 SIM" data-img="./assets/car-mclaren.png">
                             <img src="./assets/thumb-mclaren.png" alt="McLaren">
-                            <span>McLaren</span>
+                            <span>MCLAREN HUD</span>
                         </div>
-                        <div class="ui-thumb" data-car="audi" data-speed="7.9" data-handling="8.8" data-braking="9.1" data-name="AUDI R8 COCKPIT" data-img="./assets/car-audi.png">
+                        <div class="ui-thumb" data-speed="7.9" data-handling="8.8" data-braking="9.1" data-name="AUDI R8 COCKPIT" data-img="./assets/car-audi.png">
                             <img src="./assets/thumb-audi.png" alt="Audi">
-                            <span>Audi</span>
+                            <span>AUDI LMP3</span>
                         </div>
-                        <div class="ui-thumb" data-car="dodge" data-speed="9.4" data-handling="7.5" data-braking="8.0" data-name="DODGE VIPER GT" data-img="./assets/car-dodge.png">
+                        <div class="ui-thumb" data-speed="9.4" data-handling="7.5" data-braking="8.0" data-name="DODGE VIPER GT" data-img="./assets/car-dodge.png">
                             <img src="./assets/thumb-dodge.png" alt="Dodge">
-                            <span>Dodge</span>
+                            <span>VIPER V10</span>
                         </div>
-                        <div class="ui-thumb" data-car="ferrari" data-speed="8.9" data-handling="9.5" data-braking="9.4" data-name="FERRARI FXX-K SIM" data-img="./assets/car-ferrari.png">
+                        <div class="ui-thumb" data-speed="8.9" data-handling="9.5" data-braking="9.4" data-name="FERRARI FXX-K SIM" data-img="./assets/car-ferrari.png">
                             <img src="./assets/thumb-ferrari.png" alt="Ferrari">
-                            <span>Ferrari</span>
+                            <span>FERRARI FXX</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CUADROS DE HONOR (Barra compacta simplificada de 3 corredores) -->
         <section id="podium" class="podium-section">
             <div class="container">
                 <div class="section-header text-center">
+                    <span class="section-subtitle">// CLASIFICACIÓN GLOBAL SERVER</span>
                     <h2 class="section-title">CUADRO DE HONOR</h2>
-                    <p class="section-subtitle">TOP 3 PILOTOS DEL MES</p>
                 </div>
 
                 <div class="compact-leaderboard">
                     <div class="leaderboard-row pos-1">
-                        <div class="row-position">1</div>
+                        <div class="row-position">01</div>
                         <div class="row-driver">
                             <span class="flag">🇪🇸</span>
                             <span class="driver-name">Carlos Alza</span>
                         </div>
-                        <div class="row-team">APEX F1 TEAM</div>
+                        <div class="row-team">APEX RACING TEAM</div>
                         <div class="row-time text-electric">1:09.912</div>
                     </div>
                     <div class="leaderboard-row pos-2">
-                        <div class="row-position">2</div>
+                        <div class="row-position">02</div>
                         <div class="row-driver">
                             <span class="flag">🇩🇪</span>
                             <span class="driver-name">Lukas Weber</span>
@@ -233,24 +241,23 @@
                         <div class="row-time">1:10.452</div>
                     </div>
                     <div class="leaderboard-row pos-3">
-                        <div class="row-position">3</div>
+                        <div class="row-position">03</div>
                         <div class="row-driver">
                             <span class="flag">🇬🇧</span>
                             <span class="driver-name">James Hunt</span>
                         </div>
-                        <div class="row-team">VINTAGE RACING</div>
+                        <div class="row-team">VINTAGE ESCUDERÍA</div>
                         <div class="row-time">1:11.002</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- TESTIMONIOS (Fotos cuadradas con flip card interactivo) -->
-        <section class="testimonials-section">
+        <section class="testimonials-section tech-grid-bg">
             <div class="container">
                 <div class="section-header text-center">
+                    <span class="section-subtitle">// CRÍTICAS DE PILOTOS REALES</span>
                     <h2 class="section-title">TESTIMONIOS</h2>
-                    <p class="section-subtitle">REACCIONES EN PISTA</p>
                 </div>
                 
                 <div class="testimonials-flip-grid">
@@ -258,10 +265,10 @@
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <img src="./assets/driver1.jpg" alt="Marc Gené">
-                                <div class="front-overlay"><span>VER TELEMETRÍA</span></div>
+                                <div class="front-overlay"><span><i class="fas fa-sync"></i> ANALIZAR TELEMETRÍA</span></div>
                             </div>
                             <div class="flip-card-back">
-                                <p class="quote">"La precisión de la telemetría redujo mi tiempo real en Spa por más de 8 décimas. Increíble realismo."</p>
+                                <p class="quote">"La respuesta de fuerza en el eje delantero y los datos del software me permitieron bajar mi tiempo real en Spa por 8 décimas."</p>
                                 <h4 class="author-name">Marc Gené</h4>
                             </div>
                         </div>
@@ -271,10 +278,10 @@
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <img src="./assets/driver2.jpg" alt="Arthur Leclerc">
-                                <div class="front-overlay"><span>VER TELEMETRÍA</span></div>
+                                <div class="front-overlay"><span><i class="fas fa-sync"></i> ANALIZAR TELEMETRÍA</span></div>
                             </div>
                             <div class="flip-card-back">
-                                <p class="quote">"Competir en sus torneos internos me dio el ritmo y consistencia mental para dar el salto a la F3 real."</p>
+                                <p class="quote">"Competir en los servidores internos de APEX genera el mismo nivel de presión que una parrilla de salida real de F3."</p>
                                 <h4 class="author-name">Arthur Leclerc</h4>
                             </div>
                         </div>
@@ -283,12 +290,12 @@
                     <div class="flip-card">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
-                                <img src="./assets/driver3.jpg" alt="Colapinto Sim">
-                                <div class="front-overlay"><span>VER TELEMETRÍA</span></div>
+                                <img src="./assets/driver3.jpg" alt="SimRacer">
+                                <div class="front-overlay"><span><i class="fas fa-sync"></i> ANALIZAR TELEMETRÍA</span></div>
                             </div>
                             <div class="flip-card-back">
-                                <p class="quote">"El mejor ecosistema para entrenar bajo presión simulada. Los premios reales motivan al límite."</p>
-                                <h4 class="author-name">Franco C. (SimRacer)</h4>
+                                <p class="quote">"El hardware es de nivel profesional. Dejás de tratarlo como un simulador y empezás a timonear un auto real."</p>
+                                <h4 class="author-name">Franco C.</h4>
                             </div>
                         </div>
                     </div>
@@ -297,46 +304,44 @@
         </section>
     </main>
 
-    <!-- INTEGRACIÓN: FORMULARIO Y FOOTER UNIFICADOS -->
     <footer id="register-footer" class="footer-split-section">
         <div class="container footer-split-grid">
-            <!-- Columna Formulario -->
             <div class="form-wrapper-column">
-                <h2 class="section-title">INGRESA EN APEX</h2>
+                <h3 class="section-title" style="font-size: 1.8rem;"><i class="fas fa-key text-electric"></i> SOLICITAR VACANTE</h3>
+                <p style="color: var(--metallic-grey); font-family: var(--font-sub); font-size: 1rem; margin-bottom: 20px;">// INGRESO SUJETO A REVISIÓN DE LICENCIA DIGITAL</p>
                 <form class="apex-form" id="race-form">
                     <div class="input-group">
-                        <label for="name">Nombre de Piloto</label>
+                        <label for="name">Nombre de Piloto (Nickname)</label>
                         <input type="text" id="name" required placeholder="Ej. Ayrton Senna">
                     </div>
                     <div class="input-group">
-                        <label for="email">E-mail de contacto</label>
+                        <label for="email">E-mail de Enlace</label>
                         <input type="email" id="email" required placeholder="tu@escuderia.com">
                     </div>
                     <div class="input-group">
-                        <label for="category">Categoría del corredor</label>
+                        <label for="category">Categoría del monoplaza</label>
                         <select id="category">
-                            <option value="f3">Fórmula 3 - Principiante / Intermedio</option>
-                            <option value="f2">Fórmula 2 - Avanzado</option>
-                            <option value="f1">Fórmula 1 - Sim-Racing Profesional</option>
+                            <option value="f3">Fórmula 3 - Licencia Rookie</option>
+                            <option value="f2">Fórmula 2 - Licencia Avanzada</option>
+                            <option value="f1">Fórmula 1 - Licencia Esports Pro</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary btn-full btn-speed">
-                        <span>ENVIAR SOLICITUD</span>
+                        <span>ENVIAR SOLICITUD DE LICENCIA</span>
                     </button>
                 </form>
             </div>
 
-            <!-- Columna Datos Footer -->
             <div class="footer-data-column">
                 <div class="footer-brand-block">
                     <div class="logo">
-                        <span class="logo-apex text-electric">APEX</span> <span class="logo-sub">SIM-RACING</span>
+                        <span class="logo-apex text-electric">APEX</span> <span class="logo-sub" style="color: var(--white); font-family: var(--font-sub);">ACADEMY</span>
                     </div>
-                    <p class="brand-desc">Ingeniería de simulación y entrenamiento automovilístico de alto rendimiento deportivo.</p>
+                    <p class="brand-desc">Laboratorio de simulación biomecánica y telemetría de carrera para pilotos virtuales de élite latinoamericanos.</p>
                 </div>
                 
                 <div class="footer-links-block">
-                    <h4>Navegación Escudería</h4>
+                    <h4>// MAPA DE CIRCUITO</h4>
                     <div class="links-inline">
                         <a href="#about">La Academia</a>
                         <a href="#courses">Cursos</a>
@@ -345,7 +350,7 @@
                 </div>
 
                 <div class="footer-social-block">
-                    <h4>Conexión Satelital</h4>
+                    <h4>// ENLACE SATELITAL TELEMÉTRICO</h4>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-youtube"></i></a>
@@ -355,7 +360,7 @@
                 </div>
 
                 <div class="footer-copyright-block">
-                    <p>&copy; 2026 APEX SIM-RACING ACADEMY. Todos los derechos reservados.</p>
+                    <p>&copy; 2026 APEX SIM-RACING ACADEMY. SISTEMAS DE CARRERA SEGUROS.</p>
                 </div>
             </div>
         </div>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEGA APEX | Programa de Alto Rendimiento Extremo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Reutilizamos tu CSS base -->
+    <link rel="stylesheet" href="./css/style.css">
+    
+    <style>
+        /* Estilos específicos complementarios exclusivos para esta Landing */
+        .mega-hero { background: linear-gradient(180deg, rgba(15,20,37,0.4) 0%, var(--pure-black) 100%); position: relative; padding: 140px 0 80px 0; text-align: center; }
+        .grid-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 40px; }
+        .feature-box { background: rgba(15, 20, 37, 0.4); border-left: 3px solid var(--electric-blue); border-top: 1px solid rgba(57,160,218,0.2); border-bottom: 1px solid rgba(57,160,218,0.1); border-right: 1px solid rgba(57,160,218,0.1); padding: 25px; transition: all 0.3s; }
+        .feature-box:hover { transform: translateY(-5px); background: rgba(15, 20, 37, 0.8); box-shadow: var(--glow-effect); }
+        .feature-box i { font-size: 1.8rem; margin-bottom: 15px; }
+        
+        .timeline-container { display: flex; flex-direction: column; gap: 20px; max-width: 800px; margin: 40px auto 0 auto; }
+        .timeline-step { display: grid; grid-template-columns: 80px 1fr; gap: 20px; background: rgba(5,7,12,0.8); border: 1px solid rgba(57,160,218,0.1); padding: 20px; border-radius: 2px; }
+        .step-num { font-family: var(--font-title); font-size: 1.5rem; color: var(--electric-blue); display: flex; align-items: center; justify-content: center; border-right: 2px dashed rgba(57,160,218,0.3); }
+        
+        .exclusivity-banner { background: linear-gradient(90deg, rgba(57,160,218,0.1) 0%, rgba(15,20,37,0.6) 50%, transparent 100%); padding: 40px; border-left: 4px solid #F1C40F; margin: 40px 0; }
+        
+        @media (max-width: 992px) {
+            .grid-features { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .grid-features { grid-template-columns: 1fr; }
+            .timeline-step { grid-template-columns: 1fr; text-align: center; }
+            .step-num { border-right: none; border-bottom: 2px dashed rgba(57,160,218,0.3); padding-bottom: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tu barra de luz reactiva y canvas del fondo -->
+    <div class="scroll-circuit-track" aria-hidden="true">
+        <div class="scroll-circuit-energy"></div>
+    </div>
+    <canvas id="telemetry-bg"></canvas>
+
+    <!-- HEADER CABINA -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html"><img src="assets/marca.png" alt="Logo APEX" style="height: 90px;"></a>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link"><i class="fas fa-arrow-left text-electric"></i> Volver al Circuito</a>
+                <a href="#programa" class="nav-link">// El Programa</a>
+                <a href="#pilares" class="nav-link">// Contenido</a>
+                <a href="#cronograma" class="nav-link">// Las 12 Semanas</a>
+                <a href="#requisitos" class="nav-link">// Filtro de Selección</a>
+            </nav>
+            <a href="#postular" class="btn btn-primary btn-hud">APLICAR VACANTE</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- SECCIÓN 1: HERO EXCLUSIVO DE PROGRAMA -->
+        <section class="mega-hero tech-grid-bg">
+            <div class="container">
+                <div class="telemetry-badge"><i class="fas fa-crown"></i> // CLASIFICACIÓN EXCLUSIVA DE ÉLITE</div>
+                <h1 class="hero-title" style="font-size: 4.2rem;">PROGRAMA ALTO RENDIMIENTO<br><span class="text-electric">MEGA APEX</span></h1>
+                <p class="hero-subtitle" style="font-size: 1.3rem; margin-bottom: 20px;">No todos los pilotos llegan hasta acá. El punto culminante de nuestra academia para competir al máximo nivel.</p>
+                <div style="display: flex; justify-content: center; gap: 30px; font-family: var(--font-title); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem;">
+                    <span><i class="fas fa-layer-group text-electric"></i> NIVEL: AVANZADO</span>
+                    <span><i class="fas fa-hourglass-half text-electric"></i> DURACIÓN: 12 SEMANAS</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: MANIFIESTO Y PROPÓSITO -->
+        <section id="programa" class="about-section" style="padding: 60px 0;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">// SECTOR 1: PROPÓSITO</span>
+                    <h2 class="section-title">NUESTRO ENTRENAMIENTO MÁS EXCLUSIVO</h2>
+                </div>
+                <p class="about-highlight" style="font-size: 1.4rem;">
+                    MEGA APEX está diseñado quirúrgicamente para quienes buscan dar el salto definitivo hacia el profesionalismo y prepararse para futuras oportunidades reales dentro del automovilismo deportivo. 
+                </p>
+                <p style="color: var(--metallic-grey); font-family: var(--font-body); font-size: 1.1rem; max-width: 900px; margin-top: 20px;">
+                    Entrenamientos de resistencia biomecánica inmersiva, análisis quirúrgico estructural de datos y un seguimiento personalizado constante convierten este programa en la cúspide del ecosistema sim-racing regional.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: LOS 7 PILARES INCLUIDOS -->
+        <section id="pilares" class="courses-section" style="padding: 80px 0;">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">// SECTOR 2: ESPECIFICACIONES HARDWARE & SOFTWARE</span>
+                    <h2 class="section-title">¿QUÉ INCLUYE LA LICENCIA MEGA APEX?</h2>
+                </div>
+                
+                <div class="grid-features">
+                    <div class="feature-box">
+                        <i class="fas fa-tachometer-alt text-electric"></i>
+                        <h3 class="font-orbitron" style="font-size: 1.1rem; margin-bottom: 10px;">SIMULACIÓN ILIMITADA</h3>
+                        <p style="color: var(--metallic-grey); font-size: 0.9rem;">Acceso irrestricto y sin reservas a nuestros simuladores profesionales equipados con cockpits de monoplazas reales.</p>
+                    </div>
+                    <div class="feature-box">
+                        <i class="fas fa-chart-network text-electric"></i>
+                        <h3 class="font-orbitron" style="font-size: 1.1rem; margin-bottom: 10px;">ANÁLISIS DE TELEMETRÍA</h3>
+                        <p style="color: var(--metallic-grey); font-size: 0.9rem;">Estudio completo de tus mapas de aceleración, presión de frenado e índices de subviraje mediante telemetría MoTeC avanzada.</p>
+                    </div>
+                    <div class="feature-box">
+                        <i class="fas fa-user-headset text-electric"></i>
+                        <h3 class="font-orbitron" style="font-size: 1.1rem; margin-bottom: 10px;">COACHING 1 A 1</h3>
+                        <p style="color: var(--metallic-grey); font-size: 0.9rem;">Un ingeniero de pista asignado específicamente a vos para corregir tus trazadas mecánicas décima por décima.</p>
+                    </div>
+                    <div class="feature-box">
+                        <i class="fas fa-stopwatch text-electric"></i>
+                        <h3 class="font-orbitron" style="font-size: 1.1rem; margin-bottom: 10px;">FINES DE SEMANA DE CARRERA</h3>
+                        <p style="color: var(--metallic-grey); font-size: 0.9rem;">Simulación total bajo presión extrema: prácticas libres, clasificaciones milimétricas y estrategias con desgaste real.</p>
+                    </div>
+                    <div class="feature-box">
+                        <i class="fas fa-trophy text-electric"></i>
+                        <h3 class="font-orbitron" style="font-size: 1.1rem; margin-bottom: 10px;">RANKING OFICIAL APEX</h3>
+                        <p style="color: var(--metallic-grey); font-size: 0.9rem;">Medición de desempeño en nuestros servidores globales prioritarios con exposición a escuderías de sim-racing de élite.</p>
+                    </div>
+                    <div class="feature-box">
+                        <i class="fas fa-handshake text-electric"></i>
+                        <h3 class="font-orbitron" style="font-size: 1.1rem; margin-bottom: 10px;">ALIANZAS INTERNACIONALES</h3>
+                        <p style="color: var(--metallic-grey); font-size: 0.9rem;">Evaluaciones formales y derivaciones para futuras alianzas estratégicas con equipos de competición reales y virtuales.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: CRONOGRAMA DE 12 SEMANAS -->
+        <section id="cronograma" class="simulators-section tech-grid-bg" style="padding: 80px 0;">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">// SECTOR 3: HOJA DE RUTA</span>
+                    <h2 class="section-title">CRONOGRAMA DE DESARROLLO</h2>
+                </div>
+
+                <div class="timeline-container">
+                    <div class="timeline-step">
+                        <div class="step-num">S1-4</div>
+                        <div>
+                            <h4 class="font-orbitron text-electric" style="font-size: 1.1rem; margin-bottom: 5px;">FASE 1: DIAGNÓSTICO BIOMECÁNICO Y TELEMETRÍA BASE</h4>
+                            <p style="color: var(--metallic-grey); font-size: 0.95rem;">Evaluación de tu huella de frenado, mapeo físico de reflejos en simuladores avanzados y corrección de vicios de trazada.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-num">S5-8</div>
+                        <div>
+                            <h4 class="font-orbitron text-electric" style="font-size: 1.1rem; margin-bottom: 5px;">FASE 2: GESTIÓN DINÁMICA AVANZADA Y ESTRATEGIA</h4>
+                            <p style="color: var(--metallic-grey); font-size: 0.95rem;">Trabajo intensivo en condiciones climáticas variables, degradación agresiva de neumáticos y configuraciones de puesta a punto (Setups).</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-num">S9-12</div>
+                        <div>
+                            <h4 class="font-orbitron text-electric" style="font-size: 1.1rem; margin-bottom: 5px;">FASE 3: SIMULACIÓN DE PRESIÓN ABSOLUTA Y EXPOSICIÓN</h4>
+                            <p style="color: var(--metallic-grey); font-size: 0.95rem;">Inmersión en grillas de largada hipercompetitivas y preparación de informes de telemetría final para escuderías asociadas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: FILTRO DE EXCLUSIVIDAD -->
+        <section id="requisitos" class="podium-section" style="padding: 70px 0;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle" style="color: #F1C40F;">// ADVERTENCIA PROTOCOLO DE ADMISIÓN</span>
+                    <h2 class="section-title">FILTRO ESTRICTO DE SELECCIÓN</h2>
+                </div>
+                
+                <div class="exclusivity-banner">
+                    <h3 class="font-orbitron" style="color: #F1C40F; margin-bottom: 10px;"><i class="fas fa-exclamation-triangle"></i> EXCLUSIVO PARA PILOTOS SELECCIONADOS</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.7;">
+                        No vendemos accesos directos a este curso. La postulación web abre un proceso de evaluación técnica obligatoria. El equipo de ingenieros de APEX analizará tu historial de licencias digitales y tiempos de vuelta en simuladores antes de otorgar una plaza definitiva.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 6: POSTULACIÓN ESPECIAL CON EL FORMULARIO INTEGRADO -->
+        <section id="postular" class="footer-split-section" style="border-top: 2px solid #F1C40F;">
+            <div class="container">
+                <div style="max-width: 700px; margin: 0 auto;" class="form-wrapper-column">
+                    <h3 class="section-title" style="font-size: 1.8rem; color: #F1C40F;"><i class="fas fa-file-signature"></i> APLICAR AL PROGRAMA DE ALTO RENDIMIENTO</h3>
+                    <p style="color: var(--metallic-grey); font-family: var(--font-sub); font-size: 1rem; margin-bottom: 20px;">// REGISTRO DE ASPIRANTE A LICENCIA HIGH PERFORMANCE</p>
+                    
+                    <form class="apex-form" id="race-form">
+                        <div class="input-group">
+                            <label for="name">Nombre Completo del Piloto</label>
+                            <input type="text" id="name" required placeholder="Ej. Franco Colapinto">
+                        </div>
+                        <div class="input-group">
+                            <label for="email">E-mail Oficial Escudería</label>
+                            <input type="email" id="email" required placeholder="tu@escuderia.com">
+                        </div>
+                        <div class="input-group">
+                            <label for="sim-exp">Plataforma / Simulador Principal en uso</label>
+                            <select id="sim-exp">
+                                <option value="iracing">iRacing (Licencia Pro/Avanzada)</option>
+                                <option value="acc">Assetto Corsa Competizione</option>
+                                <option value="f1-game">F1 23 / F1 24 Esports League</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full btn-speed" style="background: #F1C40F; color: #000;">
+                            <span>ENVIAR MÉTRICAS DE TELEMETRÍA PARA REVISIÓN</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER SIMPLE REDUCIDO -->
+    <footer class="footer-split-section" style="padding: 40px 0 20px 0;">
+        <div class="container text-center">
+            <p class="brand-desc" style="margin-bottom: 20px;">APEX HIGH PERFORMANCE LABORATORY &copy; 2026 - SISTEMAS DE TELEMETRÍA PROFESIONAL</p>
+            <a href="index.html" style="color: var(--electric-blue); text-decoration: none; font-family: var(--font-title); font-size: 0.85rem;"><i class="fas fa-arrow-left"></i> VOLVER AL HOME PRINCIPAL</a>
+        </div>
+    </footer>
+
+    <!-- Reutilizamos tu JS para mantener el fondo reactivo funcionando perfecto -->
+    <script src="./js/script.js"></script>
+</body>
+</html>
