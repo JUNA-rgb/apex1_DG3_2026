@@ -163,37 +163,165 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 // ==========================================================================
-    // 4. LÓGICA DEL CARRUSEL (FLECHAS PREV Y NEXT)
-    // ==========================================================================
-    const track = document.getElementById('about-track');
-    const prevBtn = document.getElementById('about-prev');
-    const nextBtn = document.getElementById('about-next');
-    const slides = document.querySelectorAll('.carousel-slide');
-    
-    if (track && prevBtn && nextBtn && slides.length > 0) {
-        let currentIndex = 0;
-        const totalSlides = slides.length;
+// CONTROL TELEMÉTRICO DEL VISOR SUPERIOR (SECTOR 1)
+// ==========================================================================
+const arrowPrev = document.getElementById('about-prev');
+const arrowNext = document.getElementById('about-next');
+const topSliderTrack = document.getElementById('about-track');
 
-        function updateCarousel() {
-            // Desplaza el track horizontalmente multiplicando por el índice actual
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+if (arrowPrev && arrowNext && topSliderTrack) {
+    const totalTopSlides = topSliderTrack.children.length; // Cuenta tus 5 imágenes
+    let topSliderIndex = 0;
+
+    function applySliderPosition() {
+        // Modifica la variable CSS --current-slide que maneja el desplazamiento horizontal
+        topSliderTrack.style.setProperty('--current-slide', topSliderIndex);
+    }
+
+    arrowNext.addEventListener('click', () => {
+        if (topSliderIndex < totalTopSlides - 1) {
+            topSliderIndex++;
+        } else {
+            topSliderIndex = 0; // Bucle: vuelve a la primera foto
+        }
+        applySliderPosition();
+    });
+
+    arrowPrev.addEventListener('click', () => {
+        if (topSliderIndex > 0) {
+            topSliderIndex--;
+        } else {
+            topSliderIndex = totalTopSlides - 1; // Bucle: va a la última foto
+        }
+        applySliderPosition();
+    });
+}
+    // ==========================================================================
+// MOTOR DE CONTROL INTEGRAL PARA EL CARRUSEL SUPERIOR (ABOUT)
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const topTrack = document.getElementById('about-track');
+    const btnPrev = document.getElementById('about-prev');
+    const btnNext = document.getElementById('about-next');
+
+    if (topTrack && btnPrev && btnNext) {
+        const totalSlides = topTrack.children.length; // Lee automáticamente tus 5 imágenes
+        let currentIndex = 0;
+
+        function updateTopSlider() {
+            // Modifica la variable CSS nativa que mueve el track
+            topTrack.style.setProperty('--current-slide', currentIndex);
         }
 
-        nextBtn.addEventListener('click', () => {
+        btnNext.addEventListener('click', (e) => {
+            e.preventDefault();
             if (currentIndex < totalSlides - 1) {
                 currentIndex++;
             } else {
-                currentIndex = 0; // Vuelve al principio si llega al final
+                currentIndex = 0; // Bucle: vuelve al inicio
             }
-            updateCarousel();
+            updateTopSlider();
         });
 
-        prevBtn.addEventListener('click', () => {
+        btnPrev.addEventListener('click', (e) => {
+            e.preventDefault();
             if (currentIndex > 0) {
                 currentIndex--;
             } else {
-                currentIndex = totalSlides - 1; // Vuelve al final si está en la primera
+                currentIndex = totalSlides - 1; // Bucle: va a la última
             }
-            updateCarousel();
+            updateTopSlider();
+        });
+
+        // Aseguramos inicialización en cero
+        updateTopSlider();
+    }
+});
+// --- MOTOR INTERACTIVO GARAJE EXPERIENCIA APEX ---
+document.addEventListener("DOMContentLoaded", () => {
+    const garageButtons = document.querySelectorAll(".car-selector-btn");
+    const mainCarView = document.getElementById("main-car-view");
+    const hudCarName = document.getElementById("hud-car-name");
+    const hudBestTime = document.getElementById("hud-best-time");
+    
+    // Elementos del HUD (Números y Barras)
+    const statVelNum = document.getElementById("stat-vel-num");
+    const statFrenNum = document.getElementById("stat-fren-num");
+    const statNeuNum = document.getElementById("stat-neu-num");
+    
+    const barVel = document.getElementById("bar-vel");
+    const barFren = document.getElementById("bar-fren");
+    const barNeu = document.getElementById("bar-neu");
+
+    const stageWrapper = document.querySelector(".car-3d-wrapper");
+    const stageArea = document.querySelector(".interactive-3d-stage");
+
+    // 1. LÓGICA DE SELECCIÓN DE MONOPLAZAS (Click)
+    garageButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            // Remover clase activa del botón anterior y ponerla en el nuevo
+            document.querySelector(".car-selector-btn.active")?.classList.remove("active");
+            btn.classList.add("active");
+
+            // Transición suave de salida y entrada para la imagen del auto
+            mainCarView.style.opacity = "0";
+            mainCarView.style.transform = "scale(0.9) rotateY(20deg)";
+            
+            setTimeout(() => {
+                // Actualizar la foto del render de la carpeta assets
+                mainCarView.src = btn.getAttribute("data-img");
+                
+                // Actualizar Textos e indicadores HUD
+                hudCarName.textContent = btn.getAttribute("data-car");
+                hudBestTime.textContent = btn.getAttribute("data-time");
+                
+                const vel = btn.getAttribute("data-vel");
+                const fren = btn.getAttribute("data-fren");
+                const neu = btn.getAttribute("data-neu");
+
+                statVelNum.textContent = vel;
+                statFrenNum.textContent = fren;
+                statNeuNum.textContent = neu;
+
+                // Modificar el ancho de las barras de progreso
+                barVel.style.width = vel;
+                barFren.style.width = fren;
+                barNeu.style.width = neu;
+
+                // Restaurar vista de la imagen
+                mainCarView.style.opacity = "1";
+                mainCarView.style.transform = "scale(1) rotateY(0deg)";
+            }, 250);
+        });
+    });
+
+    // 2. EFECTO INCLINACIÓN Y MOVIMIENTO INTERACTIVO 3D (Hover / Mousemove)
+    if (stageArea && stageWrapper) {
+        stageArea.addEventListener("mousemove", (e) => {
+            const rect = stageArea.getBoundingClientRect();
+            const x = e.clientX - rect.left; // posición X del mouse dentro del cuadro
+            const y = e.clientY - rect.top;  // posición Y del mouse dentro del cuadro
+            
+            // Calcular el centro del cuadro
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            // Calcular porcentaje de desviación desde el centro (-1 a 1)
+            const rotateX = ((y - centerY) / centerY) * -15; // Inclinación vertical máx 15°
+            const rotateY = ((x - centerX) / centerX) * 20;  // Rotación horizontal máx 20°
+            
+            // Aplicar la matriz 3D al envoltorio del auto
+            stageWrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+        });
+
+        // Al sacar el mouse, el auto regresa suavemente a su origen
+        stageArea.addEventListener("mouseleave", () => {
+            stageWrapper.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+            stageWrapper.style.transition = "transform 0.5s ease";
+        });
+
+        stageArea.addEventListener("mouseenter", () => {
+            stageWrapper.style.transition = "transform 0.1s ease-out";
         });
     }
+});
