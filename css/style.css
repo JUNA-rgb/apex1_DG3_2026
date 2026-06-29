@@ -1208,3 +1208,13 @@ body {
 @media (max-width: 600px) {
     .garage-selector-track { grid-template-columns: repeat(2, 1fr); }
 }
+/* Ajuste para bajar el contenido del Hero y darle más espacio de cabecera */
+.mega-hero {
+    padding-top: 190px !important; /* Aumentamos de 140px a 190px para bajar el bloque */
+    padding-bottom: 80px;
+}
+
+/* En caso de que estés usando un contenedor de grilla tecnológica o canvas que necesite el mismo ajuste */
+#hero-container {
+    margin-top: 30px; /* Añade un margen extra hacia abajo si es necesario */
+}

@@ -3,229 +3,507 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEGA APEX | Programa de Alto Rendimiento Extremo</title>
+    <title>MEGA APEX | Programa de Alto Rendimiento</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Reutilizamos tu CSS base -->
     <link rel="stylesheet" href="./css/style.css">
     
     <style>
-        /* Estilos específicos complementarios exclusivos para esta Landing */
-        .mega-hero { background: linear-gradient(180deg, rgba(15,20,37,0.4) 0%, var(--pure-black) 100%); position: relative; padding: 140px 0 80px 0; text-align: center; }
-        .grid-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 40px; }
-        .feature-box { background: rgba(15, 20, 37, 0.4); border-left: 3px solid var(--electric-blue); border-top: 1px solid rgba(57,160,218,0.2); border-bottom: 1px solid rgba(57,160,218,0.1); border-right: 1px solid rgba(57,160,218,0.1); padding: 25px; transition: all 0.3s; }
-        .feature-box:hover { transform: translateY(-5px); background: rgba(15, 20, 37, 0.8); box-shadow: var(--glow-effect); }
-        .feature-box i { font-size: 1.8rem; margin-bottom: 15px; }
+        /* ==========================================
+           ESTILOS EXCLUSIVOS - LANDING MEGA APEX
+           ========================================== */
         
-        .timeline-container { display: flex; flex-direction: column; gap: 20px; max-width: 800px; margin: 40px auto 0 auto; }
-        .timeline-step { display: grid; grid-template-columns: 80px 1fr; gap: 20px; background: rgba(5,7,12,0.8); border: 1px solid rgba(57,160,218,0.1); padding: 20px; border-radius: 2px; }
-        .step-num { font-family: var(--font-title); font-size: 1.5rem; color: var(--electric-blue); display: flex; align-items: center; justify-content: center; border-right: 2px dashed rgba(57,160,218,0.3); }
-        
-        .exclusivity-banner { background: linear-gradient(90deg, rgba(57,160,218,0.1) 0%, rgba(15,20,37,0.6) 50%, transparent 100%); padding: 40px; border-left: 4px solid #F1C40F; margin: 40px 0; }
-        
-        @media (max-width: 992px) {
-            .grid-features { grid-template-columns: repeat(2, 1fr); }
+        /* Sección 1: Hero con Video de Fondo */
+        .mega-hero-video {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            text-align: center;
         }
-        @media (max-width: 768px) {
-            .grid-features { grid-template-columns: 1fr; }
-            .timeline-step { grid-template-columns: 1fr; text-align: center; }
-            .step-num { border-right: none; border-bottom: 2px dashed rgba(57,160,218,0.3); padding-bottom: 10px; }
+        .video-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 1;
+            filter: brightness(0.3) contrast(1.2);
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(5,7,12,0.4) 0%, var(--pure-black) 100%);
+            z-index: 2;
+        }
+        .hero-content-hud {
+            position: relative;
+            z-index: 3;
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        /* Sección 2: Pasaporte de 3 Pasos */
+        .pasaporte-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .pasaporte-card {
+            background: rgba(15, 20, 37, 0.3);
+            border: 1px solid rgba(57,160,218,0.15);
+            border-top: 3px solid var(--electric-blue);
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .pasaporte-card:hover {
+            transform: translateY(-5px);
+            background: rgba(15, 20, 37, 0.6);
+            box-shadow: 0 0 25px rgba(57,160,218,0.3);
+            border-color: var(--electric-blue);
+        }
+        .pasaporte-icon {
+            font-size: 3rem;
+            color: var(--electric-blue);
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px #39a0da80;
+        }
+
+        /* Sección 3: Módulos Split-Screen Interactivos */
+        .split-modules-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            margin-top: 50px;
+            min-height: 400px;
+        }
+        .modules-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .module-tab-btn {
+            background: rgba(5,7,12,0.6);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--metallic-grey);
+            padding: 20px;
+            font-family: var(--font-title);
+            font-size: 1.1rem;
+            text-align: left;
+            cursor: pointer;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .module-tab-btn:hover, .module-tab-btn.active {
+            color: #fff;
+            background: rgba(15, 20, 37, 0.8);
+            border-left-color: var(--electric-blue);
+            box-shadow: inset 5px 0 10px rgba(57,160,218,0.1);
+        }
+        .module-tab-btn.active {
+            border-color: rgba(57,160,218,0.3) rgba(57,160,218,0.3) rgba(57,160,218,0.3) var(--electric-blue);
+        }
+        .module-content-display {
+            background: rgba(15, 20, 37, 0.4);
+            border: 1px solid rgba(57,160,218,0.1);
+            padding: 40px;
+            position: relative;
+        }
+        .module-pane {
+            display: none;
+            animation: fadeInHUD 0.4s forwards;
+        }
+        .module-pane.active {
+            display: block;
+        }
+
+        /* Sección 4: Circuitos Grid */
+        .circuits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .circuit-card {
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.05);
+            background: #05070c;
+            overflow: hidden;
+            height: 240px;
+        }
+        .circuit-img-wrap {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            transition: transform 0.5s ease;
+        }
+        .circuit-card:hover .circuit-img-wrap {
+            transform: scale(1.05);
+        }
+        .circuit-img-wrap img {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: brightness(0.4) grayscale(0.3);
+        }
+        .circuit-hud-overlay {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            padding: 30px;
+            z-index: 2;
+            background: linear-gradient(0deg, rgba(5,7,12,0.95) 0%, rgba(5,7,12,0.5) 70%, transparent 100%);
+        }
+
+        /* Sección 6: Credencial Digital VIP HUD */
+        .bonus-section-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 50px;
+            align-items: center;
+        }
+        .credential-container-hud {
+            perspective: 1000px;
+        }
+        .digital-badge-vip {
+            background: linear-gradient(135deg, #0b0f19 0%, #05070c 100%);
+            border: 2px solid  #39A0DA;
+;
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(241,196,15,0.15);
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+        .digital-badge-vip::before {
+            content: 'VIP COMPETITOR';
+            position: absolute;
+            top: 15px; right: 15px;
+            font-family: var(--font-title);
+            font-size: 0.65rem;
+            color: #39A0DA;
+            border: 1px solid #39A0DA;
+            padding: 2px 6px;
+            letter-spacing: 1px;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInHUD {
+            from { opacity: 0; transform: translateX(15px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Responsivo */
+        @media (max-width: 992px) {
+            .pasaporte-grid, .circuits-grid { grid-template-columns: 1fr; }
+            .split-modules-container, .bonus-section-wrapper { grid-template-columns: 1fr; }
+            .mega-hero-video { height: auto; padding: 160px 0 100px 0; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Tu barra de luz reactiva y canvas del fondo -->
     <div class="scroll-circuit-track" aria-hidden="true">
         <div class="scroll-circuit-energy"></div>
     </div>
     <canvas id="telemetry-bg"></canvas>
 
-    <!-- HEADER CABINA -->
     <header class="header">
         <div class="header-container">
             <div class="logo">
                 <a href="index.html"><img src="assets/marca.png" alt="Logo APEX" style="height: 90px;"></a>
             </div>
             <nav class="nav">
-                <a href="index.html" class="nav-link"><i class="fas fa-arrow-left text-electric"></i> Volver al Circuito</a>
-                <a href="#programa" class="nav-link">// El Programa</a>
-                <a href="#pilares" class="nav-link">// Contenido</a>
-                <a href="#cronograma" class="nav-link">// Las 12 Semanas</a>
-                <a href="#requisitos" class="nav-link">// Filtro de Selección</a>
+                <a href="index.html" class="nav-link"><i class="fas fa-arrow-left text-electric"></i> Volver al Home</a>
+                <a href="#pasaporte" class="nav-link">Funcionamiento</a>
+                <a href="#modulos" class="nav-link">Módulos</a>
+                <a href="#pistas" class="nav-link">Circuitos</a>
+                <a href="#bonus" class="nav-link">Equipamiento</a>
             </nav>
-            <a href="#postular" class="btn btn-primary btn-hud">APLICAR VACANTE</a>
+            <a href="#postular" class="btn btn-primary btn-hud" style="background: #F1C40F; color: #000;">BUTACA VIP</a>
         </div>
     </header>
 
     <main>
-        <!-- SECCIÓN 1: HERO EXCLUSIVO DE PROGRAMA -->
         <section class="mega-hero tech-grid-bg">
-            <div class="container">
-                <div class="telemetry-badge"><i class="fas fa-crown"></i> // CLASIFICACIÓN EXCLUSIVA DE ÉLITE</div>
-                <h1 class="hero-title" style="font-size: 4.2rem;">PROGRAMA ALTO RENDIMIENTO<br><span class="text-electric">MEGA APEX</span></h1>
-                <p class="hero-subtitle" style="font-size: 1.3rem; margin-bottom: 20px;">No todos los pilotos llegan hasta acá. El punto culminante de nuestra academia para competir al máximo nivel.</p>
-                <div style="display: flex; justify-content: center; gap: 30px; font-family: var(--font-title); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem;">
-                    <span><i class="fas fa-layer-group text-electric"></i> NIVEL: AVANZADO</span>
-                    <span><i class="fas fa-hourglass-half text-electric"></i> DURACIÓN: 12 SEMANAS</span>
+            <div class="scroll-circuit-track" aria-hidden="true">
+                <div class="scroll-circuit-energy"></div>
+            </div>
+            <canvas id="telemetry-bg"></canvas>
+
+            <div class="container hero-content-restored">
+                <h1 class="hero-title text-electric" style="font-size: 4.5rem; line-height: 1.1; margin-bottom: 20px;">
+                    BAJÁ TUS TIEMPOS.<br>DOMINÁ LA PISTA.
+                </h1>
+                <p class="hero-subtitle" style="font-size: 1.35rem; max-width: 750px; margin: 0 auto 40px auto; color: var(--metallic-grey);">
+                    El único curso de simracing y conducción que transforma tus décimas perdidas en victorias reales. Aprendé la física, el frenado y los secretos de telemetría de los pilotos profesionales.
+                </p>
+                <div class="hero-actions-center">
+                    <a href="#modulos" class="btn btn-primary btn-full btn-speed btn-glow">
+                        <span>ASEGURAR MI BUTACA <i class="fas fa-chevron-right"></i></span>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN 2: MANIFIESTO Y PROPÓSITO -->
-        <section id="programa" class="about-section" style="padding: 60px 0;">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-subtitle">// SECTOR 1: PROPÓSITO</span>
-                    <h2 class="section-title">NUESTRO ENTRENAMIENTO MÁS EXCLUSIVO</h2>
-                </div>
-                <p class="about-highlight" style="font-size: 1.4rem;">
-                    MEGA APEX está diseñado quirúrgicamente para quienes buscan dar el salto definitivo hacia el profesionalismo y prepararse para futuras oportunidades reales dentro del automovilismo deportivo. 
-                </p>
-                <p style="color: var(--metallic-grey); font-family: var(--font-body); font-size: 1.1rem; max-width: 900px; margin-top: 20px;">
-                    Entrenamientos de resistencia biomecánica inmersiva, análisis quirúrgico estructural de datos y un seguimiento personalizado constante convierten este programa en la cúspide del ecosistema sim-racing regional.
-                </p>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 3: LOS 7 PILARES INCLUIDOS -->
-        <section id="pilares" class="courses-section" style="padding: 80px 0;">
+        <section id="pasaporte" class="about-section" style="padding: 100px 0; background: var(--pure-black);">
             <div class="container">
                 <div class="section-header text-center">
-                    <span class="section-subtitle">// SECTOR 2: ESPECIFICACIONES HARDWARE & SOFTWARE</span>
-                    <h2 class="section-title">¿QUÉ INCLUYE LA LICENCIA MEGA APEX?</h2>
-                </div>
-                
-                <div class="grid-features">
-                    <div class="feature-box">
-                        <i class="fas fa-tachometer-alt text-electric"></i>
-                        <h3 class="font-orbitron" style="font-size: 1.1rem; margin-bottom: 10px;">SIMULACIÓN ILIMITADA</h3>
-                        <p style="color: var(--metallic-grey); font-size: 0.9rem;">Acceso irrestricto y sin reservas a nuestros simuladores profesionales equipados con cockpits de monoplazas reales.</p>
-                    </div>
-                    <div class="feature-box">
-                        <i class="fas fa-chart-network text-electric"></i>
-                        <h3 class="font-orbitron" style="font-size: 1.1rem; margin-bottom: 10px;">ANÁLISIS DE TELEMETRÍA</h3>
-                        <p style="color: var(--metallic-grey); font-size: 0.9rem;">Estudio completo de tus mapas de aceleración, presión de frenado e índices de subviraje mediante telemetría MoTeC avanzada.</p>
-                    </div>
-                    <div class="feature-box">
-                        <i class="fas fa-user-headset text-electric"></i>
-                        <h3 class="font-orbitron" style="font-size: 1.1rem; margin-bottom: 10px;">COACHING 1 A 1</h3>
-                        <p style="color: var(--metallic-grey); font-size: 0.9rem;">Un ingeniero de pista asignado específicamente a vos para corregir tus trazadas mecánicas décima por décima.</p>
-                    </div>
-                    <div class="feature-box">
-                        <i class="fas fa-stopwatch text-electric"></i>
-                        <h3 class="font-orbitron" style="font-size: 1.1rem; margin-bottom: 10px;">FINES DE SEMANA DE CARRERA</h3>
-                        <p style="color: var(--metallic-grey); font-size: 0.9rem;">Simulación total bajo presión extrema: prácticas libres, clasificaciones milimétricas y estrategias con desgaste real.</p>
-                    </div>
-                    <div class="feature-box">
-                        <i class="fas fa-trophy text-electric"></i>
-                        <h3 class="font-orbitron" style="font-size: 1.1rem; margin-bottom: 10px;">RANKING OFICIAL APEX</h3>
-                        <p style="color: var(--metallic-grey); font-size: 0.9rem;">Medición de desempeño en nuestros servidores globales prioritarios con exposición a escuderías de sim-racing de élite.</p>
-                    </div>
-                    <div class="feature-box">
-                        <i class="fas fa-handshake text-electric"></i>
-                        <h3 class="font-orbitron" style="font-size: 1.1rem; margin-bottom: 10px;">ALIANZAS INTERNACIONALES</h3>
-                        <p style="color: var(--metallic-grey); font-size: 0.9rem;">Evaluaciones formales y derivaciones para futuras alianzas estratégicas con equipos de competición reales y virtuales.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 4: CRONOGRAMA DE 12 SEMANAS -->
-        <section id="cronograma" class="simulators-section tech-grid-bg" style="padding: 80px 0;">
-            <div class="container">
-                <div class="section-header text-center">
-                    <span class="section-subtitle">// SECTOR 3: HOJA DE RUTA</span>
-                    <h2 class="section-title">CRONOGRAMA DE DESARROLLO</h2>
-                </div>
-
-                <div class="timeline-container">
-                    <div class="timeline-step">
-                        <div class="step-num">S1-4</div>
-                        <div>
-                            <h4 class="font-orbitron text-electric" style="font-size: 1.1rem; margin-bottom: 5px;">FASE 1: DIAGNÓSTICO BIOMECÁNICO Y TELEMETRÍA BASE</h4>
-                            <p style="color: var(--metallic-grey); font-size: 0.95rem;">Evaluación de tu huella de frenado, mapeo físico de reflejos en simuladores avanzados y corrección de vicios de trazada.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-step">
-                        <div class="step-num">S5-8</div>
-                        <div>
-                            <h4 class="font-orbitron text-electric" style="font-size: 1.1rem; margin-bottom: 5px;">FASE 2: GESTIÓN DINÁMICA AVANZADA Y ESTRATEGIA</h4>
-                            <p style="color: var(--metallic-grey); font-size: 0.95rem;">Trabajo intensivo en condiciones climáticas variables, degradación agresiva de neumáticos y configuraciones de puesta a punto (Setups).</p>
-                        </div>
-                    </div>
-                    <div class="timeline-step">
-                        <div class="step-num">S9-12</div>
-                        <div>
-                            <h4 class="font-orbitron text-electric" style="font-size: 1.1rem; margin-bottom: 5px;">FASE 3: SIMULACIÓN DE PRESIÓN ABSOLUTA Y EXPOSICIÓN</h4>
-                            <p style="color: var(--metallic-grey); font-size: 0.95rem;">Inmersión en grillas de largada hipercompetitivas y preparación de informes de telemetría final para escuderías asociadas.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 5: FILTRO DE EXCLUSIVIDAD -->
-        <section id="requisitos" class="podium-section" style="padding: 70px 0;">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-subtitle" style="color: #F1C40F;">// ADVERTENCIA PROTOCOLO DE ADMISIÓN</span>
-                    <h2 class="section-title">FILTRO ESTRICTO DE SELECCIÓN</h2>
-                </div>
-                
-                <div class="exclusivity-banner">
-                    <h3 class="font-orbitron" style="color: #F1C40F; margin-bottom: 10px;"><i class="fas fa-exclamation-triangle"></i> EXCLUSIVO PARA PILOTOS SELECCIONADOS</h3>
-                    <p style="font-size: 1.1rem; line-height: 1.7;">
-                        No vendemos accesos directos a este curso. La postulación web abre un proceso de evaluación técnica obligatoria. El equipo de ingenieros de APEX analizará tu historial de licencias digitales y tiempos de vuelta en simuladores antes de otorgar una plaza definitiva.
+                    <span class="section-subtitle">// SISTEMA DE PROGRESIÓN PILOTOS</span>
+                    <h2 class="section-title">EL CAMINO HACIA EL PODIO ECONÓMICO</h2>
+                    <p style="color: var(--metallic-grey); max-width: 700px; margin: 15px auto 0 auto; font-size: 1.1rem;">
+                        No es solo un curso de entrenamiento pasivo, es tu fase de clasificación directa hacia las grandes ligas de premios reales.
                     </p>
                 </div>
+
+                <div class="pasaporte-grid">
+                    <div class="pasaporte-card">
+                        <div class="pasaporte-icon"><i class="fas fa-id-card"></i></div>
+                        <h3 class="item-title" style="font-size: 1.4rem; color: #fff;">1. ENTRENÁS</h3>
+                        <p style="color: var(--metallic-grey); font-family: var(--font-body); margin-top: 10px; font-size: 0.95rem;">
+                            Aprendés los secretos de telemetría estructural y trazados complejos que aplican los pilotos profesionales del automovilismo real.
+                        </p>
+                    </div>
+                    <div class="pasaporte-card" style="border-top-color: #F1C40F;">
+                        <div class="pasaporte-icon" style="color: #F1C40F; text-shadow: 0 0 10px rgba(241,196,15,0.4);"><i class="fas fa-stopwatch"></i></div>
+                        <h3 class="item-title" style="font-size: 1.4rem; color: #fff;">2. CLASIFICÁS</h3>
+                        <p style="color: var(--metallic-grey); font-family: var(--font-body); margin-top: 10px; font-size: 0.95rem;">
+                            Validás tu ritmo de vuelta limpia, constancia en simulador y comportamiento en nuestros servidores oficiales dedicados de APEX.
+                        </p>
+                    </div>
+                    <div class="pasaporte-card">
+                        <div class="pasaporte-icon"><i class="fas fa-trophy"></i></div>
+                        <h3 class="item-title" style="font-size: 1.4rem; color: #fff;">3. COMPETÍS Y GANÁS</h3>
+                        <p style="color: var(--metallic-grey); font-family: var(--font-body); margin-top: 10px; font-size: 0.95rem;">
+                            Formás parte de los Grandes Premios exclusivos de la academia con transmisión en vivo y premios en efectivo para los integrantes del podio.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- SECCIÓN 6: POSTULACIÓN ESPECIAL CON EL FORMULARIO INTEGRADO -->
-        <section id="postular" class="footer-split-section" style="border-top: 2px solid #F1C40F;">
+        <section id="modulos" class="courses-section" style="padding: 100px 0; border-top: 1px solid rgba(255,255,255,0.05);">
             <div class="container">
-                <div style="max-width: 700px; margin: 0 auto;" class="form-wrapper-column">
-                    <h3 class="section-title" style="font-size: 1.8rem; color: #F1C40F;"><i class="fas fa-file-signature"></i> APLICAR AL PROGRAMA DE ALTO RENDIMIENTO</h3>
-                    <p style="color: var(--metallic-grey); font-family: var(--font-sub); font-size: 1rem; margin-bottom: 20px;">// REGISTRO DE ASPIRANTE A LICENCIA HIGH PERFORMANCE</p>
+                <div class="section-header">
+                    <span class="section-subtitle">// CONTENIDO DEL ACELERADOR</span>
+                    <h2 class="section-title">ESTRUCTURA DE DESARROLLO TÉCNICO</h2>
+                </div>
+
+                <div class="split-modules-container">
+                    <div class="modules-sidebar">
+                        <button class="module-tab-btn active" data-target="mod1">// MÓDULO 1</button>
+                        <button class="module-tab-btn" data-target="mod2">// MÓDULO 2</button>
+                        <button class="module-tab-btn" data-target="mod3">// MÓDULO 3</button>
+                        <button class="module-tab-btn" data-target="mod4">// MÓDULO 4</button>
+                        <button class="module-tab-btn" data-target="mod5">// MÓDULO 5</button>
+                    </div>
+
+                    <div class="module-content-display">
+                        <div id="mod1" class="module-pane active">
+                            <h3 class="item-title" style="color: var(--electric-blue); font-size: 1.8rem; margin-bottom: 15px;">FÍSICA DEL NEUMÁTICO Y DINÁMICA</h3>
+                            <p style="color: var(--metallic-grey); font-family: var(--font-body); font-size: 1.1rem; line-height: 1.6;">
+                                Comprendé de manera profunda el parche de contacto, el rango óptimo de temperaturas de funcionamiento (Slip Angle), la gestión avanzada del desgaste en tandas largas y la transferencia de pesos en fases críticas de aceleración.
+                            </p>
+                        </div>
+                        <div id="mod2" class="module-pane">
+                            <h3 class="item-title" style="color: var(--electric-blue); font-size: 1.8rem; margin-bottom: 15px;">FRENADO TÉCNICO Y TRAIL BRAKING</h3>
+                            <p style="color: var(--metallic-grey); font-family: var(--font-body); font-size: 1.1rem; line-height: 1.6;">
+                                Dominación del umbral de presión inicial de frenado. Aprendé la modulación milimétrica para mantener el frente del auto apuntado hacia el ápice mediante técnicas avanzadas de Trail Braking sin activar el ABS ni bloquear neumáticos.
+                            </p>
+                        </div>
+                        <div id="mod3" class="module-pane">
+                            <h3 class="item-title" style="color: var(--electric-blue); font-size: 1.8rem; margin-bottom: 15px;">ANÁLISIS DE TELEMETRÍA AVANZADA</h3>
+                            <p style="color: var(--metallic-grey); font-family: var(--font-body); font-size: 1.1rem; line-height: 1.6;">
+                                Aprendé a leer softwares profesionales como MoTeC i2 o Atlas. Comparación quirúrgica de líneas de velocidad, telemetría de pedal de freno, mapas de aceleración y canales matemáticos personalizados para detectar tus errores en segundos.
+                            </p>
+                        </div>
+                        <div id="mod4" class="module-pane">
+                            <h3 class="item-title" style="color: var(--electric-blue); font-size: 1.8rem; margin-bottom: 15px;">TRAZADOS AVANZADOS Y GEOMETRÍA DE PISTA</h3>
+                            <p style="color: var(--metallic-grey); font-family: var(--font-body); font-size: 1.1rem; line-height: 1.6;">
+                                Maximización del radio de giro en curvas complejas. Vértices tempranos, tardíos y el uso eficiente de los pianos extremos para enderezar el auto antes de tiempo y ganar velocidad terminal clave en las rectas siguientes.
+                            </p>
+                        </div>
+                        <div id="mod5" class="module-pane">
+                            <h3 class="item-title" style="color: var(--electric-blue); font-size: 1.8rem; margin-bottom: 15px;">ESTRATEGIA, PSICOLOGÍA Y CARRERA</h3>
+                            <p style="color: var(--metallic-grey); font-family: var(--font-body); font-size: 1.1rem; line-height: 1.6;">
+                                Preparación psicológica ante situaciones de alta presión bajo grillas competitivas. Gestión inteligente del combustible, cálculo de paradas en boxes óptimas, mapas de motor adaptativos y técnicas de defensa de posición limpia en pista.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pistas" class="about-section" style="padding: 100px 0; background: #030508;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">// CALENDARIO DE ENTRENAMIENTO</span>
+                    <h2 class="section-title">CIRCUITOS SELECCIONADOS DEL TORNEO</h2>
+                </div>
+
+                <div class="circuits-grid">
+                    <div class="circuit-card">
+                        <div class="circuit-img-wrap">
+                            <img src="assets/monaco.png" alt="Circuito de Mónaco">
+                        </div>
+                        <div class="circuit-hud-overlay">
+                            <div style="font-family: var(--font-title); color: var(--electric-blue); font-size: 0.8rem; letter-spacing: 1px;">ROUND 01</div>
+                            <h3 class="item-title" style="font-size: 1.5rem; color: #fff; margin: 3px 0;">MONACO STREET CIRCUIT</h3>
+                            <span style="font-family: var(--font-title); font-size: 0.75rem; color: var(--metallic-grey);"><i class="fas fa-sliders-h text-electric"></i> DIFICULTAD: MÁXIMA / PRECISIÓN MILIMÉTRICA</span>
+                        </div>
+                    </div>
+                    <div class="circuit-card">
+                        <div class="circuit-img-wrap">
+                            <img src="assets/spa.png" alt="Circuito Spa-Francorchamps">
+                        </div>
+                        <div class="circuit-hud-overlay">
+                            <div style="font-family: var(--font-title); color: var(--electric-blue); font-size: 0.8rem; letter-spacing: 1px;">ROUND 02</div>
+                            <h3 class="item-title" style="font-size: 1.5rem; color: #fff; margin: 3px 0;">SPA-FRANCORCHAMPS</h3>
+                            <span style="font-family: var(--font-title); font-size: 0.75rem; color: var(--metallic-grey);"><i class="fas fa-tachometer-alt text-electric"></i> VELOCIDAD DE CURVAS FLUIDAS Y AERODINÁMICA</span>
+                        </div>
+                    </div>
+                    <div class="circuit-card">
+                        <div class="circuit-img-wrap">
+                            <img src="assets/monza.png" alt="Autodromo Nazionale Monza">
+                        </div>
+                        <div class="circuit-hud-overlay">
+                            <div style="font-family: var(--font-title); color: var(--electric-blue); font-size: 0.8rem; letter-spacing: 1px;">ROUND 03</div>
+                            <h3 class="item-title" style="font-size: 1.5rem; color: #fff; margin: 3px 0;">AUTODROMO NAZIONALE MONZA</h3>
+                            <span style="font-family: var(--font-title); font-size: 0.75rem; color: var(--metallic-grey);"><i class="fas fa-bolt text-electric"></i> BAJA CARGA ALAR / EFICIENCIA EN RECTAS Y CHICANES</span>
+                        </div>
+                    </div>
+                    <div class="circuit-card">
+                        <div class="circuit-img-wrap">
+                            <img src="assets/interlagos.png" alt="Autódromo de Interlagos">
+                        </div>
+                        <div class="circuit-hud-overlay">
+                            <div style="font-family: var(--font-title); color: var(--electric-blue); font-size: 0.8rem; letter-spacing: 1px;">ROUND 04</div>
+                            <h3 class="item-title" style="font-size: 1.5rem; color: #fff; margin: 3px 0;">AUTÓDROMO DE INTERLAGOS</h3>
+                            <span style="font-family: var(--font-title); font-size: 0.75rem; color: var(--metallic-grey);"><i class="fas fa-sync text-electric"></i> COMPLEJO TÉCNICO INVERTIDO CON SECTOR TRABADO</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="bonus" class="about-section" style="padding: 100px 0; background: var(--pure-black); border-top: 1px solid rgba(255,255,255,0.05);">
+            <div class="container">
+                <div class="bonus-section-wrapper">
                     
-                    <form class="apex-form" id="race-form">
-                        <div class="input-group">
-                            <label for="name">Nombre Completo del Piloto</label>
-                            <input type="text" id="name" required placeholder="Ej. Franco Colapinto">
+                    <div>
+                        <div class="section-header">
+                            <span class="section-subtitle">// VENTAJAS COMPETITIVAS</span>
+                            <h2 class="section-title">TU EQUIPAMIENTO DE BOXES INCLUIDO</h2>
                         </div>
-                        <div class="input-group">
-                            <label for="email">E-mail Oficial Escudería</label>
-                            <input type="email" id="email" required placeholder="tu@escuderia.com">
+                        
+                        <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 25px;">
+                            <div>
+                                <h4 class="item-title" style="color: #F1C40F; font-size: 1.2rem;"><i class="fas fa-chart-line"></i> Telemetría Avanzada APEX</h4>
+                                <p style="color: var(--metallic-grey); font-family: var(--font-body); margin-top: 5px;">
+                                    Guías y plantillas simplificadas de adquisición de datos para encontrar y parchear tus pérdidas de tiempo en segundos.
+                                </p>
+                            </div>
+                            <div>
+                                <h4 class="item-title" style="color: #F1C40F; font-size: 1.2rem;"><i class="fas fa-cogs"></i> Setups de Competición</h4>
+                                <p style="color: var(--metallic-grey); font-family: var(--font-body); margin-top: 5px;">
+                                    Configuraciones físicas de monoplazas equilibrados, optimizados específicamente para romper los récords del campeonato.
+                                </p>
+                            </div>
+                            <div>
+                                <h4 class="item-title" style="color: #F1C40F; font-size: 1.2rem;"><i class="fas fa-server"></i> Servidores Privados 24/7</h4>
+                                <p style="color: var(--metallic-grey); font-family: var(--font-body); margin-top: 5px;">
+                                    Acceso exclusivo sin restricciones a las pistas oficiales para practicar telemetría antes de los días de evento.
+                                </p>
+                            </div>
                         </div>
-                        <div class="input-group">
-                            <label for="sim-exp">Plataforma / Simulador Principal en uso</label>
-                            <select id="sim-exp">
-                                <option value="iracing">iRacing (Licencia Pro/Avanzada)</option>
-                                <option value="acc">Assetto Corsa Competizione</option>
-                                <option value="f1-game">F1 23 / F1 24 Esports League</option>
-                            </select>
+
+                        <div style="margin-top: 40px;">
+                            <a href="#postular" class="btn btn-primary btn-full btn-speed" style="background: #F1C40F; color: #000; padding: 20px 35px;">
+                                <span>QUIERO ENTRAR A LA PARRILLA DE SALIDA</span>
+                            </a>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-full btn-speed" style="background: #F1C40F; color: #000;">
-                            <span>ENVIAR MÉTRICAS DE TELEMETRÍA PARA REVISIÓN</span>
-                        </button>
-                    </form>
+                    </div>
+
+                    <div class="credential-container-hud">
+                        <div class="digital-badge-vip" id="vipCard">
+                            <div style="margin: 20px 0;"><img src="assets/marca.png" alt="APEX" style="height: 50px; filter: drop-shadow(0 0 10px rgba(241,196,15,0.4));"></div>
+                            <div style="color: #fff; font-family: var(--font-title); font-size: 1.4rem; letter-spacing: 3px; margin-top: 30px;">APEX COMPETITOR</div>
+                            <div style="color: #F1C40F; font-family: var(--font-title); font-size: 0.85rem; letter-spacing: 4px; margin-top: 5px; opacity: 0.8;">LICENCIA OFICIAL ACADEMIA</div>
+                            
+                            <div style="margin-top: 50px; border-top: 1px dashed rgba(241,196,15,0.3); padding-top: 20px; display: grid; grid-template-columns: repeat(2, 1fr); text-align: left; gap: 15px;">
+                                <div>
+                                    <div style="font-family: var(--font-title); font-size: 0.6rem; color: var(--metallic-grey);">ESTADO</div>
+                                    <div style="font-family: var(--font-title); font-size: 0.8rem; color: #fff;"><i class="fas fa-check-circle" style="color: #2ECC71;"></i> ACTIVO</div>
+                                </div>
+                                <div>
+                                    <div style="font-family: var(--font-title); font-size: 0.6rem; color: var(--metallic-grey);">ACCESO</div>
+                                    <div style="font-family: var(--font-title); font-size: 0.8rem; color: #fff;">FULL UNLIMITED</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- FOOTER SIMPLE REDUCIDO -->
-    <footer class="footer-split-section" style="padding: 40px 0 20px 0;">
+    <footer class="footer-split-section" style="padding: 40px 0 20px 0; border-top: 1px solid rgba(255,255,255,0.05);">
         <div class="container text-center">
-            <p class="brand-desc" style="margin-bottom: 20px;">APEX HIGH PERFORMANCE LABORATORY &copy; 2026 - SISTEMAS DE TELEMETRÍA PROFESIONAL</p>
-            <a href="index.html" style="color: var(--electric-blue); text-decoration: none; font-family: var(--font-title); font-size: 0.85rem;"><i class="fas fa-arrow-left"></i> VOLVER AL HOME PRINCIPAL</a>
+            <p class="brand-desc" style="margin-bottom: 20px; font-family: var(--font-title); font-size: 0.8rem; color: var(--metallic-grey);">
+                APEX HIGH PERFORMANCE LABORATORY &copy; 2026 - SISTEMAS DE TELEMETRÍA PROFESIONAL
+            </p>
+            <a href="index.html" style="color: var(--electric-blue); text-decoration: none; font-family: var(--font-title); font-size: 0.85rem;">
+                <i class="fas fa-arrow-left"></i> VOLVER AL HOME PRINCIPAL
+            </a>
         </div>
     </footer>
 
-    <!-- Reutilizamos tu JS para mantener el fondo reactivo funcionando perfecto -->
-    <script src="./js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Lógica de Módulos Laterales (Sección 3)
+            const tabs = document.querySelectorAll('.module-tab-btn');
+            const panes = document.querySelectorAll('.module-pane');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.getAttribute('data-target');
+
+                    tabs.forEach(t => t.classList.remove('active'));
+                    panes.forEach(p => p.classList.remove('active'));
+
+                    tab.classList.add('active');
+                    document.getElementById(target).classList.add('active');
+                });
+            });
+
+            // Lógica Efecto Giro 3D Suave por Ratón en Credencial VIP
+            const card = document.getElementById('vipCard');
+            if (card) {
+                const wrapper = card.parentElement;
+                wrapper.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left - (rect.width/2);
+                    const y = e.clientY - rect.top - (rect.height/2);
+                    card.style.transform = `rotateY(${x / 15}deg) rotateX(${-y / 15}deg)`;
+                });
+                wrapper.addEventListener('mouseleave', () => {
+                    card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+                });
+            }
+        });
+    </script>
 </body>
 </html>
