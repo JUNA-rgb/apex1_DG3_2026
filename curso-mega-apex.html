@@ -21,10 +21,10 @@
             height: 100vh;
             min-height: 600px;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: right;
+            justify-content: right;
             overflow: hidden;
-            text-align: center;
+            text-align: right;
         }
         .video-background {
             position: absolute;
@@ -213,6 +213,9 @@
     </style>
 </head>
 <body>
+    <!-- Contenedor del Fondo Tecnológico de Mapa Punteado y Luces Sutiles -->
+    <body>
+    <div class="tech-hud-background"></div>
 
     <div class="scroll-circuit-track" aria-hidden="true">
         <div class="scroll-circuit-energy"></div>
@@ -231,37 +234,39 @@
                 <a href="#pistas" class="nav-link">Circuitos</a>
                 <a href="#bonus" class="nav-link">Equipamiento</a>
             </nav>
-            <a href="#postular" class="btn btn-primary btn-hud" style="background: #F1C40F; color: #000;">BUTACA VIP</a>
+            <a href="#postular" class="btn btn-primary btn-hud" style="background: #1796eb; color: #000;">BUTACA VIP</a>
         </div>
     </header>
 
-    <main>
-        <section class="mega-hero tech-grid-bg">
-            <div class="scroll-circuit-track" aria-hidden="true">
-                <div class="scroll-circuit-energy"></div>
-            </div>
-            <canvas id="telemetry-bg"></canvas>
+   <section class="mega-hero tech-grid-bg" style="position: relative; overflow: hidden;">
+    <video autoplay loop muted playsinline class="tuvideo-bg"> style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none;">
+        <source src="assets/tuvideo.mp4"type="video/mp4"></video>
 
-            <div class="container hero-content-restored">
-                <h1 class="hero-title text-electric" style="font-size: 4.5rem; line-height: 1.1; margin-bottom: 20px;">
-                    BAJÁ TUS TIEMPOS.<br>DOMINÁ LA PISTA.
-                </h1>
-                <p class="hero-subtitle" style="font-size: 1.35rem; max-width: 750px; margin: 0 auto 40px auto; color: var(--metallic-grey);">
-                    El único curso de simracing y conducción que transforma tus décimas perdidas en victorias reales. Aprendé la física, el frenado y los secretos de telemetría de los pilotos profesionales.
-                </p>
-                <div class="hero-actions-center">
-                    <a href="#modulos" class="btn btn-primary btn-full btn-speed btn-glow">
-                        <span>ASEGURAR MI BUTACA <i class="fas fa-chevron-right"></i></span>
-                    </a>
-                </div>
-            </div>
-        </section>
+    <div class="scroll-circuit-track" aria-hidden="true" style="z-index: 1;">
+        <div class="scroll-circuit-energy"></div>
+    </div>
+    <canvas id="telemetry-bg" style="z-index: 1; position: absolute; top: 0; left: 0; pointer-events: none;"></canvas>
+
+    <div class="container hero-content-restored" style="position: relative; z-index: 2; text-align: left; display: flex; flex-direction: column; align-items: flex-start;">
+        <h1 class="hero-title text-electric" style="font-size: 4.5rem; line-height: 1.1; margin-bottom: 20px; text-align: left;">
+            BAJÁ TUS TIEMPOS.<br>DOMINÁ LA PISTA.
+        </h1>
+        <p class="hero-subtitle" style="font-size: 1.35rem; max-width: 750px; margin-bottom: 20px; color: var(--metallic-grey); text-align: left;">
+            El único curso de simracing y conducción que transforma tus décimas perdidas en victorias reales. Aprendé la física, el frenado y los secretos de telemetría de los pilotos profesionales.
+        </p>
+        <div class="hero-actions-left" style="width: 100%; display: flex; justify-content: flex-start;">
+            <a href="#modulos" class="btn btn-primary btn-speed btn-glow" style="width: auto; display: inline-block;">
+                <span>ASEGURAR MI AUTO <i class="fas fa-chevron-right"></i></span>
+            </a>
+        </div>
+    </div>
+</section>
 
         <section id="pasaporte" class="about-section" style="padding: 100px 0; background: var(--pure-black);">
             <div class="container">
                 <div class="section-header text-center">
-                    <span class="section-subtitle">// SISTEMA DE PROGRESIÓN PILOTOS</span>
-                    <h2 class="section-title">EL CAMINO HACIA EL PODIO ECONÓMICO</h2>
+                    <span class="section-subtitle">// SISTEMA DE PROGRESIÓN DE PILOTOS</span>
+                    <h2 class="section-title">EL CAMINO HACIA EL PODIO</h2>
                     <p style="color: var(--metallic-grey); max-width: 700px; margin: 15px auto 0 auto; font-size: 1.1rem;">
                         No es solo un curso de entrenamiento pasivo, es tu fase de clasificación directa hacia las grandes ligas de premios reales.
                     </p>

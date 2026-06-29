@@ -1218,3 +1218,240 @@ body {
 #hero-container {
     margin-top: 30px; /* Añade un margen extra hacia abajo si es necesario */
 }
+/* Ajustar el botón para que ocupe solo su texto y no el 100% del ancho */
+.mega-hero .btn, 
+.mega-hero button, 
+.hero-content a.cta-button,
+.cta-button {
+    display: inline-block !important;   /* Evita que se comporte como bloque completo */
+    width: auto !important;             /* Toma solo el ancho de su contenido + padding */
+    align-self: flex-start !important;  /* Si está dentro de un flex, lo tira a la izquierda sin estirarse */
+}
+/* ========================================================
+   REPARACIONES DE ALINEACIÓN, VIDEO Y FONDO INTERACTIVO SCROLL
+   ======================================================== */
+
+/* 1. Forzar Alineación Estricta a la Izquierda en el Hero */
+.mega-hero-video {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center; /* Centra verticalmente el contenido */
+    justify-content: flex-start !important; /* Fuerza el inicio a la izquierda */
+    overflow: hidden;
+}
+
+.mega-hero {
+    width: 100%;
+    max-width: 1200px;
+    padding-left: 10% !important; /* Margen elegante desde la izquierda */
+    padding-top: 0 !important; /* Reseteamos paddings viejos */
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+}
+
+.hero-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important; /* Alinea textos y botones al inicio izquierdo */
+    text-align: left !important; /* Fuerza la orientación del texto */
+    max-width: 650px;
+    z-index: 3;
+}
+
+/* Forzar que títulos y subtítulos del Hero se queden a la izquierda */
+.hero-content h1, 
+.hero-content p {
+    text-align: left !important;
+    align-self: flex-start !important;
+}
+
+/* 2. Ajuste del Botón Hero (Compacto a la Izquierda) */
+.hero-content .cta-button {
+    display: inline-flex !important; /* Ocupa solo el espacio de su texto */
+    width: auto !important; /* Evita que se estire al 100% */
+    align-self: flex-start !important; /* Se pega a la izquierda en contenedores flex */
+    margin-top: 20px;
+}
+
+
+/* 3. Estilos del Video de Fondo */
+.hero-video-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Hace que el video actúe como fondo cubriendo todo sin deformarse */
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.mega-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.4) 100%);
+    z-index: 2; /* Capa oscura intermedia para que el texto resalte sobre el video */
+}
+
+
+/* 4. Fondo Tecnológico de la Web (Líneas Punteadas y Puntos Neón) */
+body {
+    position: relative;
+    /* Mantenemos tu fondo original pero agregamos capas de misceláneas */
+    background-attachment: fixed;
+}
+
+/* Capa de Grilla y Puntos Neón con Opacidad Fija */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Grilla de puntos sutiles */
+    background-image: radial-gradient(rgba(57, 160, 218, 0.15) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Capa de Líneas Punteadas que se moverán con el Scroll */
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Líneas punteadas verticales tecnológicas */
+    background-image: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 1) 50%), 
+                      linear-gradient(to right, rgba(57, 160, 218, 0.08) 1px, transparent 1px);
+    background-size: 100% 4px, 120px 100%; /* Crea el efecto punteado */
+    pointer-events: none;
+    z-index: 0;
+}
+/* ========================================================
+   REPARACIONES DE ALINEACIÓN, VIDEO Y FONDO INTERACTIVO SCROLL
+   ======================================================== */
+
+/* 1. Forzar Alineación Estricta a la Izquierda en el Hero */
+.mega-hero-video {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center; /* Centra verticalmente el contenido */
+    justify-content: flex-start !important; /* Fuerza el inicio a la izquierda */
+    overflow: hidden;
+}
+
+.mega-hero {
+    width: 100%;
+    max-width: 1200px;
+    padding-left: 10% !important; /* Margen elegante desde la izquierda */
+    padding-top: 0 !important; /* Reseteamos paddings viejos */
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+}
+
+.hero-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important; /* Alinea textos y botones al inicio izquierdo */
+    text-align: left !important; /* Fuerza la orientación del texto */
+    max-width: 650px;
+    z-index: 3;
+}
+
+/* Forzar que títulos y subtítulos del Hero se queden a la izquierda */
+.hero-content h1, 
+.hero-content p {
+    text-align: left !important;
+    align-self: flex-start !important;
+}
+
+/* 2. Ajuste del Botón Hero (Compacto a la Izquierda) */
+.hero-content .cta-button {
+    display: inline-flex !important; /* Ocupa solo el espacio de su texto */
+    width: auto !important; /* Evita que se estire al 100% */
+    align-self: flex-start !important; /* Se pega a la izquierda en contenedores flex */
+    margin-top: 20px;
+}
+
+
+/* 3. Estilos del Video de Fondo */
+.hero-video-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Hace que el video actúe como fondo cubriendo todo sin deformarse */
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.mega-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.4) 100%);
+    z-index: 2; /* Capa oscura intermedia para que el texto resalte sobre el video */
+}
+
+
+/* 4. Fondo Tecnológico de la Web (Líneas Punteadas y Puntos Neón) */
+body {
+    position: relative;
+    /* Mantenemos tu fondo original pero agregamos capas de misceláneas */
+    background-attachment: fixed;
+}
+/* Fuerza la separación del Hero respecto a la barra de navegación */
+.mega-hero, 
+#hero,
+.hero-content {
+    padding-top: 180px !important; /* Espacio suficiente para que baje el título */
+    margin-top: 0 !important;
+}
+/* Correcciones para alinear el Hero a la izquierda de forma limpia */
+.mega-hero {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.hero-content-restored {
+    align-items: flex-start !important;
+    text-align: left !important;
+    margin-left: 0; /* Si necesitás pegarlo más al borde izquierdo */
+}
+
+/* Evita que el botón ocupe todo el ancho si flexbox intenta estirarlo */
+.hero-actions-left .btn {
+    width: auto !important;
+    max-width: max-content;
+}
+
+/* Capa oscura sutil opcional sobre el video para garantizar la lectura perfecta del texto */
+.mega-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%);
+    z-index: 1;
+    pointer-events: none;
+}

@@ -325,3 +325,19 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+// Animación sutil de misceláneas de fondo al hacer Scroll
+window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    // Mueve sutilmente el fondo de líneas punteadas a una velocidad diferente (efecto parallax)
+    document.body.style.backgroundPosition = `0px ${scrolled * 0.4}px`;
+});
+// ==========================================================================
+// CONTROL INTERACTIVO DE FONDO EN SCROLL (MEGA APEX)
+// ==========================================================================
+window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    
+    // Pasamos los valores exactos calculados como variables personalizadas a CSS
+    document.documentElement.style.setProperty('--scroll-y', scrollTop);
+    document.documentElement.style.setProperty('--scroll-px', `${scrollTop}`);
+}, { passive: true });
