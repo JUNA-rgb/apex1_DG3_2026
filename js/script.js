@@ -318,3 +318,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+// ==========================================================================
+// LÓGICA RESPONSIVE INTERACTIVA: ACORDEÓN DE MÓDULOS EN MOBILE
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.module-tab-btn');
+    
+    // Generamos dinámicamente los contenidos clonados de descripción debajo de cada botón solo para mobile
+    tabs.forEach(tab => {
+        const targetId = tab.getAttribute('data-target');
+        const targetPane = document.getElementById(targetId);
+        
+        if (targetPane) {
+            // Creamos un contenedor exclusivo para la vista móvil debajo de cada botón de módulo
+            const mobileContentDiv = document.createElement('div');
+            mobileContentDiv.className = 'mobile-accordion-content';
+            mobileContentDiv.innerHTML = targetPane.innerHTML;
+            tab.parentNode.insertBefore(mobileContentDiv, tab.nextSibling);
+            
+            // Interceptamos el evento click con validación de tamaño de pantalla
+            tab.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation(); // Evitamos interferencias con la lógica de escritorio
+                    
+                    const isOpened = mobileContentDiv.style.display === 'block';
+                    
+                    // Comportamiento estricto: cerramos cualquier otro módulo abierto primero
+                    document.querySelectorAll('.mobile-accordion-content').forEach(el => el.style.display = 'none');
+                    tabs.forEach(t => t.classList.remove('accordion-open'));
+                    
+                    // Si no estaba abierto, lo abrimos. Si estaba abierto, se queda cerrado (módulo bajo el otro)
+                    if (!isOpened) {
+                        mobileContentDiv.style.display = 'block';
+                        tab.classList.add('accordion-open');
+                    }
+                }
+            });
+        }
+    });
+});

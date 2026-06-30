@@ -1635,3 +1635,82 @@ body {
         word-wrap: break-word;
     }
 }
+/* ==========================================================================
+   AJUSTES EXCLUSIVOS RESPONSIVE MOBILE PARA CURSO MEGA APEX (DESKTOP INTACTO)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* --- HERO SECTION --- */
+    .mega-hero-video {
+        justify-content: flex-start !important; /* Alineado estricto a la izquierda */
+        align-items: center !important;
+        text-align: left !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    /* Achicar sutilmente el contenedor de texto del hero para evitar cortes de palabras */
+    .mega-hero-video .hero-content, 
+    .mega-hero-video h1 {
+        max-width: 100% !important;
+        font-size: 2.2rem !important; /* Ajuste sutil de tamaño */
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+
+    /* --- TAMAÑO DE TÍTULOS DE TODAS LAS SECCIONES --- */
+    .section-title-apex,
+    h2.section-title,
+    .interactive-modules-section h2,
+    .vip-credential-section h2,
+    section h2 {
+        font-size: 1.8rem !important; /* Reducción sutil y uniforme */
+        letter-spacing: 1px !important;
+    }
+
+    /* --- SECCIÓN: ESTRUCTURA DE DESARROLLO TÉCNICO (MÓDULOS ACORDEÓN) --- */
+    /* Modificamos el layout para que se apilen verticalmente en formato módulo bajo módulo */
+    .interactive-modules-section .modules-container,
+    .modules-wrapper { 
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    /* Forzamos que tanto la botonera (tabs) como los paneles ocupen el 100% de ancho */
+    .module-tabs-sidebar, 
+    .module-display-panes,
+    .module-tab-btn,
+    .module-pane {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Ocultamos los paneles de descripción tradicionales de desktop en mobile */
+    .module-display-panes {
+        display: none !important;
+    }
+
+    /* Estilizado e inserción del contenedor dinámico para el comportamiento de acordeón */
+    .mobile-accordion-content {
+        display: none; /* Cerrado por defecto */
+        width: 100%;
+        background: rgba(15, 20, 37, 0.95);
+        border: 1px solid var(--electric-blue);
+        border-top: none;
+        padding: 15px;
+        margin-top: -2px;
+        margin-bottom: 5px;
+        border-radius: 0 0 4px 4px;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: var(--white);
+    }
+
+    /* Clase de activación para cuando el módulo esté desplegado */
+    .module-tab-btn.accordion-open {
+        border-bottom-left-radius: 0px !important;
+        border-bottom-right-radius: 0px !important;
+        background: rgba(57, 160, 218, 0.2) !important;
+        box-shadow: var(--glow-effect) !important;
+    }
+}
