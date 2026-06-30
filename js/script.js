@@ -289,3 +289,32 @@ window.addEventListener('scroll', () => {
         ticking = true;
     }
 }, { passive: true });
+// ==========================================================================
+// CONTROLADOR DE MENÚ HAMBURGUESA EXCLUSIVO PARA DISPOSITIVOS MÓVILES
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.header .menu-toggle');
+    const navMenu = document.querySelector('.header .nav');
+
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navMenu.classList.toggle('active');
+        });
+
+        // Cerrar el menú automáticamente al hacer click en cualquier enlace de navegación
+        const navLinks = navMenu.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Cerrar si se hace click fuera del header
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+    }
+});

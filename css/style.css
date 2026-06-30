@@ -1522,3 +1522,116 @@ body {
     -moz-osx-font-smoothing: grayscale;
     text-shadow: none !important; /* Quitamos sombras extra que emborronen el texto chico */
 }
+/* ==========================================================================
+   AJUSTES EXCLUSIVOS PARA RESPONSIVE MOBILE (CONSERVANDO DESKTOP INTACTO)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* --- HEADER Y MENÚ HAMBURGUESA --- */
+    .header .logo img {
+        height: 50px !important; /* Achicar logo de hero */
+    }
+
+    /* Ocultamos el botón HUD original de escritorio en móviles para dar espacio */
+    .header .btn-hud {
+        display: none !important;
+    }
+
+    /* Activamos y posicionamos el botón hamburguesa en la línea de arriba */
+    .header .menu-toggle {
+        display: block !important;
+        background: none;
+        border: none;
+        color: var(--white);
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    /* Transformamos la navegación en menú desplegable vertical */
+    .header .nav {
+        display: none; /* Se controla la visibilidad con la clase 'active' desde JS */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #0b0f19; /* Fondo sólido oscuro */
+        border-bottom: 2px solid var(--electric-blue);
+        padding: 20px 0;
+        z-index: 1000;
+    }
+
+    .header .nav.active {
+        display: flex !important;
+    }
+
+    .header .nav-link {
+        padding: 12px 24px;
+        width: 100%;
+        box-sizing: border-box;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* --- HERO SECTION --- */
+    /* Achicar la foto / contenedor al ancho del celular */
+    .hero-section, .hero-container, .mega-hero-video, .hero-visual-hud {
+        max-width: 100% !important;
+        overflow: hidden;
+    }
+    .hero-visual-hud img, .car-3d-render {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    /* --- SECCIÓN: QUÉ ES APEX --- */
+    /* Reducción proporcional de textos, títulos y subtítulos */
+    #about .section-title-apex, #about h2, .about-section h2 {
+        font-size: 1.8rem !important;
+    }
+    #about h3, .about-section h3 {
+        font-size: 1.3rem !important;
+    }
+    #about p, .about-section p, .about-card p {
+        font-size: 0.9rem !important;
+        line-height: 1.4 !important;
+    }
+
+    /* --- SECCIÓN: EXPERIENCIA APEX --- */
+    /* Reordenamiento: Autos arriba, selectores abajo y remoción de stats de velocidad */
+    .garage-container-hud {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    /* Forzamos que la zona del auto (interactive-3d-stage) vaya primero */
+    .interactive-3d-stage {
+        order: 1 !important;
+        width: 100% !important;
+        margin-bottom: 15px;
+    }
+
+    /* Forzamos que la botonera de selección de autos (garage-selector-track) vaya abajo */
+    .garage-selector-track {
+        order: 2 !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        gap: 10px;
+    }
+
+    /* Ocultamos por completo el panel lateral de características de velocidad/datos técnicos */
+    .hud-stats-panel {
+        display: none !important;
+    }
+
+    /* --- SECCIÓN: TESTIMONIOS --- */
+    /* Ajuste fino de tamaño de texto para evitar desbordes y cortes */
+    .testimonials-section .testimonial-card p,
+    .testimonial-slider .testimonial-text,
+    .testimonial-content {
+        font-size: 0.85rem !important;
+        line-height: 1.4 !important;
+        word-wrap: break-word;
+    }
+}
