@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.clearRect(0, 0, width, height);
             
             // --- EFECTO 1: DEGRADADOS DINÁMICOS DE FONDO (Destellos de Velocidad) ---
-            // El degradado se mueve verticalmente de acuerdo a la velocidad del scroll
             let intensity = Math.min(Math.abs(scrollVelocity) * 0.05, 0.25); // Capamos la intensidad máxima
             
             let gradient = ctx.createRadialGradient(
@@ -58,45 +57,38 @@ document.addEventListener('DOMContentLoaded', () => {
             // --- EFECTO 2: LÍNEAS DE LUZ HORIZONTALES (Flujo de Datos/Carrera) ---
             lightLines.forEach(line => {
                 ctx.beginPath();
-                // Definimos el degradado de la propia línea (difuminada en las puntas)
                 let lineGrad = ctx.createLinearGradient(line.x, line.y, line.x + line.length, line.y);
                 lineGrad.addColorStop(0, 'rgba(57, 160, 218, 0)');
                 lineGrad.addColorStop(0.5, `rgba(57, 160, 218, ${line.opacity + (intensity * 1.5)})`);
                 lineGrad.addColorStop(1, 'rgba(57, 160, 218, 0)');
                 
                 ctx.strokeStyle = lineGrad;
-                ctx.lineWidth = line.thickness + (intensity * 2); // Se vuelven más gruesas al acelerar
+                ctx.lineWidth = line.thickness + (intensity * 2);
                 
                 ctx.moveTo(line.x, line.y);
                 ctx.lineTo(line.x + line.length, line.y);
                 ctx.stroke();
                 
-                // Movimiento horizontal continuo + empuje del scroll
-                // El scroll horizontal simula que vas "atravesando" los datos
                 line.x -= line.baseSpeed + (Math.abs(scrollVelocity) * line.scrollFactor);
                 
-                // Si la línea sale de la pantalla por la izquierda, reaparece por la derecha en Y aleatoria
                 if (line.x + line.length < 0) {
                     line.x = width;
                     line.y = Math.random() * height;
                 }
             });
             
-            // Desaceleración suave y progresiva de la velocidad del scroll (Fricción física)
             scrollVelocity *= 0.92; 
             
             requestAnimationFrame(animateTelemetry);
         }
         
-        // Escuchamos el scroll para calcular la fuerza del movimiento del usuario
         window.addEventListener('scroll', () => {
             const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
             scrollDelta = currentScrollTop - lastScrollTop;
-            scrollVelocity = scrollDelta; // Almacenamos el pico de velocidad
+            scrollVelocity = scrollDelta;
             lastScrollTop = currentScrollTop;
         }, { passive: true });
         
-        // Arrancamos el bucle de renderizado
         animateTelemetry();
     }
 
@@ -162,42 +154,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
 // ==========================================================================
 // CONTROL TELEMÉTRICO DEL VISOR SUPERIOR (SECTOR 1)
-// ==========================================================================
-const arrowPrev = document.getElementById('about-prev');
-const arrowNext = document.getElementById('about-next');
-const topSliderTrack = document.getElementById('about-track');
-
-if (arrowPrev && arrowNext && topSliderTrack) {
-    const totalTopSlides = topSliderTrack.children.length; // Cuenta tus 5 imágenes
-    let topSliderIndex = 0;
-
-    function applySliderPosition() {
-        // Modifica la variable CSS --current-slide que maneja el desplazamiento horizontal
-        topSliderTrack.style.setProperty('--current-slide', topSliderIndex);
-    }
-
-    arrowNext.addEventListener('click', () => {
-        if (topSliderIndex < totalTopSlides - 1) {
-            topSliderIndex++;
-        } else {
-            topSliderIndex = 0; // Bucle: vuelve a la primera foto
-        }
-        applySliderPosition();
-    });
-
-    arrowPrev.addEventListener('click', () => {
-        if (topSliderIndex > 0) {
-            topSliderIndex--;
-        } else {
-            topSliderIndex = totalTopSlides - 1; // Bucle: va a la última foto
-        }
-        applySliderPosition();
-    });
-}
-    // ==========================================================================
-// MOTOR DE CONTROL INTEGRAL PARA EL CARRUSEL SUPERIOR (ABOUT)
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
     const topTrack = document.getElementById('about-track');
@@ -205,11 +164,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnNext = document.getElementById('about-next');
 
     if (topTrack && btnPrev && btnNext) {
-        const totalSlides = topTrack.children.length; // Lee automáticamente tus 5 imágenes
+        const totalSlides = topTrack.children.length;
         let currentIndex = 0;
 
         function updateTopSlider() {
-            // Modifica la variable CSS nativa que mueve el track
             topTrack.style.setProperty('--current-slide', currentIndex);
         }
 
@@ -218,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentIndex < totalSlides - 1) {
                 currentIndex++;
             } else {
-                currentIndex = 0; // Bucle: vuelve al inicio
+                currentIndex = 0;
             }
             updateTopSlider();
         });
@@ -228,23 +186,24 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentIndex > 0) {
                 currentIndex--;
             } else {
-                currentIndex = totalSlides - 1; // Bucle: va a la última
+                currentIndex = totalSlides - 1;
             }
             updateTopSlider();
         });
 
-        // Aseguramos inicialización en cero
         updateTopSlider();
     }
 });
-// --- MOTOR INTERACTIVO GARAJE EXPERIENCIA APEX ---
+
+// ==========================================================================
+// MOTOR INTERACTIVO GARAJE EXPERIENCIA APEX
+// ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
     const garageButtons = document.querySelectorAll(".car-selector-btn");
     const mainCarView = document.getElementById("main-car-view");
     const hudCarName = document.getElementById("hud-car-name");
     const hudBestTime = document.getElementById("hud-best-time");
     
-    // Elementos del HUD (Números y Barras)
     const statVelNum = document.getElementById("stat-vel-num");
     const statFrenNum = document.getElementById("stat-fren-num");
     const statNeuNum = document.getElementById("stat-neu-num");
@@ -256,22 +215,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const stageWrapper = document.querySelector(".car-3d-wrapper");
     const stageArea = document.querySelector(".interactive-3d-stage");
 
-    // 1. LÓGICA DE SELECCIÓN DE MONOPLAZAS (Click)
     garageButtons.forEach(btn => {
         btn.addEventListener("click", () => {
-            // Remover clase activa del botón anterior y ponerla en el nuevo
             document.querySelector(".car-selector-btn.active")?.classList.remove("active");
             btn.classList.add("active");
 
-            // Transición suave de salida y entrada para la imagen del auto
             mainCarView.style.opacity = "0";
             mainCarView.style.transform = "scale(0.9) rotateY(20deg)";
             
             setTimeout(() => {
-                // Actualizar la foto del render de la carpeta assets
                 mainCarView.src = btn.getAttribute("data-img");
-                
-                // Actualizar Textos e indicadores HUD
                 hudCarName.textContent = btn.getAttribute("data-car");
                 hudBestTime.textContent = btn.getAttribute("data-time");
                 
@@ -283,38 +236,31 @@ document.addEventListener("DOMContentLoaded", () => {
                 statFrenNum.textContent = fren;
                 statNeuNum.textContent = neu;
 
-                // Modificar el ancho de las barras de progreso
                 barVel.style.width = vel;
                 barFren.style.width = fren;
                 barNeu.style.width = neu;
 
-                // Restaurar vista de la imagen
                 mainCarView.style.opacity = "1";
                 mainCarView.style.transform = "scale(1) rotateY(0deg)";
             }, 250);
         });
     });
 
-    // 2. EFECTO INCLINACIÓN Y MOVIMIENTO INTERACTIVO 3D (Hover / Mousemove)
     if (stageArea && stageWrapper) {
         stageArea.addEventListener("mousemove", (e) => {
             const rect = stageArea.getBoundingClientRect();
-            const x = e.clientX - rect.left; // posición X del mouse dentro del cuadro
-            const y = e.clientY - rect.top;  // posición Y del mouse dentro del cuadro
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
             
-            // Calcular el centro del cuadro
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
             
-            // Calcular porcentaje de desviación desde el centro (-1 a 1)
-            const rotateX = ((y - centerY) / centerY) * -15; // Inclinación vertical máx 15°
-            const rotateY = ((x - centerX) / centerX) * 20;  // Rotación horizontal máx 20°
+            const rotateX = ((y - centerY) / centerY) * -15;
+            const rotateY = ((x - centerX) / centerX) * 20;
             
-            // Aplicar la matriz 3D al envoltorio del auto
             stageWrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
         });
 
-        // Al sacar el mouse, el auto regresa suavemente a su origen
         stageArea.addEventListener("mouseleave", () => {
             stageWrapper.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
             stageWrapper.style.transition = "transform 0.5s ease";
@@ -325,19 +271,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-// Animación sutil de misceláneas de fondo al hacer Scroll
-window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    // Mueve sutilmente el fondo de líneas punteadas a una velocidad diferente (efecto parallax)
-    document.body.style.backgroundPosition = `0px ${scrolled * 0.4}px`;
-});
+
 // ==========================================================================
-// CONTROL INTERACTIVO DE FONDO EN SCROLL (MEGA APEX)
+// CONTROL INTERACTIVO DE FONDO EN SCROLL (OPTIMIZADO SIN ERROR DE MOIRÉ)
 // ==========================================================================
+let ticking = false;
 window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     
-    // Pasamos los valores exactos calculados como variables personalizadas a CSS
-    document.documentElement.style.setProperty('--scroll-y', scrollTop);
-    document.documentElement.style.setProperty('--scroll-px', `${scrollTop}`);
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            // Pasamos de forma fluida el scroll a CSS sin romper la posición nativa del background
+            document.documentElement.style.setProperty('--scroll-y', scrollTop);
+            document.documentElement.style.setProperty('--scroll-px', `${scrollTop}`);
+            ticking = false;
+        });
+        ticking = true;
+    }
 }, { passive: true });

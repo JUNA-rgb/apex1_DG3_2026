@@ -24,12 +24,6 @@
 /* MODIFICACIÓN: Agregado de Fondo con Textura de Fibra de Carbono y Grilla Técnica */
 body {
     background-color: var(--pure-black);
-    /* Patrón de fibra de carbono matemático ultra sutil */
-    background-image: 
-        linear-gradient(45deg, #05070c 25%, transparent 25%), 
-        linear-gradient(-45deg, #05070c 25%, transparent 25%), 
-        linear-gradient(45deg, transparent 75%, #05070c 75%), 
-        linear-gradient(-45deg, transparent 75%, #05070c 75%);
     background-size: 8px 8px;
     color: var(--white);
     font-family: var(--font-body);
@@ -65,7 +59,7 @@ body {
     position: absolute;
     width: 300px;
     height: 300px;
-    border: 1px solid rgba(57, 160, 218, 0.08);
+    border: 1px solid rgba(13, 133, 202, 0.822);
     border-radius: 40px 0 80px 0;
     transform: rotate(15deg);
     pointer-events: none;
@@ -133,16 +127,7 @@ body {
 .carousel-arrow.prev { left: -18px; }
 .carousel-arrow.next { right: -18px; }
 
-/* CURSOS - DETALLE BANDERA DE CUADROS (MISCELÁNEA DE RECTA DE META) */
-.courses-section { position: relative; background: var(--pure-black); overflow: hidden; border-bottom: 1px solid rgba(57,160,218,0.1); }
-.video-bg-container { position: absolute; top:0; left:0; width:100%; height:100%; z-index: 1; }
-.video-background { width: 100%; height: 100%; object-fit: cover; }
-.video-overlay-dark { position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(5, 7, 12, 0.82); }
-.race-flag-divider {
-    height: 6px; width: 100%; position: relative; z-index: 3;
-    background-image: linear-gradient(45deg, #fff 25%, transparent 25%), linear-gradient(-45deg, #fff 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #fff 75%), linear-gradient(-45deg, transparent 75%, #fff 75%);
-    background-size: 12px 12px; background-color: #000; opacity: 0.15;
-}
+
 
 /* TARJETAS ESTILO TELEMETRÍA BOXES */
 .courses-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
@@ -191,7 +176,7 @@ body {
 .row-driver { display: flex; align-items: center; gap: 15px; }
 .row-team { font-family: var(--font-sub); color: var(--metallic-grey); font-size: 0.95rem; text-transform: uppercase; }
 .row-time { text-align: right; font-weight: 700; font-size: 1.05rem; }
-.leaderboard-row.pos-1 { border-left: 4px solid #F1C40F; background: linear-gradient(90deg, rgba(241,196,15,0.08) 0%, rgba(0,0,0,0) 100%); }
+.leaderboard-row.pos-1 { border-left: 4px solid #F1C40F; }
 .leaderboard-row.pos-1 .row-position { color: #F1C40F; }
 
 /* TESTIMONIOS (FLIP CARDS) */
@@ -1454,4 +1439,86 @@ body {
     background: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.4) 100%);
     z-index: 1;
     pointer-events: none;
+}
+/* ==========================================================================
+   SOLUCIÓN DEFINITIVA AL EFECTO DE RAYAS (ANTIALIASING Y ESCALADO)
+   ========================================================================== */
+
+/* 1. Corregimos el escalado del auto para que el navegador no invente líneas negras */
+.car-3d-render {
+    image-rendering: -webkit-optimize-contrast !important; /* Mantiene la nitidez en Chrome/Safari */
+    image-rendering: crisp-edges !important;               /* Evita el entrelazado en Firefox */
+    transform: translateZ(0);                              /* Fuerza la aceleración por hardware */
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+/* 2. El texto se está rompiendo por la propiedad letter-spacing y fuentes sin suavizar */
+.hud-stats-panel, 
+.hud-car-title, 
+.hud-label-row, 
+.hud-time-display {
+    -webkit-font-smoothing: subpixel-antialiased !important; /* Suaviza los píxeles del texto */
+    -moz-osx-font-smoothing: auto !important;
+    text-rendering: optimizeLegibility !important;
+}
+
+/* 3. Evitamos que el contenedor comprima los elementos creando interferencia visual */
+.garage-container-hud {
+    overflow: hidden;
+    background: #cdcfd6 !important; /* Forzamos un color sólido oscuro de fondo */
+}
+
+/* 4. Si tenías un filtro de contraste o brillo en el body/sección que rompe los píxeles, lo reseteamos aquí */
+.experiencia-apex-section {
+    filter: none !important; 
+    backdrop-filter: none !important;
+}
+/* ==========================================================================
+   SOLUCIÓN: ELEVAR EL HUD POR ENCIMA DEL EFECTO DE FONDO
+   ========================================================================== */
+
+/* 1. Forzamos a que el Canvas de fondo se quede atrás de todo */
+#telemetry-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Capa más baja */
+    pointer-events: none;
+}
+
+/* 2. Le damos prioridad de capa al contenedor de la experiencia y un fondo sólido */
+.experiencia-apex-section {
+    position: relative;
+    z-index: 10; /* Capa intermedia superior */
+}
+
+.garage-container-hud {
+    position: relative;
+    z-index: 20; /* Capa más alta para el HUD */
+    
+    /* MUY IMPORTANTE: Usamos un fondo oscuro 100% sólido (sin transparencias) 
+       para tapar por completo las líneas que pasan por detrás */
+    background: #01121b !important; 
+    
+    border: 1px solid var(--electric-blue);
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+}
+
+/* 3. Aseguramos que los botones selectores de abajo también tengan fondo sólido */
+.garage-selector-track .car-selector-btn {
+    position: relative;
+    z-index: 20;
+    background: #0b0f19 !important; /* Fondo gradiente */
+}
+
+/* 4. Suavizado de tipografías para asegurar legibilidad milimétrica */
+.hud-stats-panel, 
+.hud-car-title, 
+.hud-label-row span, 
+.hud-time-display {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-shadow: none !important; /* Quitamos sombras extra que emborronen el texto chico */
 }
