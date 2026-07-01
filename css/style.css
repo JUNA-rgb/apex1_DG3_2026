@@ -969,7 +969,7 @@ body {
     flex-wrap: nowrap !important;
     width: 500% !important; /* Forza a que las 5 imágenes entren en línea */
     gap: 0 !important;
-    transform: translateX(calc(var(--current-slide, 0) * -20%)) !important; /* Desplazamiento exacto de 1/5 por imagen */
+    transform: translateX(calc(var(--current-slide, 0) * -40%)) !important; /* Desplazamiento exacto de 1/5 por imagen */
     transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
 }
 
@@ -1216,16 +1216,6 @@ body {
    REPARACIONES DE ALINEACIÓN, VIDEO Y FONDO INTERACTIVO SCROLL
    ======================================================== */
 
-/* 1. Forzar Alineación Estricta a la Izquierda en el Hero */
-.mega-hero-video {
-    position: relative;
-    height: 100vh;
-    min-height: 600px;
-    display: flex;
-    align-items: center; /* Centra verticalmente el contenido */
-    justify-content: flex-start !important; /* Fuerza el inicio a la izquierda */
-    overflow: hidden;
-}
 
 .mega-hero {
     width: 100%;
