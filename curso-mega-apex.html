@@ -30,6 +30,7 @@
             margin: 0;
             padding: 0;
         }
+
         /* Canvas de telemetría de fondo fija */
         #telemetry-bg {
             position: fixed;
@@ -49,13 +50,6 @@
             position: relative;
             z-index: 5;
         }
-
-hero-img { 
-  width: 100%; 
-  height: 100%; 
-  object-fit: cover; 
-  will-change: transform;
-}
 
  /* --- Header --- */
         .header {
@@ -312,7 +306,15 @@ hero-img {
         .module-tab-btn.active i {
             color: var(--electric-blue);
         }
-        
+        /* ==========================================================================
+   ANIMACIÓN REACTIVA EN SCROLL PARA EL CRONOGRAMA
+   ========================================================================== */
+#cronograma .timeline-node-item {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: opacity, transform;
+}       
 
 /* Forzar que las secciones tengan fondo transparente o z-index superior para que se vea el fondo */
 section {
@@ -517,6 +519,98 @@ section {
             z-index: 2;
             background: linear-gradient(0deg, rgba(5,7,12,0.95) 0%, rgba(5,7,12,0.5) 70%, transparent 100%);
         }
+ /* --- SECCIÓN 5: CRONOGRAMA --- */
+        .timeline-hud-vertical {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .timeline-hud-vertical::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(57,160,218,0.1) 0%, var(--electric-blue) 50%, rgba(57,160,218,0.1) 100%);
+            transform: translateX(-50%);
+        }
+
+        .timeline-node-item {
+            position: relative;
+            margin-bottom: 60px;
+            width: 50%;
+        }
+
+        .timeline-node-item:nth-child(odd) {
+            left: 0;
+            padding-right: 50px;
+            text-align: right;
+        }
+
+        .timeline-node-item:nth-child(even) {
+            left: 50%;
+            padding-left: 50px;
+            text-align: left;
+        }
+
+        .timeline-dot-hud {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--pure-black);
+            border: 3px solid var(--electric-blue);
+            top: 5px;
+            z-index: 5;
+            box-shadow: 0 0 10px var(--electric-blue);
+        }
+
+        .timeline-node-item:nth-child(odd) .timeline-dot-hud {
+            right: -8px;
+        }
+
+        .timeline-node-item:nth-child(even) .timeline-dot-hud {
+            left: -8px;
+        }
+
+        .timeline-node-date {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .timeline-node-card {
+            background-color: var(--dark-blue);
+            border: 1px solid rgba(57, 160, 218, 0.1);
+            padding: 25px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-node-card:hover {
+            border-color: var(--electric-blue);
+            box-shadow: 0 0 15px rgba(57,160,218,0.1);
+        }
+
+        .timeline-node-card h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+
+        .timeline-node-card p {
+            color: var(--metallic-grey);
+            font-size: 0.95rem;
+        }
 
         /* Sección 6: Credencial Digital VIP HUD */
         .bonus-section-wrapper {
@@ -655,6 +749,35 @@ section {
                 padding: 20px !important;
             }
         }
+
+        /* --- AJUSTE DINÁMICO DE ANIMACIONES DE FONDO (CANVAS) --- */
+        #telemetry-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .scroll-circuit-track {
+            position: absolute;
+            top: 0;
+            left: 5%;
+            width: 2px;
+            height: 100%;
+            background: rgba(57, 160, 218, 0.05);
+            z-index: 2;
+        }
+        .scroll-circuit-energy {
+            position: absolute;
+            top: 0;
+            left: -1px;
+            width: 4px;
+            height: 80px;
+            background: linear-gradient(180deg, transparent, var(--electric-blue), transparent);
+            box-shadow: 0 0 10px var(--electric-blue);
+        }
     </style>
 </head>
 <body>
@@ -682,7 +805,7 @@ section {
     </header>
 
     <section class="mega-hero tech-grid-bg">
-        <img src="assets/vistaa.png" alt="Fondo Hero APEX" class="hero-bg-image">
+        <img src="assets/vista1.jpg" alt="Fondo Hero APEX" class="hero-bg-image">
         
         <div class="hero-overlay-gradient"></div>
 
@@ -844,6 +967,51 @@ section {
             </div>
         </section>
 
+         <section id="cronograma" class="mega-section" style="background-color: rgba(5, 7, 12, 0.6); padding: 100px 0;">
+    <div class="container text-center"> <span class="section-subtitle">// LÍNEA DE PROGRESIÓN</span> <h2 class="section-title">CRONOGRAMA DE DESARROLLO</h2> <p style="color: var(--metallic-grey); max-width: 700px; margin: 15px auto 50px auto; font-size: 1.1rem;">
+            Tu línea de progresión militar paso a paso hacia el podio.
+        </p>
+            
+            <div class="timeline-hud-vertical">
+                <div class="timeline-node-item">
+                    <div class="timeline-dot-hud"></div>
+                    <span class="timeline-node-date">Semana 1 - 2</span>
+                    <div class="timeline-node-card">
+                        <h3>Fase de Telemetría Base</h3>
+                        <p>Análisis inicial de tus vicios y corrección estructural de periféricos y posición de manejo.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-node-item">
+                    <div class="timeline-dot-hud"></div>
+                    <span class="timeline-node-date">Semana 3 - 4</span>
+                    <div class="timeline-node-card">
+                        <h3>Mecánicas de Presión Absoluta</h3>
+                        <p>Talleres intensivos prácticos de trail braking en circuitos escuela con monitores dedicados.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-node-item">
+                    <div class="timeline-dot-hud"></div>
+                    <span class="timeline-node-date">Semana 5 - 6</span>
+                    <div class="timeline-node-card">
+                        <h3>Ingeniería de Setup Propio</h3>
+                        <p>Desarrollo matemático de configuraciones personalizadas adaptadas a tu estilo de pilotaje.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-node-item">
+                    <div class="timeline-dot-hud"></div>
+                    <span class="timeline-node-date">Semana 7 - 8</span>
+                    <div class="timeline-node-card">
+                        <h3>Simulacros de Clasificación</h3>
+                        <p>Apertura de los servidores de APEX. Presión real a una vuelta para buscar tu pase a la parrilla.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
         <section id="bonus" class="about-section" style="padding: 100px 0; background: var(--pure-black); border-top: 1px solid rgba(255,255,255,0.05); position: relative; z-index: 5;">
             <div class="container">
                 <div class="bonus-section-wrapper">
@@ -1015,6 +1183,31 @@ section {
                     card.style.transform = 'rotateY(0deg) rotateX(0deg)';
                 });
             }
+
+            // =======================================================
+            // NUEVO: DETECTOR DE SCROLL PARA MOSTRAR CRONOGRAMA
+            // =======================================================
+            const timelineItems = document.querySelectorAll('#cronograma .timeline-node-item');
+            
+            const observerOptions = {
+                root: null,
+                threshold: 0.15 // Se activa cuando se ve el 15% de la tarjeta
+            };
+
+            const timelineObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Forzamos la visibilidad cambiando los estilos directamente con JS
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                        timelineObserver.unobserve(entry.target); // Ya se vio, dejamos de observarlo
+                    }
+                });
+            }, observerOptions);
+
+            timelineItems.forEach(item => {
+                timelineObserver.observe(item);
+            });
         });
     </script>
 </body>

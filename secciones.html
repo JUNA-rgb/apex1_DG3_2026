@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEGA APEX | Programa de Alto Rendimiento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    
+    <style>
+
+        :root {
+            --pure-black: #05070c;
+            --dark-blue: #0b111e;
+            --electric-blue: #39A0DA;
+            --neon-glow: rgba(57, 160, 218, 0.6);
+            --gold: #F1C40F;
+            --metallic-grey: #8a94a6;
+            --white: #ffffff;
+            --neon-green: #00ff66;
+            --neon-red: #ff3333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--pure-black);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .text-electric {
+            color: var(--electric-blue);
+            text-shadow: 0 0 10px var(--neon-glow);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- NAVEGACIÓN --- */
+        .mega-nav {
+            background-color: rgba(5, 7, 12, 0.9);
+            border-bottom: 1px solid rgba(57, 160, 218, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .brand-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .brand-logo span {
+            color: var(--electric-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--metallic-grey);
+            text-decoration: none;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--electric-blue);
+            text-shadow: 0 0 8px var(--neon-glow);
+        }
+
+        /* --- HERO SECTION --- */
+        .mega-hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover !important;
+            z-index: 1;
+        }
+
+        .hero-overlay-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(5,7,12,0.4) 0%, rgba(5,7,12,0.8) 70%, #05070c 100%);
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--metallic-grey);
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        /* --- BOTONES --- */
+        .btn {
+            display: inline-block;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 15px 40px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background-color: var(--electric-blue);
+            color: var(--pure-black);
+            border: 1px solid var(--electric-blue);
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 25px var(--electric-blue);
+            transform: translateY(-2px);
+            color: var(--white);
+        }
+
+        /* --- SECCIÓN 2: CÓMO FUNCIONA --- */
+        .mega-section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title-hud {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--metallic-grey);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 60px auto;
+        }
+
+        .grid-3-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .step-card {
+            background-color: var(--dark-blue);
+            border: 1px solid rgba(57, 160, 218, 0.1);
+            padding: 40px 30px;
+            border-radius: 4px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step-card:hover {
+            border-color: var(--electric-blue);
+            box-shadow: 0 0 15px rgba(57, 160, 218, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .step-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: rgba(57, 160, 218, 0.05);
+            border: 1px solid rgba(57, 160, 218, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px auto;
+            font-size: 2rem;
+            color: var(--electric-blue);
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover .step-icon-wrapper {
+            background: var(--electric-blue);
+            color: var(--pure-black);
+            box-shadow: 0 0 15px var(--electric-blue);
+        }
+
+        .step-card h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .step-card p {
+            color: var(--metallic-grey);
+            font-size: 0.95rem;
+        }
+
+        /* --- SECCIÓN 3: MÓDULOS LATERALES --- */
+        .modules-interactive-container {
+            display: flex;
+            background-color: var(--dark-blue);
+            border: 1px solid rgba(57, 160, 218, 0.1);
+            border-radius: 4px;
+            min-height: 450px;
+            overflow: hidden;
+        }
+
+        .modules-sidebar-tabs {
+            width: 30%;
+            background-color: rgba(5, 7, 12, 0.5);
+            border-right: 1px solid rgba(57, 160, 218, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .module-tab-btn {
+            background: none;
+            border: none;
+            outline: none;
+            padding: 22px 30px;
+            text-align: left;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--metallic-grey);
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 4px solid transparent;
+            letter-spacing: 1px;
+        }
+
+        .module-tab-btn:hover {
+            background-color: rgba(57, 160, 218, 0.03);
+            color: var(--white);
+        }
+
+        .module-tab-btn.active {
+            background-color: rgba(57, 160, 218, 0.07);
+            color: var(--electric-blue);
+            border-left-color: var(--electric-blue);
+        }
+
+        .modules-content-panes {
+            width: 70%;
+            padding: 50px;
+            position: relative;
+        }
+
+        .module-pane {
+            display: none;
+            animation: fadeInHUD 0.4s ease forwards;
+        }
+
+        .module-pane.active {
+            display: block;
+        }
+
+        @keyframes fadeInHUD {
+            from { opacity: 0; transform: translateX(10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .module-pane h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .module-topics-list {
+            list-style: none;
+        }
+
+        .module-topics-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            color: var(--white);
+            font-size: 1.05rem;
+        }
+
+        .module-topics-list li::before {
+            content: "\f30b";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--electric-blue);
+            font-size: 0.9rem;
+        }
+
+        /* --- SECCIÓN 4: PISTAS DE CARRERA --- */
+        .tracks-slider-wrapper {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .track-main-display {
+            background-color: var(--dark-blue);
+            border: 1px solid rgba(57, 160, 218, 0.1);
+            border-radius: 4px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .track-image-container {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            margin: 0 auto 30px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .track-image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 15px rgba(57,160,218,0.2));
+        }
+
+        .track-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .track-stats-hud {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .track-stat-box {
+            text-align: center;
+        }
+
+        .track-stat-label {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.9rem;
+            color: var(--metallic-grey);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .track-stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .track-nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(11, 17, 30, 0.8);
+            border: 1px solid rgba(57, 160, 218, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 4px;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .track-nav-arrow:hover {
+            border-color: var(--electric-blue);
+            background: var(--electric-blue);
+            color: var(--pure-black);
+            box-shadow: 0 0 15px var(--electric-blue);
+        }
+
+        .arrow-prev { left: -70px; }
+        .arrow-next { right: -70px; }
+
+        /* --- SECCIÓN 5: CRONOGRAMA --- */
+        .timeline-hud-vertical {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .timeline-hud-vertical::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(57,160,218,0.1) 0%, var(--electric-blue) 50%, rgba(57,160,218,0.1) 100%);
+            transform: translateX(-50%);
+        }
+
+        .timeline-node-item {
+            position: relative;
+            margin-bottom: 60px;
+            width: 50%;
+        }
+
+        .timeline-node-item:nth-child(odd) {
+            left: 0;
+            padding-right: 50px;
+            text-align: right;
+        }
+
+        .timeline-node-item:nth-child(even) {
+            left: 50%;
+            padding-left: 50px;
+            text-align: left;
+        }
+
+        .timeline-dot-hud {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--pure-black);
+            border: 3px solid var(--electric-blue);
+            top: 5px;
+            z-index: 5;
+            box-shadow: 0 0 10px var(--electric-blue);
+        }
+
+        .timeline-node-item:nth-child(odd) .timeline-dot-hud {
+            right: -8px;
+        }
+
+        .timeline-node-item:nth-child(even) .timeline-dot-hud {
+            left: -8px;
+        }
+
+        .timeline-node-date {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .timeline-node-card {
+            background-color: var(--dark-blue);
+            border: 1px solid rgba(57, 160, 218, 0.1);
+            padding: 25px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-node-card:hover {
+            border-color: var(--electric-blue);
+            box-shadow: 0 0 15px rgba(57,160,218,0.1);
+        }
+
+        .timeline-node-card h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+
+        .timeline-node-card p {
+            color: var(--metallic-grey);
+            font-size: 0.95rem;
+        }
+
+        /* --- SECCIÓN 6: BONUS & LICENCIA VIP --- */
+        .bonus-split-layout {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .bonus-text-content {
+            width: 55%;
+        }
+
+        .bonus-visual-showcase {
+            width: 45%;
+            display: flex;
+            justify-content: center;
+            perspective: 1000px;
+        }
+
+        .bonus-vendedora-list {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .bonus-vendedora-list li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 25px;
+        }
+
+        .bonus-vendedora-list li::before {
+            content: "\f058";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 400;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--electric-blue);
+            font-size: 1.3rem;
+        }
+
+        .bonus-vendedora-list strong {
+            display: block;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.2rem;
+            color: var(--white);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .bonus-vendedora-list p {
+            color: var(--metallic-grey);
+            font-size: 0.95rem;
+        }
+
+        /* --- CREDENCIAL VIP 3D --- */
+        .vip-credential-wrapper {
+            width: 320px;
+            height: 480px;
+            cursor: pointer;
+        }
+
+        .vip-card-3d {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0b111e 0%, #05070c 100%);
+            border: 2px solid var(--electric-blue);
+            border-radius: 16px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            box-shadow: 0 0 30px rgba(57, 160, 218, 0.2);
+            transition: transform 0.1s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .vip-card-3d:hover {
+            box-shadow: 0 0 40px rgba(57, 160, 218, 0.4);
+        }
+
+        .vip-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(57, 160, 218, 0.2);
+            padding-bottom: 15px;
+        }
+
+        .vip-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .vip-chip {
+            width: 40px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--gold) 0%, #b38f00 100%);
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .vip-body {
+            margin-top: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .vip-avatar-mock {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 2px dashed var(--electric-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: rgba(57, 160, 218, 0.4);
+            margin-bottom: 20px;
+        }
+
+        .vip-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            color: var(--white);
+            text-shadow: 0 0 10px rgba(255,255,255,0.1);
+        }
+
+        .vip-subtitle {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--electric-blue);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .vip-footer {
+            border-top: 1px solid rgba(57, 160, 218, 0.1);
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .vip-code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: var(--metallic-grey);
+        }
+
+        .vip-status {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            background-color: rgba(0, 255, 102, 0.1);
+            color: var(--neon-green);
+            padding: 4px 10px;
+            border-radius: 2px;
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- FOOTER --- */
+        .mega-footer {
+            background-color: #030508;
+            border-top: 1px solid rgba(57, 160, 218, 0.1);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--metallic-grey);
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .grid-3-steps { grid-template-columns: 1fr; }
+            .modules-interactive-container { flex-direction: column; }
+            .modules-sidebar-tabs { width: 100%; border-right: none; border-bottom: 1px solid rgba(57, 160, 218, 0.1); }
+            .modules-content-panes { width: 100%; padding: 30px; }
+            .bonus-split-layout { flex-direction: column; }
+            .bonus-text-content, .bonus-visual-showcase { width: 100%; }
+            .track-nav-arrow { position: static; transform: none; margin: 10px 20px; display: inline-flex; }
+            .arrow-prev, .arrow-next { left: auto; right: auto; }
+            .track-nav-container-mobile { text-align: center; margin-top: 20px; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .timeline-hud-vertical::before { left: 20px; }
+            .timeline-node-item { width: 100%; left: 0 !important; padding-left: 45px !important; padding-right: 0 !important; text-align: left !important; }
+            .timeline-dot-hud { left: 12px !important; right: auto !important; }
+        }
+
+        /* --- ESTILOS ADICIONALES: EXPERIENCIA APEX (GARAJE) --- */
+        .experience-apex-section {
+            background-color: var(--pure-black);
+            position: relative;
+        }
+        .garage-display-node {
+            background-color: rgba(11, 17, 30, 0.7);
+            border: 2px solid rgba(57, 160, 218, 0.2);
+            border-radius: 8px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 0 30px rgba(5, 7, 12, 0.9);
+            backdrop-filter: blur(5px);
+        }
+        .hud-telemetry-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(57, 160, 218, 0.2);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        .hud-system-status {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: var(--neon-green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .hud-system-status span {
+            animation: pulseGlow 1.5s infinite;
+        }
+        @keyframes pulseGlow {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+        .garage-view-core {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            min-height: 380px;
+        }
+        .hud-stats-panel-left {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        .hud-stat-bar-group {
+            position: relative;
+        }
+        .hud-stat-bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+        .hud-stat-bar-bg {
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(57, 160, 218, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .hud-stat-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--electric-blue) 0%, #00ff66 100%);
+            width: 0%;
+            transition: width 0.6s cubic-bezier(0.1, 0.8, 0.3, 1);
+            box-shadow: 0 0 8px var(--neon-glow);
+        }
+        .car-interactive-3d-stage {
+            width: 65%;
+            height: 350px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1200px;
+        }
+        .car-model-projection-wrap {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.1s ease-out;
+            transform-style: preserve-3d;
+        }
+        .car-model-projection-wrap img {
+            max-width: 90%;
+            max-height: 85%;
+            object-fit: contain;
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.8));
+            transform: translateZ(50px);
+            animation: floatingCar 4s ease-in-out infinite;
+        }
+        @keyframes floatingCar {
+            0% { transform: translateZ(50px) translateY(0px); }
+            50% { transform: translateZ(50px) translateY(-10px); }
+            100% { transform: translateZ(50px) translateY(0px); }
+        }
+        .car-ground-reflection-grid {
+            position: absolute;
+            bottom: 20px;
+            width: 80%;
+            height: 40px;
+            background: radial-gradient(ellipse at center, rgba(57, 160, 218, 0.25) 0%, rgba(5, 7, 12, 0) 70%);
+            transform: rotateX(75deg);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .garage-selector-hud-dock {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(57, 160, 218, 0.1);
+            padding-top: 30px;
+            flex-wrap: wrap;
+        }
+        .garage-node-btn {
+            background-color: rgba(5, 7, 12, 0.6);
+            border: 1px solid rgba(57, 160, 218, 0.3);
+            color: var(--metallic-grey);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            letter-spacing: 1px;
+        }
+        .garage-node-btn:hover {
+            border-color: var(--electric-blue);
+            color: var(--white);
+            background-color: rgba(57, 160, 218, 0.05);
+        }
+        .garage-node-btn.active {
+            background-color: var(--electric-blue);
+            border-color: var(--electric-blue);
+            color: var(--pure-black);
+            font-weight: 700;
+            box-shadow: 0 0 15px var(--electric-blue);
+        }
+        @media (max-width: 850px) {
+            .garage-view-core { flex-direction: column-reverse; }
+            .hud-stats-panel-left { width: 100%; }
+            .car-interactive-3d-stage { width: 100%; height: 260px; }
+        }
+
+        /* --- AJUSTE DINÁMICO DE ANIMACIONES DE FONDO (CANVAS) --- */
+        #telemetry-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .scroll-circuit-track {
+            position: absolute;
+            top: 0;
+            left: 5%;
+            width: 2px;
+            height: 100%;
+            background: rgba(57, 160, 218, 0.05);
+            z-index: 2;
+        }
+        .scroll-circuit-energy {
+            position: absolute;
+            top: 0;
+            left: -1px;
+            width: 4px;
+            height: 80px;
+            background: linear-gradient(180deg, transparent, var(--electric-blue), transparent);
+            box-shadow: 0 0 10px var(--electric-blue);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="mega-nav">
+        <div class="container nav-container">
+            <a href="#" class="brand-logo">MEGA<span>APEX</span></a>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Inicio</a></li>
+                <li><a href="#sistema">Sistema</a></li>
+                <li><a href="#modulos">Módulos</a></li>
+                <li><a href="#pistas">Circuitos</a></li>
+                <li><a href="#cronograma">Desarrollo</a></li>
+                <li><a href="#bonus">Equipamiento</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="mega-hero tech-grid-bg">
+        <img src="assest/vista1.jpg" alt="Fondo Hero APEX" class="hero-bg-image">
+        
+        <div class="hero-overlay-gradient"></div>
+
+        <div class="scroll-circuit-track" aria-hidden="true" style="z-index: 3;">
+            <div class="scroll-circuit-energy"></div>
+        </div>
+        <canvas id="telemetry-bg" style="z-index: 3; position: absolute; top: 0; left: 0; pointer-events: none;"></canvas>
+
+        <div class="container hero-content-restored" style="position: relative; z-index: 4; text-align: left; display: flex; flex-direction: column; align-items: flex-start; max-width: 600px; margin-left: auto; margin-right: auto; padding-left: 20px;">
+            <h1 class="hero-title">MEGA APEX <br><span class="text-electric">DOMINÁ LA PISTA</span></h1>
+            <p class="hero-subtitle" style="font-size: 1.35rem; max-width: 100%; margin-bottom: 20px; color: var(--metallic-grey); text-align: left;">
+                El único curso de simracing y conducción que transforma tus décimas perdidas en victorias reales. Aprendé la física, el frenado y los secretos de telemetría de los pilotos profesionales.
+            </p>
+            <div class="hero-actions-left" style="width: 100%; display: flex; justify-content: flex-start;">
+                <a href="#modulos" class="btn btn-primary btn-speed btn-glow" style="width: auto; display: inline-block;">
+                    <span>¡Quiero mi auto! <i class="fas fa-chevron-right"></i></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="sistema" class="mega-section">
+        <div class="container">
+            <h2 class="section-title-hud">EL CAMINO HACIA EL PODIO ECONÓMICO</h2>
+            <p class="section-subtitle">No es solo un curso, es tu fase de clasificación profesional.</p>
+            
+            <div class="grid-3-steps">
+                <div class="step-card">
+                    <div class="step-icon-wrapper"><i class="fas fa-id-card-alt"></i></div>
+                    <h3>1. Entrenás</h3>
+                    <p>Aprendés los secretos de telemetría, gestión de neumáticos y trazados de competición que usan los pilotos reales.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon-wrapper"><i class="fas fa-stopwatch"></i></div>
+                    <h3>2. Clasificás</h3>
+                    <p>Validás tu ritmo y consistencia en nuestros servidores oficiales de clasificación monitorizados por APEX.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon-wrapper"><i class="fas fa-trophy"></i></div>
+                    <h3>3. Competís y Ganás</h3>
+                    <p>Formás parte de los Grandes Premios exclusivos de la academia con transmisión en vivo y premios en efectivo para el podio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiencia" class="mega-section experience-apex-section">
+        <div class="container">
+            <h2 class="section-title-hud">EXPERIENCIA APEX</h2>
+            <p class="section-subtitle">Inspeccioná las estadísticas HUD de los monoplazas oficiales del simulador.</p>
+            
+            <div class="garage-display-node">
+                <div class="hud-telemetry-header">
+                    <div class="hud-system-status">SYSTEM STATUS: <span>ACTIVE</span></div>
+                    <div class="hud-system-status" style="color: var(--electric-blue);">TELEM_MODE: LIVE</div>
+                </div>
+                
+                <div class="garage-view-core">
+                    <div class="hud-stats-panel-left">
+                        <div class="hud-stat-bar-group">
+                            <div class="hud-stat-bar-label"><span>VELOCIDAD MÁXIMA</span><span id="val-vel">94%</span></div>
+                            <div class="hud-stat-bar-bg"><div id="bar-vel" class="hud-stat-bar-fill" style="width: 94%;"></div></div>
+                        </div>
+                        <div class="hud-stat-bar-group">
+                            <div class="hud-stat-bar-label"><span>AGARRE EN CURVA</span><span id="val-aga">91%</span></div>
+                            <div class="hud-stat-bar-bg"><div id="bar-aga" class="hud-stat-bar-fill" style="width: 91%;"></div></div>
+                        </div>
+                        <div class="hud-stat-bar-group">
+                            <div class="hud-stat-bar-label"><span>ACELERACIÓN</span><span id="val-ace">96%</span></div>
+                            <div class="hud-stat-bar-bg"><div id="bar-ace" class="hud-stat-bar-fill" style="width: 96%;"></div></div>
+                        </div>
+                    </div>
+                    
+                    <div class="car-interactive-3d-stage">
+                        <div id="mainCarView" class="car-model-projection-wrap">
+                            <img src="assets/ferrari.png" alt="Monoplaza de Competición">
+                        </div>
+                        <div class="car-ground-reflection-grid"></div>
+                    </div>
+                </div>
+                
+                <div class="garage-selector-hud-dock">
+                    <button class="garage-node-btn active" data-img="ferrari.png" data-vel="94" data-aga="91" data-ace="96">SF-24 Scuderia</button>
+                    <button class="garage-node-btn" data-img="mclaren.png" data-vel="95" data-aga="93" data-ace="92">MCL38 Papaya</button>
+                    <button class="garage-node-btn" data-img="alpine.png" data-vel="91" data-aga="89" data-ace="90">A524 Enstone</button>
+                    <button class="garage-node-btn" data-img="prema.png" data-vel="88" data-aga="85" data-ace="87">Prema F2</button>
+                    <button class="garage-node-btn" data-img="trident.png" data-vel="87" data-aga="86" data-ace="85">Trident Motorsport</button>
+                    <button class="garage-node-btn" data-img="campos.png" data-vel="89" data-aga="84" data-ace="88">Campos Racing</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="modulos" class="mega-section" style="background-color: rgba(11, 17, 30, 0.2);">
+        <div class="container">
+            <h2 class="section-title-hud">ESTRUCTURA DEL PROGRAMA</h2>
+            <p class="section-subtitle">Cinco fases críticas diseñadas para destruir tus viejos vicios de conducción.</p>
+            
+            <div class="modules-interactive-container">
+                <div class="modules-sidebar-tabs">
+                    <button class="module-tab-btn active" data-target="#mod1">Módulo 1</button>
+                    <button class="module-tab-btn" data-target="#mod2">Módulo 2</button>
+                    <button class="module-tab-btn" data-target="#mod3">Módulo 3</button>
+                    <button class="module-tab-btn" data-target="#mod4">Módulo 4</button>
+                    <button class="module-tab-btn" data-target="#mod5">Módulo 5</button>
+                </div>
+                
+                <div class="modules-content-panes">
+                    <div id="mod1" class="module-pane active">
+                        <h3 class="text-electric">Física de Conducción Básica</h3>
+                        <ul class="module-topics-list">
+                            <li>Transferencia de pesos longitudinal y lateral.</li>
+                            <li>El círculo de tracción de Kamm y límites físicos de adherencia.</li>
+                            <li>Configuración óptima del Force Feedback (FFB) y FOV matemático.</li>
+                            <li>Geometría de curvas y el vértice de giro ideal (Apex).</li>
+                        </ul>
+                    </div>
+                    <div id="mod2" class="module-pane">
+                        <h3 class="text-electric">Técnicas de Frenado Avanzado</h3>
+                        <ul class="module-topics-list">
+                            <li>Dominio técnico del Trail Braking para rotar el monoplaza.</li>
+                            <li>Frenado umbral sin activar el ABS artificial.</li>
+                            <li>Gestión y modulación de la presión del pedal de freno de celda de carga.</li>
+                            <li>Evitar bloqueos planos de neumáticos y corregir subviraje de entrada.</li>
+                        </ul>
+                    </div>
+                    <div id="mod3" class="module-pane">
+                        <h3 class="text-electric">Telemetría HUD e Ingeniería</h3>
+                        <ul class="module-topics-list">
+                            <li>Introducción a software profesional (Motec i2 Pro / Atlas).</li>
+                            <li>Lectura de canales básicos: posición del acelerador, freno y velocidad.</li>
+                            <li>Análisis comparativo de curvas con pilotos de referencia (Overlay).</li>
+                            <li>Identificación exacta de pérdida de tiempo en fases de transición.</li>
+                        </ul>
+                    </div>
+                    <div id="mod4" class="module-pane">
+                        <h3 class="text-electric">Setups de Competición</h3>
+                        <ul class="module-topics-list">
+                            <li>Ajuste de presiones simétricas y gestión térmica de gomas.</li>
+                            <li>Modificación de rigidez de barras estabilizadoras y muelles.</li>
+                            <li>Configuración del diferencial de potencia, entrada y frenado.</li>
+                            <li>Carga aerodinámica: balance del alerón delantero vs trasero.</li>
+                        </ul>
+                    </div>
+                    <div id="mod5" class="module-pane">
+                        <h3 class="text-electric">Estrategia de Carrera y Psicología</h3>
+                        <ul class="module-topics-list">
+                            <li>Gestión del aire sucio, rebufos y adelantamientos seguros.</li>
+                            <li>Cálculo de consumo de combustible y paradas en boxes eficientes.</li>
+                            <li>Fuerza mental bajo presión en sesiones de clasificación a una vuelta.</li>
+                            <li>Consistencia de ritmo en tandas largas de carrera.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pistas" class="mega-section">
+        <div class="container">
+            <h2 class="section-title-hud">CIRCUITOS DEL CAMPEONATO</h2>
+            <p class="section-subtitle">Los escenarios donde validarás tus tiempos y buscarás los premios económicos.</p>
+            
+            <div class="tracks-slider-wrapper">
+                <div class="track-nav-arrow arrow-prev" id="trackPrev"><i class="fas fa-chevron-left"></i></div>
+                
+                <div class="track-main-display">
+                    <div class="track-image-container">
+                        <img id="trackImg" src="assest/monaco.png" alt="Circuito de Mónaco">
+                    </div>
+                    <h3 id="trackName" class="track-title">Circuit de Monaco</h3>
+                    <div class="track-stats-hud">
+                        <div class="track-stat-box">
+                            <div class="track-stat-label">Longitud</div>
+                            <div id="trackLen" class="track-stat-value">3.337 km</div>
+                        </div>
+                        <div class="track-stat-box">
+                            <div class="track-stat-label">Curvas</div>
+                            <div id="trackTurns" class="track-stat-value">19</div>
+                        </div>
+                        <div class="track-stat-box">
+                            <div class="track-stat-label">Récord APEX</div>
+                            <div id="trackRecord" class="track-stat-value">1:10.421</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="track-nav-arrow arrow-next" id="trackNext"><i class="fas fa-chevron-right"></i></div>
+                
+                <div class="track-nav-container-mobile"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cronograma" class="mega-section" style="background-color: rgba(5, 7, 12, 0.6);">
+        <div class="container">
+            <h2 class="section-title-hud">CRONOGRAMA DE DESARROLLO</h2>
+            <p class="section-subtitle">Tu línea de progresión militar paso a paso hacia el podio.</p>
+            
+            <div class="timeline-hud-vertical">
+                <div class="timeline-node-item">
+                    <div class="timeline-dot-hud"></div>
+                    <span class="timeline-node-date">Semana 1 - 2</span>
+                    <div class="timeline-node-card">
+                        <h3>Fase de Telemetría Base</h3>
+                        <p>Análisis inicial de tus vicios y corrección estructural de periféricos y posición de manejo.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-node-item">
+                    <div class="timeline-dot-hud"></div>
+                    <span class="timeline-node-date">Semana 3 - 4</span>
+                    <div class="timeline-node-card">
+                        <h3>Mecánicas de Presión Absoluta</h3>
+                        <p>Talleres intensivos prácticos de trail braking en circuitos escuela con monitores dedicados.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-node-item">
+                    <div class="timeline-dot-hud"></div>
+                    <span class="timeline-node-date">Semana 5 - 6</span>
+                    <div class="timeline-node-card">
+                        <h3>Ingeniería de Setup Propio</h3>
+                        <p>Desarrollo matemático de configuraciones personalizadas adaptadas a tu estilo de pilotaje.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-node-item">
+                    <div class="timeline-dot-hud"></div>
+                    <span class="timeline-node-date">Semana 7 - 8</span>
+                    <div class="timeline-node-card">
+                        <h3>Simulacros de Clasificación</h3>
+                        <p>Apertura de los servidores de APEX. Presión real a una vuelta para buscar tu pase a la parrilla.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="bonus" class="mega-section" style="border-bottom: none;">
+        <div class="container">
+            <h2 class="section-title-hud">TU EQUIPAMIENTO DE BOXES INCLUIDO</h2>
+            <p class="section-subtitle">Las herramientas avanzadas listas para darte la ventaja injusta en pista.</p>
+            
+            <div class="bonus-split-layout">
+                <div class="bonus-text-content">
+                    <ul class="bonus-vendedora-list">
+                        <li>
+                            <strong>Telemetría Avanzada APEX</strong>
+                            <p>Guías simplificadas de lectura rápida para encontrar tus errores en menos de 3 clics en boxes.</p>
+                        </li>
+                        <li>
+                            <strong>Setups de Competición Exclusivos</strong>
+                            <p>Configuraciones premium optimizadas para calificar al campeonato sin perder semanas probando valores aleatorios.</p>
+                        </li>
+                        <li>
+                            <strong>Servidores Privados 24/7</strong>
+                            <p>Acceso ilimitado a nuestros servidores de alto rendimiento con telemetría HUD en tiempo real activa.</p>
+                        </li>
+                    </ul>
+                    
+                    <a href="#" class="btn btn-primary btn-glow" style="padding: 18px 45px; font-size: 1.3rem;">
+                        <span>QUIERO ENTRAR A LA PARRILLA DE SALIDA</span>
+                    </a>
+                </div>
+                
+                <div class="bonus-visual-showcase">
+                    <div class="vip-credential-wrapper">
+                        <div class="vip-card-3d" id="vipCard">
+                            <div class="vip-header">
+                                <div class="vip-logo">APEX <span class="text-electric">COMPETITOR</span></div>
+                                <div class="vip-chip"></div>
+                            </div>
+                            <div class="vip-body">
+                                <div class="vip-avatar-mock">
+                                    <i class="fas fa-user-astronaut"></i>
+                                </div>
+                                <div class="vip-title">PILOTO ACADEMIA</div>
+                                <div class="vip-subtitle">LICENCIA OFICIAL VIP</div>
+                            </div>
+                            <div class="vip-footer">
+                                <span class="vip-code">ID #884-APX</span>
+                                <span class="vip-status">VERIFICADO</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="mega-footer">
+        <div class="container">
+            <p>&copy; 2026 MEGA APEX PROGRAM. Todos los derechos reservados. Diseñado para pilotos de alto rendimiento.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Lógica Animación Dinámica del Canvas de Telemetría (Fondo)
+            const canvas = document.getElementById('telemetry-bg');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let width = canvas.width = canvas.parentElement.offsetWidth;
+                let height = canvas.height = canvas.parentElement.offsetHeight;
+
+                window.addEventListener('resize', () => {
+                    if (canvas.parentElement) {
+                        width = canvas.width = canvas.parentElement.offsetWidth;
+                        height = canvas.height = canvas.parentElement.offsetHeight;
+                    }
+                });
+
+                const nodes = [];
+                for (let i = 0; i < 25; i++) {
+                    nodes.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        vx: (Math.random() - 0.5) * 0.8,
+                        vy: (Math.random() - 0.5) * 0.8,
+                        radius: Math.random() * 2 + 1
+                    });
+                }
+
+                function animateTelemetry() {
+                    ctx.clearRect(0, 0, width, height);
+                    ctx.strokeStyle = 'rgba(57, 160, 218, 0.05)';
+                    ctx.lineWidth = 1;
+
+                    // Dibujar líneas de grilla sutiles
+                    let gridSize = 60;
+                    for (let x = 0; x < width; x += gridSize) {
+                        ctx.beginPath();
+                        ctx.moveTo(x, 0);
+                        ctx.lineTo(x, height);
+                        ctx.stroke();
+                    }
+                    for (let y = 0; y < height; y += gridSize) {
+                        ctx.beginPath();
+                        ctx.moveTo(0, y);
+                        ctx.lineTo(width, y);
+                        ctx.stroke();
+                    }
+
+                    // Actualizar y dibujar nodos de la red
+                    nodes.forEach(node => {
+                        node.x += node.vx;
+                        node.y += node.vy;
+
+                        if (node.x < 0 || node.x > width) node.vx *= -1;
+                        if (node.y < 0 || node.y > height) node.vy *= -1;
+
+                        ctx.fillStyle = 'rgba(57, 160, 218, 0.25)';
+                        ctx.beginPath();
+                        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+                        ctx.fill();
+                    });
+
+                    // Dibujar conexiones directas cercanas
+                    for (let i = 0; i < nodes.length; i++) {
+                        for (let j = i + 1; j < nodes.length; j++) {
+                            let dist = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
+                            if (dist < 130) {
+                                ctx.strokeStyle = `rgba(57, 160, 218, ${0.12 * (1 - dist/130)})`;
+                                ctx.beginPath();
+                                ctx.moveTo(nodes[i].x, nodes[i].y);
+                                ctx.lineTo(nodes[j].x, nodes[j].y);
+                                ctx.stroke();
+                            }
+                        }
+                    }
+
+                    requestAnimationFrame(animateTelemetry);
+                }
+                animateTelemetry();
+            }
+
+            // Animación reactiva al scroll de la barra de energía lateral
+            const energyLine = document.querySelector('.scroll-circuit-energy');
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                if (energyLine) {
+                    energyLine.style.top = `${scrollPercent}%`;
+                }
+            });
+
+            // Lógica Interactiva del Garaje HUD (Experiencia APEX)
+            const garageButtons = document.querySelectorAll('.garage-node-btn');
+            const mainCarView = document.querySelector('#mainCarView img');
+            
+            const barVel = document.getElementById('bar-vel');
+            const barAga = document.getElementById('bar-aga');
+            const barAce = document.getElementById('bar-ace');
+            
+            const valVel = document.getElementById('val-vel');
+            const valAga = document.getElementById('val-aga');
+            const valAce = document.getElementById('val-ace');
+
+            garageButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    garageButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const targetImg = btn.getAttribute('data-img');
+                    const vel = btn.getAttribute('data-vel');
+                    const aga = btn.getAttribute('data-aga');
+                    const ace = btn.getAttribute('data-ace');
+
+                    // Cambiar foto con opacidad fluida
+                    if (mainCarView) {
+                        mainCarView.style.opacity = '0';
+                        setTimeout(() => {
+                            mainCarView.src = `assets/${targetImg}`;
+                            mainCarView.style.opacity = '1';
+                        }, 200);
+                    }
+
+                    // Forzar recarga de barras HUD animadas
+                    if(barVel) { barVel.style.width = `${vel}%`; valVel.innerText = `${vel}%`; }
+                    if(barAga) { barAga.style.width = `${aga}%`; valAga.innerText = `${aga}%`; }
+                    if(barAce) { barAce.style.width = `${ace}%`; valAce.innerText = `${ace}%`; }
+                });
+            });
+
+            // Control de Balanceo por Ratón en el Contenedor del Auto (3D sutil)
+            const stage3d = document.querySelector('.car-interactive-3d-stage');
+            const projectionWrap = document.getElementById('mainCarView');
+            if (stage3d && projectionWrap) {
+                stage3d.addEventListener('mousemove', (e) => {
+                    const rect = stage3d.getBoundingClientRect();
+                    const x = e.clientX - rect.left - (rect.width / 2);
+                    const y = e.clientY - rect.top - (rect.height / 2);
+                    // rotación moderada en HUD
+                    projectionWrap.style.transform = `rotateY(${x / 12}deg) rotateX(${-y / 12}deg)`;
+                });
+
+                stage3d.addEventListener('mouseleave', () => {
+                    projectionWrap.style.transform = 'rotateY(0deg) rotateX(0deg)';
+                });
+            }
+
+            // Datos estructurados del Slider de Circuitos (Sección 4)
+            const trackData = [
+                { name: "Circuit de Monaco", file: "monaco.png", length: "3.337 km", turns: "19", record: "1:10.421" },
+                { name: "Circuit de Spa-Francorchamps", file: "spa.png", length: "7.004 km", turns: "20", record: "1:41.252" },
+                { name: "Monza Circuit", file: "monza.png", length: "5.793 km", turns: "11", record: "1:18.887" },
+                { name: "Suzuka International Racing Course", file: "suzuka.png", length: "5.807 km", turns: "18", record: "1:27.064" }
+            ];
+
+            let currentTrackIdx = 0;
+            const trackImg = document.getElementById('trackImg');
+            const trackName = document.getElementById('trackName');
+            const trackLen = document.getElementById('trackLen');
+            const trackTurns = document.getElementById('trackTurns');
+            const trackRecord = document.getElementById('trackRecord');
+
+            function updateTrackDisplay(idx) {
+                if (!trackImg) return;
+                trackImg.style.opacity = '0';
+                setTimeout(() => {
+                    trackImg.src = `assest/${trackData[idx].file}`;
+                    trackName.innerText = trackData[idx].name;
+                    trackLen.innerText = trackData[idx].length;
+                    trackTurns.innerText = trackData[idx].turns;
+                    trackRecord.innerText = trackData[idx].record;
+                    trackImg.style.opacity = '1';
+                }, 200);
+            }
+
+            const btnTrackPrev = document.getElementById('trackPrev');
+            const btnTrackNext = document.getElementById('trackNext');
+
+            if(btnTrackPrev && btnTrackNext) {
+                btnTrackPrev.addEventListener('click', () => {
+                    currentTrackIdx = (currentTrackIdx === 0) ? trackData.length - 1 : currentTrackIdx - 1;
+                    updateTrackDisplay(currentTrackIdx);
+                });
+
+                btnTrackNext.addEventListener('click', () => {
+                    currentTrackIdx = (currentTrackIdx === trackData.length - 1) ? 0 : currentTrackIdx + 1;
+                    updateTrackDisplay(currentTrackIdx);
+                });
+            }
+
+            // Lógica de Módulos Laterales (Sección 3)
+            const tabs = document.querySelectorAll('.module-tab-btn');
+            const panes = document.querySelectorAll('.module-pane');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.getAttribute('data-target');
+
+                    tabs.forEach(t => t.classList.remove('active'));
+                    panes.forEach(p => p.classList.remove('active'));
+
+                    tab.classList.add('active');
+                    document.getElementById(target).classList.add('active');
+                });
+            });
+
+            // Lógica Efecto Giro 3D Suave por Ratón en Credencial VIP
+            const card = document.getElementById('vipCard');
+            if (card) {
+                const wrapper = card.parentElement;
+                wrapper.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left - (rect.width/2);
+                    const y = e.clientY - rect.top - (rect.height/2);
+                    card.style.transform = `rotateY(${x / 15}deg) rotateX(${-y / 15}deg)`;
+                });
+                wrapper.addEventListener('mouseleave', () => {
+                    card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
