@@ -11,19 +11,308 @@
     <link rel="stylesheet" href="./css/style.css">
     
     <style>
-       /* =======================================================
-   ANIMACIÓN DE TELEMETRÍA FLUIDA SUTIL CON SCROLL
-   ======================================================= */
-#telemetry-bg {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 2; /* Por delante del fondo negro, por detrás del contenido interactivo */
-    pointer-events: none; /* Evita que interfiera con los clics y botones de la web */
-    opacity: 0.12; /* Ajusta este valor (0.0 a 1.0) para regular qué tan sutil se ve */
+
+        :root {
+            --pure-black: #05070c;
+            --dark-blue: #0b111e;
+            --electric-blue: #39A0DA;
+            --neon-glow: rgba(57, 160, 218, 0.6);
+            --gold: #F1C40F;
+            --metallic-grey: #8a94a6;
+            --white: #ffffff;
+            --font-title: 'Orbitron', sans-serif;
+            --font-hud: 'Rajdhani', sans-serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        /* Canvas de telemetría de fondo fija */
+        #telemetry-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 5;
+        }
+
+hero-img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  will-change: transform;
 }
+
+ /* --- Header --- */
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            padding: 20px 0;
+            background: linear-gradient(180deg, rgba(5,7,12,0.8) 0%, transparent 100%);
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+        .logo span { color: var(--electric-blue); }
+
+        .nav a {
+            color: var(--metallic-grey);
+            text-decoration: none;
+            font-family: var(--font-hud);
+            font-size: 1.1rem;
+            margin-left: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover { color: var(--white); }
+
+        .btn-header {
+            background: var(--electric-blue);
+            color: var(--pure-black);
+            padding: 10px 20px;
+            text-decoration: none;
+            font-family: var(--font-title);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .btn-header:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--neon-glow);
+        }
+.hero-img.standard-zoom {
+  animation: infiniteHeroZoom 32s infinite alternate ease-in-out;
+}
+
+ /* --- Hero Section --- */
+        .mega-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(5,7,12,0.4) 0%, var(--pure-black) 100%);
+            padding-top: 100px;
+        }
+
+        /* Contenedor simulando el parabrisas mojado de la foto */
+        .hero-bg-wrap {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 2;
+            background: url('assets/vistaa.png') center/cover no-repeat;
+            filter: brightness(0.4) contrast(1.1);
+        }
+
+        .hero-content {
+            max-width: 650px;
+            text-align: left;
+        }
+
+        .hero-title {
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .text-electric {
+            color: var(--electric-blue);
+            text-shadow: 0 0 20px rgba(57, 160, 218, 0.4);
+        }
+
+        .hero-subtitle {
+            color: var(--metallic-grey);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        .btn-speed {
+            display: inline-block;
+            background: var(--electric-blue);
+            color: var(--white);
+            padding: 18px 35px;
+            font-family: var(--font-title);
+            font-size: 1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(57, 160, 218, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-speed:hover {
+            background: var(--white);
+            color: var(--pure-black);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+        }
+
+        /* --- Pasaporte de 3 Pasos --- */
+        .pasaporte-section {
+            padding: 100px 0;
+            background: var(--pure-black);
+            text-align: center;
+        }
+
+        .section-tag {
+            font-family: var(--font-hud);
+            color: var(--electric-blue);
+            letter-spacing: 3px;
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-family: var(--font-title);
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            letter-spacing: 1px;
+        }
+
+        .pasaporte-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .pasaporte-card {
+            background: rgba(11, 17, 30, 0.4);
+            border: 1px solid rgba(57,160,218,0.15);
+            padding: 40px 30px;
+            text-align: left;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pasaporte-card:hover {
+            border-color: var(--electric-blue);
+            box-shadow: inset 0 0 15px rgba(57,160,218,0.1), 0 5px 20px rgba(0,0,0,0.5);
+            transform: translateY(-5px);
+        }
+
+        .card-num {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            color: var(--electric-blue);
+            opacity: 0.8;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .card-icon-top {
+            position: absolute;
+            top: 40px;
+            right: 30px;
+            font-size: 2rem;
+            color: var(--electric-blue);
+            opacity: 0.7;
+        }
+
+        .card-title {
+            font-family: var(--font-title);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .card-desc {
+            color: var(--metallic-grey);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* --- Estructura de Desarrollo / Módulos --- */
+        .modules-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--pure-black) 0%, var(--dark-blue) 100%);
+        }
+
+        .split-modules-container {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .modules-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .module-tab-btn {
+            background: rgba(5, 7, 12, 0.5);
+            border: 1px solid rgba(255,255,255,0.05);
+            color: var(--metallic-grey);
+            padding: 22px 20px;
+            font-family: var(--font-hud);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .module-tab-btn i {
+            font-size: 1.2rem;
+            width: 25px;
+            transition: color 0.3s;
+        }
+
+        .module-tab-btn:hover, .module-tab-btn.active {
+            color: var(--white);
+            background: rgba(11, 17, 30, 0.8);
+            border-left: 4px solid var(--electric-blue);
+        }
+
+        .module-tab-btn.active {
+            box-shadow: inset 5px 0 15px rgba(57,160,218,0.15);
+        }
+
+        .module-tab-btn.active i {
+            color: var(--electric-blue);
+        }
+        
 
 /* Forzar que las secciones tengan fondo transparente o z-index superior para que se vea el fondo */
 section {
@@ -32,19 +321,6 @@ section {
 } /* ==========================================
            ESTILOS EXCLUSIVOS - LANDING MEGA APEX
            ========================================== */
-        /* =======================================================
-           ANIMACIÓN DE TELEMETRÍA FLUIDA SUTIL CON SCROLL
-           ======================================================= */
-        #telemetry-bg {
-            position: fixed !important;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 2; /* Por delante del fondo negro, por detrás del contenido interactivo */
-            pointer-events: none; /* Evita que interfiera con los clics y botones de la web */
-            opacity: 0.12; /* Ajusta este valor (0.0 a 1.0) para regular qué tan sutil se ve */
-        }
 
         /* Forzar que las secciones tengan fondo transparente o z-index superior para que se vea el fondo */
         section {
@@ -52,19 +328,22 @@ section {
             z-index: 5;
         }
 
-        
         body {
-            background-color: var(--pure-black) !important;
+            background-color: var(--pure-black);
+            color: var(--white);
+            font-family: var(--font-body);
+            overflow-x: hidden;
         }
         
-        /* Sección 1: Hero modificado para soportar imagen de fondo */
+        /* Sección 1: Hero modificado para estirar la imagen al 100% del ancho de pantalla */
         .mega-hero {
             position: relative;
             overflow: hidden;
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 120px 0;
+            padding: 140px 0 100px 0; 
+            background-color: #05070c;
         }
         
         .hero-bg-image {
@@ -73,10 +352,11 @@ section {
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            background-position: center;
+            object-fit: cover; /* Cambiado a cover para cubrir todo el ancho de la pantalla sin cortes negros */
+            object-position: center right; 
+            background: #05070c;      
             z-index: 1;
-            filter: brightness(0.4) contrast(1.1); /* Ajusta el brillo para que el texto resalte */
+            filter: brightness(0.4) contrast(1.1);
         }
         
         .hero-overlay-gradient {
@@ -85,7 +365,7 @@ section {
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, rgba(5,7,12,0.2) 0%, var(--pure-black) 100%);
+            background: linear-gradient(90deg, rgba(5,7,12,0.95) 0%, rgba(5,7,12,0.6) 50%, rgba(5,7,12,0.2) 100%); 
             z-index: 2;
             pointer-events: none;
         }
@@ -277,86 +557,104 @@ section {
             to { opacity: 1; transform: translateX(0); }
         }
 
-        /* Responsivo */
+        /* Responsivo General (Desktop queda intacto) */
         @media (max-width: 992px) {
             .pasaporte-grid, .circuits-grid { grid-template-columns: 1fr; }
             .split-modules-container, .bonus-section-wrapper { grid-template-columns: 1fr; }
-            .mega-hero { padding: 160px 0 100px 0; }
+            .mega-hero { 
+                padding: 160px 0 100px 0; 
+            }
         }
         
         /* ==========================================================================
-   AJUSTES EXCLUSIVOS RESPONSIVE MOBILE PARA CURSO MEGA APEX (DESKTOP INTACTO)
-   ========================================================================== */
-@media (max-width: 768px) {
-    /* --- HERO SECTION --- */
-    .mega-hero {
-        justify-content: flex-start !important;
-        align-items: center !important;
-        text-align: left !important;
-        padding-left: 20px !important;
-        padding-right: 20px !important;
-    }
+           AJUSTES EXCLUSIVOS RESPONSIVE MOBILE (DESKTOP INTACTO)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            /* Adaptación del Header en Móviles */
+            .header {
+                padding: 15px 0;
+            }
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            .nav a {
+                margin-left: 0 !important;
+                font-size: 0.95rem;
+            }
 
-    .mega-hero .hero-content-restored, 
-    .mega-hero h1 {
-        max-width: 100% !important;
-        font-size: 2.2rem !important;
-        word-wrap: break-word !important;
-        overflow-wrap: break-word !important;
-    }
+            /* --- HERO SECTION MOBILE --- */
+            .mega-hero {
+                justify-content: center !important;
+                align-items: center !important;
+                text-align: center !important;
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+                min-height: 85vh;
+            }
 
-    /* --- TAMAÑO DE TÍTULOS DE TODAS LAS SECCIONES --- */
-    .section-title-apex,
-    h2.section-title,
-    .interactive-modules-section h2,
-    .vip-credential-section h2,
-    section h2 {
-        font-size: 1.8rem !important;
-        letter-spacing: 1px !important;
-    }
+            .hero-bg-image {
+                object-position: center !important; /* Centra el auto en móviles */
+            }
 
-    /* --- SECCIÓN: ESTRUCTURA DE DESARROLLO TÉCNICO (MÓDULOS ACORDEÓN) --- */
-    .interactive-modules-section .modules-container,
-    .modules-wrapper { 
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 12px !important;
-    }
+            .hero-overlay-gradient {
+                background: linear-gradient(180deg, rgba(5,7,12,0.85) 0%, rgba(5,7,12,0.7) 60%, var(--pure-black) 100%) !important;
+            }
 
-    .module-tabs-sidebar, 
-    .module-display-panes,
-    .module-tab-btn,
-    .module-pane {
-        width: 100% !important;
-        max-width: 100% !important;
-    }
+            .container.hero-content-restored {
+                max-width: 100% !important;
+                align-items: center !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
 
-    .module-display-panes {
-        display: none !important;
-    }
+            .mega-hero h1 {
+                font-size: 2.4rem !important;
+                text-align: center !important;
+                width: 100%;
+            }
 
-    .mobile-accordion-content {
-        display: none;
-        width: 100%;
-        background: rgba(15, 20, 37, 0.95);
-        border: 1px solid var(--electric-blue);
-        border-top: none;
-        padding: 15px;
-        margin-top: -2px;
-        margin-bottom: 5px;
-        border-radius: 0 0 4px 4px;
-        font-size: 0.95rem;
-        line-height: 1.5;
-        color: var(--white);
-    }
+            .hero-subtitle {
+                font-size: 1.1rem !important;
+                text-align: center !important;
+                max-width: 100% !important;
+            }
 
-    .module-tab-btn.accordion-open {
-        border-bottom-left-radius: 0px !important;
-        border-bottom-right-radius: 0px !important;
-        background: rgba(57, 160, 218, 0.2) !important;
-        box-shadow: var(--glow-effect) !important;
-    }
-}
+            .hero-actions-left {
+                justify-content: center !important;
+            }
+
+            /* --- TAMAÑO DE TÍTULOS EN MÓVILES --- */
+            .section-title-apex,
+            h2.section-title,
+            section h2 {
+                font-size: 1.8rem !important;
+                letter-spacing: 1px !important;
+                text-align: center;
+            }
+
+            /* --- SECCIÓN MÓDULOS EN MÓVILES --- */
+            .split-modules-container {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+
+            .module-tab-btn {
+                padding: 15px !important;
+                font-size: 1rem !important;
+            }
+
+            .module-content-display {
+                padding: 20px !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -366,7 +664,6 @@ section {
     <div class="scroll-circuit-track" aria-hidden="true">
         <div class="scroll-circuit-energy"></div>
     </div>
-    <canvas id="telemetry-bg"></canvas>
 
     <header class="header">
         <div class="header-container">
@@ -385,7 +682,7 @@ section {
     </header>
 
     <section class="mega-hero tech-grid-bg">
-        <img src="assets/vista.png" alt="Fondo Hero APEX" class="hero-bg-image"> class="hero-img standard-zoom">
+        <img src="assets/vistaa.png" alt="Fondo Hero APEX" class="hero-bg-image">
         
         <div class="hero-overlay-gradient"></div>
 
@@ -394,9 +691,9 @@ section {
         </div>
         <canvas id="telemetry-bg" style="z-index: 3; position: absolute; top: 0; left: 0; pointer-events: none;"></canvas>
 
-        <div class="container hero-content-restored" style="position: relative; z-index: 4; text-align: left; display: flex; flex-direction: column; align-items: flex-start;">
+        <div class="container hero-content-restored" style="position: relative; z-index: 4; text-align: left; display: flex; flex-direction: column; align-items: flex-start; max-width: 600px; margin-left: auto; margin-right: auto; padding-left: 20px;">
             <h1 class="hero-title">MEGA APEX <br><span class="text-electric">DOMINÁ LA PISTA</span></h1>
-            <p class="hero-subtitle" style="font-size: 1.35rem; max-width: 750px; margin-bottom: 20px; color: var(--metallic-grey); text-align: left;">
+            <p class="hero-subtitle" style="font-size: 1.35rem; max-width: 100%; margin-bottom: 20px; color: var(--metallic-grey); text-align: left;">
                 El único curso de simracing y conducción que transforma tus décimas perdidas en victorias reales. Aprendé la física, el frenado y los secretos de telemetría de los pilotos profesionales.
             </p>
             <div class="hero-actions-left" style="width: 100%; display: flex; justify-content: flex-start;">
@@ -719,91 +1016,6 @@ section {
                 });
             }
         });
-        document.addEventListener('DOMContentLoaded', () => {
-    
-    // ==========================================================================
-    // MOTOR DE FONDO: TELEMETRÍA REACTIVA AL SCROLL (ESTILO HUD / MATRIX)
-    // ==========================================================================
-    const canvas = document.getElementById('telemetry-bg');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        
-        let width = canvas.width = window.innerWidth;
-        let height = canvas.height = window.innerHeight;
-        
-        // Adaptar dinámicamente si se cambia el tamaño de la pantalla
-        window.addEventListener('resize', () => {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        });
-
-        // Banco de datos simulados de telemetría de Fórmula 1 / APEX
-        const telemetryData = [
-            "RPM 11840", "GEAR N->1", "ERS 84%", "DRS_READY", "TEMP_TYRE_LF 92C", 
-            "BRAKE_PRESSURE 48%", "LAT_G 3.4", "SPEED 284", "FUEL_LAP -0.12", 
-            "MGU-K_ACTIVE", "MGU-H_OPTIMAL", "TRK_LIMITS_OK", "V_CRIT_0.81", 
-            "SYS_APEX_ONLINE", "SECTOR_1 28.412", "SECTOR_2 34.119", "GAP_TO_NEXT +0.412"
-        ];
-
-        const fontSize = 10;
-        const columns = Math.floor(width / 75); // Espaciado horizontal de las cascadas de datos
-        const drops = [];
-
-        // Inicializamos las posiciones verticales aleatoriamente
-        for (let i = 0; i < columns; i++) {
-            drops[i] = Math.random() * (height / fontSize);
-        }
-
-        let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        function drawTelemetryStep(scrollDelta) {
-            // Un sutil degradado de desvanecimiento negro crea el efecto rastro/estela
-            ctx.fillStyle = 'rgba(5, 7, 12, 0.08)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // Color cian/azul eléctrico característico de APEX para las fuentes
-            ctx.fillStyle = 'rgba(57, 160, 218, 0.85)';
-            ctx.font = fontSize + 'px "Rajdhani", "Orbitron", monospace';
-
-            // Multiplicador de velocidad reactivo: a mayor velocidad de scroll, más rápido caen los datos
-            const speedMultiplier = scrollDelta !== 0 ? Math.abs(scrollDelta) * 0.15 : 0.05;
-
-            for (let i = 0; i < drops.length; i++) {
-                const text = telemetryData[Math.floor(Math.random() * telemetryData.length)];
-                const x = i * 75;
-                const y = drops[i] * fontSize;
-
-                ctx.fillText(text, x, y);
-
-                // El flujo avanza con el scroll y de manera automática muy pasiva
-                drops[i] += speedMultiplier;
-
-                // Si los datos se salen de los límites inferiores, vuelven arriba de forma aleatoria
-                if (y > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-            }
-        }
-
-        // Loop continuo para mantener vivo el fondo
-        function renderLoop() {
-            drawTelemetryStep(0);
-            requestAnimationFrame(renderLoop);
-        }
-        renderLoop();
-
-        // Escucha del scroll para inyectar velocidad e interactividad en tiempo real
-        window.addEventListener('scroll', () => {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            let delta = scrollTop - lastScrollTop;
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-
-            drawTelemetryStep(delta);
-        });
-    }
-
-    // ... (Debajo continuaría tu lógica existente de Módulos Laterales o Credencial VIP) ...
-});
     </script>
 </body>
 </html>

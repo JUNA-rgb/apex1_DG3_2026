@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEGA APEX | Programa de Alto Rendimiento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --pure-black: #05070c;
+            --dark-blue: #0b111e;
+            --electric-blue: #39A0DA;
+            --neon-glow: rgba(57, 160, 218, 0.6);
+            --gold: #F1C40F;
+            --metallic-grey: #8a94a6;
+            --white: #ffffff;
+            --font-title: 'Orbitron', sans-serif;
+            --font-hud: 'Rajdhani', sans-serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--pure-black);
+            color: var(--white);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+        }
+
+        /* Canvas de telemetría de fondo fija */
+        #telemetry-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* --- Header --- */
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            padding: 20px 0;
+            background: linear-gradient(180deg, rgba(5,7,12,0.8) 0%, transparent 100%);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+        .logo span { color: var(--electric-blue); }
+
+        .nav a {
+            color: var(--metallic-grey);
+            text-decoration: none;
+            font-family: var(--font-hud);
+            font-size: 1.1rem;
+            margin-left: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover { color: var(--white); }
+
+        .btn-header {
+            background: var(--electric-blue);
+            color: var(--pure-black);
+            padding: 10px 20px;
+            text-decoration: none;
+            font-family: var(--font-title);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .btn-header:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--neon-glow);
+        }
+
+        /* --- Hero Section --- */
+        .mega-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(5,7,12,0.4) 0%, var(--pure-black) 100%);
+            padding-top: 100px;
+        }
+
+        /* Contenedor simulando el parabrisas mojado de la foto */
+        .hero-bg-wrap {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 2;
+            background: url('assets/vistaa.png') center/cover no-repeat;
+            filter: brightness(0.4) contrast(1.1);
+        }
+
+        .hero-content {
+            max-width: 650px;
+            text-align: left;
+        }
+
+        .hero-title {
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .text-electric {
+            color: var(--electric-blue);
+            text-shadow: 0 0 20px rgba(57, 160, 218, 0.4);
+        }
+
+        .hero-subtitle {
+            color: var(--metallic-grey);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        .btn-speed {
+            display: inline-block;
+            background: var(--electric-blue);
+            color: var(--white);
+            padding: 18px 35px;
+            font-family: var(--font-title);
+            font-size: 1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(57, 160, 218, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-speed:hover {
+            background: var(--white);
+            color: var(--pure-black);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+        }
+
+        /* --- Pasaporte de 3 Pasos --- */
+        .pasaporte-section {
+            padding: 100px 0;
+            background: var(--pure-black);
+            text-align: center;
+        }
+
+        .section-tag {
+            font-family: var(--font-hud);
+            color: var(--electric-blue);
+            letter-spacing: 3px;
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-family: var(--font-title);
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            letter-spacing: 1px;
+        }
+
+        .pasaporte-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .pasaporte-card {
+            background: rgba(11, 17, 30, 0.4);
+            border: 1px solid rgba(57,160,218,0.15);
+            padding: 40px 30px;
+            text-align: left;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pasaporte-card:hover {
+            border-color: var(--electric-blue);
+            box-shadow: inset 0 0 15px rgba(57,160,218,0.1), 0 5px 20px rgba(0,0,0,0.5);
+            transform: translateY(-5px);
+        }
+
+        .card-num {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            color: var(--electric-blue);
+            opacity: 0.8;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .card-icon-top {
+            position: absolute;
+            top: 40px;
+            right: 30px;
+            font-size: 2rem;
+            color: var(--electric-blue);
+            opacity: 0.7;
+        }
+
+        .card-title {
+            font-family: var(--font-title);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .card-desc {
+            color: var(--metallic-grey);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* --- Estructura de Desarrollo / Módulos --- */
+        .modules-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--pure-black) 0%, var(--dark-blue) 100%);
+        }
+
+        .split-modules-container {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .modules-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .module-tab-btn {
+            background: rgba(5, 7, 12, 0.5);
+            border: 1px solid rgba(255,255,255,0.05);
+            color: var(--metallic-grey);
+            padding: 22px 20px;
+            font-family: var(--font-hud);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .module-tab-btn i {
+            font-size: 1.2rem;
+            width: 25px;
+            transition: color 0.3s;
+        }
+
+        .module-tab-btn:hover, .module-tab-btn.active {
+            color: var(--white);
+            background: rgba(11, 17, 30, 0.8);
+            border-left: 4px solid var(--electric-blue);
+        }
+
+        .module-tab-btn.active {
+            box-shadow: inset 5px 0 15px rgba(57,160,218,0.15);
+        }
+
+        .module-tab-btn.active i {
+            color: var(--electric-blue);
+        }
+
+        /* Tarjeta de Visualización con animación de brillo */
+        .module-content-display {
+            background: rgba(5, 7, 12, 0.6);
+            border: 1px solid rgba(57,160,218,0.15);
+            padding: 50px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 400px;
+            overflow: hidden;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        /* Clase dinámica de JS para generar el "Blink/Flash" neon */
+        .module-content-display.flash-active {
+            border-color: var(--electric-blue);
+            box-shadow: 0 0 35px var(--neon-glow), inset 0 0 20px rgba(57,160,218,0.2);
+        }
+
+        /* Background estético para simular el auto de la foto */
+        .module-display-bg {
+            position: absolute;
+            right: 0; bottom: 0;
+            width: 50%; height: 100%;
+            background: url('assets/car-modules.png') right bottom/contain no-repeat;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .module-pane {
+            display: none;
+            position: relative;
+            z-index: 2;
+            animation: paneReveal 0.5s ease forwards;
+        }
+
+        .module-pane.active {
+            display: block;
+        }
+
+        @keyframes paneReveal {
+            from { opacity: 0; transform: translateX(15px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .pane-tag {
+            font-family: var(--font-hud);
+            color: var(--electric-blue);
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .pane-title {
+            font-family: var(--font-title);
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .pane-subtitle {
+            color: var(--electric-blue);
+            font-family: var(--font-hud);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .pane-desc {
+            color: var(--metallic-grey);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        /* Responsivo */
+        @media (max-width: 992px) {
+            .pasaporte-grid { grid-template-columns: 1fr; }
+            .split-modules-container { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="telemetry-bg"></canvas>
+
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">MEGA<span>APEX</span></div>
+            <nav class="nav">
+                <a href="#pasaporte">Funcionamiento</a>
+                <a href="#modulos">Módulos</a>
+            </nav>
+            <a href="#modulos" class="btn-header">Quiero mi auto ></a>
+        </div>
+    </header>
+
+    <section class="mega-hero">
+        <div class="hero-bg-wrap"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">MEGA APEX <br><span class="text-electric">DOMINÁ LA PISTA</span></h1>
+                <p class="hero-subtitle">
+                    El único curso de simracing y conducción que transforma tus décimas perdidas en victorias reales. Aprendé la física, el frenado y los secretos de telemetría de los pilotos profesionales.
+                </p>
+                <a href="#modulos" class="btn-speed">¡Quiero mi auto! <i class="fas fa-chevron-right" style="margin-left: 10px;"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="pasaporte" class="pasaporte-section">
+        <div class="container">
+            <span class="section-tag">PASAPORTE DE 3 PASOS</span>
+            <h2 class="section-title">TU VIAJE HACIA LA ELITE</h2>
+            
+            <div class="pasaporte-grid">
+                <div class="pasaporte-card">
+                    <span class="card-num">01</span>
+                    <div class="card-icon-top"><i class="target-icon fas fa-crosshairs"></i></div>
+                    <h3 class="card-title">DIAGNÓSTICO</h3>
+                    <p class="card-desc">Analizamos tu conducción actual con datos profesionales para detectar tus puntos de fuga.</p>
+                </div>
+                <div class="pasaporte-card">
+                    <span class="card-num">02</span>
+                    <div class="card-icon-top"><i class="fas fa-chart-line"></i></div>
+                    <h3 class="card-title">ENTRENAMIENTO</h3>
+                    <p class="card-desc">Accedé a todos los módulos y entrenamientos guiados diseñados para tu mejora constante.</p>
+                </div>
+                <div class="pasaporte-card">
+                    <span class="card-num">03</span>
+                    <div class="card-icon-top"><i class="fas fa-trophy"></i></div>
+                    <h3 class="card-title">MASTERY</h3>
+                    <p class="card-desc">Aplicá, competí y convertite en el piloto completo que siempre quisiste ser.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="modulos" class="modules-section">
+        <div class="container">
+            <span class="section-tag">MÓDULOS INTERACTIVOS</span>
+            <h2 class="section-title">TU ENTRENAMIENTO, TU CAMINO</h2>
+
+            <div class="split-modules-container">
+                <div class="modules-sidebar">
+                    <button class="module-tab-btn active" data-target="mod1">
+                        <i class="fas fa-steering-wheel"></i> 01 FUNDAMENTOS
+                    </button>
+                    <button class="module-tab-btn" data-target="mod2">
+                        <i class="fas fa-disc-brake"></i> 02 FRENADO
+                    </button>
+                    <button class="module-tab-btn" data-target="mod3">
+                        <i class="fas fa-route"></i> 03 TRAZADAS
+                    </button>
+                    <button class="module-tab-btn" data-target="mod4">
+                        <i class="fas fa-telemetry"></i> 04 TELEMETRÍA
+                    </button>
+                    <button class="module-tab-btn" data-target="mod5">
+                        <i class="fas fa-cogs"></i> 05 SETUPS
+                    </button>
+                </div>
+
+                <div class="module-content-display" id="displayPanel">
+                    <div class="module-display-bg"></div>
+                    
+                    <div id="mod1" class="module-pane active">
+                        <span class="pane-tag">MÓDULO 01</span>
+                        <h3 class="pane-title">FUNDAMENTOS</h3>
+                        <h4 class="pane-subtitle">LA BASE DE TODO</h4>
+                        <p class="pane-desc">Aprendé los principios esenciales que separan a los pilotos consistentes de los rápidos. Perfeccioná la posición de manejo, la ergonomía, el control de transferencia de pesos y la sensibilidad inicial del monoplaza.</p>
+                    </div>
+                    
+                    <div id="mod2" class="module-pane">
+                        <span class="pane-tag">MÓDULO 02</span>
+                        <h3 class="pane-title">FRENADO TÉCNICO</h3>
+                        <h4 class="pane-subtitle">LA CLAVE DEL TIEMPO</h4>
+                        <p class="pane-desc">Dominación del umbral de presión inicial de frenado. Aprendé la modulación milimétrica para mantener el frente del auto apuntado hacia el ápice mediante técnicas avanzadas de Trail Braking sin bloquear neumáticos.</p>
+                    </div>
+
+                    <div id="mod3" class="module-pane">
+                        <span class="pane-tag">MÓDULO 03</span>
+                        <h3 class="pane-title">TRAZADAS AVANZADAS</h3>
+                        <h4 class="pane-subtitle">EL ARTE DE LA LÍNEA</h4>
+                        <p class="pane-desc">Maximización del radio de giro en curvas complejas. Vértices tempranos, tardíos y el uso eficiente de los pianos extremos para enderezar el auto antes de tiempo y ganar velocidad terminal clave en las rectas.</p>
+                    </div>
+
+                    <div id="mod4" class="module-pane">
+                        <span class="pane-tag">MÓDULO 04</span>
+                        <h3 class="pane-title">TELEMETRÍA AVANZADA</h3>
+                        <h4 class="pane-subtitle">DATOS QUE HABLAN</h4>
+                        <p class="pane-desc">Aprendé a leer softwares profesionales como MoTeC i2 o Atlas. Comparación quirúrgica de líneas de velocidad, telemetría de pedal de freno, mapas de aceleración y canales matemáticos personalizados.</p>
+                    </div>
+
+                    <div id="mod5" class="module-pane">
+                        <span class="pane-tag">MÓDULO 05</span>
+                        <h3 class="pane-title">SETUPS DE COMPETICIÓN</h3>
+                        <h4 class="pane-subtitle">EL EQUILIBRIO PERFECTO</h4>
+                        <p class="pane-desc">Configuraciones físicas y mecánicas avanzadas. Modificación de cargas aerodinámicas, presiones, suspensiones y mapas de motor adaptativos optimizados específicamente para romper los récords de la pista.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // ==========================================================================
+            // EFECTO SÁBANA: CANVASES DE TELEMETRÍA AL HACER SCROLL (ESTILO SEGUNDA FOTO)
+            // ==========================================================================
+            const canvas = document.getElementById('telemetry-bg');
+            const ctx = canvas.getContext('2d');
+            
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+            
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            // Combinación binaria y de canales reales de telemetría HUD
+            const telemetryData = [
+                "01", "00", "110", "RPM 11840", "GEAR 4", "DRS_OK", "SYS_APEX_ONLINE", 
+                "TEMP 92C", "G_LAT 3.4", "1011", "01001", "BRAKE 74%", "1:14.321"
+            ];
+
+            const fontSize = 11;
+            const columns = Math.floor(width / 75); 
+            const drops = [];
+
+            for (let i = 0; i < columns; i++) {
+                drops[i] = Math.random() * (height / fontSize);
+            }
+
+            let lastScrollTop = 0;
+
+            function drawTelemetry(scrollDelta) {
+                ctx.fillStyle = 'rgba(5, 7, 12, 0.08)'; 
+                ctx.fillRect(0, 0, width, height);
+
+                // Azul cian translúcido e identico al HUD simulado
+                ctx.fillStyle = 'rgba(57, 160, 218, 0.7)';
+                ctx.font = fontSize + 'px "Rajdhani", monospace';
+
+                // Si hay scroll, la velocidad de los datos incrementa dinámicamente
+                const speedMultiplier = scrollDelta !== 0 ? Math.abs(scrollDelta) * 0.25 : 0.04;
+
+                for (let i = 0; i < drops.length; i++) {
+                    const text = telemetryData[Math.floor(Math.random() * telemetryData.length)];
+                    const x = i * 75;
+                    const y = drops[i] * fontSize;
+
+                    ctx.fillText(text, x, y);
+                    drops[i] += speedMultiplier;
+
+                    if (y > height && Math.random() > 0.98) {
+                        drops[i] = 0;
+                    }
+                }
+            }
+
+            function loop() {
+                drawTelemetry(0);
+                requestAnimationFrame(loop);
+            }
+            loop();
+
+            window.addEventListener('scroll', () => {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                let delta = scrollTop - lastScrollTop;
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+                drawTelemetry(delta);
+            }, { passive: true });
+
+            // ==========================================================================
+            // LÓGICA DE INTERACCIÓN DE MÓDULOS + EFECTO DE GLOW / DESTELLO NEÓN
+            // ==========================================================================
+            const tabs = document.querySelectorAll('.module-tab-btn');
+            const panes = document.querySelectorAll('.module-pane');
+            const displayPanel = document.getElementById('displayPanel');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.getAttribute('data-target');
+
+                    // 1. Quitar clases activas previas
+                    tabs.forEach(t => t.classList.remove('active'));
+                    panes.forEach(p => p.classList.remove('active'));
+
+                    // 2. Activar la pestaña clickeada
+                    tab.classList.add('active');
+                    document.getElementById(target).classList.add('active');
+
+                    // 3. Lanzar la animación de brillo intenso (Flash Glow) en la tarjeta
+                    displayPanel.classList.add('flash-active');
+                    
+                    // Remueve el destello después de 400ms para mantener el loop limpio
+                    setTimeout(() => {
+                        displayPanel.classList.remove('flash-active');
+                    }, 400);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
