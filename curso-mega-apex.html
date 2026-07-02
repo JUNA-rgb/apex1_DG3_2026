@@ -748,6 +748,63 @@ section {
             .module-content-display {
                 padding: 20px !important;
             }
+
+            /* --- AJUSTES EXCLUSIVOS CRONOGRAMA MOBILE --- */
+            .timeline-hud-vertical {
+                padding: 20px 0 !important;
+            }
+            
+            /* Línea de guía movida al costado izquierdo */
+            .timeline-hud-vertical::before {
+                left: 20px !important;
+                transform: none !important;
+            }
+
+            /* Elementos de nodo al 100% de pantalla con texto alineado a la izquierda */
+            .timeline-node-item {
+                width: 100% !important;
+                left: 0 !important;
+                padding-left: 45px !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+                margin-bottom: 35px !important; /* Más compacto */
+            }
+
+            .timeline-node-item:nth-child(odd),
+            .timeline-node-item:nth-child(even) {
+                left: 0 !important;
+                padding-left: 45px !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+
+            /* Reposicionamiento y centrado de los puntos HUD sobre la línea izquierda */
+            .timeline-node-item:nth-child(odd) .timeline-dot-hud,
+            .timeline-node-item:nth-child(even) .timeline-dot-hud {
+                left: 10px !important;
+                right: auto !important;
+                top: 4px !important;
+            }
+
+            /* Tarjetas de texto más compactas */
+            .timeline-node-card {
+                padding: 15px 18px !important;
+            }
+
+            .timeline-node-card h3 {
+                font-size: 1.15rem !important;
+                margin-bottom: 6px !important;
+            }
+
+            .timeline-node-card p {
+                font-size: 0.88rem !important;
+                line-height: 1.4 !important;
+            }
+
+            .timeline-node-date {
+                font-size: 0.85rem !important;
+                margin-bottom: 4px !important;
+            }
         }
 
         /* --- AJUSTE DINÁMICO DE ANIMACIONES DE FONDO (CANVAS) --- */
