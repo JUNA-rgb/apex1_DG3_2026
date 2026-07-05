@@ -1,6 +1,6 @@
 /* VARIABLES COMPORTAMIENTO ESTRICTO */
 :root {
-  --electric-blue: #39A0DA;
+  --electric-blue: #38bdf8;
   --pure-black: #000000;
   --dark-blue: #0F1425;
   --white: #FFFFFF;
@@ -10,7 +10,7 @@
   --font-sub: 'Rajdhani', sans-serif;
   --font-body: 'Montserrat', sans-serif;
 
-  --glow-effect: 0 0 15px rgba(57, 160, 218, 0.6);
+  --glow-effect: 0 0 15px #38bdf877;
   --transition-smooth: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -59,7 +59,7 @@ body {
     position: absolute;
     width: 300px;
     height: 300px;
-    border: 1px solid rgba(13, 133, 202, 0.822);
+    border: 1px solid #0d85cad2#38bdf8;
     border-radius: 40px 0 80px 0;
     transform: rotate(15deg);
     pointer-events: none;
@@ -82,7 +82,7 @@ body {
     position: relative; cursor: pointer; border-radius: 2px;
 }
 .btn-primary { background: var(--electric-blue); color: var(--pure-black); border: none; box-shadow: var(--glow-effect); }
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 25px rgba(57, 160, 218, 0.9); }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 25px #38bdf8; }
 .btn-outline { background: transparent; color: var(--white); border: 1px solid var(--metallic-grey); }
 .btn-outline:hover { border-color: var(--electric-blue); color: var(--electric-blue); box-shadow: var(--glow-effect); }
 .btn-full { width: 100%; }
@@ -484,7 +484,7 @@ body {
 
 .car-thumb:hover {
     background: rgba(57, 160, 218, 0.1);
-    border-color: rgba(57, 160, 218, 0.4);
+    border-color: #38bdf8;
 }
 
 .car-thumb.active {
@@ -676,7 +676,7 @@ body {
 .fill {
     height: 100%;
     background: var(--electric-blue);
-    box-shadow: 0 0 10px rgba(57, 160, 218, 0.8);
+    box-shadow: 0 0 10px #38bdf8;
     transition: width 0.7s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -770,10 +770,10 @@ body {
     bottom: -30px;
     width: 95%;
     height: 180px;
-    border: 4px solid rgba(57, 160, 218, 0.7);
+    border: 4px solid #38bdf8;
     border-radius: 50%;
     transform: rotateX(80deg) translateZ(-20px);
-    box-shadow: 0 0 40px rgba(57, 160, 218, 0.9), inset 0 0 30px rgba(57, 160, 218, 0.6);
+    box-shadow: 0 0 40px #38bdf8, inset 0 0 30px #38bdf8;
     z-index: 2;
     pointer-events: none;
 }
@@ -995,6 +995,16 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido verticalmente en la pantalla */
+    align-items: center;     /* Centra horizontalmente si es necesario */
+    position: relative;
+    overflow: hidden;        /* Evita scrolls no deseados si hay elementos flotantes */
+    padding: 2rem;           /* Un colchón mínimo para que nunca toque los bordes */
+
 }
 
 .section-title-apex {
@@ -1282,36 +1292,7 @@ body {
     background-attachment: fixed;
 }
 
-/* Capa de Grilla y Puntos Neón con Opacidad Fija */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Grilla de puntos sutiles */
-    background-image: radial-gradient(rgba(57, 160, 218, 0.15) 1px, transparent 1px);
-    background-size: 30px 30px;
-    pointer-events: none;
-    z-index: 0;
-}
 
-/* Capa de Líneas Punteadas que se moverán con el Scroll */
-body::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Líneas punteadas verticales tecnológicas */
-    background-image: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 1) 50%), 
-                      linear-gradient(to right, rgba(57, 160, 218, 0.08) 1px, transparent 1px);
-    background-size: 100% 4px, 120px 100%; /* Crea el efecto punteado */
-    pointer-events: none;
-    z-index: 0;
-}
 /* ========================================================
    REPARACIONES DE ALINEACIÓN, VIDEO Y FONDO INTERACTIVO SCROLL
    ======================================================== */
@@ -1703,4 +1684,627 @@ body {
         background: rgba(57, 160, 218, 0.2) !important;
         box-shadow: var(--glow-effect) !important;
     }
+}
+:root {
+    --bg-deep-black: #050508;
+    --graphite-gray: #12141c;
+    --apex-red: #ece1e0;
+    --telemetry-cyan: #00f0ff;
+    --glass-background: rgba(18, 20, 28, 0.55);
+    --glass-border: rgba(255, 255, 255, 0.06);
+    --font-hud: 'Orbitron', 'Roboto Mono', sans-serif;
+    --transition-premium: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* NAVBAR ADAPTATIVA INTELIGENTE */
+.navbar {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    height: 70px;
+    background: rgba(5, 5, 8, 0.85);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border);
+    z-index: 1000;
+    transition: transform 0.4s var(--transition-premium);
+}
+.navbar.nav-hidden {
+    transform: translateY(-100%);
+}
+.nav-container {
+    max-width: 1400px; margin: 0 auto; height: 100%;
+    display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;
+}
+.nav-logo {
+    font-family: var(--font-hud); font-weight: 900; font-size: 1.5rem; letter-spacing: 2px;
+    color: #fff; cursor: pointer; user-select: none;
+}
+.nav-logo .logo-accent { color: var(--apex-red); }
+.nav-logo .logo-sub { font-size: 0.8rem; color: #666; margin-left: 4px; }
+.nav-links { display: flex; list-style: none; gap: 2rem; }
+.nav-links a { color: #aaa; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; font-family: var(--font-hud); transition: color 0.3s; }
+.nav-links a:hover, .nav-links a.active-link { color: var(--apex-red); }
+
+/* SECCIÓN QUÉ ES APEX CON COMPONENTES DE VIDEO VIDEO */
+.section-expanded {
+    background: var(--bg-deep-black); padding: 120px 2rem; position: relative;
+}
+.section-grid {
+    max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+}
+.hud-tag { font-family: var(--font-hud); color: var(--apex-red); font-size: 0.8rem; letter-spacing: 3px; display: block; margin-bottom: 1rem; }
+.video-block-container {
+    position: relative; border-radius: 4px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); aspect-ratio: 16/9; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.video-hud-overlay {
+    position: absolute; inset: 0; background: linear-gradient(rgba(0,0,0,0.2), transparent), linear-gradient(90deg, rgba(225,6,0,0.05), transparent); pointer-events: none; z-index: 2;
+}
+.apex-cinematic-video { width: 100%; height: 100%; object-fit: cover; }
+
+/* ==========================================================================
+   SHOWROOM EXPERIENCIA APEX - INTERFAZ HUD AVANZADA
+   ========================================================================== */
+:root {
+    --bg-deep-black: #050508;
+    --graphite-gray: #12141c;
+    --apex-red: #00f2fe;
+    --telemetry-cyan: #00f0ff;
+    --glass-background: rgba(18, 20, 28, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --font-hud: 'Orbitron', 'Rajdhani', sans-serif;
+    --transition-premium: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* CONTENEDOR PRINCIPAL DEL SHOWROOM (100vh) */
+.showroom-viewport {
+    /* Eliminamos el fondo anterior y ponemos este gradiente radial */
+    background: radial-gradient(circle at 50% 50%, #1a1f2e 0%, #050508 100%) !important;
+    position: relative;
+    padding: 60px 40px;
+    width: 100%;
+}
+
+/* Si tenías alguna clase de "grid" o "rayas" que se aplicaba a esta sección, elimínala o sobreescribela así: */
+.hud-grid-background {
+    display: none !important; /* Ocultamos la capa que generaba las rayas */
+}
+
+/* CUADRÍCULA TECNOLÓGICA DE FONDO */
+.hud-grid-background {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), 
+                      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: center center;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* SELECTOR SUPERIOR DE VEHÍCULOS */
+.showroom-header {
+    width: 100%;
+    z-index: 10;
+    padding-top: 120px;
+    display: flex;
+    justify-content: center;
+}
+.selector-track {
+    display: flex;
+    gap: 0.75rem;
+    background: rgba(0,0,0,0.6);
+    padding: 0.6rem;
+    border-radius: 4px;
+    border: 1px solid var(--glass-border);
+    overflow-x: auto;
+    max-width: 90%;
+    scrollbar-width: none;
+}
+.selector-track::-webkit-scrollbar { display: none; }
+
+.car-tab {
+    padding: 0.6rem 1.4rem;
+    font-family: var(--font-hud);
+    font-size: 0.75rem;
+    color: #777;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.3s;
+    border-left: 2px solid transparent;
+    white-space: nowrap;
+}
+.car-tab:hover { color: #fff; background: rgba(255,255,255,0.03); }
+.car-tab.active {
+    color: #fff;
+    background: rgba(221, 6, 0, 0.15);
+    border-left-color: var(--apex-red);
+    text-shadow: 0 0 10px #00f2fe80;
+}
+
+/* DISTRIBUCIÓN DE PANELES HUD */
+.showroom-layout {
+    position: relative;
+    width: 100%;
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: 340px 1fr 340px;
+    padding: 2rem;
+    box-sizing: border-box;
+    z-index: 5;
+    gap: 2rem;
+    align-items: stretch;
+}
+
+/* ESTILO PANELES TRANSPARENTES (GLASSMORPHISM) */
+.panel {
+    background: var(--glass-background);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255,255,255,0.05);
+    color: #fff;
+    max-height: 75vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+.panel::-webkit-scrollbar { display: none; }
+
+.panel h1 { font-family: var(--font-hud); font-size: 1.6rem; font-weight: 900; margin: 0.2rem 0; color: #fff; }
+.category-badge { font-family: var(--font-hud); font-size: 0.7rem; color: var(--apex-red); letter-spacing: 2px; }
+.manufacturer-sub { font-size: 0.85rem; color: #888; margin-bottom: 0.5rem; }
+
+/* REJILLA DE ESPECIFICACIONES TILES */
+.spec-tile { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.spec-tile .label { font-size: 0.7rem; color: #666; font-family: var(--font-hud); letter-spacing: 1px; }
+.spec-tile .value { font-size: 0.85rem; font-weight: bold; font-family: var(--font-hud); color: #ddd; }
+
+.difficulty-box { background: rgba(0,0,0,0.3); padding: 0.85rem; border-radius: 4px; margin-top: 0.5rem; border: 1px solid rgba(255,255,255,0.02); }
+.difficulty-box .label { font-size: 0.6rem; color: #555; font-family: var(--font-hud); display: block; margin-bottom: 0.3rem; }
+.diff-tag { font-family: var(--font-hud); font-size: 0.8rem; font-weight: 900; color: var(--apex-red); text-shadow: 0 0 8px rgba(225,6,0,0.4); }
+
+/* BARRAS DE RENDIMIENTO INDEX */
+.panel h3 { font-family: var(--font-hud); font-size: 0.75rem; color: #666; letter-spacing: 2px; margin-bottom: 0.5rem; }
+.bar-metric { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 0.8rem; }
+.metric-info { display: flex; justify-content: space-between; font-size: 0.65rem; font-family: var(--font-hud); }
+.metric-info span { color: #888; }
+.bar-container { width: 100%; height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--apex-red); width: 0%; transition: width 0.6s var(--transition-premium); box-shadow: 0 0 8px var(--apex-red); }
+
+/* DISPLAY TELEMÉTRICO */
+.telemetry-hud-box { background: rgba(0,0,0,0.4); border: 1px solid rgba(0, 240, 255, 0.12); border-radius: 6px; padding: 1rem; }
+.telemetry-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; border-bottom: 1px dashed rgba(0, 240, 255, 0.15); padding-bottom: 0.4rem; }
+.live-indicator { font-family: var(--font-hud); font-size: 0.6rem; color: var(--telemetry-cyan); animation: pulse 1.6s infinite; }
+.gear-indicator { font-family: var(--font-hud); font-size: 2rem; font-weight: 900; color: #fff; }
+.telemetry-row { display: flex; gap: 0.75rem; margin-top: 0.5rem; }
+.tel-item { flex: 1; background: rgba(255,255,255,0.01); padding: 0.4rem; border-radius: 3px; }
+.tel-item small { display: block; font-size: 0.55rem; color: #444; font-family: var(--font-hud); }
+.tel-item span { font-family: var(--font-hud); font-size: 0.95rem; font-weight: bold; color: #fff; }
+.text-glow-blue { color: var(--telemetry-cyan) !important; text-shadow: 0 0 8px rgba(0, 240, 255, 0.5); }
+
+.track-pill { display: inline-block; padding: 0.3rem 0.6rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 3px; font-size: 0.65rem; font-family: var(--font-hud); margin: 2px; color: #999; }
+
+/* ÁREA CENTRAL CANVAS 3D TRIDIMENSIONAL (¡CRÍTICO PARA THREE.JS!) */
+.canvas-3d-master { 
+    position: relative; 
+    width: 100%; 
+    min-height: 500px; /* Garantiza espacio físico en pantalla */
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+#threejs-showroom-container { 
+    width: 100%; 
+    height: 100%; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: grab; 
+    z-index: 2; 
+}
+#threejs-showroom-container:active { cursor: grabbing; }
+.canvas-instructions-hud { position: absolute; bottom: 20px; font-family: var(--font-hud); font-size: 0.65rem; color: #555; text-align: center; width: 100%; pointer-events: none; letter-spacing: 2px; z-index: 3; }
+
+@keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+
+/* RESPONSIVE PARA DISPOSITIVOS MÓVILES Y TABLETS */
+@media (max-width: 1200px) {
+    .showroom-layout { grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr; height: auto; padding-top: 140px; gap: 1.5rem; }
+    .canvas-3d-master { grid-column: 1 / span 2; height: 45vh; min-height: 350px; order: -1; }
+    .showroom-viewport { height: auto; overflow-y: auto; }
+    .panel { max-height: none; height: auto; }
+}
+@media (max-width: 768px) {
+    .showroom-layout { grid-template-columns: 1fr; gap: 1rem; padding: 1rem; }
+    .canvas-3d-master { grid-column: 1; height: 35vh; min-height: 300px; }
+}
+
+/* CUADRÍCULA TECNOLÓGICA DE FONDO DE PANTALLA */
+.hud-grid-background {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 40px 40px; background-position: center center; pointer-events: none; z-index: 1;
+}
+
+/* INTERFAZ OVERLAY GRID GENERAL */
+.showroom-header { width: 100%; z-index: 10; padding-top: 85px; display: flex; justify-content: center; }
+.selector-track { display: flex; gap: 0.75rem; background: rgba(0,0,0,0.4); padding: 0.5rem; border-radius: 4px; border: 1px solid var(--glass-border); overflow-x: auto; max-width: 90%; }
+.car-tab { padding: 0.6rem 1.2rem; font-family: var(--font-hud); font-size: 0.75rem; color: #888; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: all 0.3s; border-left: 2px solid transparent; }
+.car-tab:hover { color: #fff; background: rgba(255,255,255,0.03); }
+.car-tab.active { color: #fff; background: #0991e0; border-left-color: var(--apex-red); }
+
+.showroom-layout {
+    position: relative; width: 100%; flex-grow: 1; display: grid; grid-template-columns: 320px 1fr 320px; padding: 1rem 2rem; box-sizing: border-box; z-index: 5; gap: 1.5rem;
+}
+
+/* PREMIUM GLASSMORPHISM PACK */
+.panel {
+    background: var(--glass-background); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border); border-radius: 6px; padding: 1.5rem; display: flex; flex-direction: column;
+    gap: 1.5rem; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+    color: #0a0a0a; height: calc(100% - 2rem); overflow-y: auto;
+}
+
+/* ELEMENTOS DE TELEMETRÍA E INDICADORES */
+.panel h3 { font-family: var(--font-hud); font-size: 0.8rem; color: #666; letter-spacing: 1px; margin: 0; }
+.spec-tile { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.spec-tile .label { font-size: 0.7rem; color: #888; font-family: var(--font-hud); }
+.spec-tile .value { font-size: 0.85rem; font-weight: bold; font-family: var(--font-hud); }
+
+.bar-metric { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.75rem; }
+.metric-info { display: flex; justify-content: space-between; font-size: 0.7rem; font-family: var(--font-hud); }
+.metric-info span { color: #aaa; }
+.bar-container { width: 100%; height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--apex-red); width: 0%; transition: width 0.8s var(--transition-premium); }
+
+.telemetry-hud-box { background: rgba(0,0,0,0.3); border: 1px solid rgba(0, 240, 255, 0.15); border-radius: 4px; padding: 1rem; }
+.telemetry-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+.live-indicator { font-family: var(--font-hud); font-size: 0.65rem; color: var(--telemetry-cyan); animation: pulse 1.5s infinite; }
+.gear-indicator { font-family: var(--font-hud); font-size: 2rem; font-weight: 900; color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+.telemetry-row { display: flex; gap: 1rem; margin-top: 0.5rem; }
+.tel-item { flex: 1; background: rgba(255,255,255,0.02); padding: 0.4rem; border-radius: 2px; }
+.tel-item small { display: block; font-size: 0.55rem; color: #555; font-family: var(--font-hud); }
+.tel-item span { font-family: var(--font-hud); font-size: 0.9rem; font-weight: bold; }
+
+.track-pill { display: inline-block; padding: 0.3rem 0.6rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 3px; font-size: 0.65rem; font-family: var(--font-hud); margin: 2px; color: #ccc; }
+
+/* ENTORNO CENTRAL DE RENDER THREE.JS */
+.canvas-3d-master { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+#threejs-showroom-container { width: 100%; height: 100%; cursor: grab; z-index: 2; }
+#threejs-showroom-container:active { cursor: grabbing; }
+.canvas-instructions-hud { position: absolute; bottom: 1rem; font-family: var(--font-hud); font-size: 0.65rem; color: #444; text-align: center; width: 100%; pointer-events: none; letter-spacing: 1px; }
+
+/* BOTÓN CTA RED GLOW EXCLUSIVO */
+.showroom-footer { width: 100%; z-index: 10; padding: 1.5rem; display: flex; justify-content: center; background: linear-gradient(transparent, rgba(5,5,8,0.9)); }
+.btn-cta-apex {
+    position: relative; background: var(--apex-red); color: #fff; border: none; padding: 1rem 3.5rem; font-family: var(--font-hud); font-weight: 900; font-size: 0.9rem; letter-spacing: 2px; border-radius: 3px; cursor: pointer; transition: transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 0 20px rgba(225, 6, 0, 0.4);
+}
+.btn-cta-apex:hover {
+    transform: scale(1.04); box-shadow: 0 0 35px #38bdf8;
+}
+.btn-cta-apex:active { transform: scale(0.98); }
+
+@keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+
+/* RESPONSIVE ADAPTATION OVERRIDES */
+@media (max-width: 1200px) {
+    .showroom-layout { grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr; height: auto; min-height: 100vh; overflow-y: auto; padding-top: 140px; }
+    .canvas-3d-master { grid-column: 1 / span 2; height: 50vh; order: -1; }
+    .showroom-viewport { height: auto; overflow-y: auto; }
+}
+
+@media (max-width: 768px) {
+    .showroom-layout { grid-template-columns: 1fr; gap: 1rem; padding: 1rem; }
+    .canvas-3d-master { grid-column: 1; height: 40vh; }
+    .panel { height: auto; }
+}
+/* ==========================================================================
+   AJUSTE DE TAMAÑO PANTALLA COMPLETA - SECCIÓN EXPERIENCIA APEX (DESKTOP)
+   ========================================================================== */
+#experiencia-apex.showroom-viewport {
+    width: 100% !important;
+    min-height: 100vh !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    overflow: hidden !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+}
+
+/* Forzar que el layout interno aproveche todo el espacio restante bajo la cabecera */
+#experiencia-apex .showroom-layout {
+    flex: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: grid !important;
+    grid-template-columns: 360px 1fr 360px !important; /* Ajusta los px de tus paneles laterales si es necesario */
+    align-items: stretch !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+
+/* ==========================================================================
+   AJUSTE AISLADO EXCLUSIVO PARA RESPONSIVE MOBILE (SIN TOCAR DESKTOP)
+   ========================================================================== */
+@media (max-width: 768px) {
+    #experiencia-apex.showroom-viewport {
+        height: auto !important;
+        min-height: calc(100vh - 60px) !important; /* Adaptación dinámica a pantallas con barras móviles */
+        overflow-y: auto !important; /* Permitir scroll vertical en móviles si el contenido HUD desborda */
+    }
+
+    #experiencia-apex .showroom-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+        overflow: visible !important;
+        gap: 20px !important;
+        padding: 20px 10px !important;
+    }
+
+    /* Ajustar los paneles HUD laterales en móviles para que no rompan la pantalla */
+    #experiencia-apex .panel, 
+    #experiencia-apex .glass-hud,
+    #experiencia-apex .panel-left,
+    #experiencia-apex .panel-right {
+        width: 100% !important;
+        max-width: 100% !important;
+        position: relative !important;
+        top: initial !important;
+        left: initial !important;
+        right: initial !important;
+        transform: none !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Reducción estética del header de pestañas de la experiencia en mobile */
+    #experiencia-apex .showroom-header {
+        width: 100% !important;
+        padding: 10px !important;
+    }
+    
+    #experiencia-apex .selector-track {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 10px !important;
+    }
+}
+/* Layout General de tres secciones */
+.showroom-layout {
+    display: grid;
+    grid-template-columns: 350px 1fr 350px;
+    gap: 20px;
+    align-items: center; /* Centrado vertical de los paneles y la imagen */
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* Contenedor central de las fotos fijas */
+.canvas-3d-master {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 400px;
+    padding: 20px;
+}
+
+#media-showroom-container {
+    width: 100%;
+    max-width: 800px; /* Controla el tamaño máximo para que no se vea gigante */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.showroom-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain; /* Proporciones perfectas sin deformar */
+    filter: drop-shadow(0 10px 20px rgba(0, 240, 255, 0.15)); /* Detalle sutil de neón inferior */
+    transition: opacity 0.4s ease-in-out;
+}
+
+/* AJUSTE RESPONSIVE MOBILE */
+@media (max-width: 1200px) {
+    .showroom-layout {
+        grid-template-columns: 1fr; /* Pasa de 3 columnas a 1 sola columna vertical */
+        gap: 30px;
+    }
+    
+    .panel {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto; /* Centra los paneles de especificaciones en pantallas de tablet/celular */
+    }
+    
+    .canvas-3d-master {
+        order: -1; /* Mueve la foto del auto arriba de todo en celulares para que sea lo primero que se vea */
+        min-height: auto;
+    }
+}
+/* Liberar el fondo para el canvas de partículas */
+#telemetry-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Asegura que esté detrás de TODO */
+    pointer-events: none;
+}
+
+/* Forzar transparencia en secciones para que se vea el fondo */
+.showroom-viewport, .about-section, .podium-section {
+    background-color: transparent !important;
+}
+
+/* El fondo de la sección Cursos se mantiene como pediste */
+#courses {
+    background-color: #050508 !important; /* El color sólido de base */
+}
+/* Estilo base de la tarjeta */
+.course-card {
+    cursor: pointer;
+    padding: 20px;
+    border: 1px solid #1e293b;
+    transition: all 0.3s ease;
+    background: #0f172a; /* Fondo negro por defecto */
+}
+
+/* Tarjeta especial MEGA APEX (Azul) */
+.mega-apex-card {
+    background: #38bdf8;
+    color: #000;
+}
+
+/* Contenido oculto */
+.expandable-content {
+    display: none;
+    margin-top: 15px;
+}
+
+/* Cuando se hace clic, se expande */
+.course-card.expanded .expandable-content {
+    display: block;
+}
+
+/* Tipografía pequeña y en bold como pediste */
+.course-desc {
+    font-size: 0.85rem;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+/* Ajuste para que el color de texto se vea bien en la tarjeta azul */
+.mega-apex-card .course-desc { color: #000; }
+.black-card .course-desc { color: #fff; }
+.black-card { color: #fff; }
+
+/* Estilo base de la tarjeta */
+.course-card {
+    background: #0f172a;
+    border: 2px solid #1e293b;
+    padding: 30px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    color: white;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main-title {
+    font-size: 1.8rem;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* Contenido oculto */
+.hidden-content {
+    display: none;
+    margin-top: 15px;
+    border-top: 1px solid #38bdf8;
+    padding-top: 15px;
+    font-size: 0.9rem;
+}
+
+/* Efecto al hacer clic */
+.course-card.active {
+    border-color: #38bdf8;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+}
+
+.course-card.active .hidden-content {
+    display: block;
+}
+
+/* Estilo especial Mega Apex (Azul) */
+.mega-apex-card {
+    background: #38bdf8;
+    color: #000;
+}
+
+.mega-apex-card .hidden-content {
+    border-top-color: #000;
+}
+/* Título de la sección */
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 40px;
+}
+
+/* Contenedor dinámico: esto hace que las tarjetas no se estiren */
+.courses-grid-4-dynamic {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Ajuste de la tarjeta */
+.course-card {
+    width: fit-content;      /* La tarjeta se ajusta al contenido */
+    min-width: 280px;        /* Mínimo para que no se vea rara */
+    max-width: 400px;        /* Máximo para que no se descontrole */
+    padding: 20px 30px;      /* Padding controlado */
+    background: #0f172a;
+    clip-path: polygon(15px 0%, 100% 0%, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0% 100%, 0% 15px);
+    border: 2px solid #1e293b;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* El contenido oculto también se ajusta */
+.hidden-content {
+    display: none;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #38bdf8;
+}
+
+.course-card.active .hidden-content {
+    display: block;
+}
+
+/* Para el diseño Mega Apex Azul */
+.mega-apex-card {
+    background: #38bdf8;
+    color: #000;
+}
+/* Título de la sección */
+.section-title {
+    text-align: center;         /* Centra el texto */
+    width: 100%;                /* Ocupa todo el ancho */
+    margin-bottom: 40px;        /* Espacio entre título y tarjetas */
+    font-family: var(--font-title); /* Usamos tu fuente definida en el CSS */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--white);
+    display: block;             /* Asegura que sea un bloque independiente */
+}
+
+/* Contenedor que envuelve TODO (Título + Grid) */
+#experiencia-apex {
+    display: flex;
+    flex-direction: column;     /* Coloca el título arriba y el grid abajo */
+    align-items: center;        /* Centra todo horizontalmente */
+    padding: 60px 0;
 }

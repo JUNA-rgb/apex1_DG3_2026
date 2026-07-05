@@ -25,8 +25,8 @@
             </div>
             <nav class="nav">
                 <a href="#about" class="nav-link"><i class="fas fa-info-circle text-electric"></i>¿Qué es APEX?</a>
+                <a href="#experiencia-apex" class="nav-link"><i class="fas fa-tachometer-alt text-electric"></i> Experiencia</a>
                 <a href="#courses" class="nav-link"><i class="fas fa-flag-checkered text-electric"></i> Cursos</a>
-                <a href="#simulators" class="nav-link"><i class="fas fa-tachometer-alt text-electric"></i> Experiencia</a>
                 <a href="#podium" class="nav-link"><i class="fas fa-trophy text-electric"></i> Podio</a>
                 <a href="#register-footer" class="nav-link"><i class="fas fa-id-card text-electric"></i> Boxes</a>
             </nav>
@@ -84,196 +84,162 @@
             </div>
         </section>
 
-        <section id="courses" class="courses-section">
-            <div class="video-bg-container">
-                <video autoplay loop muted playsinline class="video-background">
-                    <source src="./assets/Video2.mp4" type="video/mp4">
-                </video>
-                <div class="video-overlay-dark"></div>
+       <section id="experiencia-apex">
+    <h2 class="section-title">EXPERIENCIA APEX</h2>
+    
+    <div class="courses-grid-4-dynamic">
+        </div>
+</section>
+
+    
+    <header class="showroom-header">
+        <div class="selector-track" id="car-selector-track">
+            <div class="car-tab active" data-car-index="0"><span>FÓRMULA 1</span></div>
+            <div class="car-tab" data-car-index="1"><span>FÓRMULA 2</span></div>
+            <div class="car-tab" data-car-index="2"><span>FÓRMULA 3</span></div>
+        </div>
+    </header>
+
+    <div class="showroom-layout">
+        <aside class="panel panel-left glass-hud">
+            <div class="panel-header">
+                <span class="category-badge" id="lbl-category">F1 CLASS</span>
+                <h1 id="lbl-car-name">Formula 1 - Apex Pro</h1>
+                <p class="manufacturer-sub" id="lbl-manufacturer">APEX Advanced Engineering</p>
             </div>
             
-            <div class="race-flag-divider"></div>
+            <div class="specs-scroller">
+                <div class="spec-tile">
+                    <span class="label">POTENCIA</span>
+                    <span class="value" id="val-power">1050 CV</span>
+                </div>
+                <div class="spec-tile">
+                    <span class="label">PESO</span>
+                    <span class="value" id="val-weight">798 KG</span>
+                </div>
+                <div class="spec-tile">
+                    <span class="label">MOTOR</span>
+                    <span class="value" id="val-engine">1.6L V6 Turbo Híbrido</span>
+                </div>
+                <div class="spec-tile">
+                    <span class="label">RELACIÓN P/P</span>
+                    <span class="value" id="val-pw-ratio">0.76 KG/CV</span>
+                </div>
+                
+                <div class="difficulty-box">
+                    <span class="label">NIVEL PILOTO RECOMENDADO</span>
+                    <div class="difficulty-indicators">
+                        <span class="diff-tag" id="lbl-difficulty">EXPERTO MÁXIMO</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
 
-            <div class="container relative-content">
+        <div class="canvas-3d-master">
+            <div id="media-showroom-container">
+                <img id="media-f1" src="assets/f1_car.png" alt="Monoplaza F1" class="showroom-img active-media">
+                <img id="media-f2" src="assets/f2_car.png" alt="Monoplaza F2" class="showroom-img" style="display: none;">
+                <img id="media-f3" src="assets/f3_car.png" alt="Monoplaza F3" class="showroom-img" style="display: none;">
+            </div>
+        </div>
+
+        <aside class="panel panel-right glass-hud">
+            <div class="panel-section">
+                <h3>PERFORMANCE INDEX</h3>
+                <div class="bar-metric">
+                    <div class="metric-info"><span>VELOCIDAD MÁXIMA</span><strong id="txt-top-speed">355 km/h</strong></div>
+                    <div class="bar-container"><div class="bar-fill" id="bar-top-speed" style="width: 93%;"></div></div>
+                </div>
+                <div class="bar-metric">
+                    <div class="metric-info"><span>GRIP EN CURVA</span><strong id="txt-grip">99%</strong></div>
+                    <div class="bar-container"><div class="bar-fill" id="bar-grip" style="width: 99%;"></div></div>
+                </div>
+                <div class="bar-metric">
+                    <div class="metric-info"><span>EFICIENCIA AERODINÁMICA</span><strong id="txt-aero">98%</strong></div>
+                    <div class="bar-container"><div class="bar-fill" id="bar-aero" style="width: 98%;"></div></div>
+                </div>
+            </div>
+
+            <div class="panel-section telemetry-hud-box">
+                <div class="telemetry-header">
+                    <span class="live-indicator">LIVE TELEMETRY</span>
+                    <div class="gear-indicator" id="telemetry-gear">7</div>
+                </div>
+                <div class="telemetry-row">
+                    <div class="tel-item"><small>RPM</small><span id="tel-rpm">11450</span></div>
+                    <div class="tel-item"><small>KM/H</small><span id="tel-speed">284</span></div>
+                </div>
+                <div class="telemetry-row">
+                    <div class="tel-item"><small>ERS STATUS</small><span class="text-glow-blue" id="tel-ers">100%</span></div>
+                    <div class="tel-item"><small>DRS</small><span id="tel-drs">READY</span></div>
+                </div>
+            </div>
+
+        </aside>
+    </div>
+</section>
+
+        <section id="courses" class="courses-section" style="position: relative; overflow: hidden;">
+            <div class="video-bg-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+                <div style="background-image: url('./assets/vista1.jpg'); background-size: cover; background-position: center; width: 100%; height: 100%; opacity: 0.15; filter: grayscale(30%);"></div>
+                <div class="video-overlay-dark" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(10, 148, 228, 0.247) 100%);"></div>
+            </div>
+            
+            <div class="race-flag-divider" style="position: relative; z-index: 2;"></div>
+
+            <div class="container relative-content" style="position: relative; z-index: 2;">
                 <div class="section-header text-center">
                     <span class="section-subtitle">// QUEDATE EN APEX</span>
                     <h2 class="section-title">NUESTROS CURSOS</h2>
                 </div>
                 
-                <div class="courses-grid-4">
-                    <div class="card-3d">
-                        <div class="course-card">
-                            <div class="card-hud-lines"></div>
-                            <div>
-                                <div class="course-badge"><i class="fas fa-car"></i> 01. APEX START</div>
-                                <h3 class="course-title">Tu primera vuelta</h3>
-                                <p class="course-desc"> Ideal para desarrollar una base sólida de conducción.
-                                    
-                                    Nivel: Inicial | Duración: 6 semanas</p>
-                            </div>
-                            <a href="#register-footer" class="btn btn-outline">¡COMENZAR!</a>
-                        </div>
-                    </div>
-                    
-                    <div class="card-3d">
-                        <div class="course-card">
-                            <div class="card-hud-lines"></div>
-                            <div>
-                                <div class="course-badge"><i class="fas fa-chart-line"></i>02. APEX PRO</div>
-                                <h3 class="course-title">Un verdadero piloto.</h3>
-                                <p class="course-desc">Llevá tu rendimiento al siguiente nivel. 
-                                    Nivel: Intermedio | Duración: 8 semanas</p>
-                            </div>
-                            <a href="#register-footer" class="btn btn-outline">¡QUIERO POTENCIARME!</a>
-                        </div>
-                    </div>
-                    
-                    <div class="card-3d">
-                        <div class="course-card">
-                            <div class="card-hud-lines"></div>
-                            <div>
-                                <div class="course-badge"><i class="fas fa-冠"></i>03. APEX ELITE RACE CAMP</div>
-                                <h3 class="course-title">Competí bajo presión</h3>
-                                <p class="course-desc">Viví clasificaciones, carreras, estrategias, desgaste de neumáticos. Nivel: Profesional| Duración: Intensivo</p>
-                            </div>
-                            <a href="#register-footer" class="btn btn-outline">VIVIR LA EXPERIENCIA</a>
-        
-                        </div>
-                    </div>
-                    
-                    <div class="card-3d">
-                        <div class="course-card mega-apex-card">
-                            <div class="card-hud-lines"></div>
-                            <div>
-                                <div class="course-badge badge-premium"><i class="fas fa-bolt"></i>04. APEX ORO</div>
-                                <h3 class="course-title">Mega Apex</h3>
-                                <p class="course-desc">El puente definitivo: Simulación inmersiva extrema combinada con pruebas reales en monoplazas de F3. Nivel: Avanzado | 
-
-Duración: 12 semanas</p>
-                            </div>
-                            <a href="curso-mega-apex.html" class="btn btn-outline">¡QUIERO CORRER!</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="simulators" class="experiencia-apex-section">
-    <h2 class="section-title-apex">EXPERIENCIA APEX</h2>
-
-    <div class="garage-container-hud">
-        <div class="interactive-3d-stage">
-            <div class="car-3d-wrapper">
-                <img src="assets/ferrari.png" id="main-car-view" class="car-3d-render" alt="F1 Car">
-                <div class="hologram-ring"></div>
-            </div>
-        </div>
-
-        <div class="hud-stats-panel">
-            <span class="hud-tag">F1 RACING</span>
-            <h3 id="hud-car-name" class="hud-car-title">FERRARI SF-24</h3>
-            
-            <div class="hud-meter-group">
-                <div class="hud-label-row">
-                    <span>VELOCIDAD</span>
-                    <span id="stat-vel-num">98%</span>
-                </div>
-                <div class="hud-progress-bar"><div id="bar-vel" class="hud-progress-fill" style="width: 98%;"></div></div>
-            </div>
-
-            <div class="hud-meter-group">
-                <div class="hud-label-row">
-                    <span>FRENOS</span>
-                    <span id="stat-fren-num">96%</span>
-                </div>
-                <div class="hud-progress-bar"><div id="bar-fren" class="hud-progress-fill" style="width: 96%;"></div></div>
-            </div>
-
-            <div class="hud-meter-group">
-                <div class="hud-label-row">
-                    <span>NEUMÁTICOS</span>
-                    <span id="stat-neu-num">90%</span>
-                </div>
-                <div class="hud-progress-bar"><div id="bar-neu" class="hud-progress-fill" style="width: 90%;"></div></div>
-            </div>
-
-            <div class="hud-footer-time">
-                <span class="hud-time-tag">// MEJOR TIEMPO REGISTRADO</span>
-                <div id="hud-best-time" class="hud-time-display">1:41.102</div>
+                <section class="courses-grid-4">
+    <div class="card-3d">
+        <div class="course-card mega-apex-card" onclick="this.classList.toggle('active')">
+            <h2 class="main-title">01. MEGA APEX</h2>
+            <div class="hidden-content">
+                <p>Simulación inmersiva extrema combinada con pruebas reales en monoplazas de F3.</p>
+                <p><b>Nivel: Avanzado | Duración: 12 semanas</b></p>
+                <a href="curso-mega-apex.html" class="btn btn-outline">¡QUIERO CORRER!</a>
             </div>
         </div>
     </div>
 
-    <div class="garage-selector-track">
-        <button class="car-selector-btn active" data-car="FERRARI SF-24" data-img="assets/ferrari.png" data-vel="98%" data-fren="96%" data-neu="90%" data-time="1:41.102">
-            <span class="btn-category">F1</span>
-            <span class="btn-name">Ferrari SF-24</span>
-        </button>
-        <button class="car-selector-btn" data-car="MCLAREN MCL38" data-img="assets/mclaren.png" data-vel="95%" data-fren="94%" data-neu="92%" data-time="1:41.850">
-            <span class="btn-category">F1</span>
-            <span class="btn-name">McLaren MCL38</span>
-        </button>
-        <button class="car-selector-btn" data-car="ALPINE A524" data-img="assets/alpine.png" data-vel="91%" data-fren="90%" data-neu="89%" data-time="1:42.990">
-            <span class="btn-category">F1</span>
-            <span class="btn-name">Alpine A524</span>
-        </button>
-        <button class="car-selector-btn" data-car="PREMA RACING" data-img="assets/prema.png" data-vel="85%" data-fren="88%" data-neu="85%" data-time="1:46.310">
-            <span class="btn-category">F2</span>
-            <span class="btn-name">Prema Racing</span>
-        </button>
-        <button class="car-selector-btn" data-car="TRIDENT F3" data-img="assets/trident.png" data-vel="78%" data-fren="80%" data-neu="82%" data-time="1:50.115">
-            <span class="btn-category">F3</span>
-            <span class="btn-name">Trident F3</span>
-        </button>
-        <button class="car-selector-btn" data-car="CAMPOS RACING" data-img="assets/campos.png" data-vel="79%" data-fren="79%" data-neu="84%" data-time="1:49.890">
-            <span class="btn-category">F3</span>
-            <span class="btn-name">Campos Racing</span>
-        </button>
+    <div class="card-3d">
+        <div class="course-card" onclick="this.classList.toggle('active')">
+            <h2 class="main-title">02. APEX START</h2>
+            <div class="hidden-content">
+                <p>Desarrollamos una base sólida de conducción.</p>
+                <p><b>Nivel: Inicial | Duración: 6 semanas</b></p>
+                 <a class="btn btn-outline">¡ESTOY LISTO!</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-3d">
+        <div class="course-card" onclick="this.classList.toggle('active')">
+            <h2 class="main-title">03. APEX PRO ELITE</h2>
+            <div class="hidden-content">
+                <p>Llevá tu rendimiento al siguiente nivel.</p>
+                <p><b>Nivel: Intermedio | Duración: 8 semanas</b></p>
+                <a class="btn btn-outline">¡ESTOY LISTO!</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-3d">
+        <div class="course-card" onclick="this.classList.toggle('active')">
+            <h2 class="main-title">04. APEX ELITE</h2>
+            <div class="hidden-content">
+                <p>Viví clasificaciones, carreras y  estrategias.</p>
+                <p><b>Nivel: Profesional | Duración: Intensivo</b></p>
+                <a class="btn btn-outline">¡ESTOY LISTO!</a>
+            </div>
+        </div>
     </div>
 </section>
 
-        </div>
-    </section>
-
-        <section id="podium" class="podium-section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <span class="section-subtitle">// CLASIFICACIÓN GLOBAL SERVER</span>
-                    <h2 class="section-title">CUADRO DE HONOR</h2>
-                </div>
-
-                <div class="compact-leaderboard">
-                    <div class="leaderboard-row pos-1">
-                        <div class="row-position">01</div>
-                        <div class="row-driver">
-                            <span class="flag">🇪🇸</span>
-                            <span class="driver-name">Carlos Alza</span>
-                        </div>
-                        <div class="row-team">APEX RACING TEAM</div>
-                        <div class="row-time text-electric">1:09.912</div>
-                    </div>
-                    <div class="leaderboard-row pos-2">
-                        <div class="row-position">02</div>
-                        <div class="row-driver">
-                            <span class="flag">🇩🇪</span>
-                            <span class="driver-name">Lukas Weber</span>
-                        </div>
-                        <div class="row-team">BLACK SQUADRON</div>
-                        <div class="row-time">1:10.452</div>
-                    </div>
-                    <div class="leaderboard-row pos-3">
-                        <div class="row-position">03</div>
-                        <div class="row-driver">
-                            <span class="flag">🇬🇧</span>
-                            <span class="driver-name">James Hunt</span>
-                        </div>
-                        <div class="row-team">VINTAGE ESCUDERÍA</div>
-                        <div class="row-time">1:11.002</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+  </main>
         <section class="testimonials-section tech-grid-bg">
             <div class="container">
                 <div class="section-header text-center">
@@ -355,8 +321,8 @@ Duración: 12 semanas</p>
 
             <div class="footer-data-column">
                 <div class="footer-brand-block">
-                  <div class="logo">
-                <img src="assets/marca.png" alt="Logo APEX" style="height: 90px;">
+                    <div class="logo">
+                        <img src="assets/marca.png" alt="Logo APEX" style="height: 90px;">
                     </div>
                     <p class="brand-desc">Academia Latinoamericana, con tecnología de primera, telemetría de carrera para pilotos virtuales de élite. SOMO APEX</p>
                 </div>
@@ -365,8 +331,8 @@ Duración: 12 semanas</p>
                     <h4>// MAPA DE CIRCUITO</h4>
                     <div class="links-inline">
                         <a href="#about">Apex</a>
+                        <a href="#experiencia-apex">Experiencia</a>
                         <a href="#courses">Cursos</a>
-                        <a href="#simulators">Experiencia</a>
                     </div>
                 </div>
 
@@ -386,6 +352,10 @@ Duración: 12 semanas</p>
             </div>
         </div>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
     <script src="./js/script.js"></script>
 </body>
