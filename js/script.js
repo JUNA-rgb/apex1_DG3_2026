@@ -264,3 +264,29 @@ function initJsBackgroundEngine() {
 }
 // Inicializar
 initJsBackgroundEngine();
+document.addEventListener('DOMContentLoaded', () => {
+    const track = document.getElementById('about-track');
+    const next = document.getElementById('about-next');
+    const prev = document.getElementById('about-prev');
+    const slides = document.querySelectorAll('.carousel-slide');
+
+    if (!track || slides.length === 0) {
+        console.warn("El carrusel no encuentra sus elementos. Revisa los IDs.");
+        return;
+    }
+
+    let currentIndex = 0;
+    next.addEventListener('click', () => {
+        if (currentIndex < slides.length - 1) {
+            currentIndex++;
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+    });
+
+    prev.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+    });
+});

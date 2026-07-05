@@ -116,18 +116,16 @@ body {
 .about-highlight { font-size: 1.25rem; color: var(--white); font-family: var(--font-body); border-left: 4px solid var(--electric-blue); padding-left: 20px; margin: 25px 0; line-height: 1.7; }
 .tech-spec-labels { display: flex; gap: 15px; font-family: var(--font-sub); font-size: 1rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; }
 
-
-/* --- CARRUSEL FORZADO Y FUNCIONAL --- */
-.mini-carousel { position: relative; width: 100%; max-width: 600px; height: 320px; margin: 0 auto; overflow: hidden; }
-.carousel-viewport { width: 100%; height: 100%; }
-.carousel-track { display: flex !important; width: 100%; height: 100%; transition: transform 0.5s ease-in-out; }
-.carousel-slide { min-width: 100%; height: 100%; }
-.carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-/* Posicionamiento de flechas */
-.carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; cursor: pointer; background: rgba(0,0,0,0.5); color: white; border: none; padding: 10px; }
-.prev { left: 10px; }
-.next { right: 10px; }
+/* CARRUSEL RE-ESTILIZADO */
+.mini-carousel { position: relative; width: 100%; max-width: 500px; margin: 0 auto; }
+.carousel-viewport { width: 100%; overflow: hidden; /* Esto es fundamental para que solo se vea 1 imagen a la vez */ position: relative;}
+.carousel-track { display: flex; transition: transform 0.5s var(--transition-smooth); will-change: transform; }
+.carousel-slide { min-width: 100%; height: 320px; }
+.carousel-slide img { width: 100%; height: 100%; object-fit: cover; }
+.carousel-arrow { background: rgba(5,7,12,0.9); border: 1px solid var(--electric-blue); color: var(--electric-blue); width: 36px; height: 36px; position: absolute; top: calc(50% - 18px); z-index: 5; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: all 0.3s; }
+.carousel-arrow:hover { background: var(--electric-blue); color: var(--pure-black); box-shadow: var(--glow-effect); }
+.carousel-arrow.prev { left: -18px; }
+.carousel-arrow.next { right: -18px; }
 
 
 
@@ -689,29 +687,29 @@ body {
 /* --- SECCIÓN CARRUSEL "¿QUÉ ES APEX?" --- */
 /* alinear las fotos horizontalmente */
 .about-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: 100%;
+display: flex;
+transition: transform 0.5s ease-in-out;
+ width: 100%;
 }
-/* Contenedor padre debe tener relative para que las flechas se posicionen bien */
-.mini-carousel {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    border-radius: 8px;
-}
+ /* Contenedor padre debe tener relative para que las flechas se posicionen bien */
+ .mini-carousel {
+position: relative;
+overflow: hidden;
+width: 100%;
+ border-radius: 8px;
+ }
 
 .carousel-arrow:hover {
-    background: rgba(0, 150, 255, 0.8); /* Efecto al pasar el mouse */
-}
+background: rgba(0, 150, 255, 0.8); /* Efecto al pasar el mouse */
+ }
 
 .prev { left: 0; }
 .next { right: 0; }
 
 /* Asegura que la imagen llene el espacio sin deformarse */
 .carousel-slide {
-    min-width: 100%;
-    height: 400px; /* IMPORTANTE: Asegúrate de tener una altura definida */
+ min-width: 100%;
+height: 400px; /* IMPORTANTE: Asegúrate de tener una altura definida */
 }
 
 .carousel-slide img {
