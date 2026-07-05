@@ -54,35 +54,33 @@
         </section>
 
         <section id="about" class="about-section tech-grid-bg">
-            <div class="circuit-vector-decor cv-1"></div>
-            
-            <div class="container about-grid">
-                <div class="about-text-side">
-                    <span class="section-subtitle">// SECTOR 1</span>
-                    <h2 class="section-title">¿Qué es APEX?</h2>
-                    <p class="about-highlight">Somos el puente directo entre el software de competición automovilística y el asfalto real. No jugamos; analizamos trazadas, fuerzas de frenado y gestión de neumáticos.</p>
-                    <div class="tech-spec-labels">
-                        <span><i class="fas fa-microchip text-electric"></i> Control de datos</span>
-                        <span><i class="fas fa-shoe-prints text-electric"></i> Telemetría</span>
-                    </div>
-                </div>
-                <div class="about-carousel-side">
-                    <div class="mini-carousel">
-                        <button class="carousel-arrow prev" id="about-prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
-                        <div class="carousel-viewport">
-                            <div class="carousel-track about-track" id="about-track">
-                                <div class="carousel-slide"><img src="./assets/foto.2.png" alt="Simulador 1"></div>
-                                <div class="carousel-slide"><img src="./assets/foto.3.png" alt="Simulador 2"></div>
-                                <div class="carousel-slide"><img src="./assets/foto.4.png" alt="Simulador 3"></div>
-                                <div class="carousel-slide"><img src="./assets/foto.7.png" alt="Simulador 4"></div>
-                                <div class="carousel-slide"><img src="./assets/foto.6.png" alt="Simulador 5"></div>
-                            </div>
-                        </div>
-                        <button class="carousel-arrow next" id="about-next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                </div>
+    <div class="circuit-vector-decor cv-1"></div>
+    
+    <div class="container about-grid">
+        <div class="about-text-side">
+            <span class="section-subtitle">// SECTOR 1</span>
+            <h2 class="section-title">¿Qué es APEX?</h2>
+            <p class="about-highlight">Somos el puente directo entre el software de competición automovilística y el asfalto real. No jugamos; analizamos trazadas, fuerzas de frenado y gestión de neumáticos.</p>
+            <div class="tech-spec-labels">
+                <span><i class="fas fa-microchip text-electric"></i> Control de datos</span>
+                <span><i class="fas fa-shoe-prints text-electric"></i> Telemetría</span>
             </div>
-        </section>
+        </div>
+
+        <div class="about-carousel-side">
+            <div class="mini-carousel">
+                <div id="about-track" class="about-track">
+                    <div class="carousel-slide"><img src="foto1.png" alt="Apex 1"></div>
+                    <div class="carousel-slide"><img src="foto4.png" alt="Apex 2"></div>
+                    <div class="carousel-slide"><img src="foto3.png" alt="Apex 3"></div>
+                </div>
+                
+                <button id="about-prev" class="carousel-arrow prev" aria-label="Anterior">❮</button>
+                <button id="about-next" class="carousel-arrow next" aria-label="Siguiente">❯</button>
+            </div>
+        </div>
+    </div>
+</section>
 
        <section id="experiencia-apex">
     <h2 class="section-title">EXPERIENCIA APEX</h2>
@@ -179,6 +177,7 @@
     </div>
 </section>
 
+</section>
         <section id="courses" class="courses-section" style="position: relative; overflow: hidden;">
             <div class="video-bg-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
                 <div style="background-image: url('./assets/vista1.jpg'); background-size: cover; background-position: center; width: 100%; height: 100%; opacity: 0.15; filter: grayscale(30%);"></div>
@@ -239,7 +238,46 @@
     </div>
 </section>
 
-  </main>
+</section>
+        <section id="podium" class="podium-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">// CLASIFICACIÓN GLOBAL SERVER</span>
+                    <h2 class="section-title">CUADRO DE HONOR</h2>
+                </div>
+
+                <div class="compact-leaderboard">
+                    <div class="leaderboard-row pos-1">
+                        <div class="row-position">01</div>
+                        <div class="row-driver">
+                            <span class="flag">🇪🇸</span>
+                            <span class="driver-name">Carlos Alza</span>
+                        </div>
+                        <div class="row-team">APEX RACING TEAM</div>
+                        <div class="row-time text-electric">1:09.912</div>
+                    </div>
+                    <div class="leaderboard-row pos-2">
+                        <div class="row-position">02</div>
+                        <div class="row-driver">
+                            <span class="flag">🇩🇪</span>
+                            <span class="driver-name">Lukas Weber</span>
+                        </div>
+                        <div class="row-team">BLACK SQUADRON</div>
+                        <div class="row-time">1:10.452</div>
+                    </div>
+                    <div class="leaderboard-row pos-3">
+                        <div class="row-position">03</div>
+                        <div class="row-driver">
+                            <span class="flag">🇬🇧</span>
+                            <span class="driver-name">James Hunt</span>
+                        </div>
+                        <div class="row-team">VINTAGE ESCUDERÍA</div>
+                        <div class="row-time">1:11.002</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="testimonials-section tech-grid-bg">
             <div class="container">
                 <div class="section-header text-center">
