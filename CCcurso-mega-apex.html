@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEGA APEX | Programa de Alto Rendimiento</title>
+    <title>MEGA APEX |Curso de Alto Rendimiento</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
@@ -31,25 +31,6 @@
             padding: 0;
         }
 
-        /* Canvas de telemetría de fondo fija */
-        #telemetry-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 1;
-            pointer-events: none;
-            opacity: 0.15;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 5;
-        }
 
  /* --- Header --- */
         .header {
@@ -110,14 +91,15 @@
 }
 
  /* --- Hero Section --- */
-       /* Sección Hero ajustada para que la imagen sea el fondo */
+      /* --- ESTILOS COMPATIBLES CORE PARA EL HERO --- */
 .mega-hero {
     position: relative;
-    overflow: hidden; /* Evita que la imagen se desborde */
     min-height: 100vh;
+    width: 100%;
     display: flex;
     align-items: center;
-    padding: 140px 0 100px 0;
+    background-color: #05070c;
+    overflow: hidden;
 }
 
 .hero-bg-image {
@@ -126,25 +108,15 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Esto hace que la imagen rellene todo el espacio sin deformarse */
-    object-position: center;
-    z-index: 1; /* Detrás de todo */
-    filter: brightness(0.4) contrast(1.1); /* Oscurece la imagen para resaltar el texto */
+    object-fit: cover;
+    object-position: center center; /* Centrado absoluto como el index */
+    z-index: 1;
 }
 
-/* Aseguramos que el contenido esté por encima de la imagen */
-.hero-content-restored {
-    position: relative;
-    z-index: 3; /* Superior a la imagen (z-index: 1) y al degradado (z-index: 2) */
-}
 
-        /* Contenedor simulando el parabrisas mojado de la foto */
-        .hero-bg-wrap {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 2;
-            background: url('assets/vistaa.png') center/cover no-repeat;
-            filter: brightness(0.4) contrast(1.1);
+        .hero-content {
+            max-width: 650px;
+            text-align: left;
         }
 
         .hero-title {
@@ -358,7 +330,7 @@ section {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 140px 0 100px 0; 
+            padding: 100%;
             background-color: #05070c;
         }
         
@@ -386,29 +358,6 @@ section {
             pointer-events: none;
         }
 
-        .mega-hero-video {
-            position: absolute;
-            height: 100vh;
-            min-height: 600px;
-            display: flex;
-            align-items: right;
-            justify-content: right;
-            overflow: hidden;
-            text-align: right;
-        }
-        .video-background {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
-            object-fit: cover;
-            z-index: 1;
-            filter: brightness(0.3) contrast(1.2);
-        }
         .hero-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -658,6 +607,52 @@ section {
             padding: 2px 6px;
             letter-spacing: 1px;
         }
+        /* --- NUEVO ESTILO DE FONDO: MARCAS DE NEÓN --- */
+
+/* Contenedor principal del fondo (fijo y detrás de todo) */
+#neon-tire-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Detrás del contenido */
+    background-color: #05070c; /* Tu color base */
+    pointer-events: none; /* Para que el mouse pase a través */
+    overflow: hidden;
+}
+
+/* Estilo base de la marca de neumático (usando SVG como imagen de fondo repetible) */
+.tire-mark {
+    position: absolute;
+    width: 100%;
+    height: 200px; /* Altura del patrón */
+    background-image: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 50px,
+        /* Color neón azul, semitransparente para el efecto */
+        rgba(57, 160, 218, 0.3) 50px,
+        rgba(57, 160, 218, 0.3) 60px
+    );
+    /* Efecto de brillo neón */
+    filter: drop-shadow(0 0 5px var(--electric-blue)) 
+            drop-shadow(0 0 10px var(--electric-blue));
+    opacity: 0; /* Comienzan invisibles */
+    /* Animación de aparición suave */
+    transition: opacity 1s ease-in-out, transform 0.5s ease-out; 
+    transform: translateY(20px); /* Ligeramente desplazadas hacia abajo al inicio */
+}
+
+/* Clase que activa la aparición (JavaScript la añadirá) */
+.tire-mark.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Variación para que las marcas no sean todas iguales */
+.tire-mark-left { left: -10%; transform: rotate(-2deg) translateY(20px); }
+.tire-mark-right { right: -10%; transform: rotate(2deg) translateY(20px); }
 
         /* Animaciones */
         @keyframes fadeInHUD {
@@ -670,7 +665,7 @@ section {
             .pasaporte-grid, .circuits-grid { grid-template-columns: 1fr; }
             .split-modules-container, .bonus-section-wrapper { grid-template-columns: 1fr; }
             .mega-hero { 
-                padding: 160px 0 100px 0; 
+                padding:100%; 
             }
         }
         
@@ -821,138 +816,58 @@ section {
             }
         }
 
-        /* --- AJUSTE DINÁMICO DE ANIMACIONES DE FONDO (CANVAS) --- */
-        #telemetry-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-        .scroll-circuit-track {
-            position: absolute;
-            top: 0;
-            left: 5%;
-            width: 2px;
-            height: 100%;
-            background: rgba(57, 160, 218, 0.05);
-            z-index: 2;
-        }
-        .scroll-circuit-energy {
-            position: absolute;
-            top: 0;
-            left: -1px;
-            width: 4px;
-            height: 80px;
-            background: linear-gradient(180deg, transparent, var(--electric-blue), transparent);
-            box-shadow: 0 0 10px var(--electric-blue);
-        }
-    </style>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEGA APEX | Programa de Alto Rendimiento</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="./css/style.css">
-    
-    <style>
-        :root {
-            --pure-black: #05070c; --dark-blue: #0b111e; --electric-blue: #39A0DA;
-            --neon-glow: rgba(57, 160, 218, 0.6); --gold: #F1C40F; --metallic-grey: #8a94a6;
-            --white: #ffffff; --font-title: 'Orbitron', sans-serif;
-            --font-hud: 'Rajdhani', sans-serif; --font-body: 'Montserrat', sans-serif;
-        }
-
-        /* [CSS ORIGINAL PRESERVADO] */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: var(--pure-black); color: var(--white); font-family: var(--font-body); overflow-x: hidden; }
-
-        /* --- SECCIÓN HERO CORREGIDA --- */
-        .mega-hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            padding: 140px 0 100px 0;
-        }
-
-        .hero-bg-image {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            object-fit: cover;
-            z-index: 1;
-            filter: brightness(0.4) contrast(1.1);
-        }
-
-        .hero-overlay-gradient {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, rgba(5,7,12,0.95) 0%, rgba(5,7,12,0.4) 100%);
-            z-index: 2;
-        }
-
-        .hero-content-restored {
-            position: relative;
-            z-index: 3;
-            max-width: 900px;
-            padding: 20px;
-        }
-
-        /* [Resto de tu CSS original continúa aquí...] */
-        #telemetry-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; pointer-events: none; opacity: 0.15; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 5; }
-        .header { position: absolute; top: 0; left: 0; width: 100%; z-index: 10; padding: 20px 0; background: linear-gradient(180deg, rgba(5,7,12,0.8) 0%, transparent 100%); }
-        .header-container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--font-title); font-size: 1.8rem; font-weight: 900; letter-spacing: 2px; }
-        .logo span { color: var(--electric-blue); }
-        .nav a { color: var(--metallic-grey); text-decoration: none; font-family: var(--font-hud); font-size: 1.1rem; margin-left: 25px; text-transform: uppercase; transition: color 0.3s; }
-        .btn-header { background: var(--electric-blue); color: var(--pure-black); padding: 10px 20px; text-decoration: none; font-family: var(--font-title); font-weight: 700; clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%); }
-        
-        .hero-title { font-family: var(--font-title); font-size: 3.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
-        .text-electric { color: var(--electric-blue); text-shadow: 0 0 20px rgba(57, 160, 218, 0.4); }
-        .hero-subtitle { color: var(--metallic-grey); font-size: 1.1rem; line-height: 1.6; margin-bottom: 35px; }
-        .btn-speed { display: inline-block; background: var(--electric-blue); color: var(--white); padding: 18px 35px; font-family: var(--font-title); text-transform: uppercase; text-decoration: none; }
     </style>
 </head>
 <body>
+<canvas id="telemetry-bg"></canvas>
+    <div class="tech-hud-background"></div>
 
-    <canvas id="telemetry-bg"></canvas>
-    
+    <div class="scroll-circuit-track" aria-hidden="true">
+        <div class="scroll-circuit-energy"></div>
+    </div>
+
     <header class="header">
         <div class="header-container">
-            <div class="logo"><a href="index.html"><img src="assets/marca.png" alt="Logo APEX" style="height: 90px;"></a></div>
+            <div class="logo">
+                <a href="index.html"><img src="assets/marca.png" alt="Logo APEX" style="height: 90px;"></a>
+            </div>
             <nav class="nav">
-                <a href="index.html">Volver al Home</a>
-                <a href="#pasaporte">Funcionamiento</a>
-                <a href="#modulos">Módulos</a>
+                <a href="index.html" class="nav-link"><i class="fas fa-arrow-left text-electric"></i> Volver al Home</a>
+                <a href="#pasaporte" class="nav-link">Funcionamiento</a>
+                <a href="#modulos" class="nav-link">Módulos</a>
+                <a href="#pistas" class="nav-link">Circuitos</a>
+                <a href="#bonus" class="nav-link">Equipamiento</a>
             </nav>
-            <a href="#postular" class="btn-header">BUTACA VIP</a>
+            <a href="#postular" class="btn btn-primary btn-hud" style="background: #1796eb; color: #000;">BUTACA VIP</a>
         </div>
     </header>
 
-    <section class="mega-hero">
-        <img src="assets/vista1.jpg" alt="Fondo Hero APEX" class="hero-bg-image">
-        <div class="hero-overlay-gradient"></div>
+    <section class="mega-hero tech-grid-bg" style="position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; padding: 0; background-color: #05070c;">
+        
+        <img src="assets/vista1.jpg" alt="Fondo Hero APEX" class="hero-bg-image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; z-index: 1; filter: brightness(0.4) contrast(1.1);">
+        
+        <div class="hero-overlay-gradient" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(5,7,12,0.95) 0%, rgba(5,7,12,0.6) 50%, rgba(5,7,12,0.2) 100%); z-index: 2; pointer-events: none;"></div>
 
-        <div class="container hero-content-restored">
-            <h1 class="hero-title">MEGA APEX <br><span class="text-electric">DOMINÁ LA PISTA</span></h1>
-            <p class="hero-subtitle">
-                El único curso de simracing y conducción que transforma tus décimas perdidas en victorias reales.
-            </p>
-            <div class="hero-actions-left">
-                <a href="#modulos" class="btn-speed">
-                    <span>¡Quiero mi auto! <i class="fas fa-chevron-right"></i></span>
-                </a>
+        <div class="scroll-circuit-track" aria-hidden="true" style="z-index: 3; position: absolute; top: 0; left: 5%; width: 2px; height: 100%; background: rgba(57, 160, 218, 0.05);">
+            <div class="scroll-circuit-energy"></div>
+        </div>
+        
+        <canvas id="telemetry-bg-hero" style="z-index: 3; position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
+
+        <div class="container hero-content-restored" style="position: relative; z-index: 4; text-align: left; display: flex; flex-direction: column; justify-content: center; max-width: 4200px; width: 100%; margin-left: auto; margin-right: auto; padding-left: 20px; padding-right: 20px; min-height: 100vh;">
+            
+            <div style="max-width: 600px; margin-top: 80px; padding-top: 20px;">
+                <h1 class="hero-title" style="font-family: var(--font-title); font-size: 3.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; color: #fff;">MEGA APEX <br><span class="text-electric">DOMINÁ LA PISTA</span></h1>
+                <p class="hero-subtitle" style="font-size: 1.35rem; margin-bottom: 30px; color: var(--metallic-grey); text-align: left; line-height: 1.6;">
+                    El único curso de simracing y conducción que transforma tus décimas perdidas en victorias reales. Aprendé la física, el frenado y los secretos de telemetría de los pilotos profesionales.
+                </p>
+                <div class="hero-actions-left" style="width: 100%; display: flex; justify-content: flex-start;">
+                    <a href="#modulos" class="btn btn-primary btn-speed btn-glow" style="width: auto; display: inline-block;">
+                        <span>¡Quiero correr! <i class="fas fa-chevron-right"></i></span>
+                    </a>
+                </div>
             </div>
+
         </div>
     </section>
 
@@ -1281,37 +1196,7 @@ section {
                     drawTelemetryStep(delta);
                 }, { passive: true });
             }
-
-            // Lógica de Módulos Laterales (Sección 3)
-            const tabs = document.querySelectorAll('.module-tab-btn');
-            const panes = document.querySelectorAll('.module-pane');
-
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const target = tab.getAttribute('data-target');
-
-                    tabs.forEach(t => t.classList.remove('active'));
-                    panes.forEach(p => p.classList.remove('active'));
-
-                    tab.classList.add('active');
-                    document.getElementById(target).classList.add('active');
-                });
-            });
-
-            // Lógica Efecto Giro 3D Suave por Ratón en Credencial VIP
-            const card = document.getElementById('vipCard');
-            if (card) {
-                const wrapper = card.parentElement;
-                wrapper.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left - (rect.width/2);
-                    const y = e.clientY - rect.top - (rect.height/2);
-                    card.style.transform = `rotateY(${x / 15}deg) rotateX(${-y / 15}deg)`;
-                });
-                wrapper.addEventListener('mouseleave', () => {
-                    card.style.transform = 'rotateY(0deg) rotateX(0deg)';
-                });
-            }
+            
 
             // =======================================================
             // NUEVO: DETECTOR DE SCROLL PARA MOSTRAR CRONOGRAMA

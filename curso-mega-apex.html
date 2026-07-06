@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEGA APEX | Programa de Alto Rendimiento</title>
+    <title>MEGA APEX |Curso de Alto Rendimiento</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
@@ -112,13 +112,14 @@
  /* --- Hero Section --- */
       /* --- ESTILOS COMPATIBLES CORE PARA EL HERO --- */
 .mega-hero {
-    position: relative;
-    min-height: 100vh;
-    width: 100%;
+    width: 100%;           /* Ocupa todo el ancho */
+    height: 100vh;         /* Ocupa el 100% del alto de la ventana */
+    max-width: none;       /* IMPORTANTE: Esto elimina el límite de 1200px */
+    position: relative;    /* Asegura que el contenido interior se posicione bien */
+    overflow: hidden;      /* Para que el video no se salga si es más grande */
     display: flex;
     align-items: center;
-    background-color: #05070c;
-    overflow: hidden;
+    justify-content: center;
 }
 
 .hero-bg-image {
@@ -682,10 +683,14 @@ section {
                 padding: 15px 0;
             }
             .header-container {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
+    display: flex;
+    justify-content: space-between; /* Esto empuja los elementos a los extremos */
+    align-items: center;            /* Alinea verticalmente los elementos */
+    width: 100%;
+    max-width: 1200px;              /* O el ancho que manejes en tu web */
+    margin: 0 auto;                 /* Centra el contenedor en la pantalla */
+    padding: 0 20px;                /* Espaciado lateral para que no toque los bordes */
+}
             .nav {
                 display: flex;
                 flex-wrap: wrap;
@@ -848,31 +853,75 @@ section {
             background: linear-gradient(180deg, transparent, var(--electric-blue), transparent);
             box-shadow: 0 0 10px var(--electric-blue);
         }
+        /* --- ESTILOS RESPONSIVE PARA EL MENÚ --- */
+.menu-toggle {
+    display: none; /* Oculto en escritorio */
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle { display: block; }
+
+    .nav {
+        display: none; /* Oculto por defecto en mobile */
+        position: absolute;
+        top: 90px;
+        left: 0;
+        width: 100%;
+        background: #0b111e;
+        padding: 20px;
+        z-index: 1000;
+    }
+
+    .nav.active { display: block; }
+
+    .nav-links {
+        flex-direction: column;
+        list-style: none;
+        gap: 15px;
+    }
+}
+
+/* En escritorio, el menú siempre es visible */
+@media (min-width: 769px) {
+    .menu-hamburguesa {
+        display: none;
+    }
+    .nav-menu {
+        display: flex !important; /* Forzamos visibilidad en desktop */
+    }
+}
     </style>
 </head>
 <body>
-<canvas id="telemetry-bg"></canvas>
-    <div class="tech-hud-background"></div>
 
-    <div class="scroll-circuit-track" aria-hidden="true">
-        <div class="scroll-circuit-energy"></div>
-    </div>
+   
 
     <header class="header">
-        <div class="header-container">
-            <div class="logo">
-                <a href="index.html"><img src="assets/marca.png" alt="Logo APEX" style="height: 90px;"></a>
-            </div>
-            <nav class="nav">
-                <a href="index.html" class="nav-link"><i class="fas fa-arrow-left text-electric"></i> Volver al Home</a>
-                <a href="#pasaporte" class="nav-link">Funcionamiento</a>
-                <a href="#modulos" class="nav-link">Módulos</a>
-                <a href="#pistas" class="nav-link">Circuitos</a>
-                <a href="#bonus" class="nav-link">Equipamiento</a>
-            </nav>
-            <a href="#postular" class="btn btn-primary btn-hud" style="background: #1796eb; color: #000;">BUTACA VIP</a>
+    <div class="header-container">
+        <div class="logo">
+            <a href="index.html"><img src="assets/marca.png" alt="Logo APEX" style="height: 90px;"></a>
         </div>
-    </header>
+
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <nav class="nav">
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-arrow-left text-electric"></i> Volver al Home</a></li>
+                <li><a href="#pasaporte" class="nav-link">Funcionamiento</a></li>
+                <li><a href="#modulos" class="nav-link">Módulos</a></li>
+                <li><a href="#pistas" class="nav-link">Circuitos</a></li>
+                <li><a href="#bonus" class="nav-link">Equipamiento</a></li>
+            </ul>
+        </nav>
+
+        <a href="#postular" class="btn btn-primary btn-hud" style="background: #1796eb; color: #000;">Quiero correr</a>
+    </div>
+</header>
 
     <section class="mega-hero tech-grid-bg" style="position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; padding: 0; background-color: #05070c;">
         
@@ -1286,6 +1335,9 @@ section {
                 timelineObserver.observe(item);
             });
         });
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+        document.querySelector('.nav').classList.toggle('active');
+    });
     </script>
 </body>
 </html>
