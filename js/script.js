@@ -296,3 +296,27 @@ const menuToggle = document.querySelector('.menu-toggle');
   menuToggle.addEventListener('click', () => {
       nav.classList.toggle('active');
   });
+    const track = document.getElementById('about-track');
+    const slides = Array.from(track.children);
+    const nextBtn = document.getElementById('about-next');
+    const prevBtn = document.getElementById('about-prev');
+    let currentIndex = 0;
+
+    function updateCarousel() {
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    }
+
+    nextBtn.addEventListener('click', () => {
+        if (currentIndex < slides.length - 1) {
+            currentIndex++;
+            updateCarousel();
+        }
+    });
+
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+        }
+    });

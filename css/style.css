@@ -99,22 +99,7 @@ body {
 .nav-link { font-family: var(--font-sub); color: var(--metallic-grey); text-decoration: none; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; display: flex; align-items: center; gap: 8px; }
 .nav-link:hover { color: var(--electric-blue); }
 .menu-toggle { display: none; background: none; border: none; color: var(--white); font-size: 1.5rem; }
-/* Por defecto (Desktop): Oculto */
-.menu-toggle { 
-    display: none; 
-    background: none; 
-    border: none; 
-    color: var(--white); 
-    font-size: 1.5rem; 
-    cursor: pointer;
-}
 
-/* En Mobile (ajustado a tu breakpoint de 768px): Visible */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block; /* Aparece en pantallas chicas */
-    }
-}
 
 /* HERO - CON MARCOS DE HUD INSTRUMENTAL */
 .hero-section { height: 100vh; display: flex; justify-content: center; align-items: center; position: relative; text-align: center; overflow: hidden; }
@@ -701,20 +686,18 @@ body {
 .time-value { font-family: var(--font-title); font-size: 1.8rem; color: var(--white); font-weight: 700; }
 
 /* --- SECCIÓN CARRUSEL "¿QUÉ ES APEX?" --- */
-/* alinear las fotos horizontalmente */
-.about-track {
-display: flex;
-transition: transform 0.5s ease-in-out;
- width: 100%;
+.mini-carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 8px;
 }
- /* Contenedor padre debe tener relative para que las flechas se posicionen bien */
- .mini-carousel {
-position: relative;
-overflow: hidden;
-width: 100%;
- border-radius: 8px;
- }
 
+.about-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+}
 .carousel-arrow:hover {
 background: rgba(0, 150, 255, 0.8); /* Efecto al pasar el mouse */
  }
