@@ -780,6 +780,16 @@ height: 400px; /* IMPORTANTE: Asegúrate de tener una altura definida */
     padding: 2rem;           /* Un colchón mínimo para que nunca toque los bordes */
 
 }
+/* Estilo para el título de la sección */
+#experiencia-apex .section-title {
+    margin-bottom: 10px;    /* Espacio entre el título y el párrafo */
+}
+#experiencia-apex .about-highlight {
+    max-width: 800px;       /* Limita el ancho para que el texto sea legible */
+    line-height: 1.6;       /* Mejora la separación entre líneas */
+    margin-bottom: 30px;    /* Espacio entre el texto y el grid de abajo */
+    font-size: 1.1rem;
+}
 
 .section-title-apex {
     font-family: var(--font-title, sans-serif);
@@ -1356,18 +1366,6 @@ body {
 /* Si tenías alguna clase de "grid" o "rayas" que se aplicaba a esta sección, elimínala o sobreescribela así: */
 .hud-grid-background {
     display: none !important; /* Ocultamos la capa que generaba las rayas */
-}
-
-/* CUADRÍCULA TECNOLÓGICA DE FONDO */
-.hud-grid-background {
-    position: absolute;
-    inset: 0;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), 
-                      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: 50px 50px;
-    background-position: center center;
-    pointer-events: none;
-    z-index: 1;
 }
 
 /* SELECTOR SUPERIOR DE VEHÍCULOS */
