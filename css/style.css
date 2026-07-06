@@ -1814,3 +1814,288 @@ text-shadow: 0 0 10px #00f2fe80;
 .carousel-slide {
     min-width: 100%; /* Esto es lo que mantiene a las fotos alineadas */
 }
+
+/* ==========================================================================
+   EFECTO PIN HORIZONTAL ESTILO CHECO PÉREZ - SÓLO FOTOS
+   ========================================================================== */
+.about-pin-wrapper {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(180deg, var(--pure-black) 0%, var(--dark-blue) 100%);
+    overflow: hidden;
+}
+
+.about-section-vertical {
+    width: 100%;
+    min-height: 100vh; /* Ocupa la pantalla completa durante el bloqueo */
+    padding: 80px 5% 40px 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+}
+
+.about-text-top {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-text-top .about-description {
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+.about-text-top .about-highlights {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.about-scroll-bottom {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 30px;
+    overflow: hidden; /* Clave para ocultar las fotos que vienen del lateral */
+}
+
+.scroll-container-wrapper {
+    width: 100%;
+    overflow: hidden; /* Bloqueamos el scroll manual nativo para que mande el mouse */
+}
+
+.about-scroll-track {
+    display: flex;
+    gap: 30px;
+    padding: 10px 0;
+    width: max-content;
+    will-change: transform;
+}
+
+/* CARDS CUADRADAS 1:1 */
+.square-slide {
+    width: 320px; 
+    height: 320px;
+    flex-shrink: 0;
+    background-color: #151c33;
+    border: 2px solid rgba(56, 189, 248, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    position: relative;
+    transition: border-color 0.3s ease;
+}
+
+.square-slide:hover {
+    border-color: var(--electric-blue);
+    box-shadow: var(--glow-effect);
+}
+
+.square-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* BARRA DE PROGRESO DE TELEMETRÍA AUTOMÁTICA */
+.scroll-indicator-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    margin-top: 30px;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.scroll-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--electric-blue), #00ffff);
+    box-shadow: var(--glow-effect);
+}
+/* ==========================================================================
+   CSS PROFESIONAL PARA ANIMACIÓN PIN HORIZONTAL (100% EFECTIVO)
+   ========================================================================== */
+#about-pin-container {
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--pure-black);
+}
+
+.about-section {
+    width: 100%;
+    height: 100vh; /* Obliga a la sección a medir exactamente una pantalla completa */
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.about-container {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 400px 1fr; /* Columna fija para el texto, el resto para las fotos */
+    gap: 60px;
+    align-items: center;
+}
+
+/* Estilos de tu texto según la imagen */
+.sector-tag {
+    color: var(--electric-blue);
+    font-family: var(--font-title);
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.about-text-side .section-title {
+    font-size: 3rem;
+    font-family: var(--font-title);
+    color: var(--white);
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.about-text-side .about-description {
+    font-size: 1.1rem;
+    color: var(--white);
+    line-height: 1.6;
+    opacity: 0.9;
+    margin-bottom: 30px;
+}
+/* ==========================================================================
+   ESTILOS DE LA GRILLA INTERACTIVA Y RESPONSIVE MÓVIL AISLADO
+   ========================================================================== */
+.about-section {
+    padding: 80px 5%;
+    background: transparent;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+    position: relative;
+    z-index: 10; /* Eleva la sección por encima de tu canvas de telemetría */
+}
+
+.about-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 420px 1fr; /* Desktop intacto: Texto a la izquierda */
+    gap: 50px;
+    align-items: center;
+}
+
+.sector-tag {
+    color: var(--electric-blue);
+    font-family: var(--font-title);
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.about-text-side .section-title {
+    font-size: 3rem;
+    font-family: var(--font-title);
+    color: var(--white);
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+/* GRILLA DESKTOP ORIGINAL: 5 columnas perfectas */
+.about-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 12px;
+}
+
+.grid-photo-item {
+    aspect-ratio: 1 / 1;
+    background-color: #0c101d;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    z-index: 15; /* Asegura el área de click de cada miniatura */
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.grid-photo-item:hover {
+    border-color: var(--electric-blue);
+    transform: scale(1.04);
+    box-shadow: var(--glow-effect);
+}
+
+.grid-photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* VENTANA EMERGENTE DE ALTA PRIORIDAD */
+.gallery-modal {
+    display: none;
+    position: fixed;
+    z-index: 99999; /* Por encima de absolutamente todo el sitio */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content-img {
+    max-width: 90%;
+    max-height: 85%;
+    object-fit: contain;
+    border: 2px solid rgba(56, 189, 248, 0.4);
+    box-shadow: var(--glow-effect);
+}
+
+.modal-close {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    color: var(--metallic-grey);
+    font-size: 45px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 100000;
+}
+
+/* ==========================================================================
+   CONTROL DE RESPONSIVE MOBILE EXCLUSIVO (NO AFECTA A ESCRITORIO)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .about-container {
+        grid-template-columns: 1fr; /* Texto pasa arriba y fotos abajo */
+        gap: 35px;
+    }
+    
+    .about-text-side {
+        text-align: center; /* Centrado estético para teléfonos */
+    }
+    
+    .about-text-side .about-highlights {
+        justify-content: center;
+    }
+
+    /* Ajuste de grilla móvil a 2 columnas para que las fotos queden grandes y no se rompa el layout */
+    .about-gallery-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .modal-close {
+        top: 15px;
+        right: 25px;
+        font-size: 35px;
+    }
+}

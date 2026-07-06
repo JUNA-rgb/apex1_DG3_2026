@@ -66,21 +66,33 @@
                 <span><i class="fas fa-shoe-prints text-electric"></i> Telemetría</span>
             </div>
         </div>
-        <div class="about-carousel-side">
-    <div class="mini-carousel">
-        <div id="about-track" class="about-track">
-            <div class="carousel-slide"><img src="assets/imag1.png" alt="foto 1"></div>
-            <div class="carousel-slide"><img src="assets/imag2.jpg" alt="foto 2"></div>
-            <div class="carousel-slide"><img src="assets/imag3.png" alt="foto 3"></div>
-             <div class="carousel-slide"><img src="assets/imag4.png" alt="foto 3"></div>
+      <div class="about-grid-side">
+                <div class="about-gallery-grid">
+                    <div class="grid-photo-item" onclick="openApexModal(this)"><img src="assets/imag1.png" alt="Instalaciones 1"></div>
+                    <div class="grid-photo-item" onclick="openApexModal(this)"><img src="assets/imag2.jpg" alt="Instalaciones 2"></div>
+                    <div class="grid-photo-item" onclick="openApexModal(this)"><img src="assets/imag3.png" alt="Instalaciones 3"></div>
+                    <div class="grid-photo-item" onclick="openApexModal(this)"><img src="assets/imag4.png" alt="Instalaciones 4"></div>
+                    <div class="grid-photo-item" onclick="openApexModal(this)"><img src="assets/imag5.png" alt="Instalaciones 5"></div>
+                    <div class="grid-photo-item" onclick="openApexModal(this)"><img src="assets/imag6.jpg" alt="Instalaciones 6"></div>
+                    <div class="grid-photo-item" onclick="openApexModal(this)"><img src="assets/imag7.png" alt="Instalaciones 7"></div>
+                    <div class="grid-photo-item" onclick="openApexModal(this)"><img src="assets/foto.8.jpg" alt="Instalaciones 8"></div>
+                    <div class="grid-photo-item" onclick="openApexModal(this)"><img src="assets/foto.9.jpg" alt="Instalaciones 9"></div>
+                    <div class="grid-photo-item" onclick="openApexModal(this)"><img src="assets/imag10.png" alt="Instalaciones 10"></div>
+                </div>
+            </div>
         </div>
-        
-        <button id="about-prev" class="carousel-arrow prev">❮</button>
-        <button id="about-next" class="carousel-arrow next">❯</button>
+    </section>
+
+    <!-- VENTANA EMERGENTE (MODAL LIGHTBOX) -->
+    <div id="apex-gallery-modal" class="gallery-modal" onclick="closeApexModalViaBg(event)">
+        <span class="modal-close" onclick="closeApexModal()">&times;</span>
+        <img class="modal-content-img" id="modal-target-img" src="" alt="Vista ampliada">
     </div>
-</div>
+
+    <div id="apex-gallery-modal" class="gallery-modal" aria-hidden="true">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content-img" id="modal-target-img" src="" alt="Vista ampliada">
     </div>
-</section>
 
        <section id="experiencia-apex">
     <h2 class="section-title">EXPERIENCIA APEX</h2>

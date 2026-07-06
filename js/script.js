@@ -321,4 +321,36 @@ const menuToggle = document.querySelector('.menu-toggle');
             updateCarousel();
         }
     });
-  
+  // ==========================================================================
+// FUNCIONES GLOBALES DE GALERÍA APEX (EVITA CONFLICTOS DE RENDERIZADO)
+// ==========================================================================
+function openApexModal(element) {
+    const modal = document.getElementById('apex-gallery-modal');
+    const modalImg = document.getElementById('modal-target-img');
+    const innerImg = element.querySelector('img');
+    
+    if (modal && modalImg && innerImg) {
+        modalImg.src = innerImg.src;
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Detiene el scroll para enfocar la visual
+    }
+}
+
+function closeApexModal() {
+    const modal = document.getElementById('apex-gallery-modal');
+    const modalImg = document.getElementById('modal-target-img');
+    
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = ''; // Habilita de nuevo el scroll vertical de la página
+        if (modalImg) modalImg.src = '';   // Libera memoria gráfica
+    }
+}
+
+// Cierra también si el usuario hace click afuera de la imagen (en el fondo oscuro)
+function closeApexModalViaBg(event) {
+    const modal = document.getElementById('apex-gallery-modal');
+    if (event.target === modal) {
+        closeApexModal();
+    }
+}
