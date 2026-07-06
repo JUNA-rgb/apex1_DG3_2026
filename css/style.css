@@ -2099,3 +2099,119 @@ text-shadow: 0 0 10px #00f2fe80;
         font-size: 35px;
     }
 }
+/* ==========================================================================
+   REESTRUCTURACIÓN DE RESPONSIVE MOBILE - CONTROL RECALIBRADO
+   ========================================================================== */
+@media (max-width: 768px) {
+    
+    /* Reset Global Fluido */
+    html, body {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        height: auto !important;
+    }
+
+    /* Estructura base para secciones (sin romper layouts específicos) */
+    section, footer, div[class*="-section"] {
+        height: auto !important;
+        min-height: min-content !important;
+        position: relative !important;
+        padding: 60px 20px !important;
+    }
+
+    /* ==========================================
+       1. PARCHE QUIRÚRGICO: MENÚ / HEADER / HAMBURGUESA
+       ========================================== */
+    /* Respetamos el flex original de tu header para que el logo y la hamburguesa convivan */
+    .header-container {
+        display: flex !important;
+        flex-direction: row !important; 
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 15px 20px !important;
+    }
+
+    /* Si usás un contenedor para los links que se despliega con la hamburguesa */
+    .nav {
+        /* Nota: Si tu script añade una clase tipo '.active' o '.open' para mostrar el menú, 
+           asegurate de mantener su lógica. Aquí evitamos que se rompa su display por defecto */
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+
+
+    /* ==========================================
+       2. PARCHE QUIRÚRGICO: EXPERIENCIA APEX (F1, F2, F3)
+       ========================================== */
+    /* Devolvemos el contenedor de la experiencia a su comportamiento de grilla/flex 
+       pero adaptado a una sola columna para que no se giren ni se rompan las tarjetas */
+    .experience-container,
+    .experience-grid,
+    .apex-experience-layout { 
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 25px !important;
+    }
+
+    /* Aseguramos que los bloques internos de Fórmula 1, 2 y 3 mantengan su orientación correcta */
+    .formula-card,
+    .experience-card,
+    .card-f1, .card-f2, .card-f3 {
+        display: flex !important;
+        flex-direction: column !important; /* Si se rotaban a fila, esto las clava en vertical */
+        transform: none !important; /* Por si alguna animación o regla las giraba de eje */
+        width: 100% !important;
+        height: auto !important;
+        box-sizing: border-box !important;
+    }
+
+
+    /* ==========================================
+       3. AJUSTES COMPLEMENTARIOS (GARAGE Y SECCIONES RÍGIDAS)
+       ========================================== */
+    .hero-section {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        padding-top: 130px !important;
+        text-align: center !important;
+    }
+
+    .hero-title {
+        font-size: 2rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .garage-viewport,
+    .about-grid,
+    .game-main-display,
+    .game-thumbnails-grid,
+    .footer-split-grid,
+    .courses-grid-4 {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+        gap: 30px !important;
+    }
+
+    .main-display {
+        min-height: 280px !important;
+        width: 100% !important;
+    }
+
+    .leaderboard-row {
+        display: grid !important;
+        grid-template-columns: 40px 1fr 80px !important;
+        padding: 12px 8px !important;
+        font-size: 0.8rem !important;
+    }
+
+    .row-team {
+        display: none !important;
+    }
+
+    .scroll-circuit-track {
+        display: none !important;
+    }
+}
