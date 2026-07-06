@@ -31,6 +31,25 @@
             padding: 0;
         }
 
+        /* Canvas de telemetría de fondo fija */
+        #telemetry-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 5;
+        }
 
  /* --- Header --- */
         .header {
@@ -93,13 +112,14 @@
  /* --- Hero Section --- */
       /* --- ESTILOS COMPATIBLES CORE PARA EL HERO --- */
 .mega-hero {
-    position: relative;
-    min-height: 100vh;
-    width: 100%;
+    width: 100%;           /* Ocupa todo el ancho */
+    height: 100vh;         /* Ocupa el 100% del alto de la ventana */
+    max-width: none;       /* IMPORTANTE: Esto elimina el límite de 1200px */
+    position: relative;    /* Asegura que el contenido interior se posicione bien */
+    overflow: hidden;      /* Para que el video no se salga si es más grande */
     display: flex;
     align-items: center;
-    background-color: #05070c;
-    overflow: hidden;
+    justify-content: center;
 }
 
 .hero-bg-image {
@@ -113,6 +133,14 @@
     z-index: 1;
 }
 
+        /* Contenedor simulando el parabrisas mojado de la foto */
+        .hero-bg-wrap {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 2;
+            background: url('assets/vistaa.png') center/cover no-repeat;
+            filter: brightness(0.4) contrast(1.1);
+        }
 
         .hero-content {
             max-width: 650px;
@@ -330,7 +358,7 @@ section {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 100%;
+            padding: 140px 0 100px 0; 
             background-color: #05070c;
         }
         
@@ -358,6 +386,29 @@ section {
             pointer-events: none;
         }
 
+        .mega-hero-video {
+            position: absolute;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: right;
+            justify-content: right;
+            overflow: hidden;
+            text-align: right;
+        }
+        .video-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 1;
+            filter: brightness(0.3) contrast(1.2);
+        }
         .hero-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -607,52 +658,6 @@ section {
             padding: 2px 6px;
             letter-spacing: 1px;
         }
-        /* --- NUEVO ESTILO DE FONDO: MARCAS DE NEÓN --- */
-
-/* Contenedor principal del fondo (fijo y detrás de todo) */
-#neon-tire-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* Detrás del contenido */
-    background-color: #05070c; /* Tu color base */
-    pointer-events: none; /* Para que el mouse pase a través */
-    overflow: hidden;
-}
-
-/* Estilo base de la marca de neumático (usando SVG como imagen de fondo repetible) */
-.tire-mark {
-    position: absolute;
-    width: 100%;
-    height: 200px; /* Altura del patrón */
-    background-image: repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 50px,
-        /* Color neón azul, semitransparente para el efecto */
-        rgba(57, 160, 218, 0.3) 50px,
-        rgba(57, 160, 218, 0.3) 60px
-    );
-    /* Efecto de brillo neón */
-    filter: drop-shadow(0 0 5px var(--electric-blue)) 
-            drop-shadow(0 0 10px var(--electric-blue));
-    opacity: 0; /* Comienzan invisibles */
-    /* Animación de aparición suave */
-    transition: opacity 1s ease-in-out, transform 0.5s ease-out; 
-    transform: translateY(20px); /* Ligeramente desplazadas hacia abajo al inicio */
-}
-
-/* Clase que activa la aparición (JavaScript la añadirá) */
-.tire-mark.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Variación para que las marcas no sean todas iguales */
-.tire-mark-left { left: -10%; transform: rotate(-2deg) translateY(20px); }
-.tire-mark-right { right: -10%; transform: rotate(2deg) translateY(20px); }
 
         /* Animaciones */
         @keyframes fadeInHUD {
@@ -665,7 +670,7 @@ section {
             .pasaporte-grid, .circuits-grid { grid-template-columns: 1fr; }
             .split-modules-container, .bonus-section-wrapper { grid-template-columns: 1fr; }
             .mega-hero { 
-                padding:100%; 
+                padding: 160px 0 100px 0; 
             }
         }
         
@@ -678,10 +683,14 @@ section {
                 padding: 15px 0;
             }
             .header-container {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
+    display: flex;
+    justify-content: space-between; /* Esto empuja los elementos a los extremos */
+    align-items: center;            /* Alinea verticalmente los elementos */
+    width: 100%;
+    max-width: 1200px;              /* O el ancho que manejes en tu web */
+    margin: 0 auto;                 /* Centra el contenedor en la pantalla */
+    padding: 0 20px;                /* Espaciado lateral para que no toque los bordes */
+}
             .nav {
                 display: flex;
                 flex-wrap: wrap;
@@ -816,31 +825,103 @@ section {
             }
         }
 
+        /* --- AJUSTE DINÁMICO DE ANIMACIONES DE FONDO (CANVAS) --- */
+        #telemetry-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .scroll-circuit-track {
+            position: absolute;
+            top: 0;
+            left: 5%;
+            width: 2px;
+            height: 100%;
+            background: rgba(57, 160, 218, 0.05);
+            z-index: 2;
+        }
+        .scroll-circuit-energy {
+            position: absolute;
+            top: 0;
+            left: -1px;
+            width: 4px;
+            height: 80px;
+            background: linear-gradient(180deg, transparent, var(--electric-blue), transparent);
+            box-shadow: 0 0 10px var(--electric-blue);
+        }
+        /* --- ESTILOS RESPONSIVE PARA EL MENÚ --- */
+.menu-toggle {
+    display: none; /* Oculto en escritorio */
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle { display: block; }
+
+    .nav {
+        display: none; /* Oculto por defecto en mobile */
+        position: absolute;
+        top: 90px;
+        left: 0;
+        width: 100%;
+        background: #0b111e;
+        padding: 20px;
+        z-index: 1000;
+    }
+
+    .nav.active { display: block; }
+
+    .nav-links {
+        flex-direction: column;
+        list-style: none;
+        gap: 15px;
+    }
+}
+
+/* En escritorio, el menú siempre es visible */
+@media (min-width: 769px) {
+    .menu-hamburguesa {
+        display: none;
+    }
+    .nav-menu {
+        display: flex !important; /* Forzamos visibilidad en desktop */
+    }
+}
     </style>
 </head>
 <body>
-<canvas id="telemetry-bg"></canvas>
-    <div class="tech-hud-background"></div>
 
-    <div class="scroll-circuit-track" aria-hidden="true">
-        <div class="scroll-circuit-energy"></div>
-    </div>
+   
 
     <header class="header">
-        <div class="header-container">
-            <div class="logo">
-                <a href="index.html"><img src="assets/marca.png" alt="Logo APEX" style="height: 90px;"></a>
-            </div>
-            <nav class="nav">
-                <a href="index.html" class="nav-link"><i class="fas fa-arrow-left text-electric"></i> Volver al Home</a>
-                <a href="#pasaporte" class="nav-link">Funcionamiento</a>
-                <a href="#modulos" class="nav-link">Módulos</a>
-                <a href="#pistas" class="nav-link">Circuitos</a>
-                <a href="#bonus" class="nav-link">Equipamiento</a>
-            </nav>
-            <a href="#postular" class="btn btn-primary btn-hud" style="background: #1796eb; color: #000;">BUTACA VIP</a>
+    <div class="header-container">
+        <div class="logo">
+            <a href="index.html"><img src="assets/marca.png" alt="Logo APEX" style="height: 90px;"></a>
         </div>
-    </header>
+
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <nav class="nav">
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-arrow-left text-electric"></i> Volver al Home</a></li>
+                <li><a href="#pasaporte" class="nav-link">Funcionamiento</a></li>
+                <li><a href="#modulos" class="nav-link">Módulos</a></li>
+                <li><a href="#pistas" class="nav-link">Circuitos</a></li>
+                <li><a href="#bonus" class="nav-link">Equipamiento</a></li>
+            </ul>
+        </nav>
+
+        <a href="#postular" class="btn btn-primary btn-hud" style="background: #1796eb; color: #000;">Quiero correr</a>
+    </div>
+</header>
 
     <section class="mega-hero tech-grid-bg" style="position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; padding: 0; background-color: #05070c;">
         
@@ -1198,6 +1279,37 @@ section {
             }
             
 
+            // Lógica de Módulos Laterales (Sección 3)
+            const tabs = document.querySelectorAll('.module-tab-btn');
+            const panes = document.querySelectorAll('.module-pane');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.getAttribute('data-target');
+
+                    tabs.forEach(t => t.classList.remove('active'));
+                    panes.forEach(p => p.classList.remove('active'));
+
+                    tab.classList.add('active');
+                    document.getElementById(target).classList.add('active');
+                });
+            });
+
+            // Lógica Efecto Giro 3D Suave por Ratón en Credencial VIP
+            const card = document.getElementById('vipCard');
+            if (card) {
+                const wrapper = card.parentElement;
+                wrapper.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left - (rect.width/2);
+                    const y = e.clientY - rect.top - (rect.height/2);
+                    card.style.transform = `rotateY(${x / 15}deg) rotateX(${-y / 15}deg)`;
+                });
+                wrapper.addEventListener('mouseleave', () => {
+                    card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+                });
+            }
+
             // =======================================================
             // NUEVO: DETECTOR DE SCROLL PARA MOSTRAR CRONOGRAMA
             // =======================================================
@@ -1223,6 +1335,9 @@ section {
                 timelineObserver.observe(item);
             });
         });
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+        document.querySelector('.nav').classList.toggle('active');
+    });
     </script>
 </body>
 </html>
