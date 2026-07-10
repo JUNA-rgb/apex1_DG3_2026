@@ -57,6 +57,10 @@
             margin-bottom: 60px;
         }
 
+        @media (min-width: 993px) {
+            .section-header { margin-bottom: 40px; }
+        }
+
         .section-subtitle {
             font-family: var(--font-hud);
             color: var(--electric-blue);
@@ -101,6 +105,10 @@
             letter-spacing: 2px;
             margin-bottom: 60px;
             color: var(--white);
+        }
+
+        @media (min-width: 993px) {
+            .passport-title { margin-bottom: 40px; }
         }
 
         .passport-grid {
@@ -440,6 +448,9 @@
             text-align: center;
             margin-bottom: 60px;
         }
+        @media (min-width: 993px) {
+            .modules-header { margin-bottom: 40px; }
+        }
         .subtitle-highlight {
             font-family: var(--font-hud);
             color: var(--electric-blue);
@@ -518,15 +529,23 @@
             position: relative;
             overflow: hidden;
         }
+        
+        /* Contenedores de paneles individuales */
         .content-panel-inner {
             background-size: cover;
             background-position: center right;
             padding: 50px;
             height: 100%;
-            display: flex;
+            display: none; /* Se ocultan por defecto */
             align-items: center;
-            transition: background-image 0.5s ease-in-out;
         }
+        
+        /* El panel activo se muestra */
+        .content-panel-inner.active-panel {
+            display: flex;
+            animation: paneFade 0.4s forwards;
+        }
+
         .module-info-box {
             max-width: 500px;
         }
@@ -631,6 +650,10 @@
             margin-top: 40px;
             position: relative;
             z-index: 2; 
+        }
+
+        @media (min-width: 993px) {
+            .circuit-telemetry-dashboard { margin-top: 20px; }
         }
 
         .circuit-selection-panel {
@@ -746,6 +769,10 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             margin-top: 40px;
+        }
+
+        @media (min-width: 993px) {
+            .equip-grid { margin-top: 20px; }
         }
 
         .equip-card {
@@ -921,6 +948,9 @@
             border-top: 1px dashed rgba(138, 148, 166, 0.2);
             padding-top: 60px;
         }
+        @media (min-width: 993px) {
+            .faq-section-wrapper { margin-top: 40px; padding-top: 40px; }
+        }
         .faq-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -946,6 +976,10 @@
             font-size: 0.8rem;
             color: var(--metallic-grey);
             letter-spacing: 1px;
+        }
+
+        @media (min-width: 993px) {
+            .brand-footer-end { margin-top: 40px; }
         }
 
         /* --- RESPONSIVE ADJUSTMENTS --- */
@@ -984,7 +1018,37 @@
             .equip-grid { grid-template-columns: 1fr; }
             .section-title { font-size: 1.9rem; }
         }
-        
+
+        /* --- ESTILOS DEL BANNER INTERMEDIO --- */
+        .banner-intermedio-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 100px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        .banner-media {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        /* --- REDUCCIÓN DE ESPACIOS EXCLUSIVO DESKTOP --- */
+        @media (min-width: 993px) {
+            .passport-section { padding: 60px 0; }
+            .interactive-modules-section { padding: 60px 0; }
+            #circuitos { padding: 60px 0; }
+            #equipamiento { padding: 60px 0; }
+            .footer-checkout { padding: 60px 0 40px 0; }
+            
+            .banner-intermedio-container {
+                margin: 0;
+                padding: 0;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -1084,23 +1148,21 @@
         </div>
     </section>
 
-    <!-- SECCIÓN: MÓDULOS INTERACTIVOS -->
+    <!-- SECCIÓN: MÓDULOS INTERACTIVOS (CON IMÁGENES DECLARADAS EN EL HTML) -->
     <section id="modulos" class="interactive-modules-section">
         <div class="modules-container">
             
-            <!-- Encabezado de la Sección -->
             <div class="modules-header">
                 <span class="subtitle-highlight">MÓDULOS INTERACTIVOS</span>
                 <h2 class="main-title">TU ENTRENAMIENTO, TU CAMINO</h2>
             </div>
 
-            <!-- Panel Interactivo Principal -->
             <div class="modules-wrapper">
                 
-                <!-- Selector de Módulos (Izquierda en Desktop / Arriba en Mobile) -->
+                <!-- Selector de Módulos (Tabs) -->
                 <div class="modules-sidebar">
                     
-                    <div class="module-tab active" data-module="1">
+                    <div class="module-tab active" data-target-pane="mod-pane-1">
                         <div class="tab-icon-wrapper">
                             <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="10"/>
@@ -1114,7 +1176,7 @@
                         </div>
                     </div>
 
-                    <div class="module-tab" data-module="2">
+                    <div class="module-tab" data-target-pane="mod-pane-2">
                         <div class="tab-icon-wrapper">
                             <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="10"/>
@@ -1128,7 +1190,7 @@
                         </div>
                     </div>
 
-                    <div class="module-tab" data-module="3">
+                    <div class="module-tab" data-target-pane="mod-pane-3">
                         <div class="tab-icon-wrapper">
                             <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M8 3c-2 0-4 1.5-4 4s2 4 4 4 4 1.5 4 4-2 4-4 4M16 21c2 0 4-1.5 4-4s-2-4-4-4-4-1.5-4-4 2-4 4-4" stroke-dasharray="2 2"/>
@@ -1140,7 +1202,7 @@
                         </div>
                     </div>
 
-                    <div class="module-tab" data-module="4">
+                    <div class="module-tab" data-target-pane="mod-pane-4">
                         <div class="tab-icon-wrapper">
                             <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M3 3v18h18"/>
@@ -1154,7 +1216,7 @@
                         </div>
                     </div>
 
-                    <div class="module-tab" data-module="5">
+                    <div class="module-tab" data-target-pane="mod-pane-5">
                         <div class="tab-icon-wrapper">
                             <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="3"/>
@@ -1169,26 +1231,102 @@
 
                 </div>
 
-                <!-- Contenedor dinámico del Contenido del Módulo -->
+                <!-- Visor de contenido dinámico -->
                 <div class="module-content-display">
                     
-                    <div class="content-panel-inner" id="dynamic-module-panel" style="background-image: linear-gradient(to right, rgba(0,0,0,0.95) 45%, rgba(0,0,0,0.3) 100%), url('assets/auto1.png');">
+                    <!-- PANEL 01: FUNDAMENTOS -->
+                    <div class="content-panel-inner active-panel" id="mod-pane-1" style="background-image: linear-gradient(to right, rgba(0,0,0,0.95) 45%, rgba(0,0,0,0.3) 100%), url('assets/auto1.png');">
                         <div class="module-info-box">
-                            <span class="content-mod-tag" id="mod-tag">MÓDULO 01</span>
-                            <h3 class="content-mod-title" id="mod-title">FUNDAMENTOS</h3>
-                            <h4 class="content-mod-subtitle" id="mod-subtitle">LA BASE DE TODO</h4>
-                            
-                            <p class="content-mod-description" id="mod-description">
-                                Aprendé los principios esenciales que separan a los pilotos consistentes de los rápidos.
-                            </p>
-
-                            <ul class="content-bullet-list" id="mod-bullets">
+                            <span class="content-mod-tag">MÓDULO 01</span>
+                            <h3 class="content-mod-title">FUNDAMENTOS</h3>
+                            <h4 class="content-mod-subtitle">LA BASE DE TODO</h4>
+                            <p class="content-mod-description">Aprendé los principios esenciales que separan a los pilotos consistentes de los rápidos.</p>
+                            <ul class="content-bullet-list">
                                 <li><span class="check-icon">✓</span> Posición de manejo y ergonomía</li>
                                 <li><span class="check-icon">✓</span> Control del auto y sensibilidad</li>
                                 <li><span class="check-icon">✓</span> Transferencia de pesos</li>
                                 <li><span class="check-icon">✓</span> Técnicas de consistencia</li>
                             </ul>
+                            <a href="#" class="module-action-btn">
+                                VER CONTENIDO DEL MÓDULO 
+                                <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                            </a>
+                        </div>
+                    </div>
 
+                    <!-- PANEL 02: FRENADO -->
+                    <div class="content-panel-inner" id="mod-pane-2" style="background-image: linear-gradient(to right, rgba(0,0,0,0.95) 45%, rgba(0,0,0,0.3) 100%), url('assets/frenado.png');">
+                        <div class="module-info-box">
+                            <span class="content-mod-tag">MÓDULO 02</span>
+                            <h3 class="content-mod-title">FRENADO</h3>
+                            <h4 class="content-mod-subtitle">LA CLAVE DEL TIEMPO</h4>
+                            <p class="content-mod-description">Dominá la fase más crítica de la pista. Reducí metros de parada usando técnicas de telemetría de presión hidráulica.</p>
+                            <ul class="content-bullet-list">
+                                <li><span class="check-icon">✓</span> Optimización de frenado inicial (Peak Pressure)</li>
+                                <li><span class="check-icon">✓</span> Técnica perfecta de Trail Braking</li>
+                                <li><span class="check-icon">✓</span> Evitar el bloqueo y la entrada de ABS</li>
+                                <li><span class="check-icon">✓</span> Estabilización del eje trasero en desaceleración</li>
+                            </ul>
+                            <a href="#" class="module-action-btn">
+                                VER CONTENIDO DEL MÓDULO 
+                                <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- PANEL 03: TRAZADAS -->
+                    <div class="content-panel-inner" id="mod-pane-3" style="background-image: linear-gradient(to right, rgba(0,0,0,0.95) 45%, rgba(0,0,0,0.3) 100%), url('assets/trazadas.png');">
+                        <div class="module-info-box">
+                            <span class="content-mod-tag">MÓDULO 03</span>
+                            <h3 class="content-mod-title">TRAZADAS</h3>
+                            <h4 class="content-mod-subtitle">EL ARTE DE LA LÍNEA</h4>
+                            <p class="content-mod-description">Entendé la geometría de los circuitos. Encontrá el punto de cuerda ideal y maximizá la velocidad de salida.</p>
+                            <ul class="content-bullet-list">
+                                <li><span class="check-icon">✓</span> Vértices tempranos vs. vértices tardíos</li>
+                                <li><span class="check-icon">✓</span> Trazadas en lluvia y condiciones cambiantes</li>
+                                <li><span class="check-icon">✓</span> Uso estratégico de pianos y límites de pista</li>
+                                <li><span class="check-icon">✓</span> Preparación de rectas largas (Prioridad de salida)</li>
+                            </ul>
+                            <a href="#" class="module-action-btn">
+                                VER CONTENIDO DEL MÓDULO 
+                                <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- PANEL 04: TELEMETRÍA -->
+                    <div class="content-panel-inner" id="mod-pane-4" style="background-image: linear-gradient(to right, rgba(0,0,0,0.95) 45%, rgba(0,0,0,0.3) 100%), url('assets/telemetria.png');">
+                        <div class="module-info-box">
+                            <span class="content-mod-tag">MÓDULO 04</span>
+                            <h3 class="content-mod-title">TELEMETRÍA</h3>
+                            <h4 class="content-mod-subtitle">DATOS QUE HABLAN</h4>
+                            <p class="content-mod-description">Dejá de adivinar dónde perdés tiempo. Aprendé a leer software profesional para comparar tus vueltas de forma quirúrgica.</p>
+                            <ul class="content-bullet-list">
+                                <li><span class="check-icon">✓</span> Configuración de canales en MoTeC i2 Pro y Atlas</li>
+                                <li><span class="check-icon">✓</span> Análisis de la gráfica de tiempos (Delta-T)</li>
+                                <li><span class="check-icon">✓</span> Comparativa de canales de acelerador y freno</li>
+                                <li><span class="check-icon">✓</span> Identificación de subviraje y sobreviraje en datos</li>
+                            </ul>
+                            <a href="#" class="module-action-btn">
+                                VER CONTENIDO DEL MÓDULO 
+                                <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- PANEL 05: SETUPS -->
+                    <div class="content-panel-inner" id="mod-pane-5" style="background-image: linear-gradient(to right, rgba(0,0,0,0.95) 45%, rgba(0,0,0,0.3) 100%), url('assets/imag6.jpg');">
+                        <div class="module-info-box">
+                            <span class="content-mod-tag">MÓDULO 05</span>
+                            <h3 class="content-mod-title">SETUPS</h3>
+                            <h4 class="content-mod-subtitle">EL EQUILIBRIO PERFECTO</h4>
+                            <p class="content-mod-description">Modificá las variables mecánicas de tu auto para adaptarlo a tu estilo de manejo y a las necesidades del circuito.</p>
+                            <ul class="content-bullet-list">
+                                <li><span class="check-icon">✓</span> Presiones de neumáticos y temperaturas de trabajo</li>
+                                <li><span class="check-icon">✓</span> Ajuste de suspensiones, muelles y barras estabilizadoras</li>
+                                <li><span class="check-icon">✓</span> Configuración aerodinámica (Carga alar y balance)</li>
+                                <li><span class="check-icon">✓</span> Diferenciales y mapas de motor para carrera</li>
+                            </ul>
                             <a href="#" class="module-action-btn">
                                 VER CONTENIDO DEL MÓDULO 
                                 <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
@@ -1201,11 +1339,12 @@
             </div>
         </div>
     </section>
-<!-- BANNER PUBLICITARIO INTERMEDIO -->
+
+    <!-- BANNER PUBLICITARIO INTERMEDIO -->
     <div class="banner-intermedio-container">
         <img src="assets/ban1.jpg" alt="Banner APEX" class="banner-media">
     </div>
-    
+
     <!-- SECCIÓN 3: EXPERIENCIA INTERACTIVA DE CIRCUITOS -->
     <section id="circuitos">
         <canvas id="circuitTrackCanvas" class="circuit-bg-canvas"></canvas>
@@ -1389,7 +1528,7 @@
         </div>
     </footer>
 
-    <!-- LOGICA SCRIPT INTERACTIVA -->
+    <!-- LÓGICA SCRIPT INTERACTIVA -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- MENÚ HAMBURGUESA ---
@@ -1402,104 +1541,24 @@
                 });
             }
 
-            // --- DATA BANCO DE MÓDULOS ---
-            const modulesData = {
-                1: {
-                    tag: "MÓDULO 01",
-                    title: "FUNDAMENTOS",
-                    subtitle: "LA BASE DE TODO",
-                    desc: "Aprendé los principios esenciales que separan a los pilotos consistentes de los rápidos.",
-                    bullets: [
-                        "Posición de manejo y ergonomía",
-                        "Control del auto y sensibilidad",
-                        "Transferencia de pesos",
-                        "Técnicas de consistencia"
-                    ]
-                },
-                2: {
-                    tag: "MÓDULO 02",
-                    title: "FRENADO",
-                    subtitle: "LA CLAVE DEL TIEMPO",
-                    desc: "Dominá la fase más crítica de la pista. Reducí metros de parada usando técnicas de telemetría de presión hidráulica.",
-                    bullets: [
-                        "Optimización de frenado inicial (Peak Pressure)",
-                        "Técnica perfecta de Trail Braking",
-                        "Evitar el bloqueo y la entrada de ABS",
-                        "Estabilización del eje trasero en desaceleración"
-                    ]
-                },
-                3: {
-                    tag: "MÓDULO 03",
-                    title: "TRAZADAS",
-                    subtitle: "EL ARTE DE LA LÍNEA",
-                    desc: "Entendé la geometría de los circuitos. Encontrá el punto de cuerda ideal y maximizá la velocidad de salida.",
-                    bullets: [
-                        "Vértices tempranos vs. vértices tardíos",
-                        "Trazadas en lluvia y condiciones cambiantes",
-                        "Uso estratégico de pianos y límites de pista",
-                        "Preparación de rectas largas (Prioridad de salida)"
-                    ]
-                },
-                4: {
-                    tag: "MÓDULO 04",
-                    title: "TELEMETRÍA",
-                    subtitle: "DATOS QUE HABLAN",
-                    desc: "Dejá de adivinar dónde perdés tiempo. Aprendé a leer software profesional para comparar tus vueltas de forma quirúrgica.",
-                    bullets: [
-                        "Configuración de canales en MoTeC i2 Pro y Atlas",
-                        "Análisis de la gráfica de tiempos (Delta-T)",
-                        "Comparativa de canales de acelerador y freno",
-                        "Identificación de subviraje y sobreviraje en datos"
-                    ]
-                },
-                5: {
-                    tag: "MÓDULO 05",
-                    title: "SETUPS",
-                    subtitle: "EL EQUILIBRIO PERFECTO",
-                    desc: "Modificá las variables mecánicas de tu auto para adaptarlo a tu estilo de manejo y a las necesidades del circuito.",
-                    bullets: [
-                        "Presiones de neumáticos y temperaturas de trabajo",
-                        "Ajuste de suspensiones, muelles y barras estabilizadoras",
-                        "Configuración aerodinámica (Carga alar y balance)",
-                        "Diferenciales y mapas de motor para carrera"
-                    ]
-                }
-            };
-
-            // --- LÓGICA DE INTERCAMBIO DE MÓDULOS CON IMAGEN UNIFICADA ---
+            // --- INTERCAMBIO DE PANELES EN LOS MÓDULOS ---
             const tabs = document.querySelectorAll('.module-tab');
-            const panel = document.getElementById('dynamic-module-panel');
-            const mTag = document.getElementById('mod-tag');
-            const mTitle = document.getElementById('mod-title');
-            const mSubtitle = document.getElementById('mod-subtitle');
-            const mDesc = document.getElementById('mod-description');
-            const mBullets = document.getElementById('mod-bullets');
+            const panels = document.querySelectorAll('.content-panel-inner');
 
             tabs.forEach(tab => {
                 tab.addEventListener('click', () => {
+                    // Remover clases activas de todas las pestañas y paneles
                     tabs.forEach(t => t.classList.remove('active'));
+                    panels.forEach(p => p.classList.remove('active-panel'));
+
+                    // Activar la pestaña clickeada
                     tab.classList.add('active');
 
-                    const modId = tab.getAttribute('data-module');
-                    const data = modulesData[modId];
-
-                    if (data) {
-                        mTag.textContent = data.tag;
-                        mTitle.textContent = data.title;
-                        mSubtitle.textContent = data.subtitle;
-                        mDesc.textContent = data.desc;
-
-                        mBullets.innerHTML = '';
-                        data.bullets.forEach(b => {
-                            const li = document.createElement('li');
-                            li.innerHTML = `<span class="check-icon">✓</span> ${b}`;
-                            mBullets.appendChild(li);
-                        });
-
-                        // Se mantiene siempre "assets/auto1.png" adaptando los gradientes según el viewport
-                        panel.style.backgroundImage = window.innerWidth <= 991 
-                            ? `linear-gradient(to top, rgba(0,0,0,0.98) 65%, rgba(0,0,0,0.5) 100%), url('assets/auto1.png')`
-                            : `linear-gradient(to right, rgba(0,0,0,0.95) 45%, rgba(0,0,0,0.3) 100%), url('assets/auto1.png')`;
+                    // Obtener el ID del panel objetivo y mostrarlo
+                    const targetId = tab.getAttribute('data-target-pane');
+                    const targetPanel = document.getElementById(targetId);
+                    if (targetPanel) {
+                        targetPanel.classList.add('active-panel');
                     }
                 });
             });
