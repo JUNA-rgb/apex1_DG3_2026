@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca UI APEX</title>
+    <style>
+        :root {
+            --electric-blue: #38bdf8;
+            --pure-black: #000000;
+            --dark-blue: #0F1425;
+            --white: #FFFFFF;
+            --metallic-grey: #A8ADB7;
+            --font-title: 'Orbitron', sans-serif;
+            --font-body: 'Montserrat', sans-serif;
+            --glow-effect: 0 0 15px #38bdf877;
+        }
+
+        body {
+            background-color: var(--pure-black);
+            color: var(--white);
+            font-family: var(--font-body);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .ui-library-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        h1 { font-family: var(--font-title); color: var(--electric-blue); text-align: center; margin-bottom: 50px; }
+        
+        .section-group { margin-bottom: 60px; border-bottom: 1px solid #333; padding-bottom: 40px; }
+        h2 { font-family: var(--font-title); margin-bottom: 20px; color: var(--white); }
+
+        /* Componente Botones */
+        .btn-container { display: flex; gap: 20px; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 14px 28px; font-family: var(--font-title); font-size: 0.85rem;
+            font-weight: 900; letter-spacing: 2px; text-transform: uppercase;
+            transition: all 0.4s ease; position: relative; cursor: pointer; border-radius: 2px;
+        }
+        .btn-primary { background: var(--electric-blue); color: var(--pure-black); border: none; box-shadow: var(--glow-effect); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 25px #38bdf8; }
+        
+        /* Componente Tarjeta */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .passport-card {
+            background: rgba(15, 20, 37, 0.8);
+            border: 1px solid rgba(57, 160, 218, 0.2);
+            padding: 25px;
+            transition: transform 0.3s ease;
+        }
+        .passport-card:hover { transform: translateY(-5px); border-color: var(--electric-blue); }
+    </style>
+</head>
+<body>
+    <div class="ui-library-container">
+        <h1>Biblioteca UI APEX</h1>
+        
+        <section class="section-group">
+            <h2>Botones HUD</h2>
+            <div class="btn-container">
+                <button class="btn btn-primary">Primary Action</button>
+                <button class="btn btn-outline" style="background:transparent; color:white; border:1px solid #A8ADB7;">Outline Action</button>
+            </div>
+        </section>
+
+        <section class="section-group">
+            <h2>Tarjetas Telemetría</h2>
+            <div class="card-grid">
+                <div class="passport-card">
+                    <h3>Módulo 01</h3>
+                    <p>Descripción técnica de la tarjeta.</p>
+                </div>
+                <div class="passport-card">
+                    <h3>Módulo 02</h3>
+                    <p>Descripción técnica de la tarjeta.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        console.log("Biblioteca UI APEX cargada.");
+        // Ejemplo de animación simple al hacer hover
+        document.querySelectorAll('.passport-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.borderColor = 'var(--electric-blue)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.borderColor = 'rgba(57, 160, 218, 0.2)';
+            });
+        });
+    </script>
+</body>
+</html>

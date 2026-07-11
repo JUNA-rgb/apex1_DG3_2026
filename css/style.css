@@ -112,7 +112,7 @@ body {
 .hud-corner-br { position: absolute; bottom: 30px; right: 30px; width: 40px; height: 40px; border-bottom: 2px solid var(--electric-blue); border-right: 2px solid var(--electric-blue); opacity: 0.4; }
 
 /* ¿QUÉ ES APEX? */
-.about-section { border-bottom: 1px solid rgba(57,160,218,0.1); background-color: rgba(15, 20, 37, 0.2); }
+
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
 .about-highlight { font-size: 1.25rem; color: var(--white); font-family: var(--font-body); border-left: 4px solid var(--electric-blue); padding-left: 20px; margin: 25px 0; line-height: 1.7; }
 .tech-spec-labels { display: flex; gap: 15px; font-family: var(--font-sub); font-size: 1rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; }
@@ -136,23 +136,6 @@ body {
 .about-single-image-wrapper:hover .about-single-img {
     transform: scale(1.05); /* Un ligero zoom al pasar el mouse */
 }
-
-/* Efecto hover profesional (opcional) */
-.about-single-image-wrapper:hover .about-single-img {
-    transform: scale(1.05); /* Un ligero zoom al pasar el mouse */
-}
-/* CARRUSEL RE-ESTILIZADO */
-.mini-carousel { position: relative; width: 100%; max-width: 500px; margin: 0 auto; }
-.carousel-viewport { width: 100%; overflow: hidden; /* Esto es fundamental para que solo se vea 1 imagen a la vez */ position: relative;}
-.carousel-track { display: flex; transition: transform 0.5s var(--transition-smooth); will-change: transform; }
-.carousel-slide { min-width: 100%; height: 320px; }
-.carousel-slide img { width: 100%; height: 100%; object-fit: cover; }
-.carousel-arrow { background: rgba(5,7,12,0.9); border: 1px solid var(--electric-blue); color: var(--electric-blue); width: 36px; height: 36px; position: absolute; top: calc(50% - 18px); z-index: 5; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: all 0.3s; }
-.carousel-arrow:hover { background: var(--electric-blue); color: var(--pure-black); box-shadow: var(--glow-effect); }
-.carousel-arrow.prev { left: -18px; }
-.carousel-arrow.next { right: -18px; }
-
-
 
 /* TARJETAS ESTILO TELEMETRÍA BOXES */
 /* Asegura que el contenedor de la grilla distribuya 4 columnas iguales */
@@ -217,8 +200,8 @@ body {
 .row-driver { display: flex; align-items: center; gap: 15px; }
 .row-team { font-family: var(--font-sub); color: var(--metallic-grey); font-size: 0.95rem; text-transform: uppercase; }
 .row-time { text-align: right; font-weight: 700; font-size: 1.05rem; }
-.leaderboard-row.pos-1 { border-left: 4px solid #F1C40F; }
-.leaderboard-row.pos-1 .row-position { color: #F1C40F; }
+.leaderboard-row.pos-1 { border-left: 4px solid #FF06C1; }
+.leaderboard-row.pos-1 .row-position { color: #FF06C1; }
 
 /* TESTIMONIOS (FLIP CARDS) */
 .testimonials-flip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1000px; margin: 0 auto; }
@@ -1102,53 +1085,54 @@ body {
 }
 /* ==========================================================================
    AJUSTES EXCLUSIVOS PARA RESPONSIVE MOBILE (CONSERVANDO DESKTOP INTACTO)
-   ========================================================================== */
-@media (max-width: 768px) {
-    /* --- HEADER Y MENÚ HAMBURGUESA --- */
-    .header .logo img {
-        height: 50px !important; /* Achicar logo de hero */
-    }
+      ========================================================================== */
+            @media (max-width: 768px) {
+                /* --- HEADER Y MENÚ HAMBURGUESA --- */
+                .header .logo img {
+                    height: 50px !important; /* Achicar logo de hero */
+                }
 
-    /* Ocultamos el botón HUD original de escritorio en móviles para dar espacio */
-    .header .btn-hud {
-        display: none !important;
-    }
+                /* Ocultamos el botón HUD original de escritorio en móviles para dar espacio */
+                .header .btn-hud {
+                    display: none !important;
+                }
 
-    /* Activamos y posicionamos el botón hamburguesa en la línea de arriba */
-    .header .menu-toggle {
-        display: block !important;
-        background: none;
-        border: none;
-        color: var(--white);
-        font-size: 1.5rem;
-        cursor: pointer;
-        z-index: 1001;
-    }
+                /* Activamos y posicionamos el botón hamburguesa en la línea de arriba */
+                .header .menu-toggle {
+                    display: block !important;
+                    background: none;
+                    border: none;
+                    color: var(--white);
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    z-index: 1100;
+                }
 
-    /* Transformamos la navegación en menú desplegable vertical */
-    .header .nav {
-        display: none; /* Se controla la visibilidad con la clase 'active' desde JS */
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: #0b0f19; /* Fondo sólido oscuro */
-        border-bottom: 2px solid var(--electric-blue);
-        padding: 20px 0;
-        z-index: 1000;
-    }
+                /* Transformamos la navegación en menú desplegable vertical */
+                .header .nav {
+                    display: none; /* Se controla la visibilidad con la clase 'active' desde JS */
+                    flex-direction: column;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    width: 100%;
+                    background: #0b0f19; /* Fondo sólido oscuro */
+                    border-bottom: 2px solid var(--electric-blue);
+                    padding: 20px 0;
+                    z-index: 1000;
+                }
 
-    .header .nav.active {
-        display: flex !important;
-    }
+                .header .nav.active {
+                    display: flex !important;
+                }
 
-    .header .nav-link {
-        padding: 12px 24px;
-        width: 100%;
-        box-sizing: border-box;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
+                .header .nav-link {
+                    padding: 12px 24px;
+                    width: 100%;
+                    box-sizing: border-box;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                }
+            }
 
     /* --- HERO SECTION --- */
     /* Achicar la foto / contenedor al ancho del celular */
@@ -1212,7 +1196,7 @@ body {
         line-height: 1.4 !important;
         word-wrap: break-word;
     }
-}
+
 /* ==========================================================================
    AJUSTES EXCLUSIVOS RESPONSIVE MOBILE PARA CURSO MEGA APEX (DESKTOP INTACTO)
    ========================================================================== */
@@ -1364,7 +1348,7 @@ body {
 .showroom-header {
  width: 100%;
   z-index: 10;
- padding-top: 120px;
+ padding-top: 50px;
 display: flex;
 justify-content: center;
     }
@@ -1518,7 +1502,7 @@ text-shadow: 0 0 10px #00f2fe80;
 /* Forzar que el layout interno aproveche todo el espacio restante bajo la cabecera */
 #experiencia-apex .showroom-layout {
     flex: 1 !important;
-    width: 80% !important;
+    width: 0% !important;
     height: 100% !important;
     display: grid !important;
     grid-template-columns: 360px 1fr 360px !important; /* Ajusta los px de tus paneles laterales si es necesario */
@@ -1659,7 +1643,7 @@ text-shadow: 0 0 10px #00f2fe80;
     display: flex;
     flex-direction: column;     /* Coloca el título arriba y el grid abajo */
     align-items: center;        /* Centra todo horizontalmente */
-    padding: 60px 0;
+    padding: 1px 0;
 }
 .carousel-viewport {
     overflow: hidden; 
@@ -1672,9 +1656,7 @@ text-shadow: 0 0 10px #00f2fe80;
     width: 100%;
 }
 
-.carousel-slide {
-    min-width: 100%; /* Esto es lo que mantiene a las fotos alineadas */
-}
+
 
 /* ==========================================================================
    EFECTO PIN HORIZONTAL ESTILO CHECO PÉREZ - SÓLO FOTOS
