@@ -131,25 +131,41 @@ body {
 
 
 /* TARJETAS ESTILO TELEMETRÍA BOXES */
-.courses-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-.course-card { background: rgba(15, 20, 37, 0.8); border: 1px solid rgba(57, 160, 218, 0.2); padding: 30px 20px; min-height: 380px; display: flex; flex-direction: column; justify-content: space-between; backdrop-filter: blur(8px); position: relative; }
-/* Esquinas HUD angulares decorativas */
-.card-hud-lines::before, .card-hud-lines::after {
-    content: ''; position: absolute; width: 10px; height: 10px; border-color: var(--electric-blue); border-style: solid; opacity: 0.5;
+/* Asegura que el contenedor de la grilla distribuya 4 columnas iguales */
+.courses-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Esto fuerza las 4 columnas */
+    gap: 20px;
+    width: 100%;
+    max-width: 1400px; /* Ajusta según el ancho de tu contenedor principal */
+    margin: 0 auto;
+    padding: 0 20px;
 }
-.card-hud-lines::before { top: 10px; left: 10px; border-width: 2px 0 0 2px; }
-.card-hud-lines::after { bottom: 10px; right: 10px; border-width: 0 2px 2px 0; }
 
-.course-badge { font-family: var(--font-title); font-size: 0.75rem; color: var(--electric-blue); margin-bottom: 10px; letter-spacing: 1px; }
-.course-title { font-family: var(--font-title); font-size: 1.2rem; margin-bottom: 12px; text-transform: uppercase; }
-.course-desc { color: var(--metallic-grey); font-size: 0.9rem; margin-bottom: 20px; font-family: var(--font-body); }
+/* Ajuste de las tarjetas para que encajen en el nuevo layout */
+.passport-card {
+    background: rgba(15, 20, 37, 0.8);
+    border: 1px solid rgba(57, 160, 218, 0.2);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
 
-/* Destacado Premium Sólido Celeste */
-.courses-grid-4 .mega-apex-card { background-color: var(--electric-blue) !important; border: 1px solid var(--white); box-shadow: var(--glow-effect); color: var(--pure-black); }
-.courses-grid-4 .mega-apex-card .course-badge, .courses-grid-4 .mega-apex-card .course-title { color: var(--pure-black) !important; font-weight: 700; }
-.courses-grid-4 .mega-apex-card .course-desc { color: rgba(0,0,0,0.75); font-weight: 500; }
-.courses-grid-4 .mega-apex-card .btn-outline { border-color: var(--pure-black); color: var(--pure-black); font-weight: 700; }
-.courses-grid-4 .mega-apex-card .btn-outline:hover { background: var(--pure-black); color: var(--electric-blue); }
+/* Responsive para tablets y móviles */
+@media (max-width: 1024px) {
+    .courses-grid-4 {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+    }
+}
+
+@media (max-width: 600px) {
+    .courses-grid-4 {
+        grid-template-columns: 1fr; /* 1 columna en móviles */
+    }
+}
 
 /* EXPERIENCIA APEX (Selector UI Telemetría) */
 .game-ui-wrapper { background: rgba(15, 20, 37, 0.6); border: 1px solid var(--electric-blue); padding: 30px; box-shadow: inset 0 0 20px rgba(57,160,218,0.05); }
@@ -685,55 +701,7 @@ body {
 .time-label { display: block; font-family: var(--font-sub); font-size: 0.8rem; color: var(--metallic-grey); letter-spacing: 1px; }
 .time-value { font-family: var(--font-title); font-size: 1.8rem; color: var(--white); font-weight: 700; }
 
-/* --- SECCIÓN CARRUSEL "¿QUÉ ES APEX?" --- */
-.mini-carousel {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    border-radius: 8px;
-}
 
-.about-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: 100%;
-}
-.carousel-arrow:hover {
-background: rgba(0, 150, 255, 0.8); /* Efecto al pasar el mouse */
- }
-
-.prev { left: 0; }
-.next { right: 0; }
-
-/* Asegura que la imagen llene el espacio sin deformarse */
-.carousel-slide {
- min-width: 100%;
-height: 400px; /* IMPORTANTE: Asegúrate de tener una altura definida */
-}
-
-.carousel-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Esto evita que la imagen se deforme */
-    display: block;
-}
-
-/* --- ESTILO DE LAS FLECHAS (Asegurar que estén sobre el carrusel) --- */
-.carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    z-index: 10;
-    font-size: 1.2rem;
-}
-
-.carousel-arrow.prev { left: 10px; }
-.carousel-arrow.next { right: 10px; }
 /* ==========================================================================
    FIX DE ESTILOS DEFINITIVO: VISOR SUPERIOR DE ACADEMIA 
    ========================================================================== */
@@ -1660,138 +1628,7 @@ text-shadow: 0 0 10px #00f2fe80;
 #courses {
     background-color: #050508 !important; /* El color sólido de base */
 }
-/* Estilo base de la tarjeta */
-.course-card {
-    cursor: pointer;
-    padding: 20px;
-    border: 1px solid #1e293b;
-    transition: all 0.3s ease;
-    background: #0f172a; /* Fondo negro por defecto */
-}
 
-/* Tarjeta especial MEGA APEX (Azul) */
-.mega-apex-card {
-    background: #38bdf8;
-    color: #000;
-}
-
-/* Contenido oculto */
-.expandable-content {
-    display: none;
-    margin-top: 15px;
-}
-
-/* Cuando se hace clic, se expande */
-.course-card.expanded .expandable-content {
-    display: block;
-}
-
-/* Tipografía pequeña y en bold como pediste */
-.course-desc {
-    font-size: 0.85rem;
-    font-weight: bold;
-    line-height: 1.4;
-}
-
-/* Ajuste para que el color de texto se vea bien en la tarjeta azul */
-.mega-apex-card .course-desc { color: #000; }
-.black-card .course-desc { color: #fff; }
-.black-card { color: #fff; }
-
-/* Estilo base de la tarjeta */
-.course-card {
-    background: #0f172a;
-    border: 2px solid #1e293b;
-    padding: 30px;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    color: white;
-    min-height: 180px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.main-title {
-    font-size: 1.8rem;
-    margin: 0;
-    text-transform: uppercase;
-}
-
-/* Contenido oculto */
-.hidden-content {
-    display: none;
-    margin-top: 15px;
-    border-top: 1px solid #38bdf8;
-    padding-top: 15px;
-    font-size: 0.9rem;
-}
-
-/* Efecto al hacer clic */
-.course-card.active {
-    border-color: #38bdf8;
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
-}
-
-.course-card.active .hidden-content {
-    display: block;
-}
-
-/* Estilo especial Mega Apex (Azul) */
-.mega-apex-card {
-    background: #38bdf8;
-    color: #000;
-}
-
-.mega-apex-card .hidden-content {
-    border-top-color: #000;
-}
-/* Título de la sección */
-.section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    color: white;
-    margin-bottom: 40px;
-}
-
-/* Contenedor dinámico: esto hace que las tarjetas no se estiren */
-.courses-grid-4-dynamic {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-
-
-/* El contenido oculto también se ajusta */
-.hidden-content {
-    display: none;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid #38bdf8;
-}
-
-.course-card.active .hidden-content {
-    display: block;
-}
-
-/* Para el diseño Mega Apex Azul */
-.mega-apex-card {
-    background: #38bdf8;
-    color: #000;
-}
-/* Título de la sección */
-.section-title {
-    text-align: center;         /* Centra el texto */
-    width: 100%;                /* Ocupa todo el ancho */
-    margin-bottom: 40px;        /* Espacio entre título y tarjetas */
-    font-family: var(--font-title); /* Usamos tu fuente definida en el CSS */
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--white);
-    display: block;             /* Asegura que sea un bloque independiente */
-}
 
 /* Contenedor que envuelve TODO (Título + Grid) */
 #experiencia-apex {
@@ -1874,29 +1711,7 @@ text-shadow: 0 0 10px #00f2fe80;
     will-change: transform;
 }
 
-/* CARDS CUADRADAS 1:1 */
-.square-slide {
-    width: 320px; 
-    height: 320px;
-    flex-shrink: 0;
-    background-color: #151c33;
-    border: 2px solid rgba(56, 189, 248, 0.2);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-    position: relative;
-    transition: border-color 0.3s ease;
-}
 
-.square-slide:hover {
-    border-color: var(--electric-blue);
-    box-shadow: var(--glow-effect);
-}
-
-.square-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
 
 /* BARRA DE PROGRESO DE TELEMETRÍA AUTOMÁTICA */
 .scroll-indicator-bar {
@@ -2214,4 +2029,140 @@ text-shadow: 0 0 10px #00f2fe80;
     .scroll-circuit-track {
         display: none !important;
     }
+}
+/* ==========================================
+   4. AJUSTES DE CURSOS
+========================================== */
+
+/* --- PASAPORTE DE 3 PASOS --- */
+.passport-section {
+    padding: 100px 0;
+    background: linear-gradient(180deg, var(--pure-black) 0%, var(--dark-blue) 100%);
+}
+
+.passport-subtitle {
+    text-align: center;
+    font-family: var(--font-hud);
+    color: var(--electric-blue);
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.passport-title {
+    text-align: center;
+    font-family: var(--font-title);
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin-bottom: 60px;
+}
+
+@media (min-width: 993px) {
+    .passport-title { margin-bottom: 40px; }
+}
+
+.passport-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.passport-card {
+    background: linear-gradient(145deg, rgba(14, 22, 37, 0.9) 0%, rgba(7, 11, 19, 0.95) 100%);
+    border: 1px solid rgba(57, 160, 218, 0.15);
+    border-radius: 8px;
+    padding: 40px 30px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.passport-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 3px;
+    background: var(--electric-blue);
+    box-shadow: 0 0 10px var(--electric-blue);
+}
+
+.passport-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.passport-number {
+    font-family: var(--font-title);
+    font-size: 2.5rem;
+    color: var(--electric-blue);
+    opacity: 0.3;
+}
+
+/* --- ESTILO DE BOTON CTA (EL QUE ME PEDISTE) --- */
+.passport-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 16px 20px;
+    margin-top: auto;
+    font-family: var(--font-hud);
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    border-radius: 2px;
+    background-color: var(--electric-blue);
+    color: var(--pure-black);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(57, 160, 218, 0.4);
+}
+
+.passport-btn:hover {
+    background-color: #FF06C1;
+    box-shadow: 0 0 25px #FF06C1;
+    transform: translateY(-2px);
+}
+
+.passport-btn:active {
+    transform: translateY(0);
+}
+/* --- TARJETA MEGA APEX (MODIFICADOR ROSA) --- */
+.passport-card.mega-apex {
+    border-color: rgba(255, 6, 193, 0.3);
+}
+
+.passport-card.mega-apex::before {
+    background: #FF06C1;
+    box-shadow: 0 0 15px #FF06C1;
+}
+
+.passport-card.mega-apex .passport-number {
+    color: #FF06C1;
+}
+
+/* Nota: Si quieres que el botón dentro de esta tarjeta 
+   también sea rosa, añade esta regla: */
+.passport-card.mega-apex .passport-btn {
+    background-color: #FF06C1;
+    box-shadow: 0 0 15px rgba(255, 6, 193, 0.4);
+}
+
+.passport-card.mega-apex .passport-btn:hover {
+    background-color: #ff33cc;
+    box-shadow: 0 0 25px #FF06C1;
 }

@@ -29,8 +29,8 @@
                 <a href="#courses" class="nav-link"><i class="fas fa-flag-checkered text-electric"></i> Cursos</a>
                 <a href="#podium" class="nav-link"><i class="fas fa-trophy text-electric"></i> Podio</a>
                 <a href="#register-footer" class="nav-link"><i class="fas fa-id-card text-electric"></i> Boxes</a>
-            </nav>
-            <a href="#courses" class="btn btn-primary btn-hud">¡QUIERO CORRER!</a>
+                <a href="#courses" class="btn btn-primary btn-hud">¡QUIERO CORRER!</a>
+            </div>
             <button class="menu-toggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
         </div>
     </header>
@@ -54,143 +54,118 @@
         </section>
 
         <section id="about" class="about-section tech-grid-bg">
-    <div class="circuit-vector-decor cv-1"></div>
-    
-    <div class="container about-grid">
-        <div class="about-text-side">
-            <span class="section-subtitle">// SECTOR 1</span>
-            <h2 class="section-title">¿Qué es APEX?</h2>
-            <p class="about-highlight">Somos el puente directo entre el software de competición automovilística y el asfalto real. No jugamos; analizamos trazadas, fuerzas de frenado y gestión de neumáticos.</p>
-            <div class="tech-spec-labels">
-                <span><i class="fas fa-microchip text-electric"></i> Control de datos</span>
-                <span><i class="fas fa-shoe-prints text-electric"></i> Telemetría</span>
-            </div>
-        </div>
-      <div class="about-grid-side">
-                <div class="about-gallery-grid">
-                    <div class="grid-photo-item" onclick="openApexModal(this)"><img src="assets/imag1.png" alt="Instalaciones 1"></div>
-                    <div class="grid-photo-item" onclick="openApexModal(this)"><img src="assets/imag2.jpg" alt="Instalaciones 2"></div>
-                    <div class="grid-photo-item" onclick="openApexModal(this)"><img src="assets/imag3.png" alt="Instalaciones 3"></div>
-                    <div class="grid-photo-item" onclick="openApexModal(this)"><img src="assets/imag4.png" alt="Instalaciones 4"></div>
-                    <div class="grid-photo-item" onclick="openApexModal(this)"><img src="assets/imag5.png" alt="Instalaciones 5"></div>
-                    <div class="grid-photo-item" onclick="openApexModal(this)"><img src="assets/imag6.jpg" alt="Instalaciones 6"></div>
-                    <div class="grid-photo-item" onclick="openApexModal(this)"><img src="assets/imag7.png" alt="Instalaciones 7"></div>
-                    <div class="grid-photo-item" onclick="openApexModal(this)"><img src="assets/foto.8.jpg" alt="Instalaciones 8"></div>
-                    <div class="grid-photo-item" onclick="openApexModal(this)"><img src="assets/foto.9.jpg" alt="Instalaciones 9"></div>
-                    <div class="grid-photo-item" onclick="openApexModal(this)"><img src="assets/imag10.png" alt="Instalaciones 10"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- VENTANA EMERGENTE (MODAL LIGHTBOX) -->
-    <div id="apex-gallery-modal" class="gallery-modal" onclick="closeApexModalViaBg(event)">
-        <span class="modal-close" onclick="closeApexModal()">&times;</span>
-        <img class="modal-content-img" id="modal-target-img" src="" alt="Vista ampliada">
-    </div>
-
-    <div id="apex-gallery-modal" class="gallery-modal" aria-hidden="true">
-        <span class="modal-close">&times;</span>
-        <img class="modal-content-img" id="modal-target-img" src="" alt="Vista ampliada">
-    </div>
-
-       <section id="experiencia-apex">
-    <h2 class="section-title">EXPERIENCIA APEX</h2>
-      <p class="about-highlight">Tenemos la tecnología para ofrecerte la mejor experiencia de conducción en entornos simuladores de alto rendimiento.
-        ELEGÍ TU AUTO Y SUMERGITE EN EL MUNDO DE LA COMPETICIÓN REAL. </p>
-    <div class="courses-grid-4-dynamic">
-        </div>
-</section>
-
-    
-    <header class="showroom-header">
-        <div class="selector-track" id="car-selector-track">
-            <div class="car-tab active" data-car-index="0"><span>FÓRMULA 1</span></div>
-            <div class="car-tab" data-car-index="1"><span>FÓRMULA 2</span></div>
-            <div class="car-tab" data-car-index="2"><span>FÓRMULA 3</span></div>
-        </div>
-    </header>
-
-    <div class="showroom-layout">
-        <aside class="panel panel-left glass-hud">
-            <div class="panel-header">
-                <span class="category-badge" id="lbl-category">F1 CLASS</span>
-                <h1 id="lbl-car-name">Formula 1 - Apex Pro</h1>
-                <p class="manufacturer-sub" id="lbl-manufacturer">APEX Advanced Engineering</p>
-            </div>
+            <div class="circuit-vector-decor cv-1"></div>
             
-            <div class="specs-scroller">
-                <div class="spec-tile">
-                    <span class="label">POTENCIA</span>
-                    <span class="value" id="val-power">1050 CV</span>
+            <div class="container about-grid">
+                <div class="about-text-side">
+                    <span class="section-subtitle">// SECTOR 1</span>
+                    <h2 class="section-title">¿Qué es APEX?</h2>
+                    <p class="about-highlight">Somos el puente directo entre el software de competición automovilística y el asfalto real. No jugamos; analizamos trazadas, fuerzas de frenado y gestión de neumáticos.</p>
+                    <div class="tech-spec-labels">
+                        <span><i class="fas fa-microchip text-electric"></i> Control de datos</span>
+                        <span><i class="fas fa-shoe-prints text-electric"></i> Telemetría</span>
+                    </div>
                 </div>
-                <div class="spec-tile">
-                    <span class="label">PESO</span>
-                    <span class="value" id="val-weight">798 KG</span>
-                </div>
-                <div class="spec-tile">
-                    <span class="label">MOTOR</span>
-                    <span class="value" id="val-engine">1.6L V6 Turbo Híbrido</span>
-                </div>
-                <div class="spec-tile">
-                    <span class="label">RELACIÓN P/P</span>
-                    <span class="value" id="val-pw-ratio">0.76 KG/CV</span>
-                </div>
-                
-                <div class="difficulty-box">
-                    <span class="label">NIVEL PILOTO RECOMENDADO</span>
-                    <div class="difficulty-indicators">
-                        <span class="diff-tag" id="lbl-difficulty">EXPERTO MÁXIMO</span>
+                <div class="about-grid-side">
+                    <div class="about-single-image-wrapper">
+                        <img src="assets/imag1.png" alt="Instalaciones APEX" class="about-single-img">
                     </div>
                 </div>
             </div>
-        </aside>
+        </section>
 
-        <div class="canvas-3d-master">
-            <div id="media-showroom-container">
-                <img id="media-f1" src="assets/f1_car.png" alt="Monoplaza F1" class="showroom-img active-media">
-                <img id="media-f2" src="assets/f2_car.png" alt="Monoplaza F2" class="showroom-img" style="display: none;">
-                <img id="media-f3" src="assets/f3_car.png" alt="Monoplaza F3" class="showroom-img" style="display: none;">
+
+        <section id="experiencia-apex">
+            <h2 class="section-title">EXPERIENCIA APEX</h2>
+        </section>
+
+        <section>
+            <header class="showroom-header">
+                <div class="selector-track" id="car-selector-track">
+                    <div class="car-tab active" data-car-index="0"><span>FÓRMULA 1</span></div>
+                    <div class="car-tab" data-car-index="1"><span>FÓRMULA 2</span></div>
+                    <div class="car-tab" data-car-index="2"><span>FÓRMULA 3</span></div>
+                </div>
+            </header>
+
+            <div class="showroom-layout">
+                <aside class="panel panel-left glass-hud">
+                    <div class="panel-header">
+                        <span class="category-badge" id="lbl-category">F1 CLASS</span>
+                        <h1 id="lbl-car-name">Formula 1 - Apex Pro</h1>
+                        <p class="manufacturer-sub" id="lbl-manufacturer">APEX Advanced Engineering</p>
+                    </div>
+                    
+                    <div class="specs-scroller">
+                        <div class="spec-tile">
+                            <span class="label">POTENCIA</span>
+                            <span class="value" id="val-power">1050 CV</span>
+                        </div>
+                        <div class="spec-tile">
+                            <span class="label">PESO</span>
+                            <span class="value" id="val-weight">798 KG</span>
+                        </div>
+                        <div class="spec-tile">
+                            <span class="label">MOTOR</span>
+                            <span class="value" id="val-engine">1.6L V6 Turbo Híbrido</span>
+                        </div>
+                        <div class="spec-tile">
+                            <span class="label">RELACIÓN P/P</span>
+                            <span class="value" id="val-pw-ratio">0.76 KG/CV</span>
+                        </div>
+                        
+                        <div class="difficulty-box">
+                            <span class="label">NIVEL PILOTO RECOMENDADO</span>
+                            <div class="difficulty-indicators">
+                                <span class="diff-tag" id="lbl-difficulty">EXPERTO MÁXIMO</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="canvas-3d-master">
+                    <div id="media-showroom-container">
+                        <img id="media-f1" src="assets/f1_car.png" alt="Monoplaza F1" class="showroom-img active-media">
+                        <img id="media-f2" src="assets/f2_car.png" alt="Monoplaza F2" class="showroom-img" style="display: none;">
+                        <img id="media-f3" src="assets/f3_car.png" alt="Monoplaza F3" class="showroom-img" style="display: none;">
+                    </div>
+                </div>
+
+                <aside class="panel panel-right glass-hud">
+                    <div class="panel-section">
+                        <h3>PERFORMANCE INDEX</h3>
+                        <div class="bar-metric">
+                            <div class="metric-info"><span>VELOCIDAD MÁXIMA</span><strong id="txt-top-speed">355 km/h</strong></div>
+                            <div class="bar-container"><div class="bar-fill" id="bar-top-speed" style="width: 93%;"></div></div>
+                        </div>
+                        <div class="bar-metric">
+                            <div class="metric-info"><span>GRIP EN CURVA</span><strong id="txt-grip">99%</strong></div>
+                            <div class="bar-container"><div class="bar-fill" id="bar-grip" style="width: 99%;"></div></div>
+                        </div>
+                        <div class="bar-metric">
+                            <div class="metric-info"><span>EFICIENCIA AERODINÁMICA</span><strong id="txt-aero">98%</strong></div>
+                            <div class="bar-container"><div class="bar-fill" id="bar-aero" style="width: 98%;"></div></div>
+                        </div>
+                    </div>
+
+                    <div class="panel-section telemetry-hud-box">
+                        <div class="telemetry-header">
+                            <span class="live-indicator">LIVE TELEMETRY</span>
+                            <div class="gear-indicator" id="telemetry-gear">7</div>
+                        </div>
+                        <div class="telemetry-row">
+                            <div class="tel-item"><small>RPM</small><span id="tel-rpm">11450</span></div>
+                            <div class="tel-item"><small>KM/H</small><span id="tel-speed">284</span></div>
+                        </div>
+                        <div class="telemetry-row">
+                            <div class="tel-item"><small>ERS STATUS</small><span class="text-glow-blue" id="tel-ers">100%</span></div>
+                            <div class="tel-item"><small>DRS</small><span id="tel-drs">READY</span></div>
+                        </div>
+                    </div>
+                </aside>
             </div>
-        </div>
+        </section>
 
-        <aside class="panel panel-right glass-hud">
-            <div class="panel-section">
-                <h3>PERFORMANCE INDEX</h3>
-                <div class="bar-metric">
-                    <div class="metric-info"><span>VELOCIDAD MÁXIMA</span><strong id="txt-top-speed">355 km/h</strong></div>
-                    <div class="bar-container"><div class="bar-fill" id="bar-top-speed" style="width: 93%;"></div></div>
-                </div>
-                <div class="bar-metric">
-                    <div class="metric-info"><span>GRIP EN CURVA</span><strong id="txt-grip">99%</strong></div>
-                    <div class="bar-container"><div class="bar-fill" id="bar-grip" style="width: 99%;"></div></div>
-                </div>
-                <div class="bar-metric">
-                    <div class="metric-info"><span>EFICIENCIA AERODINÁMICA</span><strong id="txt-aero">98%</strong></div>
-                    <div class="bar-container"><div class="bar-fill" id="bar-aero" style="width: 98%;"></div></div>
-                </div>
-            </div>
-
-            <div class="panel-section telemetry-hud-box">
-                <div class="telemetry-header">
-                    <span class="live-indicator">LIVE TELEMETRY</span>
-                    <div class="gear-indicator" id="telemetry-gear">7</div>
-                </div>
-                <div class="telemetry-row">
-                    <div class="tel-item"><small>RPM</small><span id="tel-rpm">11450</span></div>
-                    <div class="tel-item"><small>KM/H</small><span id="tel-speed">284</span></div>
-                </div>
-                <div class="telemetry-row">
-                    <div class="tel-item"><small>ERS STATUS</small><span class="text-glow-blue" id="tel-ers">100%</span></div>
-                    <div class="tel-item"><small>DRS</small><span id="tel-drs">READY</span></div>
-                </div>
-            </div>
-
-        </aside>
-    </div>
-</section>
-
-</section>
         <section id="courses" class="courses-section" style="position: relative; overflow: hidden;">
             <div class="video-bg-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
                 <div style="background-image: url('./assets/vista1.jpg'); background-size: cover; background-position: center; width: 100%; height: 100%; opacity: 0.15; filter: grayscale(30%);"></div>
@@ -205,53 +180,49 @@
                     <h2 class="section-title">NUESTROS CURSOS</h2>
                 </div>
                 
-                <section class="courses-grid-4">
-    <div class="card-3d">
-        <div class="course-card mega-apex-card" onclick="this.classList.toggle('active')">
-            <h2 class="main-title">01. MEGA APEX</h2>
-            <div class="hidden-content">
-                <p>Simulación inmersiva extrema combinada con pruebas reales en monoplazas de F3.</p>
-                <p><b>Nivel: Avanzado | Duración: 12 semanas</b></p>
-                <a href="curso-mega-apex.html" class="btn btn-outline">¡QUIERO CORRER!</a>
-            </div>
-        </div>
+        <div class="courses-grid-4">
+    <!-- TARJETA 01: MEGA APEX -->
+    <div class="passport-card">
+        <span class="passport-number">01</span>
+        <h3 class="passport-card-title">MEGA APEX</h3>
+        <p class="passport-card-desc">Simulación extrema, combinada con pruebas reales de la F3.
+        
+        </p>
+        <a href="curso-mega-apex.html" href="#" class="passport-btn">¡Quiero correr!</a>
     </div>
 
-    <div class="card-3d">
-        <div class="course-card" onclick="this.classList.toggle('active')">
-            <h2 class="main-title">02. APEX START</h2>
-            <div class="hidden-content">
-                <p>Desarrollamos una base sólida de conducción.</p>
-                <p><b>Nivel: Inicial | Duración: 6 semanas</b></p>
-                 <a class="btn btn-outline">¡ESTOY LISTO!</a>
-            </div>
-        </div>
+    <!-- TARJETA 02 -->
+    <div class="passport-card">
+        <span class="passport-number">02</span>
+        <h3 class="passport-card-title">APEX START</h3>
+        <p class="passport-card-desc">Desarrollamos una base sólida de conducción.
+        
+        </p>
+        <a href="#" class="passport-btn">¡Estoy listo!</a>
     </div>
 
-    <div class="card-3d">
-        <div class="course-card" onclick="this.classList.toggle('active')">
-            <h2 class="main-title">03. APEX PRO ELITE</h2>
-            <div class="hidden-content">
-                <p>Llevá tu rendimiento al siguiente nivel.</p>
-                <p><b>Nivel: Intermedio | Duración: 8 semanas</b></p>
-                <a class="btn btn-outline">¡ESTOY LISTO!</a>
-            </div>
-        </div>
+    <!-- TARJETA 03 -->
+    <div class="passport-card">
+        <span class="passport-number">03</span>
+        <h3 class="passport-card-title">APEX ELITE</h3>
+        <p class="passport-card-desc">Llevá tu habilidad de conducción al siguiente nivel.
+          </p>
+        <a href="#" class="passport-btn">¡Estoy listo!</a>
     </div>
 
-    <div class="card-3d">
-        <div class="course-card" onclick="this.classList.toggle('active')">
-            <h2 class="main-title">04. APEX ELITE</h2>
-            <div class="hidden-content">
-                <p>Viví clasificaciones, carreras y  estrategias.</p>
-                <p><b>Nivel: Profesional | Duración: Intensivo</b></p>
-                <a class="btn btn-outline">¡ESTOY LISTO!</a>
-            </div>
-        </div>
+    <!-- TARJETA 04 -->
+    <div class="passport-card">
+        <span class="passport-number">04</span>
+        <h3 class="passport-card-title">APEX PRO ELITE</h3>
+        <p class="passport-card-desc">Viví clasificaciones, carreras y estrategias. </p>
+        <a href="#" class="passport-btn">¡Estoy listo!</a>
     </div>
-</section>
+</div>
 
-</section>
+            </div>
+        </section>
+
+
         <section id="podium" class="podium-section">
             <div class="container">
                 <div class="section-header text-center">
@@ -378,14 +349,18 @@
                     <p class="brand-desc">Academia Latinoamericana, con tecnología de primera, telemetría de carrera para pilotos virtuales de élite.</p>
                 </div>
                 
-                <div class="footer-links-block">
-                    <h4>// MAPA DE CIRCUITO</h4>
-                    <div class="links-inline">
-                        <a href="#about">Apex</a>
-                        <a href="#experiencia-apex">Experiencia</a>
-                        <a href="#courses">Cursos</a>
-                    </div>
-                </div>
+               <!-- Localiza esta parte dentro del footer y reemplázala por esto: -->
+
+<div class="footer-links-block">
+    <h4>// MAPA DE CIRCUITO</h4>
+    <div class="links-inline">
+        <a href="#about">Apex</a>
+        <a href="#experiencia-apex">Experiencia</a>
+        <a href="#courses">Cursos</a>
+        <!-- Nuevo enlace agregado -->
+        <a href="biblioteca-ui.html" style="color: var(--electric-blue); font-weight: bold;">BIBLIOTECA</a>
+    </div>
+</div>
 
                 <div class="footer-social-block">
                     <h4>// ENLACE SATELITAL TELEMÉTRICO</h4>
