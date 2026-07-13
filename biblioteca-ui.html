@@ -3,174 +3,639 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BIBLIOTECA UI | APEX SHOWROOM</title>
-    <!-- Mantenemos la identidad visual definida en los fuentes -->
+    <title>SISTEMA DE DISEÑO UI | APEX SHOWROOM</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Orbitron:wght@700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
             --pure-black: #05070c;
+            --dark-blue: #0b111e;
             --electric-blue: #39A0DA;
             --neon-glow: rgba(57, 160, 218, 0.6);
-            --gold: #FF06c1;
+            --gold: #FF06c1; /* Rosa APEX */
             --white: #ffffff;
             --metallic-grey: #8a94a6;
+            --green: #20e555;
+            --red: #f03939;
             --font-title: 'Orbitron', sans-serif;
             --font-hud: 'Rajdhani', sans-serif;
             --font-body: 'Montserrat', sans-serif;
         }
 
-        body { background: var(--pure-black); color: var(--white); font-family: var(--font-body); padding: 50px; }
-        .container { max-width: 1000px; margin: auto; }
+        body { background: var(--pure-black); color: var(--white); font-family: var(--font-body); margin: 0; display: flex; }
         
-        /* Indice y Logo */
-        .header-ui { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--electric-blue); padding-bottom: 20px; margin-bottom: 50px; }
-        .logo-apex { height: 60px; }
-        .back-home { color: var(--electric-blue); text-decoration: none; font-family: var(--font-hud); font-size: 1.2rem; }
+        /* Sidebar Menu */
+        .sidebar { width: 250px; height: 100vh; background: var(--dark-blue); padding: 20px; position: fixed; border-right: 1px solid var(--electric-blue); }
+        .sidebar h2 { color: var(--electric-blue); font-size: 1rem; margin-bottom: 20px; }
+        .sidebar ul { list-style: none; padding: 0; }
+        .sidebar ul li { margin-bottom: 15px; }
+        .sidebar ul li a { color: var(--metallic-grey); text-decoration: none; font-family: var(--font-hud); text-transform: uppercase; }
 
-        /* Bloques de diseño */
-        .ui-section { margin-bottom: 60px; }
-        h2 { font-family: var(--font-title); color: var(--electric-blue); margin-bottom: 20px; text-transform: uppercase; }
+        /* Main Content */
+        .main-content { margin-left: 270px; padding: 40px; width: calc(100% - 310px); }
+        section { margin-bottom: 80px; }
+        h1, h2 { font-family: var(--font-title); color: var(--white); text-transform: uppercase; }
         
-        .type-box { padding: 20px; background: rgba(255,255,255,0.05); border-left: 4px solid var(--gold); margin-bottom: 10px; }
-        .color-palette { display: flex; gap: 20px; }
-        .color-swatch { width: 100px; height: 100px; border-radius: 8px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 10px; font-size: 0.8rem; font-family: var(--font-hud); }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
         
-        .btn-apex { padding: 15px 30px; border: none; cursor: pointer; font-family: var(--font-title); transition: 0.3s; text-transform: uppercase; }
+        /* Components */
+        .box { background: var(--dark-blue); padding: 20px; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; }
+        .btn-apex { padding: 10px 20px; border: none; font-family: var(--font-title); cursor: pointer; text-transform: uppercase; transition: 0.3s; }
         .btn-blue { background: var(--electric-blue); color: var(--pure-black); }
-        .btn-gold { background: var(--gold); color: var(--white); }
+        .btn-pink { background: var(--gold); color: var(--white); }
         
-        .card-preview { width: 300px; padding: 20px; border: 1px solid var(--electric-blue); background: rgba(5,7,12,0.9); }
-    /* Estilos nuevos para los componentes detectados */
-    .glow-card {
-        border: 1px solid var(--electric-blue);
-        box-shadow: 0 0 10px var(--neon-glow);
-        padding: 2rem;
-        background: var(--pure-black);
+        .color-block { height: 60px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: var(--font-hud); }
+    /* Asegurar que las animaciones de tarjetas (flip cards) funcionen */
+.flip-card {
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Estilo para el botón Volver al Home */
+.btn-home {
+    color: var(--electric-blue) !important;
+    font-weight: 700;
+    border-bottom: 2px solid transparent;
+}
+
+.btn-home:hover {
+    border-bottom: 2px solid var(--electric-blue);
+}
+
+/* Asegurar que los modelos de tarjetas (passport-card) tengan el efecto de elevación */
+.passport-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.passport-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2);
+}
+/* --- AJUSTES RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column; /* Cambia el sidebar a una barra superior */
     }
 
-    .price-card {
-        border: 2px dashed var(--gold); /* Rosa APEX */
-        padding: 2rem;
-        text-align: center;
-        background: rgba(5,7,12,0.8);
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid var(--electric-blue);
+        padding: 15px;
     }
 
-    .icon-box {
-        color: var(--gold);
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        text-shadow: 0 0 8px var(--gold);
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box; /* Evita que el padding rompa el ancho */
     }
-    /* Estilos Base */
-        .ui-section { margin-bottom: 60px; }
-        h2 { font-family: var(--font-title); color: var(--electric-blue); margin-bottom: 30px; text-transform: uppercase; }
 
-        /* Grid Responsivo */
-        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .grid-container {
+        grid-template-columns: 1fr; /* Una sola columna en móviles */
+    }
 
-        /* Tarjeta de Precios (Estilo Imagen 4) */
-        .price-card {
-            border: 2px dashed var(--gold);
-            padding: 30px;
-            text-align: center;
-            background: var(--pure-black);
-            transition: 0.3s;
-        }
-        .price-tag { font-family: var(--font-hud); color: var(--gold); letter-spacing: 2px; }
-        .price-value { font-family: var(--font-title); color: var(--white); font-size: 2.5rem; margin: 15px 0; }
+    /* Ajuste para tarjetas */
+    .box[style*="width: 300px"] {
+        width: 100% !important; /* Hace que las tarjetas se adapten al ancho */
+        box-sizing: border-box;
+    }
+}
+/* Botón estilo UI APEX */
+.menu-toggle {
+    display: none; /* Oculto por defecto en escritorio */
+    background: var(--dark-blue);
+    color: var(--electric-blue);
+    border: 1px solid var(--electric-blue);
+    padding: 10px;
+    width: 100%;
+    text-transform: uppercase;
+    font-family: var(--font-title);
+    cursor: pointer;
+    margin-bottom: 20px;
+}
 
-        /* Tarjeta con Glow (Estilo Imagen 1 y 2) */
-        .glow-card {
-            border: 1px solid var(--electric-blue);
-            padding: 30px;
-            background: var(--pure-black);
-            text-align: center;
-        }
-        .icon-box { color: var(--gold); font-size: 2.5rem; margin-bottom: 60px; }
-
-        /* Botones */
-        .btn-action { 
-            background: var(--gold); color: var(--white); border: none; padding: 15px 25px; 
-            font-family: var(--font-title); text-transform: uppercase; cursor: pointer; width: 100%; 
-        }
-
-        @media (max-width: 768px) {
-            body { padding: 20px; }
-            h2 { font-size: 1.2rem; }
-        }
+@media (max-width: 768px) {
+    .menu-toggle { display: block; } /* Solo visible en móvil */
     
+    .sidebar { 
+        height: auto; 
+        padding: 10px;
+        position: relative;
+    }
+
+    /* Ocultar el contenido cuando está cerrado en mobile */
+    .sidebar-content { display: none; }
+    
+    /* Mostrar cuando se activa la clase 'open' */
+    .sidebar.open .sidebar-content { display: block; }
+    
+    .main-content { margin-left: 0; width: 100%; }
+}
+/* Contenedor Grid para las nuevas tarjetas */
+.library-grid {
+    display: grid;
+    /* Ajustamos el mínimo a 250px o 200px para que entren 3 en pantalla */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+    padding: 40px 0;
+}
+
+/* Estilo Base de las Tarjetas */
+.lib-card {
+    background: linear-gradient(145deg, rgba(11, 17, 30, 0.8) 0%, rgba(5, 7, 12, 0.95) 100%);
+    border: 1px solid rgba(57, 160, 218, 0.3);
+    padding: 30px;
+    position: relative;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.lib-card:hover {
+    border-color: var(--electric-blue);
+    transform: translateY(-5px);
+}
+
+/* Efecto de borde rosado en tarjeta tipo oferta */
+.lib-card.featured-gold {
+    border: 2px dashed var(--gold);
+}
+
+.lib-card-title {
+    font-family: var(--font-title);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.lib-card-desc {
+    font-size: 0.95rem;
+    color: var(--metallic-grey);
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+ /* --- ESTILOS DEL BANNER INTERMEDIO --- */
+        .banner-intermedio-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 100px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        .banner-media {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        /* --- REDUCCIÓN DE ESPACIOS EXCLUSIVO DESKTOP --- */
+        @media (min-width: 993px) {
+            .passport-section { padding: 60px 0; }
+            .interactive-modules-section { padding: 60px 0; }
+            #circuitos { padding: 60px 0; }
+            #equipamiento { padding: 60px 0; }
+            .footer-checkout { padding: 60px 0 40px 0; }
+            
+            .banner-intermedio-container {
+                margin: 0;
+                padding: 0;
+            }
+        }
+        /* --- PASAPORTE DE 3 PASOS --- */
+        .passport-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--pure-black) 0%, var(--dark-blue) 100%);
+        }
+
+        .passport-subtitle {
+            text-align: center;
+            font-family: var(--font-hud);
+            color: var(--electric-blue);
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .passport-title {
+            text-align: center;
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 60px;
+            color: var(--white);
+        }
+
+        @media (min-width: 993px) {
+            .passport-title { margin-bottom: 40px; }
+        }
+
+        .passport-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .passport-card {
+            background: linear-gradient(145deg, rgba(14, 22, 37, 0.9) 0%, rgba(7, 11, 19, 0.95) 100%);
+            border: 1px solid rgba(57, 160, 218, 0.15);
+            border-radius: 8px;
+            padding: 40px 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .passport-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40%;
+            height: 3px;
+            background: var(--electric-blue);
+            box-shadow: 0 0 10px var(--electric-blue);
+        }
+
+        .passport-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .passport-number {
+            font-family: var(--font-title);
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--electric-blue);
+            line-height: 1;
+        }
+
+        .passport-icon {
+            font-size: 2.5rem;
+            color: var(--electric-blue);
+            filter: drop-shadow(0 0 8px rgba(57, 160, 218, 0.5));
+        }
+
+        .passport-card-title {
+            font-family: var(--font-title);
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            color: var(--white);
+        }
+
+        .passport-card-desc {
+            color: var(--metallic-grey);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-family: var(--font-body);
+        }
+
+        @media (max-width: 992px) {
+            .passport-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .passport-title {
+                font-size: 2rem;
+                padding: 0 10px;
+            }
+        }
+        /* --- ESTILOS DE LA SECCIÓN DE MÓDULOS INTERACTIVOS --- */
+        .interactive-modules-section {
+            padding: 100px 0;
+            background: var(--pure-black);
+        }
+        .modules-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .modules-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        @media (min-width: 993px) {
+            .modules-header { margin-bottom: 40px; }
+        }
+        .subtitle-highlight {
+            font-family: var(--font-hud);
+            color: var(--electric-blue);
+            letter-spacing: 3px;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .main-title {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .modules-wrapper {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 30px;
+            align-items: stretch;
+        }
+        .modules-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .module-tab {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(11, 17, 30, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .module-tab:hover, .module-tab.active {
+            background: rgba(57, 160, 218, 0.1);
+            border-color: var(--electric-blue);
+        }
+        .tab-icon-wrapper {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--metallic-grey);
+            transition: color 0.3s;
+        }
+        .module-tab:hover .tab-icon-wrapper, .module-tab.active .tab-icon-wrapper {
+            color: var(--electric-blue);
+        }
+        .icon-svg {
+            width: 28px;
+            height: 28px;
+        }
+        .tab-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .tab-num {
+            font-family: var(--font-title);
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .tab-desc {
+            font-family: var(--font-hud);
+            font-size: 0.85rem;
+            color: var(--metallic-grey);
+            letter-spacing: 1px;
+        }
+        .module-content-display {
+            background: #070b13;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Contenedores de paneles individuales */
+        .content-panel-inner {
+            background-size: cover;
+            background-position: center right;
+            padding: 50px;
+            height: 100%;
+            display: none; /* Se ocultan por defecto */
+            align-items: center;
+        }
+        
+        /* El panel activo se muestra */
+        .content-panel-inner.active-panel {
+            display: flex;
+            animation: paneFade 0.4s forwards;
+        }
+
+        .module-info-box {
+            max-width: 500px;
+        }
+        .content-mod-tag {
+            font-family: var(--font-hud);
+            color: var(--electric-blue);
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-size: 0.95rem;
+        }
+        .content-mod-title {
+            font-family: var(--font-title);
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin: 5px 0;
+        }
+        .content-mod-subtitle {
+            font-family: var(--font-hud);
+            color: var(--gold);
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .content-mod-description {
+            color: var(--metallic-grey);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+        .content-bullet-list {
+            list-style: none;
+            margin-bottom: 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .content-bullet-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+        .check-icon {
+            color: var(--electric-blue);
+            font-weight: bold;
+        }
+        .module-action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--electric-blue);
+            color: var(--white);
+            padding: 14px 28px;
+            font-family: var(--font-title);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        .module-action-btn:hover {
+            background: var(--white);
+            color: var(--pure-black);
+        }
+        .btn-arrow {
+            width: 16px;
+            height: 16px;
+        }
+
+        @media (max-width: 991px) {
+            .modules-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .content-panel-inner {
+                padding: 40px 25px;
+            }
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header class="header-ui">
-        <img src="assets/marca.png" class="logo-apex" alt="Logo APEX">
-        <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> VOLVER AL HOME</a>
-    </header>
-
-    <section class="ui-section">
-        <h2>1. Tipografía</h2>
-        <div class="type-box">
-            <h1 style="font-family: var(--font-title);">Orbitron: Títulos de alto impacto</h1>
-            <p style="font-family: var(--font-hud); font-size: 1.5rem;">Rajdhani: Etiquetas HUD y datos telemétricos</p>
-            <p style="font-family: var(--font-body);">Montserrat: Textos de lectura, descripciones y cuerpos de párrafo para máxima claridad.</p>
-        </div>
-    </section>
-
-    <section class="ui-section">
-        <h2>2. Paleta de Colores</h2>
-        <div class="color-palette">
-            <div class="color-swatch" style="background: var(--electric-blue);">Electric Blue</div>
-            <div class="color-swatch" style="background: var(--gold);">Rosa APEX</div>
-            <div class="color-swatch" style="background: var(--pure-black); border: 1px solid #333;">Pure Black</div>
-        </div>
-    </section>
-
-    <section class="ui-section">
-        <h2>3. Componentes Interactivos</h2>
-        <button class="btn-apex btn-blue">Botón Principal (Azul)</button>
-        <button class="btn-apex btn-gold">Botón Acción (Rosa)</button>
-        
-        <div class="card-preview" style="margin-top:20px;">
-            <h3 style="font-family:var(--font-title);">Tarjeta de Curso</h3>
-            <p style="font-family:var(--font-body);">Ideal para mostrar el curso de Fórmula 3 u otros.</p>
-        </div>
-    </section>
-</div>
-
-<div class="container">
-    <section class="ui-section">
-        <h2>Componentes de Experiencia y Precios</h2>
-        <div class="grid-layout">
-            <!-- Tarjeta de Precio (Ajustada según fuente 4) -->
-            <div class="price-card">
-                <p class="price-tag">/// OFFICIAL TELEMETRY PRICE</p>
-                <div class="price-value">USD 149</div>
-                <button class="btn-action">Acceso Inmediato</button>
-            </div>
-
-            <!-- Tarjeta de Contenido -->
-            <div class="glow-card">
-                <div class="icon-box"><i class="fas fa-database"></i></div>
-                <h3 style="font-family: var(--font-title);">Plantillas Adquisición</h3>
-                <p style="margin-top: 15px; font-size: 0.9rem;">Estructuras preconfiguradas para MoTeC i2 Pro y Atlas.</p>
-            </div>
-        </div>
-    </section>
-</div>
+   <aside class="sidebar" id="sidebar">
+    <!-- Botón Hamburguesa visible solo en mobile -->
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
     
-<section class="ui-section">
-        <h2>Iconografía del Sistema</h2>
-        <div style="display: flex; gap: 30px; flex-wrap: wrap;">
-            <div style="text-align: center;"><i class="fas fa-info-circle icon-box"></i><p>¿Qué es?</p></div>
-            <div style="text-align: center;"><i class="fas fa-tachometer-alt icon-box"></i><p>Experiencia</p></div>
-            <div style="text-align: center;"><i class="fas fa-flag-checkered icon-box"></i><p>Cursos</p></div>
-            <div style="text-align: center;"><i class="fas fa-trophy icon-box"></i><p>Podio</p></div>
+    <div class="sidebar-content">
+        <h2>BIBLIOTECA UI</h2>
+        <ul>
+            <li><a href="#typography">1. Tipografía</a></li>
+            <li><a href="#colors">2. Paleta de Colores</a></li>
+            <li><a href="#buttons">3. Botones</a></li>
+            <li><a href="#cards">4. Tarjetas</a></li>
+            <li><a href="#icons">5. Iconografía</a></li>
+            <li style="margin-top: 20px;">
+                <a href="index.html" class="btn-home">VOLVER AL HOME</a>
+            </li>
+        </ul>
+    </div>
+</aside>
+   
+
+    <main class="main-content">
+        <h1>Sistema de Diseño UI</h1>
+        
+        <section id="typography">
+            <h2>1. Tipografía</h2>
+            <div class="box">
+                <h1 style="font-family: var(--font-title);">Orbitron: Títulos</h1>
+                <p style="font-family: var(--font-hud); font-size: 1.5rem;">Rajdhani: Etiquetas HUD</p>
+                <p style="font-family: var(--font-body);">Montserrat: Cuerpos de texto.</p>
+            </div>
+        </section>
+
+        <section id="colors">
+            <h2>2. Paleta de Colores</h2>
+            <div class="grid-container">
+                <div class="color-block" style="background: var(--pure-black);">Pure Black</div>
+                <div class="color-block" style="background: var(--electric-blue);">Electric Blue</div>
+                <div class="color-block" style="background: var(--gold);">Rosa APEX</div>
+            </div>
+        </section>
+
+        <section id="buttons">
+            <h2>3. Botones</h2>
+            <button class="btn-apex btn-blue">Principal Blue</button>
+            <button class="btn-apex btn-pink">Acción Rosa</button>
+        </section>
+
+        <section id="cards">
+            <h2>4. Tarjetas</h2>
+            <div class="box" style="width: 300px; border: 1px solid var(--electric-blue);">
+                <h3>Tarjeta de Curso</h3>
+                <p>Contenido detallado del curso...</p>
+            </div>
+        </section>
+        <section class="container" id="biblioteca">
+    <div class="library-grid">
+        
+        <!-- Tarjeta tipo oferta (Imagen 1) -->
+        <div class="lib-card featured-gold">
+            <div class="price-main" style="font-size: 2rem;">USD 149</div>
+            <p class="lib-card-desc">ACCESO INMEDIATO ILIMITADO</p>
+            <button class="btn-speed" style="width: 100%;">COMPRAR AHORA</button>
         </div>
-    </section>
-</div>
+        <div class="passport-grid">
+                <!-- TARJETA 01 -->
+                <div class="passport-card">
+                    <div class="passport-card-header">
+                        <span class="passport-number">01</span>
+                        <i class="fas fa-crosshairs passport-icon"></i>
+                    </div>
+                    <h3 class="passport-card-title">DIAGNÓSTICO</h3>
+                    <p class="passport-card-desc">
+                        Analizamos tu conducción actual con datos profesionales para detectar tus puntos de fuga.
+                    </p>
+                </div>
+
+                <!-- PANEL 01: FUNDAMENTOS -->
+                    <div class="content-panel-inner active-panel" id="mod-pane-1" style="background-image: linear-gradient(to right, rgba(0,0,0,0.95) 45%, rgba(0,0,0,0.3) 100%), url('assets/imag5.png');">
+                        <div class="module-info-box">
+                            <span class="content-mod-tag">MÓDULO 01</span>
+                            <h3 class="content-mod-title">FUNDAMENTOS</h3>
+                            <h4 class="content-mod-subtitle">LA BASE DE TODO</h4>
+                            <p class="content-mod-description">Aprendé los principios esenciales que separan a los pilotos consistentes de los rápidos.</p>
+                            <ul class="content-bullet-list">
+                                <li><span class="check-icon">✓</span> Posición de manejo y ergonomía</li>
+                                <li><span class="check-icon">✓</span> Control del auto y sensibilidad</li>
+                                <li><span class="check-icon">✓</span> Transferencia de pesos</li>
+                                <li><span class="check-icon">✓</span> Técnicas de consistencia</li>
+                            </ul>
+                            <a href="#" class="module-action-btn">
+                                VER CONTENIDO DEL MÓDULO 
+                                <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                            </a>
+                        </div>
+                    </div>
+</section>
+ <h2>5. Banner </h2>
+<!-- BANNER PUBLICITARIO INTERMEDIO -->
+    <div class="banner-intermedio-container">
+        <img src="assets/ban1.jpg" alt="Banner APEX" class="banner-media">
+    </div>
+
+    </main>
 </body>
-</html>>
+</html>
+
+<script>
+    const toggleBtn = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+
+    toggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        
+        // Cambiar icono
+        const icon = toggleBtn.querySelector('i');
+        if(sidebar.classList.contains('open')) {
+            icon.className = 'fas fa-times';
+        } else {
+            icon.className = 'fas fa-bars';
+        }
+    });
+</script>
