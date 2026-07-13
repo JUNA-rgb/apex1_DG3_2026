@@ -354,3 +354,24 @@ function closeApexModalViaBg(event) {
         closeApexModal();
     }
 }
+// CONTROLADOR DE MENÚ RESPONSIVE
+document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav');
+
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+    }
+
+    // Cierre de menú al seleccionar un link
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('active');
+        });
+    });
+});
+document.querySelector('.menu-toggle').addEventListener('click', function() {
+    document.querySelector('.nav').classList.toggle('active');
+});
