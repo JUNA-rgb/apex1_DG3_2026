@@ -3,637 +3,709 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SISTEMA DE DISEÑO UI | APEX SHOWROOM</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Orbitron:wght@700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <title>APEX UI KIT | Biblioteca de Componentes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* --- CORE DESIGN SYSTEM (APEX ACADEMY) --- */
         :root {
+            --electric-blue: #38bdf8;
             --pure-black: #05070c;
-            --dark-blue: #0b111e;
-            --electric-blue: #39A0DA;
-            --neon-glow: rgba(57, 160, 218, 0.6);
-            --gold: #FF06c1; /* Rosa APEX */
-            --white: #ffffff;
-            --metallic-grey: #8a94a6;
-            --green: #20e555;
-            --red: #f03939;
-            --font-title: 'Orbitron', sans-serif;
-            --font-hud: 'Rajdhani', sans-serif;
-            --font-body: 'Montserrat', sans-serif;
-        }
-
-        body { background: var(--pure-black); color: var(--white); font-family: var(--font-body); margin: 0; display: flex; }
-        
-        /* Sidebar Menu */
-        .sidebar { width: 250px; height: 100vh; background: var(--dark-blue); padding: 20px; position: fixed; border-right: 1px solid var(--electric-blue); }
-        .sidebar h2 { color: var(--electric-blue); font-size: 1rem; margin-bottom: 20px; }
-        .sidebar ul { list-style: none; padding: 0; }
-        .sidebar ul li { margin-bottom: 15px; }
-        .sidebar ul li a { color: var(--metallic-grey); text-decoration: none; font-family: var(--font-hud); text-transform: uppercase; }
-
-        /* Main Content */
-        .main-content { margin-left: 270px; padding: 40px; width: calc(100% - 310px); }
-        section { margin-bottom: 80px; }
-        h1, h2 { font-family: var(--font-title); color: var(--white); text-transform: uppercase; }
-        
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
-        
-        /* Components */
-        .box { background: var(--dark-blue); padding: 20px; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; }
-        .btn-apex { padding: 10px 20px; border: none; font-family: var(--font-title); cursor: pointer; text-transform: uppercase; transition: 0.3s; }
-        .btn-blue { background: var(--electric-blue); color: var(--pure-black); }
-        .btn-pink { background: var(--gold); color: var(--white); }
-        
-        .color-block { height: 60px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: var(--font-hud); }
-    /* Asegurar que las animaciones de tarjetas (flip cards) funcionen */
-.flip-card {
-    cursor: pointer;
-}
-
-.flip-card-inner {
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-    transform-style: preserve-3d;
-}
-
-.flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-}
-
-/* Estilo para el botón Volver al Home */
-.btn-home {
-    color: var(--electric-blue) !important;
-    font-weight: 700;
-    border-bottom: 2px solid transparent;
-}
-
-.btn-home:hover {
-    border-bottom: 2px solid var(--electric-blue);
-}
-
-/* Asegurar que los modelos de tarjetas (passport-card) tengan el efecto de elevación */
-.passport-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.passport-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2);
-}
-/* --- AJUSTES RESPONSIVE MOBILE --- */
-@media (max-width: 768px) {
-    body {
-        flex-direction: column; /* Cambia el sidebar a una barra superior */
-    }
-
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-        border-right: none;
-        border-bottom: 1px solid var(--electric-blue);
-        padding: 15px;
-    }
-
-    .main-content {
-        margin-left: 0;
-        width: 100%;
-        padding: 20px;
-        box-sizing: border-box; /* Evita que el padding rompa el ancho */
-    }
-
-    .grid-container {
-        grid-template-columns: 1fr; /* Una sola columna en móviles */
-    }
-
-    /* Ajuste para tarjetas */
-    .box[style*="width: 300px"] {
-        width: 100% !important; /* Hace que las tarjetas se adapten al ancho */
-        box-sizing: border-box;
-    }
-}
-/* Botón estilo UI APEX */
-.menu-toggle {
-    display: none; /* Oculto por defecto en escritorio */
-    background: var(--dark-blue);
-    color: var(--electric-blue);
-    border: 1px solid var(--electric-blue);
-    padding: 10px;
-    width: 100%;
-    text-transform: uppercase;
-    font-family: var(--font-title);
-    cursor: pointer;
-    margin-bottom: 20px;
-}
-
-@media (max-width: 768px) {
-    .menu-toggle { display: block; } /* Solo visible en móvil */
-    
-    .sidebar { 
-        height: auto; 
-        padding: 10px;
-        position: relative;
-    }
-
-    /* Ocultar el contenido cuando está cerrado en mobile */
-    .sidebar-content { display: none; }
-    
-    /* Mostrar cuando se activa la clase 'open' */
-    .sidebar.open .sidebar-content { display: block; }
-    
-    .main-content { margin-left: 0; width: 100%; }
-}
-.library-grid {
-    display: grid;
-    /* Esto crea 3 columnas que ocupan exactamente el mismo espacio (1fr cada una) */
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 20px;
-    padding: 40px 0;
-    width: 100%;
-    align-items: stretch; /* Esto hace que todas las tarjetas tengan la misma altura */
-}
-
-/* Aseguramos que las tarjetas respeten el tamaño del grid */
-.lib-card {
-    width: 100%; /* Obliga a la tarjeta a llenar su columna */
-    box-sizing: border-box; /* Evita que el padding rompa el ancho */
-    display: flex;
-    flex-direction: column;
-}
-
-/* Estilo Base de las Tarjetas */
-.lib-card {
-    background: linear-gradient(145deg, rgba(11, 17, 30, 0.8) 0%, rgba(5, 7, 12, 0.95) 100%);
-    border: 1px solid rgba(57, 160, 218, 0.3);
-    padding: 30px;
-    position: relative;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.lib-card:hover {
-    border-color: var(--electric-blue);
-    transform: translateY(-5px);
-}
-
-/* Efecto de borde rosado en tarjeta tipo oferta */
-.lib-card.featured-gold {
-    border: 2px dashed var(--gold);
-}
-
-.lib-card-title {
-    font-family: var(--font-title);
-    font-size: 1.4rem;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-}
-
-.lib-card-desc {
-    font-size: 0.95rem;
-    color: var(--metallic-grey);
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
- /* --- ESTILOS DEL BANNER INTERMEDIO --- */
-        .banner-intermedio-container {
-            width: 100%;
-            max-width: 100%;
-            margin: 100px auto;
-            padding: 0 10px;
-            box-sizing: border-box;
-        }
-
-        .banner-media {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        /* --- REDUCCIÓN DE ESPACIOS EXCLUSIVO DESKTOP --- */
-        @media (min-width: 993px) {
-            .passport-section { padding: 60px 0; }
-            .interactive-modules-section { padding: 60px 0; }
-            #circuitos { padding: 60px 0; }
-            #equipamiento { padding: 60px 0; }
-            .footer-checkout { padding: 60px 0 40px 0; }
+            --dark-blue: #0F1425;
+            --white: #FFFFFF;
+            --metallic-grey: #A8ADB7;
+            --neon-glow: rgba(56, 189, 248, 0.4);
             
-            .banner-intermedio-container {
-                margin: 0;
-                padding: 0;
-            }
-        }
-        /* --- PASAPORTE DE 3 PASOS --- */
-        .passport-section {
-            padding: 100px 0;
-            background: linear-gradient(180deg, var(--pure-black) 0%, var(--dark-blue) 100%);
+            /* Identidad Mega Apex */
+            --mega-pink: #FF06C1;
+            --mega-glow: rgba(255, 6, 193, 0.4);
+
+            --font-title: 'Orbitron', 'Rajdhani', sans-serif;
+            --font-sub: 'Rajdhani', sans-serif;
+            --font-body: 'Montserrat', sans-serif;
+
+            --transition-smooth: cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .passport-subtitle {
-            text-align: center;
-            font-family: var(--font-hud);
-            color: var(--electric-blue);
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
-        .passport-title {
-            text-align: center;
+        body {
+            background-color: var(--pure-black);
+            /* Grilla técnica simulada de fondo */
+            background-image: 
+                linear-gradient(rgba(15, 20, 37, 0.5) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15, 20, 37, 0.5) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--white);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- HEADER NAVBAR --- */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(5, 7, 12, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo h1 {
             font-family: var(--font-title);
-            font-size: 2.5rem;
-            font-weight: 900;
-            text-transform: uppercase;
+            font-size: 1.4rem;
             letter-spacing: 2px;
-            margin-bottom: 60px;
             color: var(--white);
         }
-
-        @media (min-width: 993px) {
-            .passport-title { margin-bottom: 40px; }
+        .logo span {
+            color: var(--electric-blue);
+        }
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-family: var(--font-sub);
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-links a:hover {
+            color: var(--electric-blue);
         }
 
-        .passport-grid {
+        /* --- UI WORKSPACE LAYOUT --- */
+        .uikit-container {
+            max-width: 1400px;
+            margin: 120px auto 60px;
+            padding: 0 20px;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
         }
 
-        .passport-card {
-            background: linear-gradient(145deg, rgba(14, 22, 37, 0.9) 0%, rgba(7, 11, 19, 0.95) 100%);
-            border: 1px solid rgba(57, 160, 218, 0.15);
+        /* SIDEBAR DE SECCIONES */
+        .uikit-sidebar {
+            position: sticky;
+            top: 120px;
+            height: calc(100vh - 180px);
+            background: rgba(15, 20, 37, 0.4);
+            border: 1px solid rgba(56, 189, 248, 0.15);
             border-radius: 8px;
-            padding: 40px 30px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
+            padding: 25px 15px;
+        }
+        .sidebar-title {
+            font-family: var(--font-title);
+            font-size: 1rem;
+            color: var(--electric-blue);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .sidebar-menu {
+            list-style: none;
+        }
+        .sidebar-item {
+            margin-bottom: 8px;
+        }
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            color: var(--metallic-grey);
+            text-decoration: none;
+            font-family: var(--font-sub);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: all 0.3s var(--transition-smooth);
+        }
+        .sidebar-link:hover, .sidebar-link.active {
+            color: var(--white);
+            background: rgba(56, 189, 248, 0.15);
+            border-left: 4px solid var(--electric-blue);
+            padding-left: 11px;
         }
 
+        /* CONTENEDOR PRINCIPAL DE COMPONENTES */
+        .uikit-main {
+            background: rgba(15, 20, 37, 0.1);
+        }
+        .uikit-section {
+            display: none;
+            animation: panelFadeIn 0.4s var(--transition-smooth);
+        }
+        .uikit-section.active {
+            display: block;
+        }
+
+        .section-header {
+            margin-bottom: 35px;
+            border-left: 4px solid var(--electric-blue);
+            padding-left: 15px;
+        }
+        .section-header h2 {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .section-header p {
+            color: var(--metallic-grey);
+            font-size: 1rem;
+        }
+
+        /* --- VISUALIZADORES DE COMPONENTES --- */
+        .component-showcase {
+            background: #0b111e;
+            border: 1px solid rgba(56, 189, 248, 0.1);
+            border-radius: 8px;
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+        .showcase-header {
+            background: rgba(15, 20, 37, 0.8);
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .showcase-title {
+            font-family: var(--font-sub);
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--white);
+            letter-spacing: 0.5px;
+        }
+        .showcase-preview {
+            padding: 40px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            background-image: radial-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 0);
+            background-size: 16px 16px;
+        }
+        .showcase-code {
+            background: #05070c;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            position: relative;
+        }
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            color: #38bdf8;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        .btn-copy {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--electric-blue);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-family: var(--font-sub);
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+        .btn-copy:hover {
+            background: var(--electric-blue);
+            color: var(--pure-black);
+        }
+
+        /* --- COMPONENTES EXTRAÍDOS DEL SISTEMA DE DISEÑO --- */
+        
+        /* 1. Botones */
+        .apex-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-sub);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 14px 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s var(--transition-smooth);
+        }
+        .apex-btn.primary {
+            background: var(--electric-blue);
+            color: var(--pure-black);
+            border: none;
+            box-shadow: 0 0 15px var(--neon-glow);
+        }
+        .apex-btn.primary:hover {
+            background: var(--white);
+            box-shadow: 0 0 25px rgba(255,255,255,0.4);
+            transform: translateY(-2px);
+        }
+        .apex-btn.secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--electric-blue);
+        }
+        .apex-btn.secondary:hover {
+            background: rgba(56, 189, 248, 0.1);
+            box-shadow: 0 0 15px var(--neon-glow);
+            transform: translateY(-2px);
+        }
+        .apex-btn.mega {
+            background: var(--mega-pink);
+            color: var(--white);
+            border: none;
+            box-shadow: 0 0 15px var(--mega-glow);
+        }
+        .apex-btn.mega:hover {
+            background: #ff33cc;
+            box-shadow: 0 0 25px var(--mega-pink);
+            transform: translateY(-2px);
+        }
+
+        /* 2. Tarjetas Passport (Módulos de Cursos) */
+        .passport-card {
+            background: linear-gradient(135deg, rgba(15, 20, 37, 0.9), rgba(5, 7, 12, 0.98));
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 12px;
+            width: 340px;
+            padding: 25px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
         .passport-card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
+            left: 25px;
+            width: 60px;
             height: 3px;
             background: var(--electric-blue);
             box-shadow: 0 0 10px var(--electric-blue);
         }
-
-        .passport-card-header {
+        .passport-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 35px;
+            margin-bottom: 20px;
         }
-
         .passport-number {
             font-family: var(--font-title);
-            font-size: 2.8rem;
-            font-weight: 900;
             color: var(--electric-blue);
-            line-height: 1;
-        }
-
-        .passport-icon {
-            font-size: 2.5rem;
-            color: var(--electric-blue);
-            filter: drop-shadow(0 0 8px rgba(57, 160, 218, 0.5));
-        }
-
-        .passport-card-title {
-            font-family: var(--font-title);
-            font-size: 1.3rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-            color: var(--white);
-        }
-
-        .passport-card-desc {
-            color: var(--metallic-grey);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            font-family: var(--font-body);
-        }
-
-        @media (max-width: 992px) {
-            .passport-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            .passport-title {
-                font-size: 2rem;
-                padding: 0 10px;
-            }
-        }
-        /* --- ESTILOS DE LA SECCIÓN DE MÓDULOS INTERACTIVOS --- */
-        .interactive-modules-section {
-            padding: 100px 0;
-            background: var(--pure-black);
-        }
-        .modules-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .modules-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        @media (min-width: 993px) {
-            .modules-header { margin-bottom: 40px; }
-        }
-        .subtitle-highlight {
-            font-family: var(--font-hud);
-            color: var(--electric-blue);
-            letter-spacing: 3px;
-            font-size: 1.1rem;
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        .main-title {
-            font-family: var(--font-title);
-            font-size: 2.5rem;
-            font-weight: 900;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        .modules-wrapper {
-            display: grid;
-            grid-template-columns: 350px 1fr;
-            gap: 30px;
-            align-items: stretch;
-        }
-        .modules-sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .module-tab {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(11, 17, 30, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 15px 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .module-tab:hover, .module-tab.active {
-            background: rgba(57, 160, 218, 0.1);
-            border-color: var(--electric-blue);
-        }
-        .tab-icon-wrapper {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--metallic-grey);
-            transition: color 0.3s;
-        }
-        .module-tab:hover .tab-icon-wrapper, .module-tab.active .tab-icon-wrapper {
-            color: var(--electric-blue);
-        }
-        .icon-svg {
-            width: 28px;
-            height: 28px;
-        }
-        .tab-text {
-            display: flex;
-            flex-direction: column;
-        }
-        .tab-num {
-            font-family: var(--font-title);
-            font-size: 1rem;
-            font-weight: 700;
-        }
-        .tab-desc {
-            font-family: var(--font-hud);
             font-size: 0.85rem;
-            color: var(--metallic-grey);
             letter-spacing: 1px;
         }
-        .module-content-display {
-            background: #070b13;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Contenedores de paneles individuales */
-        .content-panel-inner {
-            background-size: cover;
-            background-position: center right;
-            padding: 50px;
-            height: 100%;
-            display: none; /* Se ocultan por defecto */
-            align-items: center;
-        }
-        
-        /* El panel activo se muestra */
-        .content-panel-inner.active-panel {
-            display: flex;
-            animation: paneFade 0.4s forwards;
-        }
-
-        .module-info-box {
-            max-width: 500px;
-        }
-        .content-mod-tag {
-            font-family: var(--font-hud);
+        .passport-badge {
+            font-family: var(--font-sub);
+            font-weight: bold;
+            font-size: 0.8rem;
+            background: rgba(56, 189, 248, 0.15);
             color: var(--electric-blue);
-            font-weight: 700;
-            letter-spacing: 2px;
-            font-size: 0.95rem;
-        }
-        .content-mod-title {
-            font-family: var(--font-title);
-            font-size: 2.2rem;
-            font-weight: 900;
-            margin: 5px 0;
-        }
-        .content-mod-subtitle {
-            font-family: var(--font-hud);
-            color: var(--gold);
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
+            padding: 3px 8px;
+            border-radius: 4px;
             text-transform: uppercase;
         }
-        .content-mod-description {
-            color: var(--metallic-grey);
-            line-height: 1.6;
-            margin-bottom: 25px;
-            font-size: 0.95rem;
-        }
-        .content-bullet-list {
-            list-style: none;
-            margin-bottom: 35px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .content-bullet-list li {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.95rem;
-        }
-        .check-icon {
-            color: var(--electric-blue);
-            font-weight: bold;
-        }
-        .module-action-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--electric-blue);
-            color: var(--white);
-            padding: 14px 28px;
+        .passport-title {
             font-family: var(--font-title);
-            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .passport-meta {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        .passport-meta li {
             font-size: 0.9rem;
-            text-decoration: none;
+            color: var(--metallic-grey);
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed rgba(255,255,255,0.05);
+            padding-bottom: 4px;
+        }
+        .passport-meta li span {
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        /* Variación de Tarjeta Estilo Mega Apex */
+        .passport-card.mega-apex-style {
+            border-color: rgba(255, 6, 193, 0.3);
+        }
+        .passport-card.mega-apex-style::before {
+            background: var(--mega-pink);
+            box-shadow: 0 0 12px var(--mega-pink);
+        }
+        .passport-card.mega-apex-style .passport-number {
+            color: var(--mega-pink);
+        }
+        .passport-card.mega-apex-style .passport-badge {
+            background: rgba(255, 6, 193, 0.15);
+            color: var(--mega-pink);
+        }
+
+        /* 3. Inputs de Formulario */
+        .form-group {
+            width: 100%;
+            max-width: 450px;
+            margin-bottom: 20px;
+        }
+        .form-label {
+            display: block;
+            font-family: var(--font-sub);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
             letter-spacing: 1px;
+            color: var(--metallic-grey);
+            margin-bottom: 8px;
+        }
+        .form-input {
+            width: 100%;
+            background: rgba(15, 20, 37, 0.6);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 4px;
+            padding: 12px 15px;
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
             transition: all 0.3s;
         }
-        .module-action-btn:hover {
-            background: var(--white);
-            color: var(--pure-black);
-        }
-        .btn-arrow {
-            width: 16px;
-            height: 16px;
+        .form-input:focus {
+            outline: none;
+            border-color: var(--electric-blue);
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+            background: rgba(15, 20, 37, 0.9);
         }
 
-        @media (max-width: 991px) {
-            .modules-wrapper {
+        /* --- ANIMACIONES NATIVAS --- */
+        @keyframes panelFadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- MEDIA QUERIES (RESPONSIVE) --- */
+        @media (max-width: 992px) {
+            .uikit-container {
                 grid-template-columns: 1fr;
+                margin-top: 100px;
             }
-            .content-panel-inner {
-                padding: 40px 25px;
+            .uikit-sidebar {
+                position: static;
+                height: auto;
+                padding: 15px;
+            }
+            .sidebar-menu {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .sidebar-item {
+                margin-bottom: 0;
             }
         }
     </style>
 </head>
 <body>
 
-   <aside class="sidebar" id="sidebar">
-    <!-- Botón Hamburguesa visible solo en mobile -->
-    <button class="menu-toggle" id="menuToggle">
-        <i class="fas fa-bars"></i>
-    </button>
-    
-    <div class="sidebar-content">
-        <h2>BIBLIOTECA UI</h2>
-        <ul>
-            <li><a href="#typography">1. Tipografía</a></li>
-            <li><a href="#colors">2. Paleta de Colores</a></li>
-            <li><a href="#buttons">3. Botones</a></li>
-            <li><a href="#cards">4. Tarjetas</a></li>
-            <li><a href="#icons">5. Banner</a></li>
-            <li style="margin-top: 20px;">
-                <a href="index.html" class="btn-home">VOLVER AL HOME</a>
-            </li>
-        </ul>
-    </div>
-</aside>
-   
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <h1>APEX <span>// UI KIT</span></h1>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
+            </nav>
+        </div>
+    </header>
 
-    <main class="main-content">
-        <h1>Sistema de Diseño UI</h1>
+    <div class="uikit-container">
         
-        <section id="typography">
-            <h2>1. Tipografía</h2>
-            <div class="box">
-                <h1 style="font-family: var(--font-title);">Orbitron: Títulos</h1>
-                <p style="font-family: var(--font-hud); font-size: 1.5rem;">Rajdhani: Etiquetas HUD</p>
-                <p style="font-family: var(--font-body);">Montserrat: Cuerpos de texto.</p>
-            </div>
-        </section>
+        <aside class="uikit-sidebar">
+            <div class="sidebar-title">Sistemas UI</div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-item">
+                    <a href="#branding" class="sidebar-link active" data-target="section-branding">
+                        <i class="fas fa-palette"></i> Identidad Visual
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#botones" class="sidebar-link" data-target="section-botones">
+                        <i class="fas fa-mouse-pointer"></i> Componente Botón
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#tarjetas" class="sidebar-link" data-target="section-tarjetas">
+                        <i class="fas fa-id-card"></i> Tarjetas y Módulos
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#formularios" class="sidebar-link" data-target="section-formularios">
+                        <i class="fas fa-sliders-h"></i> Form Controls
+                    </a>
+                </li>
+            </ul>
+        </aside>
 
-        <section id="colors">
-            <h2>2. Paleta de Colores</h2>
-            <div class="grid-container">
-                <div class="color-block" style="background: var(--pure-black);">Pure Black</div>
-                <div class="color-block" style="background: var(--electric-blue);">Electric Blue</div>
-                <div class="color-block" style="background: var(--gold);">Rosa APEX</div>
-            </div>
-        </section>
-
-        <section id="buttons">
-            <h2>3. Botones</h2>
-            <button class="btn-apex btn-blue">Principal Blue</button>
-            <button class="btn-apex btn-pink">Acción Rosa</button>
-        </section>
-
-        <section id="cards">
-            <h2>4. Tarjetas</h2>
-    
-                <!-- TARJETA 01 -->
-                <div class="passport-card">
-                    <div class="passport-card-header">
-                        <span class="passport-number">01</span>
-                        <i class="fas fa-crosshairs passport-icon"></i>
-                    </div>
-                    <h3 class="passport-card-title">DIAGNÓSTICO</h3>
-                    <p class="passport-card-desc">
-                        Analizamos tu conducción actual con datos profesionales para detectar tus puntos de fuga.
-                    </p>
+        <main class="uikit-main">
+            
+            <section id="section-branding" class="uikit-section active">
+                <div class="section-header">
+                    <h2>Variables e Identidad</h2>
+                    <p>Configuración maestra de colores y tipografías para simulación técnica de alta fidelidad.</p>
                 </div>
-        <section id="cards"></section>
-
-                <!-- PANEL 01: FUNDAMENTOS -->
-                    <div class="content-panel-inner active-panel" id="mod-pane-1" style="background-image: linear-gradient(to right, rgba(0,0,0,0.95) 45%, rgba(0,0,0,0.3) 100%), url('assets/imag5.png');">
-                        <div class="module-info-box">
-                            <span class="content-mod-tag">MÓDULO 01</span>
-                            <h3 class="content-mod-title">FUNDAMENTOS</h3>
-                            <h4 class="content-mod-subtitle">LA BASE DE TODO</h4>
-                            <p class="content-mod-description">Aprendé los principios esenciales que separan a los pilotos consistentes de los rápidos.</p>
-                            <ul class="content-bullet-list">
-                                <li><span class="check-icon">✓</span> Posición de manejo y ergonomía</li>
-                                <li><span class="check-icon">✓</span> Control del auto y sensibilidad</li>
-                                <li><span class="check-icon">✓</span> Transferencia de pesos</li>
-                                <li><span class="check-icon">✓</span> Técnicas de consistencia</li>
-                            </ul>
-                            <a href="#" class="module-action-btn">
-                                VER CONTENIDO DEL MÓDULO 
-                                <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-                            </a>
+                
+                <div class="component-showcase">
+                    <div class="showcase-header">
+                        <span class="showcase-title">Muestrario Hexadecimal de Rendimiento</span>
+                    </div>
+                    <div class="showcase-preview" style="justify-content: flex-start; gap: 35px;">
+                        <div style="text-align: center;">
+                            <div style="width: 90px; height: 90px; background: #38bdf8; border-radius: 8px; box-shadow: 0 0 15px rgba(56,189,248,0.5);"></div>
+                            <p style="margin-top: 10px; font-weight: bold; font-size: 0.9rem;">Electric Blue</p>
+                            <span style="font-size: 0.8rem; color: var(--metallic-grey);">#38bdf8</span>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="width: 90px; height: 90px; background: #FF06C1; border-radius: 8px; box-shadow: 0 0 15px rgba(255,6,193,0.5);"></div>
+                            <p style="margin-top: 10px; font-weight: bold; font-size: 0.9rem;">Mega Pink</p>
+                            <span style="font-size: 0.8rem; color: var(--metallic-grey);">#FF06C1</span>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="width: 90px; height: 90px; background: #0F1425; border: 1px solid var(--electric-blue); border-radius: 8px;"></div>
+                            <p style="margin-top: 10px; font-weight: bold; font-size: 0.9rem;">Dark Blue</p>
+                            <span style="font-size: 0.8rem; color: var(--metallic-grey);">#0F1425</span>
                         </div>
                     </div>
+                </div>
+            </section>
 
-</section>
+            <section id="section-botones" class="uikit-section">
+                <div class="section-header">
+                    <h2>Botones de Interacción</h2>
+                    <p>Controladores con efectos hover optimizados y estados de luminosidad reactiva.</p>
+                </div>
 
- <h2>5. Banner </h2>
-<!-- BANNER PUBLICITARIO INTERMEDIO -->
-    <div class="banner-intermedio-container">
-        <img src="assets/ban1.jpg" alt="Banner APEX" class="banner-media">
+                <div class="component-showcase">
+                    <div class="showcase-header">
+                        <span class="showcase-title">Botón Primario APEX</span>
+                        <button class="btn-copy">Copiar HTML</button>
+                    </div>
+                    <div class="showcase-preview">
+                        <button class="apex-btn primary">Iniciar Telemetría <i class="fas fa-bolt"></i></button>
+                    </div>
+                    <div class="showcase-code">
+                        <pre class="code-block">&lt;button class="apex-btn primary"&gt;Iniciar Telemetría &lt;i class="fas fa-bolt"&gt;&lt;/i&gt;&lt;/button&gt;</pre>
+                    </div>
+                </div>
+
+                <div class="component-showcase">
+                    <div class="showcase-header">
+                        <span class="showcase-title">Botón Secundario de Estructura</span>
+                        <button class="btn-copy">Copiar HTML</button>
+                    </div>
+                    <div class="showcase-preview">
+                        <button class="apex-btn secondary">Ver Circuitos <i class="fas fa-flag-checkered"></i></button>
+                    </div>
+                    <div class="showcase-code">
+                        <pre class="code-block">&lt;button class="apex-btn secondary"&gt;Ver Circuitos &lt;i class="fas fa-flag-checkered"&gt;&lt;/i&gt;&lt;/button&gt;</pre>
+                    </div>
+                </div>
+
+                <div class="component-showcase">
+                    <div class="showcase-header">
+                        <span class="showcase-title">Botón Edición Especial Mega Apex</span>
+                        <button class="btn-copy">Copiar HTML</button>
+                    </div>
+                    <div class="showcase-preview">
+                        <button class="apex-btn mega">Adquirir Curso Mega <i class="fas fa-rocket"></i></button>
+                    </div>
+                    <div class="showcase-code">
+                        <pre class="code-block">&lt;button class="apex-btn mega"&gt;Adquirir Curso Mega &lt;i class="fas fa-rocket"&gt;&lt;/i&gt;&lt;/button&gt;</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-tarjetas" class="uikit-section">
+                <div class="section-header">
+                    <h2>Pasaportes y Módulos de Cursos</h2>
+                    <p>Contenedores modulares complejos ideales para la visualización ordenada de datos e inscripciones.</p>
+                </div>
+
+                <div class="component-showcase">
+                    <div class="showcase-header">
+                        <span class="showcase-title">Pasaporte Estándar / Pro</span>
+                        <button class="btn-copy">Copiar HTML</button>
+                    </div>
+                    <div class="showcase-preview">
+                        <div class="passport-card">
+                            <div class="passport-header">
+                                <span class="passport-number">APEX-001 // DIGITAL</span>
+                                <span class="passport-badge">PRO ACADEMY</span>
+                            </div>
+                            <h3 class="passport-title">Fórmula Pro</h3>
+                            <ul class="passport-meta">
+                                <li>Instructor: <span>Sergio Pérez</span></li>
+                                <li>Simuladores: <span>iRacing, Assetto</span></li>
+                            </ul>
+                            <button class="apex-btn primary" style="width: 100%; justify-content: center;">Ingresar al Módulo</button>
+                        </div>
+                    </div>
+                    <div class="showcase-code">
+                        <pre class="code-block">&lt;div class="passport-card"&gt;
+    &lt;div class="passport-header"&gt;
+        &lt;span class="passport-number"&gt;APEX-001 // DIGITAL&lt;/span&gt;
+        &lt;span class="passport-badge"&gt;PRO ACADEMY&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;h3 class="passport-title"&gt;Fórmula Pro&lt;/h3&gt;
+    ...
+&lt;/div&gt;</pre>
+                    </div>
+                </div>
+
+                <div class="component-showcase">
+                    <div class="showcase-header">
+                        <span class="showcase-title">Pasaporte Especial Mega Apex</span>
+                        <button class="btn-copy">Copiar HTML</button>
+                    </div>
+                    <div class="showcase-preview">
+                        <div class="passport-card mega-apex-style">
+                            <div class="passport-header">
+                                <span class="passport-number">APEX-999 // EXCLUSIVO</span>
+                                <span class="passport-badge">MEGA APEX</span>
+                            </div>
+                            <h3 class="passport-title">Mega Apex Course</h3>
+                            <ul class="passport-meta">
+                                <li>Acceso de Telemetría: <span>Ilimitado</span></li>
+                                <li>Sesiones 1v1: <span>Incluidas</span></li>
+                            </ul>
+                            <button class="apex-btn mega" style="width: 100%; justify-content: center;">Ingresar al Módulo</button>
+                        </div>
+                    </div>
+                    <div class="showcase-code">
+                        <pre class="code-block">&lt;div class="passport-card mega-apex-style"&gt;
+    &lt;div class="passport-header"&gt;
+        &lt;span class="passport-number"&gt;APEX-999 // EXCLUSIVO&lt;/span&gt;
+        &lt;span class="passport-badge"&gt;MEGA APEX&lt;/span&gt;
+    &lt;/div&gt;
+    ...
+&lt;/div&gt;</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-formularios" class="uikit-section">
+                <div class="section-header">
+                    <h2>Inputs y Controladores Técnicos</h2>
+                    <p>Campos de texto diseñados para simular el ingreso seguro a terminales satelitales de telemetría.</p>
+                </div>
+
+                <div class="component-showcase">
+                    <div class="showcase-header">
+                        <span class="showcase-title">Input de Datos Alpha</span>
+                        <button class="btn-copy">Copiar HTML</button>
+                    </div>
+                    <div class="showcase-preview">
+                        <div class="form-group">
+                            <label class="form-label">Identificación del Piloto // ID</label>
+                            <input type="text" class="form-input" placeholder="Ej: Franco Colapinto">
+                        </div>
+                    </div>
+                    <div class="showcase-code">
+                        <pre class="code-block">&lt;div class="form-group"&gt;
+    &lt;label class="form-label"&gt;Identificación del Piloto // ID&lt;/label&gt;
+    &lt;input type="text" class="form-input" placeholder="Ej: Franco Colapinto"&gt;
+&lt;/div&gt;</pre>
+                    </div>
+                </div>
+            </section>
+
+        </main>
     </div>
-</section>
-    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- CONTROL DE PESTAÑAS ACTIVAS (TABS INTERACTIVOS) ---
+            const links = document.querySelectorAll('.sidebar-link');
+            const sections = document.querySelectorAll('.uikit-section');
+
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Quitar estados activos previos
+                    links.forEach(l => l.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+
+                    // Asignar el nuevo panel seleccionado
+                    link.classList.add('active');
+                    const targetId = link.getAttribute('data-target');
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+
+            // --- PORTAPAPELES AUTOMÁTICO (COPIAR COMPONENTES) ---
+            const copyButtons = document.querySelectorAll('.btn-copy');
+            copyButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const showcase = btn.closest('.component-showcase');
+                    const codeText = showcase.querySelector('.code-block').innerText;
+
+                    // API de portapapeles nativa del navegador
+                    navigator.clipboard.writeText(codeText).then(() => {
+                        const textBackup = btn.innerText;
+                        btn.innerText = '¡Copiado!';
+                        btn.style.background = '#38bdf8';
+                        btn.style.color = '#05070c';
+                        
+                        setTimeout(() => {
+                            btn.innerText = textBackup;
+                            btn.style.background = 'rgba(56, 189, 248, 0.1)';
+                            btn.style.color = '#38bdf8';
+                        }, 1800);
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
-
-<script>
-    const toggleBtn = document.getElementById('menuToggle');
-    const sidebar = document.getElementById('sidebar');
-
-    toggleBtn.addEventListener('click', () => {
-        sidebar.classList.toggle('open');
-        
-        // Cambiar icono
-        const icon = toggleBtn.querySelector('i');
-        if(sidebar.classList.contains('open')) {
-            icon.className = 'fas fa-times';
-        } else {
-            icon.className = 'fas fa-bars';
-        }
-    });
-</script>
