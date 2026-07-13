@@ -19,24 +19,28 @@
     <canvas id="telemetry-bg"></canvas>
 
     <header class="header">
-        <div class="header-container">
-            <div class="logo">
-                <img src="assets/marca.png" alt="Logo APEX" style="height: 90px;">
-            </div>
-            <nav class="nav">
-                <a href="#about" class="nav-link"><i class="fas fa-info-circle text-electric"></i>¿Qué es APEX?</a>
-                <a href="#experiencia-apex" class="nav-link"><i class="fas fa-tachometer-alt text-electric"></i> Experiencia</a>
-                <a href="#courses" class="nav-link"><i class="fas fa-flag-checkered text-electric"></i> Cursos</a>
-                <a href="#podium" class="nav-link"><i class="fas fa-trophy text-electric"></i> Podio</a>
-                <a href="#register-footer" class="nav-link"><i class="fas fa-id-card text-electric"></i> Boxes</a>
-                <a href="#courses" class="btn btn-primary btn-hud">¡QUIERO CORRER!</a>
-            </div>
-           <!-- Botón Hamburguesa -->
-        <button class="menu-toggle" aria-label="Abrir menú">
-            ☰
-        </button>
+    <div class="header-container">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="assets/marca.png" alt="Logo APEX">
         </div>
-    </header>
+
+        <!-- Menú (que se ocultará en mobile) -->
+        <nav class="nav">
+            <a href="#about" class="nav-link">¿Qué es APEX?</a>
+            <a href="#experiencia-apex" class="nav-link">Experiencia</a>
+            <a href="#courses" class="nav-link">Cursos</a>
+            <a href="#podium" class="nav-link">Podio</a>
+            <a href="#register-footer" class="nav-link">Boxes</a>
+            <a href="#courses" class="btn btn-primary btn-hud">¡QUIERO CORRER!</a>
+        </nav>
+
+        <!-- Botón Hamburguesa (solo para mobile) -->
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</header>
 
     <main>
         <section class="hero-section">

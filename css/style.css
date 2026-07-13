@@ -98,40 +98,8 @@ body {
 .nav { display: flex; gap: 25px; }
 .nav-link { font-family: var(--font-sub); color: var(--metallic-grey); text-decoration: none; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; display: flex; align-items: center; gap: 8px; }
 .nav-link:hover { color: var(--electric-blue); }
+.menu-toggle { display: none; background: none; border: none; color: var(--white); font-size: 1.5rem; }
 
-/* --- AJUSTES PARA QUE FUNCIONE EL MENÚ EN MÓVIL --- */
-@media (max-width: 768px) {
-    /* Mostramos el botón de hamburguesa */
-    .menu-toggle { 
-        display: block !important; 
-        cursor: pointer;
-    }
-
-    /* Ocultamos el menú horizontal original */
-    .nav { 
-        display: none; /* Se oculta por defecto en móviles */
-        flex-direction: column; 
-        position: absolute; 
-        top: 100%; 
-        left: 0; 
-        width: 100%; 
-        background: rgba(5, 7, 12, 0.98); 
-        padding: 20px 0; 
-        border-bottom: 2px solid rgba(57, 160, 218, 0.5);
-    }
-
-    /* Estilo para que los enlaces se vean bien en la lista vertical */
-    .nav-link { 
-        padding: 15px 20px; 
-        justify-content: center; 
-        border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-
-    /* Esta clase la activaremos con JavaScript */
-    .nav.active { 
-        display: flex !important; 
-    }
-}
 
 /* HERO - CON MARCOS DE HUD INSTRUMENTAL */
 .hero-section { height: 100vh; display: flex; justify-content: center; align-items: center; position: relative; text-align: center; overflow: hidden; }
@@ -194,13 +162,13 @@ body {
 }
 
 /* Responsive para tablets y móviles */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
     .courses-grid-4 {
         grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .courses-grid-4 {
         grid-template-columns: 1fr; /* 1 columna en móviles */
     }
@@ -298,7 +266,7 @@ body {
 }
 
 /* RESPONSIVO COMPACTACIÓN - SIN ALTERAR ESCRITORIO */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
     .courses-grid-4 { grid-template-columns: repeat(2, 1fr); }
     .testimonials-flip-grid { grid-template-columns: 1fr; max-width: 400px; }
 }
@@ -1115,56 +1083,6 @@ body {
     -moz-osx-font-smoothing: grayscale;
     text-shadow: none !important; /* Quitamos sombras extra que emborronen el texto chico */
 }
-/* ==========================================================================
-   AJUSTES EXCLUSIVOS PARA RESPONSIVE MOBILE (CONSERVANDO DESKTOP INTACTO)
-      ========================================================================== */
-            @media (max-width: 768px) {
-                /* --- HEADER Y MENÚ HAMBURGUESA --- */
-                .header .logo img {
-                    height: 50px !important; /* Achicar logo de hero */
-                }
-
-                /* Ocultamos el botón HUD original de escritorio en móviles para dar espacio */
-                .header .btn-hud {
-                    display: none !important;
-                }
-
-                /* Activamos y posicionamos el botón hamburguesa en la línea de arriba */
-                .header .menu-toggle {
-                    display: block !important;
-                    background: none;
-                    border: none;
-                    color: var(--white);
-                    font-size: 1.5rem;
-                    cursor: pointer;
-                    z-index: 1100;
-                }
-
-                /* Transformamos la navegación en menú desplegable vertical */
-                .header .nav {
-                    display: none; /* Se controla la visibilidad con la clase 'active' desde JS */
-                    flex-direction: column;
-                    position: absolute;
-                    top: 100%;
-                    left: 0;
-                    width: 100%;
-                    background: #0b0f19; /* Fondo sólido oscuro */
-                    border-bottom: 2px solid var(--electric-blue);
-                    padding: 20px 0;
-                    z-index: 1000;
-                }
-
-                .header .nav.active {
-                    display: flex !important;
-                }
-
-                .header .nav-link {
-                    padding: 12px 24px;
-        width: 100%;
-        box-sizing: border-box;
-                    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-            }
 
     /* --- HERO SECTION --- */
     /* Achicar la foto / contenedor al ancho del celular */
@@ -2207,4 +2125,47 @@ text-shadow: 0 0 10px #00f2fe80;
 .passport-card.mega-apex .passport-btn:hover {
     background-color: #ff33cc;
     box-shadow: 0 0 25px #FF06C1;
+}
+
+/* --- ESTILOS GENERALES Y ESCRITORIO --- */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 90px; /* Tamaño original */
+}
+
+.menu-toggle {
+    display: none; /* Oculto en escritorio */
+}
+
+/* --- ESTILOS MOBILE (max-width: 768px) --- */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block !important;
+    }
+
+    .logo img {
+        height: 50px !important; /* Más pequeño solo en mobile */
+    }
+
+    .nav {
+        display: none; /* Oculto por defecto en mobile */
+        position: absolute;
+        top: 60px; /* Ajusta según la altura de tu header en mobile */
+        right: 0;
+        width: 250px;
+        background: var(--pure-black);
+        border: 1px solid var(--electric-blue);
+        z-index: 1500;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .nav.active {
+        display: flex !important;
+    }
 }
