@@ -143,13 +143,22 @@
     
     .main-content { margin-left: 0; width: 100%; }
 }
-/* Contenedor Grid para las nuevas tarjetas */
 .library-grid {
     display: grid;
-    /* Ajustamos el mínimo a 250px o 200px para que entren 3 en pantalla */
+    /* Esto crea 3 columnas que ocupan exactamente el mismo espacio (1fr cada una) */
     grid-template-columns: repeat(3, 1fr); 
     gap: 20px;
     padding: 40px 0;
+    width: 100%;
+    align-items: stretch; /* Esto hace que todas las tarjetas tengan la misma altura */
+}
+
+/* Aseguramos que las tarjetas respeten el tamaño del grid */
+.lib-card {
+    width: 100%; /* Obliga a la tarjeta a llenar su columna */
+    box-sizing: border-box; /* Evita que el padding rompa el ancho */
+    display: flex;
+    flex-direction: column;
 }
 
 /* Estilo Base de las Tarjetas */
@@ -267,7 +276,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 40%;
+            width: 100%;
             height: 3px;
             background: var(--electric-blue);
             box-shadow: 0 0 10px var(--electric-blue);
@@ -528,7 +537,7 @@
             <li><a href="#colors">2. Paleta de Colores</a></li>
             <li><a href="#buttons">3. Botones</a></li>
             <li><a href="#cards">4. Tarjetas</a></li>
-            <li><a href="#icons">5. Iconografía</a></li>
+            <li><a href="#icons">5. Banner</a></li>
             <li style="margin-top: 20px;">
                 <a href="index.html" class="btn-home">VOLVER AL HOME</a>
             </li>
@@ -566,21 +575,7 @@
 
         <section id="cards">
             <h2>4. Tarjetas</h2>
-            <div class="box" style="width: 300px; border: 1px solid var(--electric-blue);">
-                <h3>Tarjeta de Curso</h3>
-                <p>Contenido detallado del curso...</p>
-            </div>
-        </section>
-        <section class="container" id="biblioteca">
-    <div class="library-grid">
-        
-        <!-- Tarjeta tipo oferta (Imagen 1) -->
-        <div class="lib-card featured-gold">
-            <div class="price-main" style="font-size: 2rem;">USD 149</div>
-            <p class="lib-card-desc">ACCESO INMEDIATO ILIMITADO</p>
-            <button class="btn-speed" style="width: 100%;">COMPRAR AHORA</button>
-        </div>
-        <div class="passport-grid">
+    
                 <!-- TARJETA 01 -->
                 <div class="passport-card">
                     <div class="passport-card-header">
@@ -592,6 +587,7 @@
                         Analizamos tu conducción actual con datos profesionales para detectar tus puntos de fuga.
                     </p>
                 </div>
+        <section id="cards"></section>
 
                 <!-- PANEL 01: FUNDAMENTOS -->
                     <div class="content-panel-inner active-panel" id="mod-pane-1" style="background-image: linear-gradient(to right, rgba(0,0,0,0.95) 45%, rgba(0,0,0,0.3) 100%), url('assets/imag5.png');">
@@ -612,13 +608,15 @@
                             </a>
                         </div>
                     </div>
+
 </section>
+
  <h2>5. Banner </h2>
 <!-- BANNER PUBLICITARIO INTERMEDIO -->
     <div class="banner-intermedio-container">
         <img src="assets/ban1.jpg" alt="Banner APEX" class="banner-media">
     </div>
-
+</section>
     </main>
 </body>
 </html>
