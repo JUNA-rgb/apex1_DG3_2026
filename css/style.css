@@ -98,8 +98,40 @@ body {
 .nav { display: flex; gap: 25px; }
 .nav-link { font-family: var(--font-sub); color: var(--metallic-grey); text-decoration: none; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; display: flex; align-items: center; gap: 8px; }
 .nav-link:hover { color: var(--electric-blue); }
-.menu-toggle { display: none; background: none; border: none; color: var(--white); font-size: 1.5rem; }
 
+/* --- AJUSTES PARA QUE FUNCIONE EL MENÚ EN MÓVIL --- */
+@media (max-width: 768px) {
+    /* Mostramos el botón de hamburguesa */
+    .menu-toggle { 
+        display: block !important; 
+        cursor: pointer;
+    }
+
+    /* Ocultamos el menú horizontal original */
+    .nav { 
+        display: none; /* Se oculta por defecto en móviles */
+        flex-direction: column; 
+        position: absolute; 
+        top: 100%; 
+        left: 0; 
+        width: 100%; 
+        background: rgba(5, 7, 12, 0.98); 
+        padding: 20px 0; 
+        border-bottom: 2px solid rgba(57, 160, 218, 0.5);
+    }
+
+    /* Estilo para que los enlaces se vean bien en la lista vertical */
+    .nav-link { 
+        padding: 15px 20px; 
+        justify-content: center; 
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* Esta clase la activaremos con JavaScript */
+    .nav.active { 
+        display: flex !important; 
+    }
+}
 
 /* HERO - CON MARCOS DE HUD INSTRUMENTAL */
 .hero-section { height: 100vh; display: flex; justify-content: center; align-items: center; position: relative; text-align: center; overflow: hidden; }
@@ -1086,66 +1118,53 @@ body {
 /* ==========================================================================
    AJUSTES EXCLUSIVOS PARA RESPONSIVE MOBILE (CONSERVANDO DESKTOP INTACTO)
       ========================================================================== */
-            /* --- RESPONSIVE MOBILE (Máximo 768px) --- */
-@media (max-width: 768px) {
-    /* 1. Ajuste del contenedor del header */
-    .header-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px;
-        position: relative;
-    }
+            @media (max-width: 768px) {
+                /* --- HEADER Y MENÚ HAMBURGUESA --- */
+                .header .logo img {
+                    height: 50px !important; /* Achicar logo de hero */
+                }
 
-    /* 2. Botón hamburguesa: Aseguramos que sea visible */
-    .menu-toggle {
-        display: block !important;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-        z-index: 1200; /* Asegura que esté por encima de todo */
-        order: 3; /* Asegura su posición a la derecha */
-    }
+                /* Ocultamos el botón HUD original de escritorio en móviles para dar espacio */
+                .header .btn-hud {
+                    display: none !important;
+                }
 
-    /* 3. Navegación: El menú desplegable */
-    .nav {
-        display: none; /* Oculto por defecto */
-        position: fixed;
-        top: 0;
-        right: -100%; /* Empieza fuera de la pantalla, a la derecha */
-        width: 250px; /* Ancho fijo para que no sea toda la pantalla */
-        height: 100vh; /* Altura completa */
-        background: #0b0f19; /* Tu color de fondo */
-        flex-direction: column;
-        padding: 80px 20px; /* Padding superior para no chocar con el icono */
-        border-left: 2px solid var(--electric-blue); /* Borde a la izquierda */
-        z-index: 1100;
-        box-shadow: -10px 0 20px rgba(0,0,0,0.5);
-        transition: right 0.4s ease; /* Animación de entrada */
-    }
-.menu-toggle {
-    position: relative;
-    z-index: 1200;
-}
-    /* 4. Clase que activa el JS */
-    .nav.active {
-        display: flex; /* Se vuelve visible */
-        right: 0; /* Entra en la pantalla */
-    }
+                /* Activamos y posicionamos el botón hamburguesa en la línea de arriba */
+                .header .menu-toggle {
+                    display: block !important;
+                    background: none;
+                    border: none;
+                    color: var(--white);
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    z-index: 1100;
+                }
 
-    /* 5. Ajuste de los enlaces dentro del móvil */
-    .nav .nav-link {
-        padding: 15px 25px;
+                /* Transformamos la navegación en menú desplegable vertical */
+                .header .nav {
+                    display: none; /* Se controla la visibilidad con la clase 'active' desde JS */
+                    flex-direction: column;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    width: 100%;
+                    background: #0b0f19; /* Fondo sólido oscuro */
+                    border-bottom: 2px solid var(--electric-blue);
+                    padding: 20px 0;
+                    z-index: 1000;
+                }
+
+                .header .nav.active {
+                    display: flex !important;
+                }
+
+                .header .nav-link {
+                    padding: 12px 24px;
         width: 100%;
         box-sizing: border-box;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
-}
+            }
 
     /* --- HERO SECTION --- */
     /* Achicar la foto / contenedor al ancho del celular */
@@ -1468,12 +1487,33 @@ text-shadow: 0 0 10px #00f2fe80;
 
 @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
 
-
+/* RESPONSIVE PARA DISPOSITIVOS MÓVILES Y TABLETS */
+@media (max-width: 1200px) {
+    .showroom-layout { grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr; height: auto; padding-top: 140px; gap: 1.5rem; }
+    .canvas-3d-master { grid-column: 1 / span 2; height: 45vh; min-height: 350px; order: -1; }
+    .showroom-viewport { height: auto; overflow-y: auto; }
+    .panel { max-height: none; height: auto; }
+}
+@media (max-width: 768px) {
+    .showroom-layout { grid-template-columns: 1fr; gap: 1rem; padding: 1rem; }
+    .canvas-3d-master { grid-column: 1; height: 35vh; min-height: 300px; }
+}
 
 
 @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
 
+/* RESPONSIVE ADAPTATION OVERRIDES */
+@media (max-width: 1200px) {
+    .showroom-layout { grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr; height: auto; min-height: 100vh; overflow-y: auto; padding-top: 140px; }
+    .canvas-3d-master { grid-column: 1 / span 2; height: 50vh; order: -1; }
+    .showroom-viewport { height: auto; overflow-y: auto; }
+}
 
+@media (max-width: 768px) {
+    .showroom-layout { grid-template-columns: 1fr; gap: 1rem; padding: 1rem; }
+    .canvas-3d-master { grid-column: 1; height: 40vh; }
+    .panel { height: auto; }
+}
 /* ==========================================================================
    AJUSTE DE TAMAÑO PANTALLA COMPLETA - SECCIÓN EXPERIENCIA APEX (DESKTOP)
    ========================================================================== */
@@ -2168,5 +2208,3 @@ text-shadow: 0 0 10px #00f2fe80;
     background-color: #ff33cc;
     box-shadow: 0 0 25px #FF06C1;
 }
-/* ... [MANTENIMIENTO DEL CÓDIGO ORIGINAL] ... */
-
