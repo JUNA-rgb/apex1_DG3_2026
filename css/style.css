@@ -1944,23 +1944,38 @@ text-shadow: 0 0 10px #00f2fe80;
     /* ==========================================
        1. PARCHE QUIRÚRGICO: MENÚ / HEADER / HAMBURGUESA
        ========================================== */
-    /* Respetamos el flex original de tu header para que el logo y la hamburguesa convivan */
+/* 1. Resetear el comportamiento en escritorio (quitar los !important) */
+.header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 2. Solo para móviles (aquí es donde sucede la magia) */
+@media (max-width: 768px) {
     .header-container {
-        display: flex !important;
-        flex-direction: row !important; 
-        justify-content: space-between !important;
-        align-items: center !important;
-        padding: 15px 20px !important;
+        flex-direction: column; /* Apilamos logo y hamburguesa verticalmente */
+        align-items: flex-start; /* Alineamos a la izquierda */
+        padding: 10px;
     }
 
-    /* Si usás un contenedor para los links que se despliega con la hamburguesa */
     .nav {
-        /* Nota: Si tu script añade una clase tipo '.active' o '.open' para mostrar el menú, 
-           asegurate de mantener su lógica. Aquí evitamos que se rompa su display por defecto */
-        flex-direction: column !important;
-        gap: 15px !important;
+        display: none; /* Ocultamos el menú por defecto */
+        width: 100%;
+        flex-direction: column;
+        background: #000; /* Asegúrate de que tenga fondo */
+        position: absolute;
+        top: 80px; /* Ajusta según la altura de tu header */
+        left: 0;
+        padding: 20px;
     }
 
+    /* Cuando el JS añada la clase .active, el menú aparece */
+    .nav.active {
+        display: flex;
+    }
+}
 
     /* ==========================================
        2. PARCHE QUIRÚRGICO: EXPERIENCIA APEX (F1, F2, F3)

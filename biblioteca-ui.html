@@ -3,98 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca UI APEX</title>
+    <title>BIBLIOTECA UI | APEX SHOWROOM</title>
+    <!-- Mantenemos la identidad visual definida en los fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Orbitron:wght@700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --electric-blue: #38bdf8;
-            --pure-black: #000000;
-            --dark-blue: #0F1425;
-            --white: #FFFFFF;
-            --metallic-grey: #A8ADB7;
+            --pure-black: #05070c;
+            --electric-blue: #39A0DA;
+            --neon-glow: rgba(57, 160, 218, 0.6);
+            --gold: #FF06c1;
+            --white: #ffffff;
+            --metallic-grey: #8a94a6;
             --font-title: 'Orbitron', sans-serif;
+            --font-hud: 'Rajdhani', sans-serif;
             --font-body: 'Montserrat', sans-serif;
-            --glow-effect: 0 0 15px #38bdf877;
         }
 
-        body {
-            background-color: var(--pure-black);
-            color: var(--white);
-            font-family: var(--font-body);
-            margin: 0;
-            padding: 20px;
-        }
-
-        .ui-library-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px;
-        }
-
-        h1 { font-family: var(--font-title); color: var(--electric-blue); text-align: center; margin-bottom: 50px; }
+        body { background: var(--pure-black); color: var(--white); font-family: var(--font-body); padding: 50px; }
+        .container { max-width: 1000px; margin: auto; }
         
-        .section-group { margin-bottom: 60px; border-bottom: 1px solid #333; padding-bottom: 40px; }
-        h2 { font-family: var(--font-title); margin-bottom: 20px; color: var(--white); }
+        /* Indice y Logo */
+        .header-ui { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--electric-blue); padding-bottom: 20px; margin-bottom: 50px; }
+        .logo-apex { height: 60px; }
+        .back-home { color: var(--electric-blue); text-decoration: none; font-family: var(--font-hud); font-size: 1.2rem; }
 
-        /* Componente Botones */
-        .btn-container { display: flex; gap: 20px; flex-wrap: wrap; }
-        .btn {
-            display: inline-flex; align-items: center; justify-content: center;
-            padding: 14px 28px; font-family: var(--font-title); font-size: 0.85rem;
-            font-weight: 900; letter-spacing: 2px; text-transform: uppercase;
-            transition: all 0.4s ease; position: relative; cursor: pointer; border-radius: 2px;
-        }
-        .btn-primary { background: var(--electric-blue); color: var(--pure-black); border: none; box-shadow: var(--glow-effect); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 25px #38bdf8; }
+        /* Bloques de diseño */
+        .ui-section { margin-bottom: 60px; }
+        h2 { font-family: var(--font-title); color: var(--electric-blue); margin-bottom: 20px; text-transform: uppercase; }
         
-        /* Componente Tarjeta */
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .passport-card {
-            background: rgba(15, 20, 37, 0.8);
-            border: 1px solid rgba(57, 160, 218, 0.2);
-            padding: 25px;
-            transition: transform 0.3s ease;
+        .type-box { padding: 20px; background: rgba(255,255,255,0.05); border-left: 4px solid var(--gold); margin-bottom: 10px; }
+        .color-palette { display: flex; gap: 20px; }
+        .color-swatch { width: 100px; height: 100px; border-radius: 8px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 10px; font-size: 0.8rem; font-family: var(--font-hud); }
+        
+        .btn-apex { padding: 15px 30px; border: none; cursor: pointer; font-family: var(--font-title); transition: 0.3s; text-transform: uppercase; }
+        .btn-blue { background: var(--electric-blue); color: var(--pure-black); }
+        .btn-gold { background: var(--gold); color: var(--white); }
+        
+        .card-preview { width: 300px; padding: 20px; border: 1px solid var(--electric-blue); background: rgba(5,7,12,0.9); }
+    /* Estilos nuevos para los componentes detectados */
+    .glow-card {
+        border: 1px solid var(--electric-blue);
+        box-shadow: 0 0 10px var(--neon-glow);
+        padding: 2rem;
+        background: var(--pure-black);
+    }
+
+    .price-card {
+        border: 2px dashed var(--gold); /* Rosa APEX */
+        padding: 2rem;
+        text-align: center;
+        background: rgba(5,7,12,0.8);
+    }
+
+    .icon-box {
+        color: var(--gold);
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        text-shadow: 0 0 8px var(--gold);
+    }
+    /* Estilos Base */
+        .ui-section { margin-bottom: 60px; }
+        h2 { font-family: var(--font-title); color: var(--electric-blue); margin-bottom: 30px; text-transform: uppercase; }
+
+        /* Grid Responsivo */
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+        /* Tarjeta de Precios (Estilo Imagen 4) */
+        .price-card {
+            border: 2px dashed var(--gold);
+            padding: 30px;
+            text-align: center;
+            background: var(--pure-black);
+            transition: 0.3s;
         }
-        .passport-card:hover { transform: translateY(-5px); border-color: var(--electric-blue); }
+        .price-tag { font-family: var(--font-hud); color: var(--gold); letter-spacing: 2px; }
+        .price-value { font-family: var(--font-title); color: var(--white); font-size: 2.5rem; margin: 15px 0; }
+
+        /* Tarjeta con Glow (Estilo Imagen 1 y 2) */
+        .glow-card {
+            border: 1px solid var(--electric-blue);
+            padding: 30px;
+            background: var(--pure-black);
+            text-align: center;
+        }
+        .icon-box { color: var(--gold); font-size: 2.5rem; margin-bottom: 60px; }
+
+        /* Botones */
+        .btn-action { 
+            background: var(--gold); color: var(--white); border: none; padding: 15px 25px; 
+            font-family: var(--font-title); text-transform: uppercase; cursor: pointer; width: 100%; 
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 20px; }
+            h2 { font-size: 1.2rem; }
+        }
+    
     </style>
 </head>
 <body>
-    <div class="ui-library-container">
-        <h1>Biblioteca UI APEX</h1>
+
+<div class="container">
+    <header class="header-ui">
+        <img src="assets/marca.png" class="logo-apex" alt="Logo APEX">
+        <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> VOLVER AL HOME</a>
+    </header>
+
+    <section class="ui-section">
+        <h2>1. Tipografía</h2>
+        <div class="type-box">
+            <h1 style="font-family: var(--font-title);">Orbitron: Títulos de alto impacto</h1>
+            <p style="font-family: var(--font-hud); font-size: 1.5rem;">Rajdhani: Etiquetas HUD y datos telemétricos</p>
+            <p style="font-family: var(--font-body);">Montserrat: Textos de lectura, descripciones y cuerpos de párrafo para máxima claridad.</p>
+        </div>
+    </section>
+
+    <section class="ui-section">
+        <h2>2. Paleta de Colores</h2>
+        <div class="color-palette">
+            <div class="color-swatch" style="background: var(--electric-blue);">Electric Blue</div>
+            <div class="color-swatch" style="background: var(--gold);">Rosa APEX</div>
+            <div class="color-swatch" style="background: var(--pure-black); border: 1px solid #333;">Pure Black</div>
+        </div>
+    </section>
+
+    <section class="ui-section">
+        <h2>3. Componentes Interactivos</h2>
+        <button class="btn-apex btn-blue">Botón Principal (Azul)</button>
+        <button class="btn-apex btn-gold">Botón Acción (Rosa)</button>
         
-        <section class="section-group">
-            <h2>Botones HUD</h2>
-            <div class="btn-container">
-                <button class="btn btn-primary">Primary Action</button>
-                <button class="btn btn-outline" style="background:transparent; color:white; border:1px solid #A8ADB7;">Outline Action</button>
-            </div>
-        </section>
+        <div class="card-preview" style="margin-top:20px;">
+            <h3 style="font-family:var(--font-title);">Tarjeta de Curso</h3>
+            <p style="font-family:var(--font-body);">Ideal para mostrar el curso de Fórmula 3 u otros.</p>
+        </div>
+    </section>
+</div>
 
-        <section class="section-group">
-            <h2>Tarjetas Telemetría</h2>
-            <div class="card-grid">
-                <div class="passport-card">
-                    <h3>Módulo 01</h3>
-                    <p>Descripción técnica de la tarjeta.</p>
-                </div>
-                <div class="passport-card">
-                    <h3>Módulo 02</h3>
-                    <p>Descripción técnica de la tarjeta.</p>
-                </div>
+<div class="container">
+    <section class="ui-section">
+        <h2>Componentes de Experiencia y Precios</h2>
+        <div class="grid-layout">
+            <!-- Tarjeta de Precio (Ajustada según fuente 4) -->
+            <div class="price-card">
+                <p class="price-tag">/// OFFICIAL TELEMETRY PRICE</p>
+                <div class="price-value">USD 149</div>
+                <button class="btn-action">Acceso Inmediato</button>
             </div>
-        </section>
-    </div>
 
-    <script>
-        console.log("Biblioteca UI APEX cargada.");
-        // Ejemplo de animación simple al hacer hover
-        document.querySelectorAll('.passport-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.borderColor = 'var(--electric-blue)';
-            });
-            card.addEventListener('mouseleave', () => {
-                card.style.borderColor = 'rgba(57, 160, 218, 0.2)';
-            });
-        });
-    </script>
+            <!-- Tarjeta de Contenido -->
+            <div class="glow-card">
+                <div class="icon-box"><i class="fas fa-database"></i></div>
+                <h3 style="font-family: var(--font-title);">Plantillas Adquisición</h3>
+                <p style="margin-top: 15px; font-size: 0.9rem;">Estructuras preconfiguradas para MoTeC i2 Pro y Atlas.</p>
+            </div>
+        </div>
+    </section>
+</div>
+    
+<section class="ui-section">
+        <h2>Iconografía del Sistema</h2>
+        <div style="display: flex; gap: 30px; flex-wrap: wrap;">
+            <div style="text-align: center;"><i class="fas fa-info-circle icon-box"></i><p>¿Qué es?</p></div>
+            <div style="text-align: center;"><i class="fas fa-tachometer-alt icon-box"></i><p>Experiencia</p></div>
+            <div style="text-align: center;"><i class="fas fa-flag-checkered icon-box"></i><p>Cursos</p></div>
+            <div style="text-align: center;"><i class="fas fa-trophy icon-box"></i><p>Podio</p></div>
+        </div>
+    </section>
+</div>
 </body>
-</html>
+</html>>
